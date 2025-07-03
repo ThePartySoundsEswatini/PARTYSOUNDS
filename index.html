@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Party Sounds Eswatini</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      position: relative;
+      background: url('assets/images/image.jpg') no-repeat center center/cover;
+      height: 100vh;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    header .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    header h1 {
+      font-size: 3em;
+      font-weight: 600;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #ddd;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: #222;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e91e63;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #111;
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .service {
+      flex: 1 1 300px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .service h4 {
+      margin-bottom: 10px;
+      color: #e91e63;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    form input:invalid {
+      border-color: #e91e63;
+    }
+
+    form button {
+      background: #e91e63;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    form button:hover {
+      background: #c2185b;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
+      }
+      section {
+        padding: 40px 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.9em;
+        margin: 0 10px;
+      }
+
+      header h1 {
+        font-size: 1.6em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <h1>The Party Sounds Eswatini</h1>
+    <p>Professional Sound Systems | DJ Services | Lighting Solutions</p>
+	<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  </div>
+</header>
+
+<nav>
+  <a href="#services">Services</a>
+  <a href="#booking">Booking</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+ <!-- Inside the Services Section -->
+<section id="services">
+  <h3>Our Services</h3>
+  <div class="services">
+    <article class="service">
+      <img src="assets/images/image2.png" alt="Sound System" style="width:100%; border-radius:6px; margin-bottom:10px;">
+      <h4>Full Sound System Rental</h4>
+      <p>Includes speakers, mixers, microphones, and setup for any size event.</p>
+    </article>
+    
+    <article class="service">
+      <img src="assets/images/image3.jpg" alt="Lighting Effects" style="width:100%; border-radius:6px; margin-bottom:10px;">
+      <h4>Lighting & Effects</h4>
+      <p>Lighting rigs, fog machines, and party effects to enhance the vibe.</p>
+    </article>
+  </div>
+</section>
+
+   
+<section id="booking">
+  <h3>Book Now</h3>
+  <form id="booking-form">
+    <input type="text" name="name" placeholder="Your Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <select name="service" required>
+      <option value="">Select a Service</option>
+      <option value="Sound System">Sound System Rental</option>
+      <option value="Lighting">Lighting & Effects</option>
+      <option value="Lighting & Sound">Lighting & Sound</option>
+    </select>
+    <input type="date" name="date" required>
+    <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
+    <button type="submit">Submit Booking</button>
+  </form>
+</section>
+</main>
+
+<!-- Footer with Social Links -->
+<footer id="contact">
+  <p>📞 Phone: <a href="tel:+26876031087" style="color: #ccc;">+268 76031087</a></p>
+  <p>📱 WhatsApp: <a href="https://wa.me/26879637097" target="_blank" style="color: #ccc;">Chat with us</a></p>
+  <p>📘 Facebook: <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098/#" target="_blank" style="color: #ccc;">The Party Sounds Eswatini</a></p>
+  <p>📧 Email: <a href="mailto:cl5292864@gmail.com" style="color: #ccc;">thepartysounds@gmail.com</a></p>
+  <p>&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
+</footer>
+
+<script type="text/javascript">
+  // Initialize EmailJS with your User ID (Replace with your actual user ID from EmailJS)
+  (function () {
+    emailjs.init("9VpXJnpNdqLQR-uOe");  // Replace with your EmailJS user ID
+  })();
+
+  // Handle the form submission
+  document.getElementById('booking-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from refreshing the page
+
+    // Get form data
+    var formData = new FormData(this);
+
+    // Send email using EmailJS
+    emailjs.sendForm('service_hqch6fi', 'template_jhessvb', this)  // Replace with your actual Service ID and Template ID
+      .then(function(response) {
+        console.log('Success:', response);
+        alert('Your booking has been submitted successfully! We will get in touch with you soon.');
+      })
+      .catch(function(error) {
+        console.log('Error:', error);
+        alert('Sorry, there was an issue submitting your booking. Please try again later.');
+      });
+  });
+</script>
+
+</body>
+</html>
