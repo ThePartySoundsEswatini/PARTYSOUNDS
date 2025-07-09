@@ -6,28 +6,25 @@
   <title>The Party Sounds Eswatini</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --primary: #e91e63;
+      --dark: #111;
+      --light: #f4f4f4;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f4f4f4;
+      margin: 0;
+      background: var(--light);
       color: #333;
       line-height: 1.6;
     }
 
     header {
-      position: relative;
-      background: url('assets/images/image.jpg') no-repeat center center/cover;
+      background: url('assets/images/image.jpg') center/cover no-repeat;
       height: 100vh;
-      color: #fff;
+      position: relative;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -37,8 +34,7 @@
     header::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
       background: rgba(0, 0, 0, 0.6);
       z-index: 1;
     }
@@ -47,51 +43,38 @@
       position: relative;
       z-index: 2;
       max-width: 800px;
-      padding: 0 20px;
-    }
-
-    header h1 {
-      font-size: 3em;
-      font-weight: 600;
-    }
-
-    header p {
-      font-size: 1.2em;
-      margin-top: 10px;
-      color: #ddd;
+      padding: 20px;
     }
 
     nav {
+      background: var(--dark);
+      padding: 10px;
+      text-align: center;
       position: sticky;
       top: 0;
       z-index: 999;
-      background: #222;
-      text-align: center;
-      padding: 10px 0;
     }
 
     nav a {
-      color: #fff;
-      text-decoration: none;
+      color: white;
       margin: 0 15px;
+      text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s;
     }
 
     nav a:hover {
-      color: #e91e63;
+      color: var(--primary);
     }
 
     section {
       padding: 60px 20px;
       max-width: 1000px;
-      margin: 0 auto;
+      margin: auto;
     }
 
-    section h3 {
+    section h3, section h2 {
       text-align: center;
       margin-bottom: 30px;
-      font-size: 2em;
       color: #111;
     }
 
@@ -104,49 +87,47 @@
 
     .service {
       flex: 1 1 300px;
-      background: #fff;
-      padding: 20px;
+      background: white;
       border-radius: 8px;
+      padding: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
     }
 
-    .service h4 {
+    .service img {
+      width: 80%; /* Adjusted for better alignment */
+      max-width: 200px; /* Set a max width for uniformity */
+      border-radius: 6px;
       margin-bottom: 10px;
-      color: #e91e63;
     }
 
     form {
-      background: #fff;
+      background: white;
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: 0 auto;
+      max-width: 700px;
+      margin: auto;
     }
 
-    form input, form textarea, form select {
+    form input, form select, form textarea {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
-      border: 1px solid #ccc;
       border-radius: 6px;
+      border: 1px solid #ccc;
       font-size: 1em;
-    }
-
-    form input:invalid {
-      border-color: #e91e63;
     }
 
     form button {
-      background: #e91e63;
-      color: #fff;
+      background: var(--primary);
+      color: white;
       padding: 12px 20px;
       border: none;
-      font-size: 1em;
-      cursor: pointer;
       border-radius: 6px;
-      transition: all 0.3s;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s ease;
     }
 
     form button:hover {
@@ -154,32 +135,55 @@
       transform: scale(1.05);
     }
 
-    footer {
-      background: #111;
-      color: #ccc;
+    .unit-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .item-card {
+      width: 180px;
       text-align: center;
-      padding: 20px 0;
-      margin-top: 60px;
+    }
+
+    .item-card img {
+      width: 80%; /* Adjusted for better alignment */
+      max-width: 150px; /* Set a max width for uniformity */
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .social-icons svg {
+      margin: 0 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .social-icons svg:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: var(--dark);
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    footer a {
+      color: #ccc;
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2em;
-      }
-      section {
-        padding: 40px 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 0.9em;
-        margin: 0 10px;
-      }
-
-      header h1 {
-        font-size: 1.6em;
-      }
+      header h1 { font-size: 2em; }
+      nav a { font-size: 0.9em; margin: 0 10px; }
+      .unit-items { justify-content: center; }
     }
   </style>
 </head>
@@ -188,103 +192,165 @@
 <header>
   <div class="header-content">
     <h1>The Party Sounds Eswatini</h1>
-    <p>Professional PA Systems | Lighting Solutions</p>
- <p>PRECISION SOUND, HEARTFELT THANKS!!!</p>
-	  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+    <p>Professional PA Systems</p>
+    <p>PRECISION SOUND, HEARTFELT THANKS!!!</p>
   </div>
 </header>
 
 <nav>
   <a href="#services">Services</a>
-  <a href="#booking">Booking</a>
-  <a href="#contact">Contact</a>
+  <a href="#unit-rentals">Unit-Rentals</a>
+  <a href="#booking">Book-us</a>
+  <a href="#contact">Contact-us</a>
 </nav>
 
 <main>
- <!-- Inside the Services Section -->
-<section id="services">
-  <h3>Our Services</h3>
-  <div class="services">
-    <article class="service">
-      <img src="assets/images/image2.png" alt="Sound System" style="width:100%; border-radius:6px; margin-bottom:10px;">
-      <h4>Full Sound System Rental</h4>
-      <p>Pilot price @ E1300.00 </p>
-	     <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 1 FTS MIXER, 1 WHARFADALE AMP, 2 WHARFADALE SUBBIN, 2 WIRELESS MICROPHONES, and other accessories.</p>
-    </article>
+  <section id="services">
+    <h3>Our Services</h3>
+    <div class="services">
+      <article class="service">
+        <img src="assets/images/image2.png" alt="Full Sound System">
+        <h4>Full Sound System Rental</h4>
+        <p>Price: E1300.00</p>
+        <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 1 FTS MIXER, 1 WHARFADALE AMP, 2 WHARFADALE SUBBIN, 2 WIRELESS MICROPHONES, and accessories.</p>
+      </article>
 
- <article class="service">
-      <img src="assets/images/A.jpg" style="width:100%; border-radius:6px; margin-bottom:10px;">
-      <h4>Standard Sound System Rental</h4>
-	  <p>Pilot price @ E750.00 </p>
-      <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 2 WIRELESS MICROPHONES, and other accessories.</p>
-    </article>
-	  
-    <article class="service">
-      <img src="assets/images/image3.jpg" alt="Lighting Effects" style="width:100%; border-radius:6px; margin-bottom:10px;">
-      <h4>Lighting & Effects</h4>
-      <p>Lighting rigs, fog machines, and party effects to enhance the vibe.</p>
-    </article>
-  </div>
-</section>
+      <article class="service">
+        <img src="assets/images/A.jpg" alt="Standard Sound System">
+        <h4>Standard Sound System Rental</h4>
+        <p>Price: E750.00</p>
+        <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 2 WIRELESS MICROPHONES, and accessories.</p>
+      </article>
 
-   
-<section id="booking">
-  <h3>Book Now</h3>
-  <form id="booking-form">
-    <input type="text" name="name" placeholder="Your Full Name" required>
-    <input type="Event Name" name="Event Name" placeholder="Event Name" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-   
-	  <select name="service"required>
-	  < label for="ServiceSelect" class="block text-gray-700 text-lg font-medium mb-2"> Choose an option:</label>
-	   <option value="">---Please Select A Service---</option>
-     
-      <option value="Sound System">Premium System Rental(E1300.00)</option>
-      <option value="Sound System">Standard Sound System Rental(E750.00)</option>
-	    
-      <option value="Lighting">Lighting & Effects(E500.00)</option>
-      <option value="Lighting & Sound">Lighting & Sound</option>
-    </select>
-	   <option value="">---Please Select The Date---</option>
-    <input type="date" name="date"  placeholder="Date" required>
-    <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
-    <button type="submit">Submit Booking</button>
-  </form>
-</section>
+      
+    </div>
+  </section>
+
+  <section id="unit-rentals">
+    <h3>UNIT-RENTAL</h3>
+    <form>
+      <div class="unit-items">
+        <div class="item-card">
+          <img src="mics.jpg" alt="Microphone">
+          <label><input type="checkbox" name="item" value="mic"> FTS WIRELESS MICS- E150</label>
+        </div>
+
+        <div class="item-card">
+          <img src="tops.jpg" alt="FTS top">
+          <label><input type="checkbox" name="item" value="FTS top"> FTS TOP - E300ea</label>
+        </div>
+
+        <div class="item-card">
+          <img src="subbin.jpg" alt="Subwoofer">
+          <label><input type="checkbox" name="item" value="sub"> Subwoofer - E500</label>
+        </div>
+
+        <div class="item-card">
+          <img src="laptop.jpg" alt="HP 255 G8">
+          <label><input type="checkbox" name="item" value="top"> HP 255 G8 LAPTOP - E350</label>
+        </div>
+
+        <div class="item-card">
+          <img src="amp.jpg" alt="Amplifier">
+          <label><input type="checkbox" name="item" value="amp"> WHARFADALE CPD200 AMP - E500</label>
+        </div>
+
+        <div class="item-card">
+          <img src="ftsmixer.jpg" alt="Mixer">
+          <label><input type="checkbox" name="item" value="mixer"> 🎛️ FTS MIXER 8 CHNNL - E600</label>
+        </div>
+
+        <div class="item-card">
+          <img src="ROCKSONIC.jpg" alt="ROCKSONIC">
+          <label><input type="checkbox" name="item" value="light"> 🎛️ROCKSONIC MIXER CHNNL - E400</label>
+        </div>
+
+        <div class="item-card">
+          <img src="cables.jpg" alt="Cables">
+          <label><input type="checkbox" name="item" value="cables"> 🔌 Cables - E75</label>
+        </div>
+      </div>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" max="10">
+
+      <button type="submit">Add to Booking</button>
+    </form>
+  </section>
+
+  <section id="booking">
+    <h3>Details And Other services</h3>
+    <form id="booking-form">
+      <input type="text" name="name" placeholder="Your Full Name" required>
+      <input type="text" name="event" placeholder="Event Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+
+      <select name="service" required>
+        <option value="">--- Please Select A Service ---</option>
+        <option value="Premium Sound System">Premium Sound System Rental (E1300)</option>
+        <option value="Standard Sound System">Standard Sound System Rental (E750)</option>
+        <option value="Lighting">Lighting & Effects (E500)</option>
+        <option value="Lighting & Sound">Lighting & Sound</option>
+      </select>
+
+      <input type="date" name="date" required>
+      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
+      <button type="submit">Submit Booking</button>
+    </form>
+  </section>
 </main>
 
-<!-- Footer with Social Links -->
 <footer id="contact">
-  <p>📞 Phone: <a href="tel:+26876031087/79637097" style="color: #ccc;">+268 76031087/79637097</a></p>
-  <p>📱 WhatsApp: <a href="https://wa.me/26879637097" target="_blank" style="color: #ccc;">Chat with us</a></p>
-  <p>📘 Facebook: <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098/#" target="_blank" style="color: #ccc;">The Party Sounds Eswatini</a></p>
-  <p>📧 Email: <a href="mailto:cl5292864@gmail.com" style="color: #ccc;">thepartysounds@gmail.com</a></p>
-  <p>&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
+  <h3>Contact Us</h3>
+
+  <p>
+     Phone📞:
+    <a href="tel:+26876031087">+268 76031087 / 79637097</a>
+  </p>
+
+  <p>
+    WhatsApp:
+    <a href="https://wa.me/26879637097" target="_blank" style="display: inline-flex; align-items: center;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 32 32" width="24" fill="#25D366" style="margin-right:6px;">
+        <path d="M16 .5C7.4.5.5 7.4.5 16c0 3.3 1 6.3 2.7 8.9L.7 31.3l6.6-2.6C9.7 30 12.8 31 16 31c8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5z"/>
+      </svg>
+      Chat with us
+    </a>
+  </p>
+
+  <p>
+    Facebook:
+    <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098" target="_blank" style="display: inline-flex; align-items: center;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 32 32" width="24" fill="#3b5998" style="margin-right:6px;">
+        <path d="M19 6h5V0h-5c-3.3 0-6 2.7-6 6v4H7v6h6v16h6V16h5l1-6h-6V6z"/>
+      </svg>
+      The Party Sounds Eswatini
+    </a>
+  </p>
+
+  <p>
+     Email📧:
+    <a href="mailto:thepartysounds@gmail.com">thepartysounds@gmail.com</a>
+  </p>
+
+  <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<script type="text/javascript">
-  // Initialize EmailJS with your User ID (Replace with your actual user ID from EmailJS)
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
   (function () {
-    emailjs.init("9VpXJnpNdqLQR-uOe");  // Replace with your EmailJS user ID
+    emailjs.init("9VpXJnpNdqLQR-uOe"); // Replace with your actual user ID
   })();
 
-  // Handle the form submission
   document.getElementById('booking-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form from refreshing the page
+    event.preventDefault();
 
-    // Get form data
-    var formData = new FormData(this);
-
-    // Send email using EmailJS
-    emailjs.sendForm('service_hqch6fi', 'template_jhessvb', this)  // Replace with your actual Service ID and Template ID
+    emailjs.sendForm('service_hqch6fi', 'template_jhessvb', this)  // Replace with actual IDs
       .then(function(response) {
-        console.log('Success:', response);
-        alert('Your booking has been submitted successfully! We will call you ASAP.');
+        alert('Your booking was submitted successfully! We’ll contact you shortly.');
       })
       .catch(function(error) {
-        console.log('Error:', error);
-        alert('Sorry, there was an issue submitting your booking. Please try again later.');
+        alert('There was a problem submitting your booking. Please try again.');
       });
   });
 </script>
