@@ -62,6 +62,11 @@
       font-weight: 600;
     }
 
+    nav a.active {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
     nav a:hover {
       color: var(--primary);
     }
@@ -198,40 +203,65 @@
 </header>
 
 <nav>
+  <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
-  <a href="#booking">Book-us</a>
-  <a href="#contact">Contact-us</a>
-
+  <a href="#unit-rentals">Unit Rentals</a>
+  <a href="#packaged-pa">Packaged PA</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#terms">Terms & Conditions</a>
+  <a href="#free-event-application">Free Event Application</a>
 </nav>
 
 <main>
+  <section id="home">
+    <h3>Welcome to The Party Sounds Eswatini</h3>
+    <p>Your one-stop solution for professional sound systems and event services.</p>
+  </section>
+
   <section id="services">
     <h3>Our Services</h3>
     <div class="services">
       <article class="service">
         <img src="assets/images/image2.png" alt="Full Sound System">
         <h4>Full Sound System Rental</h4>
-        <p>Price: E1300.00 per day</p>
+        <p>Price: E1300.00</p>
         <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 1 FTS MIXER, 1 WHARFADALE AMP, 2 WHARFADALE SUBBIN, 2 WIRELESS MICROPHONES, and accessories.</p>
       </article>
 
       <article class="service">
         <img src="assets/images/A.jpg" alt="Standard Sound System">
         <h4>Standard Sound System Rental</h4>
-        <p>Price: E750.00 per day</p>
+        <p>Price: E750.00</p>
         <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 2 WIRELESS MICROPHONES, and accessories.</p>
       </article>
-
-      
     </div>
   </section>
 
- 
-</section>
+  <section id="unit-rentals">
+    <h3>Unit Rentals</h3>
+    <form>
+      <label for="unit-rental">Select a Unit Rental:</label>
+      <select id="unit-rental" name="unit-rental" required>
+          <option value="">--- Please Select A Unit Rental ---</option>
+          <option value="mic">FTS WIRELESS MICS - E150</option>
+          <option value="FTS top">FTS TOP - E300ea</option>
+          <option value="sub">Subwoofer - E500</option>
+          <option value="laptop">HP 255 G8 LAPTOP - E350</option>
+          <option value="amp">WHARFADALE CPD200 AMP - E500</option>
+          <option value="mixer">🎛️ FTS MIXER 8 CHNNL - E600</option>
+          <option value="light">🎛️ ROCKSONIC MIXER CHNNL - E400</option>
+          <option value="cables">🔌 Cables - E75</option>
+      </select>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+
+      <button type="submit">Add to Booking</button>
+    </form>
   </section>
 
   <section id="booking">
-    <h3>BOOK US</h3>
+    <h3>Details And Other Services</h3>
     <form id="booking-form">
       <input type="text" name="name" placeholder="Your Full Name" required>
       <input type="text" name="event" placeholder="Event Name" required>
@@ -239,34 +269,49 @@
 
       <select name="service" required>
         <option value="">--- Please Select A Service ---</option>
-		<option value="">Need Units </option>
-        <option value="Premium Sound System">Premium Sound System Rental (E1300/day)</option>
-        <option value="Standard Sound System">Standard Sound System Rental (E750/day)</option>
-        <option value="Lighting">Lighting & Effects (E500/day)</option>
+        <option value="Premium Sound System">Premium Sound System Rental (E1300)</option>
+        <option value="Standard Sound System">Standard Sound System Rental (E750)</option>
+        <option value="Lighting">Lighting & Effects (E500)</option>
         <option value="Lighting & Sound">Lighting & Sound</option>
-      </select> 
-	 
-    <h4>NEEDING UNITS?</h4>
-	
-    
-        <label for="unit-rental">CHOOSE FROM THE LIST:</label>
-	    <p>PER DAY CHARGES!!!</p>
-        <select id="unit-rental" name="unit-rental" required>
-            <option value="">--- UNIT ITEMS ---</option>
-			<option value="">Chose full system</option>
-            <option value="mic">FTS WIRELESS MICS - E150</option>
-            <option value="FTS top">FTS TOP - E300ea</option>
-            <option value="sub">Subwoofer - E500</option>
-            <option value="laptop">HP 255 G8 LAPTOP - E350</option>
-            <option value="amp">WHARFADALE CPD200 AMP - E500</option>
-            <option value="mixer">FTS MIXER 8 CHNNL - E600</option>
-            <option value="light">ROCKSONIC MIXER CHNNL - E400</option>
-            <option value="cables">Cables - E75</option>
-        </select>
-        
+      </select>
+
       <input type="date" name="date" required>
       <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
       <button type="submit">Submit Booking</button>
+    </form>
+  </section>
+
+  <section id="reviews">
+    <h3>Reviews</h3>
+    <form id="review-form">
+      <input type="text" name="reviewer" placeholder="Your Name (Optional)">
+      <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
+      <label>
+        <input type="checkbox" name="anonymous"> Submit Anonymously
+      </label>
+      <button type="submit">Submit Review</button>
+    </form>
+  </section>
+
+  <section id="terms">
+    <h3>Terms & Conditions</h3>
+    <h4>Transport Fees</h4>
+    <p>Details about transport fees...</p>
+    <h4>DJ Charges</h4>
+    <p>Details about DJ charges...</p>
+    <h4>Hourly Charge</h4>
+    <p>Details about hourly charges...</p>
+    <h4>Discounts</h4>
+    <p>Details about discounts...</p>
+  </section>
+
+  <section id="free-event-application">
+    <h3>Free Event Application</h3>
+    <form id="event-application-form">
+      <input type="text" name="applicant_name" placeholder="Your Name" required>
+      <input type="text" name="event_details" placeholder="Event Details" required>
+      <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
+      <button type="submit">Apply</button>
     </form>
   </section>
 </main>
@@ -315,13 +360,34 @@
 
   document.getElementById('booking-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
     emailjs.sendForm('service_hqch6fi', 'template_jhessvb', this)  // Replace with actual IDs
       .then(function(response) {
         alert('Your booking was submitted successfully! We’ll contact you shortly.');
       })
       .catch(function(error) {
         alert('There was a problem submitting your booking. Please try again.');
+      });
+  });
+
+  document.getElementById('review-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    emailjs.sendForm('service_hqch6fi', 'template_review', this)  // Replace with actual IDs
+      .then(function(response) {
+        alert('Your review was submitted successfully!');
+      })
+      .catch(function(error) {
+        alert('There was a problem submitting your review. Please try again.');
+      });
+  });
+
+  document.getElementById('event-application-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    emailjs.sendForm('service_hqch6fi', 'template_event_application', this)  // Replace with actual IDs
+      .then(function(response) {
+        alert('Your application was submitted successfully!');
+      })
+      .catch(function(error) {
+        alert('There was a problem submitting your application. Please try again.');
       });
   });
 </script>
