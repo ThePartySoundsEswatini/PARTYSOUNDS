@@ -239,7 +239,7 @@
 
   <section id="unit-rentals">
     <h3>Unit Rentals</h3>
-    <form>
+    <form id="unit-rental-form">
       <label for="unit-rental">Select a Unit Rental:</label>
       <select id="unit-rental" name="unit-rental" required>
           <option value="">--- Please Select A Unit Rental ---</option>
@@ -358,36 +358,51 @@
     emailjs.init("9VpXJnpNdqLQR-uOe"); // Replace with your actual user ID
   })();
 
+  // Unit Rental Form Submission
+  document.getElementById('unit-rental-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_unit_rental', this)  // Send form data
+      .then(function(response) {
+        alert('Your unit rental request was submitted successfully!');
+      })
+      .catch(function(error) {
+        alert('There was a problem submitting your unit rental request. Please try again later.');
+      });
+  });
+
+  // Booking Form Submission
   document.getElementById('booking-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_jhessvb', this)  // Replace with actual IDs
+    event.preventDefault(); // Prevent default form submission
+    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_jhessvb', this)  // Send form data
       .then(function(response) {
         alert('Your booking was submitted successfully! We’ll contact you shortly.');
       })
       .catch(function(error) {
-        alert('There was a problem submitting your booking. Website is still under maintanance. Please try again later. Please try again.');
+        alert('There was a problem submitting your booking. Please try again later.');
       });
   });
 
+  // Review Form Submission
   document.getElementById('review-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_review', this)  // Replace with actual IDs
+    event.preventDefault(); // Prevent default form submission
+    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_review', this)  // Send form data
       .then(function(response) {
         alert('Your review was submitted successfully!');
       })
       .catch(function(error) {
-        alert('There was a problem submitting your review,Website is still under maintanance. Please try again later.');
+        alert('There was a problem submitting your review. Please try again later.');
       });
   });
 
+  // Event Application Form Submission
   document.getElementById('event-application-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_event_application', this)  // Replace with actual IDs
+    event.preventDefault(); // Prevent default form submission
+    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_event_application', this)  // Send form data
       .then(function(response) {
         alert('Your application was submitted successfully!');
       })
       .catch(function(error) {
-        alert('Website is still under maintanance. Please try again later.');
+        alert('There was a problem submitting your application. Please try again later.');
       });
   });
 </script>
