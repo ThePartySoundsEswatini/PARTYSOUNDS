@@ -202,6 +202,7 @@
   <a href="#unit-rentals">Unit-Rentals</a>
   <a href="#booking">Book-us</a>
   <a href="#contact">Contact-us</a>
+
 </nav>
 
 <main>
@@ -226,56 +227,8 @@
     </div>
   </section>
 
-  <section id="unit-rentals">
-    <h3>UNIT-RENTAL</h3>
-    <form>
-      <div class="unit-items">
-        <div class="item-card">
-          <img src="mics.jpg" alt="Microphone">
-          <label><input type="checkbox" name="item" value="mic"> FTS WIRELESS MICS- E150</label>
-        </div>
-
-        <div class="item-card">
-          <img src="tops.jpg" alt="FTS top">
-          <label><input type="checkbox" name="item" value="FTS top"> FTS TOP - E300ea</label>
-        </div>
-
-        <div class="item-card">
-          <img src="subbin.jpg" alt="Subwoofer">
-          <label><input type="checkbox" name="item" value="sub"> Subwoofer - E500</label>
-        </div>
-
-        <div class="item-card">
-          <img src="laptop.jpg" alt="HP 255 G8">
-          <label><input type="checkbox" name="item" value="top"> HP 255 G8 LAPTOP - E350</label>
-        </div>
-
-        <div class="item-card">
-          <img src="amp.jpg" alt="Amplifier">
-          <label><input type="checkbox" name="item" value="amp"> WHARFADALE CPD200 AMP - E500</label>
-        </div>
-
-        <div class="item-card">
-          <img src="ftsmixer.jpg" alt="Mixer">
-          <label><input type="checkbox" name="item" value="mixer"> 🎛️ FTS MIXER 8 CHNNL - E600</label>
-        </div>
-
-        <div class="item-card">
-          <img src="ROCKSONIC.jpg" alt="ROCKSONIC">
-          <label><input type="checkbox" name="item" value="light"> 🎛️ROCKSONIC MIXER CHNNL - E400</label>
-        </div>
-
-        <div class="item-card">
-          <img src="cables.jpg" alt="Cables">
-          <label><input type="checkbox" name="item" value="cables"> 🔌 Cables - E75</label>
-        </div>
-      </div>
-
-      <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" name="quantity" min="1" max="10">
-
-      <button type="submit">Add to Booking</button>
-    </form>
+ 
+</section>
   </section>
 
   <section id="booking">
@@ -287,12 +240,30 @@
 
       <select name="service" required>
         <option value="">--- Please Select A Service ---</option>
+		<option value="">Need </option>
         <option value="Premium Sound System">Premium Sound System Rental (E1300)</option>
         <option value="Standard Sound System">Standard Sound System Rental (E750)</option>
         <option value="Lighting">Lighting & Effects (E500)</option>
         <option value="Lighting & Sound">Lighting & Sound</option>
-      </select>
-
+      </select> 
+	 
+    <h4>NEEDING UNITS?</h4>
+	
+    
+        <label for="unit-rental">CHOOSE FROM THE LIST:</label>
+        <select id="unit-rental" name="unit-rental" required>
+            <option value="">--- UNIT ITEMS ---</option>
+			<option value="">Chose full system</option>
+            <option value="mic">FTS WIRELESS MICS - E150</option>
+            <option value="FTS top">FTS TOP - E300ea</option>
+            <option value="sub">Subwoofer - E500</option>
+            <option value="laptop">HP 255 G8 LAPTOP - E350</option>
+            <option value="amp">WHARFADALE CPD200 AMP - E500</option>
+            <option value="mixer">FTS MIXER 8 CHNNL - E600</option>
+            <option value="light">ROCKSONIC MIXER CHNNL - E400</option>
+            <option value="cables">Cables - E75</option>
+        </select>
+        
       <input type="date" name="date" required>
       <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
       <button type="submit">Submit Booking</button>
