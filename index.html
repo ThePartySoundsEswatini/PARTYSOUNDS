@@ -207,9 +207,10 @@
   <a href="#services">Services</a>
   <a href="#unit-rentals">Unit Rentals</a>
   <a href="#packaged-pa">Packaged PA</a>
+  <a href="#free-event-application">GivingBack</a>
   <a href="#reviews">Reviews</a>
-  <a href="#terms">Terms & Conditions</a>
-  <a href="#free-event-application">Free Event Application</a>
+  <a href="#terms">Ts& Cs</a>
+  
 </nav>
 
 <main>
@@ -224,44 +225,21 @@
       <article class="service">
         <img src="assets/images/image2.png" alt="Full Sound System">
         <h4>Full Sound System Rental</h4>
-        <p>Price: E1300.00</p>
+        <p>Price: E1300.00 per day!</p>
         <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 1 FTS MIXER, 1 WHARFADALE AMP, 2 WHARFADALE SUBBIN, 2 WIRELESS MICROPHONES, and accessories.</p>
       </article>
 
       <article class="service">
         <img src="assets/images/A.jpg" alt="Standard Sound System">
         <h4>Standard Sound System Rental</h4>
-        <p>Price: E750.00</p>
+        <p>Price: E750.00 per day!</p>
         <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 2 WIRELESS MICROPHONES, and accessories.</p>
       </article>
     </div>
   </section>
 
-  <section id="unit-rentals">
-    <h3>Unit Rentals</h3>
-    <form id="unit-rental-form">
-      <label for="unit-rental">Select a Unit Rental:</label>
-      <select id="unit-rental" name="unit-rental" required>
-          <option value="">--- Please Select A Unit Rental ---</option>
-          <option value="mic">FTS WIRELESS MICS - E150</option>
-          <option value="FTS top">FTS TOP - E300ea</option>
-          <option value="sub">Subwoofer - E500</option>
-          <option value="laptop">HP 255 G8 LAPTOP - E350</option>
-          <option value="amp">WHARFADALE CPD200 AMP - E500</option>
-          <option value="mixer">🎛️ FTS MIXER 8 CHNNL - E600</option>
-          <option value="light">🎛️ ROCKSONIC MIXER CHNNL - E400</option>
-          <option value="cables">🔌 Cables - E75</option>
-      </select>
-
-      <label for="quantity">Quantity:</label>
-      <input type="number" id="quantity" name="quantity" min="1" max="10" required>
-
-      <button type="submit">Add to Booking</button>
-    </form>
-  </section>
-
   <section id="booking">
-    <h3>Details And Other Services</h3>
+    <h3>Full PA System Booking Form</h3>
     <form id="booking-form">
       <input type="text" name="name" placeholder="Your Full Name" required>
       <input type="text" name="event" placeholder="Event Name" required>
@@ -278,6 +256,45 @@
       <input type="date" name="date" required>
       <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
       <button type="submit">Submit Booking</button>
+    </form>
+  </section>
+  
+ <section id="unit-rentals">
+    <h3>Unit Rentals</h3>
+    <form id="unit-rental-form">
+	
+	 <input type="text" name="name" placeholder="Your Full Name" required>
+     <input type="text" name="event" placeholder="Event Name" required>
+     <input type="tel" name="phone" placeholder="Phone Number" required>
+	  
+      <label for="unit-rental"> Unit Rental:</label>
+      <select id="unit-rental" name="unit-rental" required>
+          <option value="">--- Please Select A Unit Rental ---</option>
+          <option value="mic">FTS WIRELESS MICS - E150</option>
+          <option value="FTS top">FTS TOP - E300ea</option>
+          <option value="sub">Subwoofer - E500</option>
+          <option value="laptop">HP 255 G8 LAPTOP - E350</option>
+          <option value="amp">WHARFADALE CPD200 AMP - E500</option>
+          <option value="mixer">FTS MIXER 8 CHNNL - E600</option>
+          <option value="light">ROCKSONIC MIXER CHNNL - E400</option>
+          <option value="cables">Cables - E75</option>
+      </select>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+
+      <button type="submit">Submit Unit Booking</button>
+    </form>
+  </section>
+  
+  <section id="free-event-application">
+    <h3>Charity Form</h3>
+    <form id="event-application-form">
+      <input type="text" name="applicant_name" placeholder="Your Name" required>
+	   <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="text" name="event_details" placeholder="Event Details" required>
+      <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
+      <button type="submit">Apply</button>
     </form>
   </section>
 
@@ -302,18 +319,10 @@
     <h4>Hourly Charge</h4>
     <p>Every cost is per day NB(working hours-9 hours)</p>
     <h4>Discounts</h4>
-    <p>Nigotiations are done</p>
+    <p>Nigotiable.</p>
   </section>
 
-  <section id="free-event-application">
-    <h3>Free Event Application</h3>
-    <form id="event-application-form">
-      <input type="text" name="applicant_name" placeholder="Your Name" required>
-      <input type="text" name="event_details" placeholder="Event Details" required>
-      <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
-      <button type="submit">Apply</button>
-    </form>
-  </section>
+  
 </main>
 
 <footer id="contact">
@@ -361,7 +370,7 @@
   // Unit Rental Form Submission
   document.getElementById('unit-rental-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_unit_rental', this)  // Send form data
+    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_jhessvb', this)  // Send form data
       .then(function(response) {
         alert('Your unit rental request was submitted successfully!');
       })
@@ -385,7 +394,7 @@
   // Review Form Submission
   document.getElementById('review-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_review', this)  // Send form data
+    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_jhessvb', this)  // Send form data
       .then(function(response) {
         alert('Your review was submitted successfully!');
       })
@@ -397,7 +406,7 @@
   // Event Application Form Submission
   document.getElementById('event-application-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_event_application', this)  // Send form data
+    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_jhessvb', this)  // Send form data
       .then(function(response) {
         alert('Your application was submitted successfully!');
       })
