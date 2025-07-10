@@ -403,17 +403,20 @@
       });
   });
 
-  // Event Application Form Submission
-  document.getElementById('event-application-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_jhessvb', this)  // Send form data
-      .then(function(response) {
-        alert('Your application was submitted successfully!');
-      })
-      .catch(function(error) {
-        alert('There was a problem submitting your application. Please try again later.');
-      });
-  });
+ // Booking Form Submission
+document.getElementById('booking-form').addEventListener('submit', function(event) {
+  console.log("Booking form submitted"); // Debugging line
+  event.preventDefault(); // Prevent default form submission
+  emailjs.sendForm('VpXJnpNdqLQR-uOe', 'template_booking', this)  // Send form data
+    .then(function(response) {
+      console.log('Success!', response.status, response.text); // Log success
+      alert('Your booking was submitted successfully! We’ll contact you shortly.');
+    })
+    .catch(function(error) {
+      console.error('Failed to send booking:', error); // Log error
+      alert('There was a problem submitting your booking. Please try again later.');
+    });
+});
 </script>
 
 </body>
