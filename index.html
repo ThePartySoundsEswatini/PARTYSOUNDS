@@ -261,10 +261,10 @@
   
   <section id="free-event-application">
     <h3>Charity Form</h3>
-    <form id="event-application-form">
-      <input type="text" name="applicant_name" placeholder="Your Name" required>
+    <form id="charity-form">
+      <input type="text" name="name" placeholder="Your Name" required>
 	   <input type="tel" name="phone" placeholder="Phone Number" required>
-      <input type="text" name="event_details" placeholder="Event Details" required>
+      <input type="text" name="details" placeholder="Event Details" required>
       <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
       <button type="submit">Apply</button>
     </form>
@@ -393,7 +393,7 @@
   });
 
   // Event Application Form Submission
-  document.getElementById('event-application-form').addEventListener('submit', function(event) {
+  document.getElementById('charity-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
     emailjs.sendForm('service_hqch6fi', 'template_jhessvb', this)  // Send form data
       .then(function(response) {
