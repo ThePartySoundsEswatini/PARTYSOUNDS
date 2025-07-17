@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Party Sounds Eswatini</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --primary: #e91e63;
       --dark: #111;
       --light: #f4f4f4;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -19,7 +19,6 @@
       color: #333;
       line-height: 1.6;
     }
-
     header {
       background: url('assets/images/image.jpg') center/cover no-repeat;
       height: 100vh;
@@ -30,7 +29,6 @@
       justify-content: center;
       text-align: center;
     }
-
     header::before {
       content: "";
       position: absolute;
@@ -38,14 +36,12 @@
       background: rgba(0, 0, 0, 0.6);
       z-index: 1;
     }
-
     header .header-content {
       position: relative;
       z-index: 2;
       max-width: 800px;
       padding: 20px;
     }
-
     nav {
       background: var(--dark);
       padding: 10px;
@@ -54,42 +50,35 @@
       top: 0;
       z-index: 999;
     }
-
     nav a {
       color: white;
       margin: 0 15px;
       text-decoration: none;
       font-weight: 600;
     }
-
     nav a.active {
       color: var(--primary);
       text-decoration: underline;
     }
-
     nav a:hover {
       color: var(--primary);
     }
-
     section {
       padding: 60px 20px;
       max-width: 1000px;
       margin: auto;
     }
-
     section h3, section h2 {
       text-align: center;
       margin-bottom: 30px;
       color: #111;
     }
-
     .services {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       justify-content: center;
     }
-
     .service {
       flex: 1 1 300px;
       background: white;
@@ -98,14 +87,12 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
     }
-
     .service img {
-      width: 80%; /* Adjusted for better alignment */
-      max-width: 200px; /* Set a max width for uniformity */
+      width: 80%;
+      max-width: 200px;
       border-radius: 6px;
       margin-bottom: 10px;
     }
-
     form {
       background: white;
       padding: 30px;
@@ -114,7 +101,6 @@
       max-width: 700px;
       margin: auto;
     }
-
     form input, form select, form textarea {
       width: 100%;
       padding: 12px;
@@ -123,7 +109,6 @@
       border: 1px solid #ccc;
       font-size: 1em;
     }
-
     form button {
       background: var(--primary);
       color: white;
@@ -134,61 +119,34 @@
       font-size: 1em;
       transition: 0.3s ease;
     }
-
     form button:hover {
       background: #c2185b;
       transform: scale(1.05);
     }
-
-    .unit-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .item-card {
-      width: 180px;
-      text-align: center;
-    }
-
-    .item-card img {
-      width: 80%; /* Adjusted for better alignment */
-      max-width: 150px; /* Set a max width for uniformity */
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-
     .social-icons {
       text-align: center;
       margin-top: 30px;
     }
-
     .social-icons svg {
       margin: 0 10px;
       cursor: pointer;
       transition: 0.3s ease;
     }
-
     .social-icons svg:hover {
       transform: scale(1.1);
     }
-
     footer {
       background: var(--dark);
       color: #ccc;
       padding: 30px 20px;
       text-align: center;
     }
-
     footer a {
       color: #ccc;
     }
-
     @media (max-width: 768px) {
       header h1 { font-size: 2em; }
       nav a { font-size: 0.9em; margin: 0 10px; }
-      .unit-items { justify-content: center; }
     }
   </style>
 </head>
@@ -205,12 +163,10 @@
 <nav>
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
-  
   <a href="#packaged-pa">Packaged PA</a>
   <a href="#free-event-application">GivingBack</a>
   <a href="#reviews">Reviews</a>
-  <a href="#terms">Ts& Cs</a>
-  
+  <a href="#terms">Ts & Cs</a>
 </nav>
 
 <main>
@@ -228,7 +184,6 @@
         <p>Price: E1300.00 per day!</p>
         <p>Includes 2 FTS TOPS, 1 ROCKSONIC MIXER, 1 FTS MIXER, 1 WHARFADALE AMP, 2 WHARFADALE SUBBIN, 2 WIRELESS MICROPHONES, and accessories.</p>
       </article>
-
       <article class="service">
         <img src="assets/images/A.jpg" alt="Standard Sound System">
         <h4>Standard Sound System Rental</h4>
@@ -244,7 +199,6 @@
       <input type="text" name="name" placeholder="Your Full Name" required>
       <input type="text" name="event" placeholder="Event Name" required>
       <input type="tel" name="phone" placeholder="Phone Number" required>
-
       <select name="service" required>
         <option value="">--- Please Select A Service ---</option>
         <option value="Premium Sound System">Premium Sound System Rental (E1300)</option>
@@ -252,18 +206,17 @@
         <option value="Lighting">Lighting & Effects (E500)</option>
         <option value="Lighting & Sound">Lighting & Sound</option>
       </select>
-
       <input type="date" name="date" required>
       <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
       <button type="submit">Submit Booking</button>
     </form>
   </section>
-  
+
   <section id="free-event-application">
     <h3>Charity Form</h3>
     <form id="charity-form">
       <input type="text" name="name" placeholder="Your Name" required>
-	   <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
       <input type="text" name="details" placeholder="Event Details" required>
       <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
       <button type="submit">Apply</button>
@@ -282,127 +235,62 @@
     </form>
   </section>
 
- <section id="terms">
-  <h3>Terms & Conditions</h3>
-
-  <h4>Transport Fees</h4>
-  <p>Transport fees depend on the distance and will be quoted based on the event location.</p>
-
-  <h4>DJ Charges</h4>
-  <p>DJ charges are separate and based on the DJ's individual rates.</p>
-
-  <h4>Hourly Charge</h4>
-  <p>All listed prices are per day and based on 9 working hours (e.g., 10AM – 7PM). Overtime may incur additional charges.</p>
-
-  <h4>Discounts</h4>
-  <p>Discounts are negotiable depending on the nature of the event and equipment required.</p>
-
-  <h4>Referral Commissions</h4>
-  <p>
-    We value and reward those who refer clients to us. If you bring a paying client, you are entitled to a commission based on the rental amount. Our standard referral commission is:
-  </p>
-  <ul>
-    <li><strong>10% of the total rental amount</strong> for one-time referrals</li>
-    <li><strong>15% or more</strong> for consistent promoters or ongoing partnerships (negotiable)</li>
-  </ul>
-  <p>
-    For example, if a client rents a sound system for E800.00, you earn E80.00 as a 10% commission.
-    Commissions are paid out after the event is completed and payment is confirmed. Please make sure to inform us beforehand if you’re referring a client so that we can record your details.
-  </p>
-</section>
-
-  
+  <section id="terms">
+    <h3>Terms & Conditions</h3>
+    <h4>Transport Fees</h4>
+    <p>Transport fees depend on the distance and will be quoted based on the event location.</p>
+    <h4>DJ Charges</h4>
+    <p>DJ charges are separate and based on the DJ's individual rates.</p>
+    <h4>Hourly Charge</h4>
+    <p>All listed prices are per day and based on 9 working hours (10 AM – 7 PM). Overtime may incur additional charges.</p>
+    <h4>Discounts</h4>
+    <p>Discounts are negotiable depending on the nature of the event and equipment required.</p>
+    <h4>Referral Commissions</h4>
+    <ul>
+      <li><strong>10% of the total rental amount</strong> for one-time referrals</li>
+      <li><strong>15% or more</strong> for consistent promoters or ongoing partnerships (negotiable)</li>
+    </ul>
+    <p>For example, if a client rents a sound system for E800, you earn E80 as a 10% commission.</p>
+    <p>Commissions are paid out after the event and payment confirmation. Please inform us beforehand if you’re referring a client so we can record your details.</p>
+  </section>
 </main>
 
 <footer id="contact">
   <h3>Contact Us</h3>
-
-  <p>
-     Phone📞:
-    <a href="tel:+26876031087">+268 76031087 / 79637097</a>
-  </p>
-
-  <p>
-    WhatsApp:
-    <a href="https://wa.me/26879637097" target="_blank" style="display: inline-flex; align-items: center;">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 32 32" width="24" fill="#25D366" style="margin-right:6px;">
-        <path d="M16 .5C7.4.5.5 7.4.5 16c0 3.3 1 6.3 2.7 8.9L.7 31.3l6.6-2.6C9.7 30 12.8 31 16 31c8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5z"/>
-      </svg>
-      Chat with us
-    </a>
-  </p>
-
-  <p>
-    Facebook:
-    <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098" target="_blank" style="display: inline-flex; align-items: center;">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 32 32" width="24" fill="#3b5998" style="margin-right:6px;">
-        <path d="M19 6h5V0h-5c-3.3 0-6 2.7-6 6v4H7v6h6v16h6V16h5l1-6h-6V6z"/>
-      </svg>
-      The Party Sounds Eswatini
-    </a>
-  </p>
-
-  <p>
-     Email📧:
-    <a href="mailto:thepartysounds@gmail.com">thepartysounds@gmail.com</a>
-  </p>
-
+  <p>Phone📞: <a href="tel:+26876031087">+268 76031087 / 79637097</a></p>
+  <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank">Chat with us</a></p>
+  <p>Facebook: <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098" target="_blank">The Party Sounds Eswatini</a></p>
+  <p>Email📧: <a href="mailto:thepartysounds@gmail.com">thepartysounds@gmail.com</a></p>
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  (function () {
-    emailjs.init("9VpXJnpNdqLQR-uOe"); // Replace with your actual user ID
+  // Initialize EmailJS
+  (function() {
+    emailjs.init("9VpXJnpNdqLQR-uOe");
   })();
 
-  // Unit Rental Form Submission
-  document.getElementById('unit-rental-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('service_hqch6fi', 'template_jhessvb', this)  // Send form data
-      .then(function(response) {
-        alert('Your unit rental request was submitted successfully!');
-      })
-      .catch(function(error) {
-        alert('There was a problem submitting your unit rental request. Please try again later.');
-      });
-  });
+  function setupEmailJS(formId, serviceID, templateID) {
+    const form = document.getElementById(formId);
+    if (!form) return console.error(`Form '${formId}' not found.`);
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          alert('✔️ Your form was submitted successfully!');
+          form.reset();
+        })
+        .catch(err => {
+          console.error('EmailJS error:', err);
+          alert('❌ There was a problem submitting the form.');
+        });
+    });
+  }
 
-  // Booking Form Submission
-  document.getElementById('booking-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('service_hqch6fi', 'template_jhessvb', this)  // Send form data
-      .then(function(response) {
-        alert('Your booking was submitted successfully! We’ll contact you shortly.');
-      })
-      .catch(function(error) {
-        alert('There was a problem submitting your booking. Please try again later.');
-      });
-  });
-
-  // Review Form Submission
-  document.getElementById('review-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('service_hqch6fi', 'template_ouh3xuo', this)  // Send form data emailjs.send("service_hqch6fi","template_ouh3xuo");
-      .then(function(response) {
-        alert('Your review was submitted successfully!');
-      })
-      .catch(function(error) {
-        alert('There was a problem submitting your review. Please try again later.');
-      });
-  });
-
-  // Event Application Form Submission
-  document.getElementById('charity-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-    emailjs.sendForm('service_hqch6fi', 'template_ouh3xuo', this)  // Send form data
-      .then(function(response) {
-        alert('Your application was submitted successfully!');
-      })
-      .catch(function(error) {
-        alert('There was a problem submitting your application. Please try again later.');
-      });
-  });
+  setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
+  setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
+  setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
 </script>
 
 </body>
