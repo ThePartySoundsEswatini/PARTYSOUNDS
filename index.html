@@ -191,22 +191,45 @@
       color: #666;
       margin-bottom: 15px;
     }
-    .blog-post img, .blog-post video { /* Added video to this rule */
+    .blog-post img, .blog-post video {
       max-width: 100%;
       height: auto;
       border-radius: 6px;
       margin-bottom: 15px;
-      display: block; /* Ensures videos behave like block elements */
-      margin-left: auto; /* Centers videos */
-      margin-right: auto; /* Centers videos */
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .blog-post a {
+    .blog-post a { /* Original anchor link style - won't apply to new buttons */
       color: var(--primary);
       text-decoration: none;
       font-weight: 600;
     }
-    .blog-post a:hover {
+    .blog-post a:hover { /* Original anchor link style */
       text-decoration: underline;
+    }
+
+    /* --- New CSS for collapsible content --- */
+    .blog-content-hidden {
+      display: none; /* Initially hide the full content */
+    }
+    .read-more-btn {
+      background: var(--primary);
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      margin-top: 10px;
+      transition: 0.3s ease;
+      display: block; /* Make button a block element so it takes full width */
+      width: fit-content; /* Adjust width to content */
+      margin-left: auto; /* Center the button */
+      margin-right: auto; /* Center the button */
+    }
+    .read-more-btn:hover {
+      background: #c2185b;
     }
 
   </style>
@@ -306,8 +329,15 @@
       <h4>5 Tips for Perfect Event Sound</h4>
       <p class="meta">Published on July 10, 2025 by The Party Sounds Eswatini</p>
       <img src="assets/images/blog1.jpg" alt="Blog Post Image 1">
-      <p>Achieving crisp, clear sound at your event is crucial for success. Here are our top 5 tips...</p>
-      <a href="#">Read More</a>
+      <p>Achieving crisp, clear sound at your event is crucial for success. Here are our top 5 tips that our experienced sound engineers swear by... </p>
+      <div class="blog-content-hidden" id="post1-content">
+        <p>1. **Acoustics Matter:** Pay attention to the venue's natural sound. Hard surfaces can cause echoes, while soft furnishings absorb sound, affecting the overall clarity. Understanding the room's acoustics helps in proper speaker placement.</p>
+        <p>2. **Mic Placement is Key:** Improper microphone positioning can lead to annoying feedback and unclear vocals. Always test microphone placement during sound checks to ensure optimal pickup and minimize ambient noise.</p>
+        <p>3. **Monitor Mix:** Provide good monitor mixes for performers so they can hear themselves and each other accurately. A comfortable monitor mix allows musicians to perform their best without straining.</p>
+        <p>4. **Sound Check Thoroughly:** Never skip a detailed sound check. Test every input and output, ensure all instruments and vocals are balanced, and check for any technical glitches before the event starts.</p>
+        <p>5. **Audience Position:** Consider the audience's listening experience. Distribute speakers evenly throughout the venue to ensure consistent sound quality for everyone, regardless of where they are seated or standing.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post1-content', this)">Read More</button>
     </div>
 
     <div class="blog-post">
@@ -318,7 +348,11 @@
         Your browser does not support the video tag.
       </video>
       <p>Get insights from our lead sound engineer as he discusses the challenges and joys of live sound production.</p>
-      <a href="#">Watch Interview</a>
+      <div class="blog-content-hidden" id="post2-content">
+        <p>In this exclusive interview, Thabo Dlamini, our lead sound engineer, shares his journey into the world of professional audio. He talks about his passion for perfecting sound, his favorite pieces of equipment, and the unique challenges faced during large-scale live events.</p>
+        <p>Thabo also provides valuable advice for aspiring sound engineers in Eswatini and highlights some of the most memorable events The Party Sounds Eswatini has had the privilege to work on, from outdoor festivals to intimate corporate gatherings.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post2-content', this)">Watch Interview</button>
     </div>
 
     <div class="blog-post">
@@ -326,7 +360,11 @@
       <p class="meta">Published on June 25, 2025 by The Party Sounds Eswatini</p>
       <img src="assets/images/blog2.jpg" alt="Blog Post Image 2">
       <p>Ever wondered what goes into setting up a large-scale PA system for a concert? We take you behind the scenes...</p>
-      <a href="#">Read More</a>
+      <div class="blog-content-hidden" id="post3-content">
+        <p>Setting up for a major concert is a meticulous operation. It starts weeks in advance with detailed planning, venue walkthroughs, and equipment checks. On the day of the event, our team works tirelessly to transport, assemble, and calibrate every component of the PA system.</p>
+        <p>This includes rigging speakers, laying hundreds of meters of cable, configuring mixing consoles, and fine-tuning microphones. Discover the coordination required between the sound team, lighting crew, and stage managers to ensure every element is perfect for an unforgettable show.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post3-content', this)">Read More</button>
     </div>
 
     <div class="blog-post">
@@ -337,7 +375,11 @@
         Your browser does not support the video tag.
       </video>
       <p>Hear directly from a happy couple about their experience with The Party Sounds Eswatini at their wedding.</p>
-      <a href="#">Watch Testimonial</a>
+      <div class="blog-content-hidden" id="post4-content">
+        <p>Mr. and Mrs. Dlamini share their joy and satisfaction with the impeccable sound quality and professional service provided by our team on their special day. They speak about how our PA system ensured every speech was heard clearly and the music kept their guests dancing all night.</p>
+        <p>Their heartfelt feedback highlights our commitment to making every event perfect and stress-free. We are incredibly grateful for their kind words and look forward to helping more couples celebrate their dream weddings with perfect sound.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post4-content', this)">Watch Testimonial</button>
     </div>
 
     </section>
@@ -423,7 +465,19 @@
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
   setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
   setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
+
+  // --- New JavaScript for Expand/Collapse Blog Posts ---
+  function toggleReadMore(contentId, buttonElement) {
+    const content = document.getElementById(contentId);
+    if (content.style.display === "none" || content.style.display === "") {
+      content.style.display = "block"; // Show the content
+      buttonElement.textContent = "Read Less"; // Change button text
+    } else {
+      content.style.display = "none"; // Hide the content
+      buttonElement.textContent = "Read More"; // Change button text
+    }
+  }
 </script>
 
 </body>
-  </html>
+    </html>
