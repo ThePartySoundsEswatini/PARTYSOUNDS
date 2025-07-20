@@ -148,6 +148,67 @@
       header h1 { font-size: 2em; }
       nav a { font-size: 0.9em; margin: 0 10px; }
     }
+
+    /* --- Styles for Gallery and Blog --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .gallery-item {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 200px; /* Fixed height for consistency */
+      object-fit: cover; /* Ensures images cover the area without distortion */
+      display: block;
+    }
+    .gallery-item p {
+      padding: 15px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .blog-post {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .blog-post h4 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    .blog-post .meta {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .blog-post img, .blog-post video { /* Added video to this rule */
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: block; /* Ensures videos behave like block elements */
+      margin-left: auto; /* Centers videos */
+      margin-right: auto; /* Centers videos */
+    }
+    .blog-post a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .blog-post a:hover {
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 <body>
@@ -164,6 +225,8 @@
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
   <a href="#packaged-pa">Packaged PA</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#blog">Blog</a>
   <a href="#free-event-application">GivingBack</a>
   <a href="#reviews">Reviews</a>
   <a href="#terms">Ts & Cs</a>
@@ -211,6 +274,74 @@
       <button type="submit">Submit Booking</button>
     </form>
   </section>
+
+  <section id="gallery">
+    <h3>Our Gallery</h3>
+    <p style="text-align: center; margin-bottom: 30px;">See our equipment in action and past events.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="assets/images/gallery1.jpg" alt="Event Setup 1">
+        <p>Wedding Reception Setup</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/gallery2.jpg" alt="Concert Stage">
+        <p>Outdoor Concert Stage</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/gallery3.jpg" alt="DJ Booth">
+        <p>DJ Booth & Lighting</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/image.jpg" alt="DJ Booth">
+        <p>PA systems</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h3>Our Blog</h3>
+    <p style="text-align: center; margin-bottom: 30px;">Stay updated with our latest news, tips, and event highlights.</p>
+
+    <div class="blog-post">
+      <h4>5 Tips for Perfect Event Sound</h4>
+      <p class="meta">Published on July 10, 2025 by The Party Sounds Eswatini</p>
+      <img src="assets/images/blog1.jpg" alt="Blog Post Image 1">
+      <p>Achieving crisp, clear sound at your event is crucial for success. Here are our top 5 tips...</p>
+      <a href="#">Read More</a>
+    </div>
+
+    <div class="blog-post">
+      <h4>Interview with Our Lead Sound Engineer</h4>
+      <p class="meta">Published on July 19, 2025 by The Party Sounds Eswatini</p>
+      <video controls>
+        <source src="assets/videos/interview1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>Get insights from our lead sound engineer as he discusses the challenges and joys of live sound production.</p>
+      <a href="#">Watch Interview</a>
+    </div>
+
+    <div class="blog-post">
+      <h4>Behind the Scenes: Setting Up for a Big Concert</h4>
+      <p class="meta">Published on June 25, 2025 by The Party Sounds Eswatini</p>
+      <img src="assets/images/blog2.jpg" alt="Blog Post Image 2">
+      <p>Ever wondered what goes into setting up a large-scale PA system for a concert? We take you behind the scenes...</p>
+      <a href="#">Read More</a>
+    </div>
+
+    <div class="blog-post">
+      <h4>Client Testimonial: Wedding Event Success</h4>
+      <p class="meta">Published on June 15, 2025 by The Party Sounds Eswatini</p>
+      <video controls>
+        <source src="assets/videos/testimonial_clip.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>Hear directly from a happy couple about their experience with The Party Sounds Eswatini at their wedding.</p>
+      <a href="#">Watch Testimonial</a>
+    </div>
+
+    </section>
+
 
   <section id="free-event-application">
     <h3>Charity Form</h3>
@@ -295,4 +426,4 @@
 </script>
 
 </body>
-</html>
+  </html>
