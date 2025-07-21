@@ -2,24 +2,245 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Professional PA sound system rental in Eswatini. Affordable packages for cultural, educational, and corporate events." />
-  <meta name="keywords" content="PA systems Eswatini, sound rental, party sounds, audio equipment, cultural events" />
-  <meta name="author" content="The Party Sounds Eswatini" />
-  <link rel="icon" href="assets/images/favicon.png" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Party Sounds Eswatini</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    :root {
+      --primary: #e91e63;
+      --dark: #111;
+      --light: #f4f4f4;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: var(--light);
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: url('assets/images/image.jpg') center/cover no-repeat;
+      height: 100vh;
+      position: relative;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    header .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 20px;
+    }
+    nav {
+      background: var(--dark);
+      padding: 10px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a.active {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+    nav a:hover {
+      color: var(--primary);
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h3, section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #111;
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .service {
+      flex: 1 1 300px;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .service img {
+      width: 80%;
+      max-width: 200px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+    form button {
+      background: var(--primary);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s ease;
+    }
+    form button:hover {
+      background: #c2185b;
+      transform: scale(1.05);
+    }
+    .social-icons {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .social-icons svg {
+      margin: 0 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .social-icons svg:hover {
+      transform: scale(1.1);
+    }
+    footer {
+      background: var(--dark);
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    footer a {
+      color: #ccc;
+    }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2em; }
+      nav a { font-size: 0.9em; margin: 0 10px; }
+    }
+
+    /* --- Styles for Gallery and Blog --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .gallery-item {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 200px; /* Fixed height for consistency */
+      object-fit: cover; /* Ensures images cover the area without distortion */
+      display: block;
+    }
+    .gallery-item p {
+      padding: 15px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .blog-post {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .blog-post h4 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    .blog-post .meta {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .blog-post img, .blog-post video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .blog-post a { /* Original anchor link style - won't apply to new buttons */
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .blog-post a:hover { /* Original anchor link style */
+      text-decoration: underline;
+    }
+
+    /* --- New CSS for collapsible content --- */
+    .blog-content-hidden {
+      display: none; /* Initially hide the full content */
+    }
+    .read-more-btn {
+      background: var(--primary);
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      margin-top: 10px;
+      transition: 0.3s ease;
+      display: block; /* Make button a block element so it takes full width */
+      width: fit-content; /* Adjust width to content */
+      margin-left: auto; /* Center the button */
+      margin-right: auto; /* Center the button */
+    }
+    .read-more-btn:hover {
+      background: #c2185b;
+    }
+
+  </style>
 </head>
 <body>
 
 <header>
   <div class="header-content">
-    <img src="assets/images/logo.png" alt="The Party Sounds Logo" class="logo">
     <h1>The Party Sounds Eswatini</h1>
     <p>Professional PA Systems</p>
     <p>PRECISION SOUND, HEARTFELT THANKS!!!</p>
-    <a href="#booking" class="btn-primary">Book a System</a>
   </div>
 </header>
 
@@ -32,7 +253,6 @@
   <a href="#free-event-application">GivingBack</a>
   <a href="#reviews">Reviews</a>
   <a href="#terms">Ts & Cs</a>
-  <a href="#booking">Booking</a>
 </nav>
 
 <main>
@@ -61,22 +281,22 @@
 
   <section id="gallery">
     <h3>Our Gallery</h3>
-    <p class="section-intro">See our equipment in action and past events.</p>
+    <p style="text-align: center; margin-bottom: 30px;">See our equipment in action and past events.</p>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="assets/images/Culture.jpg" alt="Cultural Event">
+        <img src="assets/images/Culture.jpg" alt="">
         <p>Cultural Event</p>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/camp.jpg" alt="Outdoor Night Camping">
+        <img src="assets/images/camp.jpg" alt="">
         <p>Outdoor Night Camping</p>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/1event.jpg" alt="Sporting Event">
+        <img src="assets/images/1event.jpg" alt="">
         <p>Sporting Event</p>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/pa.jpg" alt="PA System">
+        <img src="assets/images/pa.jpg" alt="DJ Booth">
         <p>PA system</p>
       </div>
     </div>
@@ -84,45 +304,68 @@
 
   <section id="blog">
     <h3>Our Blog</h3>
-    <p class="section-intro">Stay updated with our latest news, tips, and event highlights.</p>
-  </section>
+    <p style="text-align: center; margin-bottom: 30px;">Stay updated with our latest news, tips, and event highlights.</p>
 
-  <section id="free-event-application">
-    <h3>Charity Event Application</h3>
-    <form id="charity-form">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="tel" name="phone" placeholder="Phone" required>
-      <input type="text" name="details" placeholder="Event Details" required>
-      <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
-      <button type="submit">Apply</button>
-    </form>
-  </section>
+    <div class="blog-post">
+      <h4>5 Tips for Perfect Event Sound</h4>
+      <p class="meta">Published on July 10, 2025 by The Party Sounds Eswatini</p>
+      <img src="assets/images/redcarpet.jpg" alt="Blog Post Image 1">
+      <p>Achieving crisp, clear sound at your event is crucial for success. Here are our top 5 tips that our experienced sound engineers swear by... </p>
+      <div class="blog-content-hidden" id="post1-content">
+        <p>1. Acoustics Matter:  Pay attention to the venue's natural sound. Hard surfaces can cause echoes, while soft furnishings absorb sound, affecting the overall clarity. Understanding the room's acoustics helps in proper speaker placement.</p>
+        <p>2. Mic Placement is Key: Improper microphone positioning can lead to annoying feedback and unclear vocals. Always test microphone placement during sound checks to ensure optimal pickup and minimize ambient noise.</p>
+        <p>3. Monitor Mix: Provide good monitor mixes for performers so they can hear themselves and each other accurately. A comfortable monitor mix allows musicians to perform their best without straining.</p>
+        <p>4. Sound Check Thoroughly: Never skip a detailed sound check. Test every input and output, ensure all instruments and vocals are balanced, and check for any technical glitches before the event starts.</p>
+        <p>5. Audience Position: Consider the audience's listening experience. Distribute speakers evenly throughout the venue to ensure consistent sound quality for everyone, regardless of where they are seated or standing.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post1-content', this)">Read More</button>
+    </div>
 
-  <section id="reviews">
-    <h3>Reviews</h3>
-    <form id="review-form">
-      <input type="text" name="reviewer" placeholder="Your Name (Optional)">
-      <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
-      <label><input type="checkbox" name="anonymous"> Submit Anonymously</label>
-      <button type="submit">Submit Review</button>
-    </form>
-  </section>
+    <div class="blog-post">
+      <h4>Interview with Our Lead Sound Engineer</h4>
+      <p class="meta">Published on July 19, 2025 by The Party Sounds Eswatini</p>
+      <video controls>
+        <source src="assets/videos/interview1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>Get insights from our lead sound engineer as he discusses the challenges and joys of live sound production.</p>
+      <div class="blog-content-hidden" id="post2-content">
+        <p>In this exclusive interview, our lead sound engineer, shares his journey into the world of professional audio. He talks about his passion for perfecting sound, his favorite pieces of equipment, and the unique challenges faced during large-scale live events.</p>
+        <p>He also provides valuable advice for aspiring sound engineers in Eswatini and highlights some of the most memorable events The Party Sounds Eswatini has had the privilege to work on, from outdoor festivals to intimate corporate gatherings.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post2-content', this)">Watch Interview</button>
+    </div>
 
-  <section id="terms">
-    <h3>Terms & Conditions</h3>
-    <p><strong>Transport Fees:</strong> Based on distance and quoted individually.</p>
-    <p><strong>DJ Charges:</strong> Separate and based on individual rates.</p>
-    <p><strong>Hourly Charge:</strong> Daily prices based on 9 working hours (10 AM – 7 PM). Overtime may incur extra costs.</p>
-    <p><strong>Discounts:</strong> Negotiable based on event type and equipment needs.</p>
-    <p><strong>Referral Commissions:</strong></p>
-    <ul>
-      <li>10% one-time referrals</li>
-      <li>15%+ for long-term promoters (negotiable)</li>
-    </ul>
-  </section>
+    <div class="blog-post">
+      <h4>Behind the Scenes: Setting Up for educational events</h4>
+      <p class="meta">Published on June 25, 2025 by The Party Sounds Eswatini</p>
+      <img src="assets/images/blog2.jpg" alt="Blog Post Image 2">
+      <p>Ever wondered what goes into setting up  PA system for an outdoor event? We take you behind the scenes...</p>
+      <div class="blog-content-hidden" id="post3-content">
+        <p>Setting up for an outdoor is a meticulous operation. It starts hours in advance with detailed planning, venue walkthroughs, and equipment checks. On the day of the event, our team works tirelessly to transport, assemble, and calibrate every component of the PA system.</p>
+        <p>This includes checking speakers, laying  of cable, configuring mixing consoles, and fine-tuning microphones. Discover the coordination required between the sound team to ensure every element is perfect for an unforgettable show.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post3-content', this)">Read More</button>
+    </div>
 
+    <div class="blog-post">
+      <h4>Client Testimonial: Cultural Event Success</h4>
+      <p class="meta">Published on June 15, 2025 by The Party Sounds Eswatini</p>
+      <video controls>
+        <source src="assets/videos/testimonial_clip.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p>Hear directly from a happy client about their experience with The Party Sounds Eswatini at their sports day.</p>
+      <div class="blog-content-hidden" id="post4-content">
+        <p>Tandzile Dlamini shares her joy and satisfaction with the impeccable sound quality and professional service provided by our team on their day. She speaks about how our PA system ensured every speech was heard clearly and the music kept their energies motivated as they play.</p>
+        <p>Their heartfelt feedback highlights our commitment to making every event perfect and stress-free. We are incredibly grateful for their kind words and look forward to helping more couples celebrate their dream weddings with perfect sound.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post4-content', this)">Watch Testimonial</button>
+    </div>
+
+    </section>
   <section id="booking">
-    <h3>Book Your Full PA System</h3>
+    <h3>Full PA System Booking Form</h3>
     <form id="booking-form">
       <input type="text" name="name" placeholder="Your Full Name" required>
       <input type="text" name="event" placeholder="Event Name" required>
@@ -139,6 +382,50 @@
       <button type="submit">Submit Booking</button>
     </form>
   </section>
+
+
+  <section id="free-event-application">
+    <h3>Charity Form</h3>
+    <form id="charity-form">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="tel" name="phone" placeholder="tel" required>
+  <input type="text" name="details" placeholder="Event Details" required>
+  <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
+  <button type="submit">Apply</button>
+</form>
+
+  </section>
+
+  <section id="reviews">
+    <h3>Reviews</h3>
+    <form id="review-form">
+      <input type="text" name="reviewer" placeholder="Your Name (Optional)">
+      <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
+      <label>
+        <input type="checkbox" name="anonymous"> Submit Anonymously
+      </label>
+      <button type="submit">Submit Review</button>
+    </form>
+  </section>
+
+  <section id="terms">
+    <h3>Terms & Conditions</h3>
+    <h4>Transport Fees</h4>
+    <p>Transport fees depend on the distance and will be quoted based on the event location.</p>
+    <h4>DJ Charges</h4>
+    <p>DJ charges are separate and based on the DJ's individual rates.</p>
+    <h4>Hourly Charge</h4>
+    <p>All listed prices are per day and based on 9 working hours (10 AM – 7 PM). Overtime may incur additional charges.</p>
+    <h4>Discounts</h4>
+    <p>Discounts are negotiable depending on the nature of the event and equipment required.</p>
+    <h4>Referral Commissions</h4>
+    <ul>
+      <li><strong>10% of the total rental amount</strong> for one-time referrals</li>
+      <li><strong>15% or more</strong> for consistent promoters or ongoing partnerships (negotiable)</li>
+    </ul>
+    <p>For example, if a client rents a sound system for E800, you earn E80 as a 10% commission.</p>
+    <p>Commissions are paid out after the event and payment confirmation. Please inform us beforehand if you’re referring a client so we can record your details.</p>
+  </section>
 </main>
 
 <footer id="contact">
@@ -152,6 +439,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+  // Initialize EmailJS
   (function() {
     emailjs.init("9VpXJnpNdqLQR-uOe");
   })();
@@ -177,17 +465,18 @@
   setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
   setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
 
+  // --- New JavaScript for Expand/Collapse Blog Posts ---
   function toggleReadMore(contentId, buttonElement) {
     const content = document.getElementById(contentId);
     if (content.style.display === "none" || content.style.display === "") {
-      content.style.display = "block";
-      buttonElement.textContent = "Read Less";
+      content.style.display = "block"; // Show the content
+      buttonElement.textContent = "Read Less"; // Change button text
     } else {
-      content.style.display = "none";
-      buttonElement.textContent = "Read More";
+      content.style.display = "none"; // Hide the content
+      buttonElement.textContent = "Read More"; // Change button text
     }
   }
 </script>
 
 </body>
-</html>
+      </html>
