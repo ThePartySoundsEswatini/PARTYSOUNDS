@@ -7,7 +7,11 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
-    /* CSS Variables */
+    /* [Your existing CSS remains unchanged, omitted here for brevity] */
+    /* ... (full CSS from your original code) ... */
+    
+    /* For the lightbox overlay */
+/* CSS Variables */
     :root {
       --primary: #e91e63;
       --dark: #111;
@@ -475,17 +479,26 @@ footer a:hover {
 @media(max-width: 768px) {
   header h1 { font-size: 2em; }
   nav a { font-size: 0.9em; margin: 0 8px; }
-}
-</style>
+
+
+    
+    #videoLightbox {
+      display: none;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center; align-items: center;
+      z-index: 9999;
+    }
+  </style>
 </head>
 <body>
 
 <!-- Background Music -->
 <audio id="bgMusic" src="assets/images/AUD-20250830-WA0000.mp3" loop></audio>
 
-
 <!-- Play Music Button -->
-<button onclick="playMusic()" style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; background-color: var(--primary); color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1em;">
+<button id="musicToggle" style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; background-color: var(--primary); color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1em;">
   🎶 Play Music
 </button>
 
@@ -722,9 +735,9 @@ footer a:hover {
 </footer>
 
 <!-- Lightbox Modal for Videos -->
-<div id="videoLightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
+<div id="videoLightbox">
   <div style="position:relative; width:80%; max-width:800px;">
-    <iframe id="lightboxVideo" src="" allowfullscreen style="width:100%; height:450px; border:none;"></iframe>
+    <iframe id="lightboxVideo" src="" allowfullscreen allow="autoplay; encrypted-media" style="width:100%; height:450px; border:none;"></iframe>
     <button style="position:absolute; top:-10px; right:-10px; background:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; font-size:1.2em; font-weight:bold;" onclick="closeLightbox()">×</button>
   </div>
 </div>
@@ -735,6 +748,7 @@ footer a:hover {
   // Initialize EmailJS
   (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
 
+  // Setup email form submissions
   function setupEmailJS(formId, serviceID, templateID) {
     const form = document.getElementById(formId);
     if (!form) return;
@@ -750,6 +764,7 @@ footer a:hover {
   setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
   setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
 
+  // Toggle Read More / Less
   function toggleReadMore(contentId, btn) {
     const cont = document.getElementById(contentId);
     if (cont.style.display === "block") {
@@ -761,7 +776,7 @@ footer a:hover {
     }
   }
 
-  // Smooth scroll for nav links
+  // Smooth scroll for navigation links
   document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -774,32 +789,32 @@ footer a:hover {
 
   // Lightbox functions
   function openLightbox(videoSrc) {
-    document.getElementById('videoLightbox').style.display = 'flex';
-    document.getElementById('lightboxVideo').src = videoSrc + "?autoplay=1";
+    const lightbox = document.getElementById('videoLightbox');
+    const iframe = document.getElementById('lightboxVideo');
+    iframe.src = videoSrc + "?autoplay=1"; // Append autoplay
+    lightbox.style.display = 'flex'; // Show overlay
   }
+
   function closeLightbox() {
-    document.getElementById('videoLightbox').style.display = 'none';
-    document.getElementById('lightboxVideo').src = '';
+    const lightbox = document.getElementById('videoLightbox');
+    const iframe = document.getElementById('lightboxVideo');
+    iframe.src = ''; // Reset src to stop video
+    lightbox.style.display = 'none'; // Hide overlay
   }
 
-  // Play music function
+  // Play/Pause music function
   const music = document.getElementById('bgMusic');
-const toggleBtn = document.getElementById('musicToggle');
+  const toggleBtn = document.getElementById('musicToggle');
 
-document.getElementById('musicToggle').addEventListener('click', () => {
-  if (music.paused) {
-    music.play();
-    toggleBtn.textContent = '⏸️ Pause';
-  } else {
-    music.pause();
-    toggleBtn.textContent = '▶️ Play';
-  }
-});
-  }
+  document.getElementById('musicToggle').addEventListener('click', () => {
+    if (music.paused) {
+      music.play();
+      toggleBtn.textContent = '⏸️ Pause';
+    } else {
+      music.pause();
+      toggleBtn.textContent = '🎶 Play Music';
+    }
+  });
 </script>
 </body>
   </html>
-
-
-
-
