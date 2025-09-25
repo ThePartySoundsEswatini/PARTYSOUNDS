@@ -42,7 +42,7 @@
         rgba(255,255,255,0.1) 180deg 210deg
       );
       background-size: 600% 600%;
-      animation: rotateColors 5s linear infinite;
+      animation: rotateColors 20s linear infinite;
       pointer-events: none;
     }
     @keyframes rotateColors {
@@ -64,7 +64,7 @@
         rgba(255,0,255,0.2)
       );
       background-size: 600% 600%;
-      animation: moveBeams 5s linear infinite, hueShift 10s linear infinite;
+      animation: moveBeams 10s linear infinite, hueShift 20s linear infinite;
       z-index: -2;
       mix-blend-mode: screen;
     }
@@ -93,7 +93,7 @@
       background-color: var(--primary);
       border-radius: 50%;
       opacity: 0.8;
-      animation: flicker 0.5s infinite, drift 1s linear infinite;
+      animation: flicker 3s infinite, drift 3s linear infinite;
     }
     @keyframes flicker {
       0%, 100% { opacity: 0.8; filter: hue-rotate(0deg); }
@@ -117,7 +117,7 @@ header img.hero {
   height: 100%;
   object-fit: cover;
   opacity: 0.8;
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 2s ease-in-out;
 }
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -480,6 +480,14 @@ footer a:hover {
 </head>
 <body>
 
+<!-- Background Music -->
+<audio id="bgMusic" src="assets/images/AUD-20250829-WA0004.mp3" loop></audio>
+
+<!-- Play Music Button -->
+<button onclick="playMusic()" style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; background-color: var(--primary); color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1em;">
+  🎶 Play Music
+</button>
+
 <!-- Disco Light Beams -->
 <div class="light-beam"></div>
 
@@ -772,7 +780,12 @@ footer a:hover {
     document.getElementById('videoLightbox').style.display = 'none';
     document.getElementById('lightboxVideo').src = '';
   }
+
+  // Play music function
+  function playMusic() {
+    const music = document.getElementById('bgMusic');
+    music.play();
+  }
 </script>
 </body>
   </html>
-
