@@ -309,6 +309,7 @@
     #videos {
       padding: 60px 20px;
       background: #f9f9f9;
+      position: relative;
     }
     #videos h3 {
       margin-bottom: 40px;
@@ -319,23 +320,56 @@
       gap: 20px;
       justify-content: center;
     }
+    /* Video thumbnail wrapper with overlay icon */
     .video-wrapper {
-      flex: 1 1 300px;
-      max-width: 560px;
-      aspect-ratio: 16/9;
-      overflow: hidden;
+      position: relative;
+      cursor: pointer;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .video-wrapper:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
-    iframe {
+    .video-wrapper img {
       width: 100%;
-      height: 100%;
-      border: none;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .play-overlay {
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      font-size: 3em;
+      color: rgba(255,255,255,0.8);
+      pointer-events:none;
+    }
+
+    /* Floating icons in header for animation */
+    .floating-icons {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .floating-icons img {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      opacity: 0.7;
+      animation: bounce 4s infinite;
+    }
+    .floating-icons img:nth-child(1) { top:10%; left:20%; animation-delay: 0s; }
+    .floating-icons img:nth-child(2) { top:30%; left:80%; animation-delay: 2s; }
+    .floating-icons img:nth-child(3) { top:50%; left:50%; animation-delay: 4s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
 
     /* Responsive adjustments */
@@ -351,6 +385,12 @@
 <header>
   <img src="assets/images/logo.jpg" class="hero" alt="PA system setup at an event" />
   <div class="overlay"></div>
+  <!-- Floating microphone and instrument icons -->
+  <div class="floating-icons">
+    <img src="assets/icons/microphone.png" alt="Microphone" />
+    <img src="assets/icons/speaker.png" alt="Speaker" />
+    <img src="assets/icons/guitar.png" alt="Guitar" />
+  </div>
   <div class="header-content">
     <h1>Crystal‑Clear PA Rentals for Unforgettable Events</h1>
     <p>Your trusted partner for professional sound in Eswatini.</p>
@@ -533,15 +573,18 @@
   <section id="videos">
     <h3>Our Videos</h3>
     <div class="video-container">
-      <!-- Example videos from your YouTube channel -->
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/mC70vYeB7IA" allowfullscreen></iframe>
+      <!-- Example videos with thumbnails and overlay -->
+      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
+        <img src="assets/images/video-thumbnail1.jpg" alt="Video 1" />
+        <div class="play-overlay">&#9658;</div>
       </div>
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/Xm85iVJfzVE" allowfullscreen></iframe>
+      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/Xm85iVJfzVE')">
+        <img src="assets/images/video-thumbnail2.jpg" alt="Video 2" />
+        <div class="play-overlay">&#9658;</div>
       </div>
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/wg8k328ZnVc" allowfullscreen></iframe>
+      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/wg8k328ZnVc')">
+        <img src="assets/images/video-thumbnail3.jpg" alt="Video 3" />
+        <div class="play-overlay">&#9658;</div>
       </div>
     </div>
   </section>
@@ -557,7 +600,15 @@
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<!-- Scripts for email, smooth scroll, toggle -->
+<!-- Lightbox Modal for Videos -->
+<div id="videoLightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
+  <div style="position:relative; width:80%; max-width:800px;">
+    <iframe id="lightboxVideo" src="" allowfullscreen></iframe>
+    <button style="position:absolute; top:-10px; right:-10px; background:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; font-size:1.2em; font-weight:bold;" onclick="closeLightbox()">×</button>
+  </div>
+</div>
+
+<!-- Scripts for email, smooth scroll, toggle, and lightbox -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   // Initialize EmailJS
@@ -599,6 +650,16 @@
       link.classList.add('active');
     });
   });
+
+  // Lightbox functions
+  function openLightbox(videoSrc) {
+    document.getElementById('videoLightbox').style.display = 'flex';
+    document.getElementById('lightboxVideo').src = videoSrc + "?autoplay=1";
+  }
+  function closeLightbox() {
+    document.getElementById('videoLightbox').style.display = 'none';
+    document.getElementById('lightboxVideo').src = '';
+  }
 </script>
 </body>
   </html>
