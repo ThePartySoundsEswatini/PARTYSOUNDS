@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Party Sounds Eswatini</title>
-  <!-- Preload/optimize hero image -->
-  <link rel="preload" as="image" href="assets/images/logo.jpg" imagesrcset="assets/images/logo.jpg 800w, assets/images/logo.jpg 1600w" imagesizes="100vw" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
@@ -94,7 +92,8 @@
       padding: 10px 0;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
       z-index: 2;
       font-weight: 600;
     }
@@ -111,7 +110,7 @@
       color: #fff;
     }
 
-    /* Main sections */
+    /* Main styles */
     main {
       padding: 40px 20px;
     }
@@ -122,7 +121,6 @@
       padding: 20px;
     }
 
-    /* Headings */
     h2, h3 {
       text-align: center;
       margin-bottom: 30px;
@@ -467,7 +465,7 @@
     </div>
   </section>
 
-  <!-- Booking Section -->
+  <!-- Book Now -->
   <section id="booking">
     <h2>Reserve Your Sound System</h2>
     <p style="text-align:center;"><strong>Trusted by 20+ events across Mbabane.</strong></p>
@@ -535,15 +533,15 @@
   <section id="videos">
     <h3>Our Videos</h3>
     <div class="video-container">
-      <!-- Replace VIDEO_IDs with your actual YouTube links -->
+      <!-- Example videos from your YouTube channel -->
       <div class="video-wrapper">
-        <iframe src="https://youtube.com/@partysounds-q2f?si=RQCvDRtY6pCN0xvI" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/OWoQhQFIlhs" allowfullscreen></iframe>
       </div>
       <div class="video-wrapper">
-        <iframe src="https://youtube.com/@partysounds-q2f?si=RQCvDRtY6pCN0xvI" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/5LcF8IuYQu8" allowfullscreen></iframe>
       </div>
       <div class="video-wrapper">
-        <iframe src="https://youtube.com/@partysounds-q2f?si=RQCvDRtY6pCN0xvI" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/7H7Jo6p8nXk" allowfullscreen></iframe>
       </div>
     </div>
   </section>
@@ -559,7 +557,7 @@
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<!-- EmailJS and Scripts -->
+<!-- Scripts for email, smooth scroll, toggle -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   // Initialize EmailJS
@@ -590,6 +588,17 @@
       btn.textContent = "Read Less";
     }
   }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      // Update active class
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
 </script>
 </body>
   </html>
