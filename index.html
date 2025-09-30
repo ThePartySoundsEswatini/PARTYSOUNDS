@@ -7,10 +7,8 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <style>
-    /* [Your existing CSS remains unchanged, omitted here for brevity] */
-    /* ... (full CSS from your original code) ... */
+    /* --- Your complete CSS from original code --- */
 
-    /* For the lightbox overlay */
     :root {
       --primary: #e91e63;
       --dark: #111;
@@ -86,12 +84,172 @@
       opacity: 0.8;
       animation: flicker 3s infinite, drift 3s linear infinite;
     }
-    /* Additional styles omitted for brevity, assume they are unchanged */
+    /* Omitted flicker and drift keyframes for brevity, assuming they exist */
 
-    /* Header styles, navigation, main, sections, etc. as per your original code */
-    /* ... (rest of your existing CSS) ... */
+    /* Header styles */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 50px 20px;
+      background: transparent;
+    }
+    header img.hero {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .header-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      max-width: 80%;
+      padding: 20px;
+    }
+    a.cta {
+      display: inline-block;
+      padding: 15px 25px;
+      margin-top: 20px;
+      background-color: #e91e63;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    a.cta:hover {
+      background-color: #c2185b;
+    }
 
-    /* Additional styles for the new buttons */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #222;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1em;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      background-color: #e91e63;
+      color: #fff;
+    }
+
+    main {
+      padding: 40px 20px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h1, h2, h3 {
+      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+    h1 {
+      font-size: 2.5em;
+      font-weight: 600;
+      color: #222;
+    }
+    h2 {
+      font-size: 2em;
+      font-weight: 600;
+      color: #222;
+    }
+    h3 {
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #222;
+    }
+
+    /* Forms and inputs */
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+    }
+    button {
+      padding: 12px;
+      background-color: #e91e63;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #c2185b;
+    }
+
+    /* Footer styles */
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    footer h3 {
+      margin-bottom: 20px;
+    }
+    footer p {
+      margin: 10px 0;
+    }
+
+    /* Lightbox style for videos */
+    #videoLightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #videoLightbox > div {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+    }
+    #lightboxVideo {
+      width: 100%;
+      height: 450px;
+      border: none;
+    }
+    #videoLightbox button {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 30px;
+      height: 30px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    /* --- Additional styles for your music controls --- */
     #musicControls {
       position: fixed;
       bottom: 10px;
@@ -114,6 +272,7 @@
       background: #c2185b;
       transform: scale(1.05);
     }
+
   </style>
 </head>
 <body>
@@ -133,7 +292,6 @@
 
 <!-- Sparkling Particles for Disco Effect -->
 <div class="disco-particles">
-  <!-- You can add more particles for density as needed -->
   <div class="disco-particle" style="top:10%; left:15%; background-color:#ff0000; animation-delay:0s;"></div>
   <div class="disco-particle" style="top:20%; left:25%; background-color:#ffff00; animation-delay:0.5s;"></div>
   <div class="disco-particle" style="top:30%; left:35%; background-color:#00ff00; animation-delay:1s;"></div>
@@ -142,7 +300,7 @@
   <div class="disco-particle" style="top:70%; left:65%; background-color:#ffffff; animation-delay:1.5s;"></div>
 </div>
 
-<!-- Header & Content sections remain unchanged -->
+<!-- Header & Content sections -->
 <header>
   <img src="assets/images/logo.jpg" class="hero" alt="PA system setup at an event" />
   <div class="overlay"></div>
@@ -159,7 +317,6 @@
 </header>
 
 <nav>
-  <!-- Your existing nav links -->
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
@@ -171,15 +328,12 @@
 </nav>
 
 <main>
-  <!-- Sections as in your original code: home, services, gallery, blog, booking, etc. -->
-  <!-- For brevity, only the scripts and the playlist logic are shown here, assuming your content remains unchanged -->
-  
-  <!-- Videos Section, forms, and other content remain unchanged -->
+  <!-- Your sections: home, services, gallery, blog, booking, etc. -->
+  <!-- Content omitted for brevity; assume your existing content remains unchanged -->
 </main>
 
-<!-- Footer remains unchanged -->
+<!-- Footer -->
 <footer id="contact">
-  <!-- Your footer content -->
   <h3>Contact Us</h3>
   <p>Phone📞: <a href="tel:+26876031087">+268 76031087 / 79637097</a></p>
   <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank">Chat with us</a></p>
@@ -188,7 +342,7 @@
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<!-- Lightbox for videos remains unchanged -->
+<!-- Video Lightbox -->
 <div id="videoLightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
   <div style="position:relative; width:80%; max-width:800px;">
     <iframe id="lightboxVideo" src="" allowfullscreen allow="autoplay; encrypted-media" style="width:100%; height:450px; border:none;"></iframe>
@@ -202,7 +356,7 @@
   // Initialize EmailJS
   (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
 
-  // Setup email form submissions (unchanged)
+  // Setup email form submissions (your existing code)
   function setupEmailJS(formId, serviceID, templateID) {
     const form = document.getElementById(formId);
     if (!form) return;
@@ -253,7 +407,7 @@
     lightbox.style.display = 'none';
   }
 
-  // Play/Pause music
+  // Play/Pause music and playlist controls
   const music = document.getElementById('bgMusic');
   const toggleBtn = document.getElementById('musicToggle');
 
@@ -267,20 +421,18 @@
     }
   });
 
-  // Playlist array and controls
+  // Playlist array
   const playlist = [
-    'assets/images/AUD-20250829-WA0004.mp3'
-    'assets/images/AUD-20250830-WA0000.mp3'
-  'assets/images/Dj_Maphorisa___Xduppy,_Kabza_De_Small_-_Abantwana_Bakho__Official_Audio__feat._Thatohatsi,Young…(256k).mp3'
-    'assets/images/Fridayy_-_Done_For_Me__Audio__ft._Adekunle_Gold(256k).mp3'
+    'assets/images/AUD-20250829-WA0004.mp3',
+    'assets/images/AUD-20250830-WA0000.mp3',
+    'assets/images/Dj_Maphorisa___Xduppy,_Kabza_De_Small_-_Abantwana_Bakho__Official_Audio__feat._Thatohatsi,Young…(256k).mp3',
+    'assets/images/Fridayy_-_Done_For_Me__Audio__ft._Adekunle_Gold(256k).mp3',
     'assets/images/OPLLOW (1).mp3'
-    
-    
-    // Add more media URLs here if available
+    // Add more media URLs here if needed
   ];
   let currentTrack = 0;
 
-  // Set initial source
+  // Initialize with first song
   bgMusic.src = playlist[currentTrack];
 
   document.getElementById('nextBtn').addEventListener('click', () => {
@@ -301,4 +453,3 @@
 </script>
 </body>
   </html>
-
