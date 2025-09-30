@@ -11,12 +11,14 @@
     /* ... (full CSS from your original code) ... */
 
     /* For the lightbox overlay */
+    /* CSS Variables */
     :root {
       --primary: #e91e63;
       --dark: #111;
       --light: #f4f4f4;
     }
 
+    /* Reset and base styles */
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -28,6 +30,7 @@
       position: relative;
     }
 
+    /* Disco animated background overlay with rotating colorful gradient */
     body::before {
       content: "";
       position: fixed;
@@ -51,6 +54,7 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Moving diagonal beams for extra disco vibe */
     .light-beam {
       position: fixed;
       top: 0; left: -50%;
@@ -77,63 +81,428 @@
       to { filter: hue-rotate(360deg); }
     }
 
-    .disco-particles { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+    /* Sparkling particles for extra sparkle effect */
+    .disco-particles {
+      position: fixed;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    /* Static particles - add more for denser sparkle if desired */
     .disco-particle {
       position: absolute;
-      width: 4px; height: 4px;
+      width: 4px;
+      height: 4px;
       background-color: var(--primary);
       border-radius: 50%;
       opacity: 0.8;
       animation: flicker 3s infinite, drift 3s linear infinite;
     }
-    /* Additional styles omitted for brevity, assume they are unchanged */
+    @keyframes flicker {
+      0%, 100% { opacity: 0.8; filter: hue-rotate(0deg); }
+      50% { opacity: 0.4; filter: hue-rotate(360deg); }
+    }
+    @keyframes drift {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(100px, -100px); }
+    }
 
-    /* Header styles, navigation, main, sections, etc. as per your original code */
-    /* ... (rest of your existing CSS) ... */
+    /* Header styles */
+header {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+header img.hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  animation: fadeIn 2s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.8; }
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+.header-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  animation: slideUp 0.5s ease-out;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+header p {
+  font-size: 1.2em;
+}
+.cta {
+  display: inline-block;
+  margin-top: 20px;
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.cta:hover {
+  background: #c2185b;
+  transform: scale(1.05);
+}
 
-    /* Additional styles for the new buttons */
-    #musicControls {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      display: flex;
-      gap: 10px;
-      z-index: 9999;
-    }
-    #musicControls button {
-      background-color: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: all 0.3s ease;
-    }
-    #musicControls button:hover {
-      background: #c2185b;
-      transform: scale(1.05);
-    }
-  </style>
+/* Sticky nav */
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--dark);
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 2;
+  font-weight: 600;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+nav a:hover,
+nav a.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Main styles */
+main {
+  padding: 40px 20px;
+}
+section {
+  max-width: 1000px;
+  margin: 0 auto 60px auto;
+  padding: 20px;
+}
+h2, h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #111;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Services cards */
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.service {
+  flex: 1 1 300px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  border: 3px solid transparent;
+}
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  border-color: var(--primary);
+}
+.service img {
+  width: 80%;
+  max-width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+}
+.service:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+  box-shadow: 0 0 15px var(--primary);
+}
+
+/* Gallery grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+.gallery-item {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s, filter 0.3s;
+  border: 3px solid transparent;
+}
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  border-color: var(--primary);
+  filter: hue-rotate(20deg);
+}
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  /* Add animation for dynamic movement */
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Define the floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Blog posts */
+.blog-post {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.3s forwards;
+}
+.blog-post h4 {
+  margin-top: 0;
+  color: var(--primary);
+}
+.meta {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+}
+.blog-post img,
+.blog-post video {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hidden content toggle */
+.blog-content-hidden {
+  display: none;
+}
+
+/* Read More button */
+.read-more-btn {
+  background: var(--primary);
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease;
+}
+.read-more-btn:hover {
+  background: #c2185b;
+  transform: scale(1.05);
+}
+
+/* Forms styling */
+form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+}
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 8px rgba(233,30,99,0.3);
+}
+form button {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+form button:hover {
+  background: #c2185b;
+  transform: scale(1.05);
+}
+
+/* Footer styling */
+footer {
+  background: var(--dark);
+  color: #ccc;
+  padding: 30px 20px;
+  text-align: center;
+}
+footer a {
+  color: #ccc;
+  transition: color 0.3s;
+}
+footer a:hover {
+  color: var(--primary);
+}
+
+/* Videos section */
+#videos {
+  padding: 60px 20px;
+  background: #f9f9f9;
+}
+#videos h3 {
+  margin-bottom: 40px;
+}
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.video-wrapper {
+  position: relative;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 280px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.video-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.video-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.play-overlay {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+  color: rgba(255,255,255,0.8);
+  pointer-events:none;
+}
+
+/* Floating icons in header for animation */
+.floating-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.floating-icons img {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  opacity: 0.7;
+  animation: bounce 1s infinite;
+}
+.floating-icons img:nth-child(1) { top:10%; left:20%; animation-delay: 0s; }
+.floating-icons img:nth-child(2) { top:10%; left:40%; animation-delay: 2s; }
+.floating-icons img:nth-child(3) { top:10%; left:60%; animation-delay: 4s; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Responsive adjustments */
+@media(max-width: 768px) {
+  header h1 { font-size: 2em; }
+  nav a { font-size: 0.9em; margin: 0 8px; }
+}
+
+/* Additional JavaScript animation for gallery images */
+</style>
 </head>
 <body>
 
 <!-- Background Music -->
-<audio id="bgMusic" loop></audio>
+<audio id="bgMusic" src="assets/images/Fridayy_-_Done_For_Me__Audio__ft._Adekunle_Gold(256k).mp3" loop></audio>
 
-<!-- Music Controls: Play/Pause, Prev, Next -->
-<div id="musicControls">
-  <button id="musicToggle">🎶 Play Music</button>
-  <button id="prevBtn">Prev</button>
-  <button id="nextBtn">Next</button>
-</div>
+<!-- Play Music Button -->
+<button id="musicToggle" style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; background-color: var(--primary); color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1em;">
+  🎶 Play Music
+</button>
 
 <!-- Disco Light Beams -->
 <div class="light-beam"></div>
 
 <!-- Sparkling Particles for Disco Effect -->
 <div class="disco-particles">
-  <!-- You can add more particles for density as needed -->
+  <!-- You can add more particles for density -->
   <div class="disco-particle" style="top:10%; left:15%; background-color:#ff0000; animation-delay:0s;"></div>
   <div class="disco-particle" style="top:20%; left:25%; background-color:#ffff00; animation-delay:0.5s;"></div>
   <div class="disco-particle" style="top:30%; left:35%; background-color:#00ff00; animation-delay:1s;"></div>
@@ -142,10 +511,11 @@
   <div class="disco-particle" style="top:70%; left:65%; background-color:#ffffff; animation-delay:1.5s;"></div>
 </div>
 
-<!-- Header & Content sections remain unchanged -->
+<!-- Header -->
 <header>
   <img src="assets/images/logo.jpg" class="hero" alt="PA system setup at an event" />
   <div class="overlay"></div>
+  <!-- Floating icons for extra vibe -->
   <div class="floating-icons">
     <img src="assets/images/image.jpg" alt="Microphone" />
     <img src="assets/images/bintops.jpg" alt="Speaker" />
@@ -158,8 +528,8 @@
   </div>
 </header>
 
+<!-- Navigation -->
 <nav>
-  <!-- Your existing nav links -->
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
@@ -170,16 +540,187 @@
   <a href="#terms">Ts & Cs</a>
 </nav>
 
+<!-- Main Content -->
 <main>
-  <!-- Sections as in your original code: home, services, gallery, blog, booking, etc. -->
-  <!-- For brevity, only the scripts and the playlist logic are shown here, assuming your content remains unchanged -->
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Welcome to The Party Sounds Eswatini</h2>
+    <p>Premium PA rentals &amp; expert sound engineering—making your event sound as spectacular as it looks.</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h3>Our Services</h3>
+    <div class="services">
+      <article class="service">
+        <img src="assets/images/bintops.jpg" alt="Full Sound System" />
+        <h4>Full Sound System Rental</h4>
+        <p><strong>Price: E1500/day</strong></p>
+        <p>Includes 2 FTS TOPS, mixers, Wharfadale amp &amp; subbin, 2 wireless mics, accessories.</p>
+      </article>
+      <article class="service">
+        <img src="assets/images/tops.jpg" alt="Standard Sound System" />
+        <h4>Standard Sound System Rental</h4>
+        <p><strong>Price: E750/day</strong></p>
+        <p>Includes 2 FTS TOPS, Rocksonic mixer, 2 wireless mics, accessories.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <h3>Our Gallery</h3>
+    <p style="text-align:center; margin-bottom:30px;">See our equipment in action at past events.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="assets/images/Culture.jpg" alt="Cultural event" />
+        <p>Cultural Event</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/camp.jpg" alt="Outdoor night camping" />
+        <p>Outdoor Night Camping</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/1event.jpg" alt="Sporting event" />
+        <p>Sporting Event</p>
+      </div>
+      <div class="gallery-item">
+        <img src="assets/images/pa.jpg" alt="DJ Booth PA system" />
+        <p>PA System</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog">
+    <h3>Our Blog</h3>
+    <p style="text-align:center; margin-bottom:30px;">Sound rental tips &amp; inspiration for youth events in Mbabane</p>
+
+    <!-- Post 1 -->
+    <div class="blog-post">
+      <h4>Budget-Friendly Sound Systems in Mbabane</h4>
+      <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
+      <img src="assets/images/redcarpet.jpg" alt="DeckLife Studio Simple Sound System" />
+      <p>Looking to host a youth talk, workshop, or small party? A compact 2×700 W speaker setup with wireless mics and mixer works perfectly—and costs about E 750/day.</p>
+      <div class="blog-content-hidden" id="post1-content">
+        <p>• The Party Sounds offers the Simple Sound System (2.0): 2 × 700 W speakers, 2 wireless mics, mixer, stands, with free delivery/setup in Mbabane. Ideal for school events, community meet‑ups, or spoken‑word nights.</p>
+        <p>• Great for venues with 150–400 people: provides clear, reliable sound without overkill.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post1-content', this)">Read More</button>
+    </div>
+
+    <!-- Post 2 -->
+    <div class="blog-post">
+      <h4>Adding Bass: Simple Sound System (2.2)</h4>
+      <p class="meta">Published July 2025 by DeckLife Studio</p>
+      <img src="assets/images/subbin.jpg" alt="2.2 system" />
+      <p>Want deeper bass and extra energy? The 2.2 system adds two 2000 W subwoofers—perfect for youth dance nights or DJ sessions at about E1300/day.</p>
+      <div class="blog-content-hidden" id="post2-content">
+        <p>• Includes 2 × 700 W tops, 2 × 2000 W subs, wireless mics, mixer, stands, and free Mbabane setup.</p>
+        <p>• Great for events of 200–500 people: strong bass brings the energy up a notch.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post2-content', this)">Read More</button>
+    </div>
+
+    <!-- Post 3 -->
+    <div class="blog-post">
+      <h4>Sound &amp; Multimedia</h4>
+      <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
+      <img src="assets/images/pa.jpg" alt="AudioHead Sound &amp; Multimedia Group" />
+      <p>For events needing technical guidance or mixed setups, AudioHead in Mbabane offers gear hire and sound advice—perfect for growing youth-driven events.</p>
+      <div class="blog-content-hidden" id="post3-content">
+        <p>• Booking tip: confirm availability and request delivery/setup quotes—delivery isn't always included.</p>
+      </div>
+      <button class="read-more-btn" onclick="toggleReadMore('post3-content', this)">Read More</button>
+    </div>
+  </section>
+
+  <!-- Book Now -->
+  <section id="booking">
+    <h2>Reserve Your Sound System</h2>
+    <p style="text-align:center;"><strong>Trusted by 20+ events across Mbabane.</strong></p>
+    <form id="booking-form">
+      <input type="text" name="name" placeholder="Your Full Name" required />
+      <input type="text" name="event" placeholder="Event Name" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      <select name="service" required>
+        <option value="">--- Please Select The Service ---</option>
+        <option value="Premium Sound System">Premium Sound System Rental (E1500)</option>
+        <option value="Standard Sound System">Standard Sound System Rental (E750)</option>
+        <option value="Lighting">Lighting & Effects (E500)</option>
+        <option value="Lighting & Sound">Lighting & Sound</option>
+      </select>
+      <input type="date" name="date" required />
+      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
+      <button type="submit" class="cta">Submit Booking</button>
+    </form>
+  </section>
   
-  <!-- Videos Section, forms, and other content remain unchanged -->
+  <!-- Free Event Application -->
+  <section id="free-event-application">
+    <h3>Needing Help?</h3>
+    <form id="charity-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      <input type="text" name="details" placeholder="Event Details" required />
+      <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
+      <button type="submit" class="cta">Apply</button>
+    </form>
+  </section>
+  
+  <!-- Reviews -->
+  <section id="reviews">
+    <h3>Place Your Reviews Here!</h3>
+    <form id="review-form">
+      <input type="text" name="reviewer" placeholder="Your Name (Optional)" />
+      <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
+      <label><input type="checkbox" name="anonymous" /> Submit Anonymously</label>
+      <button type="submit" class="cta">Submit Review</button>
+    </form>
+  </section>
+  
+  <!-- Terms & Conditions -->
+  <section id="terms">
+    <h3>Terms &amp; Conditions</h3>
+    <h4>Transport Fees</h4>
+    <p>Quoted based on event location.</p>
+    <h4>DJ Charges</h4>
+    <p>Separate, based on individual rates.</p>
+    <h4>Hourly Charge</h4>
+    <p>All listed prices are per day (10 AM–7 PM). Overtime charges may apply.</p>
+    <h4>Discounts</h4>
+    <p>Negotiable based on event type and equipment.</p>
+    <h4>Referral Commissions</h4>
+    <ul>
+      <li><strong>10%</strong> of rental for one‑time referrals</li>
+      <li><strong>15%+</strong> for ongoing partnerships</li>
+    </ul>
+    <p>E.g., E800 rental → E80 commission.</p>
+    <p>Commissions paid after event and payment confirmation. Inform us beforehand to track referrals.</p>
+  </section>
+
+  <!-- Videos Section -->
+  <section id="videos">
+    <h3>Our Videos</h3>
+    <div class="video-container">
+      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
+        <img src="assets/images/bintops.jpg" alt="Advert" />
+        <div class="play-overlay">&#9658;</div>
+      </div>
+      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/Xm85iVJfzVE')">
+        <img src="assets/images/image.jpg" alt="Presentation" />
+        <div class="play-overlay">&#9658;</div>
+      </div>
+      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/wg8k328ZnVc')">
+        <img src="assets/images/Culture.jpg" alt="Video 3" />
+        <div class="play-overlay">&#9658;</div>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- Footer remains unchanged -->
+<!-- Footer -->
 <footer id="contact">
-  <!-- Your footer content -->
   <h3>Contact Us</h3>
   <p>Phone📞: <a href="tel:+26876031087">+268 76031087 / 79637097</a></p>
   <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank">Chat with us</a></p>
@@ -188,7 +729,7 @@
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<!-- Lightbox for videos remains unchanged -->
+<!-- Lightbox Modal for Videos -->
 <div id="videoLightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
   <div style="position:relative; width:80%; max-width:800px;">
     <iframe id="lightboxVideo" src="" allowfullscreen allow="autoplay; encrypted-media" style="width:100%; height:450px; border:none;"></iframe>
@@ -196,13 +737,13 @@
   </div>
 </div>
 
-<!-- Scripts -->
+<!-- Scripts for email, smooth scroll, toggle, and lightbox -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   // Initialize EmailJS
   (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
 
-  // Setup email form submissions (unchanged)
+  // Setup email form submissions
   function setupEmailJS(formId, serviceID, templateID) {
     const form = document.getElementById(formId);
     if (!form) return;
@@ -213,6 +754,7 @@
         .catch(err => { console.error(err); alert('❌ Submission error.'); });
     });
   }
+
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
   setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
   setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
@@ -229,11 +771,12 @@
     }
   }
 
-  // Smooth scroll navigation
+  // Smooth scroll for navigation links
   document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      // Update active class
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
       link.classList.add('active');
     });
@@ -243,17 +786,18 @@
   function openLightbox(videoSrc) {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = videoSrc + "?autoplay=1";
-    lightbox.style.display = 'flex';
+    iframe.src = videoSrc + "?autoplay=1"; // Append autoplay
+    lightbox.style.display = 'flex'; // Show overlay
   }
+
   function closeLightbox() {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = '';
-    lightbox.style.display = 'none';
+    iframe.src = ''; // Reset src to stop video
+    lightbox.style.display = 'none'; // Hide overlay
   }
 
-  // Play/Pause music
+  // Play/Pause music function
   const music = document.getElementById('bgMusic');
   const toggleBtn = document.getElementById('musicToggle');
 
@@ -267,31 +811,27 @@
     }
   });
 
-  // Playlist array and controls
-  const playlist = [
-    'assets/images/Fridayy_-_Done_For_Me__Audio__ft._Adekunle_Gold(256k).mp3'
-    // Add more media URLs here if available
-  ];
-  let currentTrack = 0;
-
-  // Set initial source
-  bgMusic.src = playlist[currentTrack];
-
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    currentTrack = (currentTrack + 1) % playlist.length;
-    bgMusic.src = playlist[currentTrack];
-    if (!bgMusic.paused) {
-      bgMusic.play();
-    }
+  // Additional: Animate gallery images randomly for liveliness
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    animateImage(img);
   });
 
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-    bgMusic.src = playlist[currentTrack];
-    if (!bgMusic.paused) {
-      bgMusic.play();
+  function animateImage(element) {
+    const maxX = 20; // max shift in px
+    const maxY = 20;
+    function move() {
+      const translateX = (Math.random() - 0.5) * 2 * maxX;
+      const translateY = (Math.random() - 0.5) * 2 * maxY;
+      element.style.transition = 'transform 2s ease-in-out';
+      element.style.transform = `translate(${translateX}px, ${translateY}px)`;
+      setTimeout(() => {
+        // Reset position before next move
+        element.style.transform = `translate(0, 0)`;
+        setTimeout(move, 2000); // wait for transition
+      }, 2000);
     }
-  });
+    move();
+  }
 </script>
 </body>
   </html>
