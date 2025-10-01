@@ -4,603 +4,409 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Party Sounds Eswatini</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <!-- Preload/optimize hero image -->
+  <link rel="preload" as="image" href="assets/images/logo.jpg" type="image/jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
-    /* [Your existing CSS remains unchanged, omitted here for brevity] */
-    /* ... (full CSS from your original code) ... */
-
-    /* For the lightbox overlay */
-    /* CSS Variables */
     :root {
       --primary: #e91e63;
       --dark: #111;
       --light: #f4f4f4;
     }
-
-    /* Reset and base styles */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--light);
       color: #333;
       line-height: 1.6;
-      overflow-x: hidden;
+    }
+    header {
       position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+    /* Keyframe animation for subtle movement */
+    @keyframes slide-subtle {
+      0% { transform: translateX(-5px) scale(1.0); }
+      55% { transform: translateX(5px) scale(1.02); } /* Moves right and slightly scales */
+      100% { transform: translateX(-5px) scale(1.0); } /* Moves left back to start */
     }
 
-    /* Disco animated background overlay with rotating colorful gradient */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      background: repeating-conic-gradient(
-        transparent 0deg 30deg,
-        rgba(255,0,0,0.2) 30deg 60deg,
-        rgba(255,255,0,0.2) 60deg 90deg,
-        rgba(0,255,0,0.2) 90deg 120deg,
-        rgba(0,255,255,0.2) 120deg 150deg,
-        rgba(255,0,255,0.2) 150deg 180deg,
-        rgba(255,255,255,0.1) 180deg 210deg
-      );
-      background-size: 600% 600%;
-      animation: rotateColors 20s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes rotateColors {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* Moving diagonal beams for extra disco vibe */
-    .light-beam {
-      position: fixed;
-      top: 0; left: -50%;
-      width: 200%; height: 100%;
-      background: linear-gradient(
-        45deg,
-        rgba(255,0,0,0.2),
-        rgba(255,255,0,0.2),
-        rgba(0,255,0,0.2),
-        rgba(0,255,255,0.2),
-        rgba(255,0,255,0.2)
-      );
-      background-size: 600% 600%;
-      animation: moveBeams 10s linear infinite, hueShift 20s linear infinite;
-      z-index: -2;
-      mix-blend-mode: screen;
-    }
-    @keyframes moveBeams {
-      0% { background-position: 0 0; }
-      100% { background-position: 600% 600%; }
-    }
-    @keyframes hueShift {
-      from { filter: hue-rotate(0deg); }
-      to { filter: hue-rotate(360deg); }
-    }
-
-    /* Sparkling particles for extra sparkle effect */
-    .disco-particles {
-      position: fixed;
-      inset: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-    /* Static particles - add more for denser sparkle if desired */
-    .disco-particle {
+    header img.hero {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background-color: var(--primary);
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: flicker 3s infinite, drift 3s linear infinite;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      loading: eager;
+      opacity: 0.9;
+      /* Animation added to the hero image (12s for subtle movement) */
+      animation: slide-subtle 12s ease-in-out infinite alternate; 
     }
-    @keyframes flicker {
-      0%, 100% { opacity: 0.8; filter: hue-rotate(0deg); }
-      50% { opacity: 0.4; filter: hue-rotate(360deg); }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 0;
     }
-    @keyframes drift {
-      0% { transform: translate(0,0); }
-      100% { transform: translate(100px, -100px); }
+    header .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      top: 50%;
+      transform: translateY(-50%);
     }
-
-    /* Header styles */
-header {
-  position: relative;
-  height: 80vh;
-  overflow: hidden;
-}
-header img.hero {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-  animation: fadeIn 2s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 0.8; }
-}
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 0;
-}
-.header-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  padding: 20px;
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  animation: slideUp 0.5s ease-out;
-}
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-header h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-header p {
-  font-size: 1.2em;
-}
-.cta {
-  display: inline-block;
-  margin-top: 20px;
-  background: var(--primary);
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.cta:hover {
-  background: #c2185b;
-  transform: scale(1.05);
-}
-
-/* Sticky nav */
-nav {
-  position: sticky;
-  top: 0;
-  background: var(--dark);
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  z-index: 2;
-  font-weight: 600;
-}
-nav a {
-  color: #fff;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
-}
-nav a:hover,
-nav a.active {
-  background: var(--primary);
-  color: #fff;
-}
-
-/* Main styles */
-main {
-  padding: 40px 20px;
-}
-section {
-  max-width: 1000px;
-  margin: 0 auto 60px auto;
-  padding: 20px;
-}
-h2, h3 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #111;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s forwards;
-}
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Services cards */
-.services {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-.service {
-  flex: 1 1 300px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
-  border: 3px solid transparent;
-}
-.service:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-color: var(--primary);
-}
-.service img {
-  width: 80%;
-  max-width: 200px;
-  height: 150px;
-  object-fit: cover;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-}
-.service:hover img {
-  transform: scale(1.05);
-  filter: brightness(1.1);
-  box-shadow: 0 0 15px var(--primary);
-}
-
-/* Gallery grid */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-.gallery-item {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, border 0.3s, filter 0.3s;
-  border: 3px solid transparent;
-}
-.gallery-item:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  border-color: var(--primary);
-  filter: hue-rotate(20deg);
-}
-.gallery-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  /* Add animation for dynamic movement */
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Define the floating animation */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-/* Blog posts */
-.blog-post {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 20px;
-  margin-bottom: 30px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.3s forwards;
-}
-.blog-post h4 {
-  margin-top: 0;
-  color: var(--primary);
-}
-.meta {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 15px;
-}
-.blog-post img,
-.blog-post video {
-  max-width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Hidden content toggle */
-.blog-content-hidden {
-  display: none;
-}
-
-/* Read More button */
-.read-more-btn {
-  background: var(--primary);
-  color: #fff;
-  padding: 8px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  transition: all 0.3s ease;
-}
-.read-more-btn:hover {
-  background: #c2185b;
-  transform: scale(1.05);
-}
-
-/* Forms styling */
-form {
-  background: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 700px;
-  margin: 0 auto 60px auto;
-}
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1em;
-}
-form input:focus,
-form select:focus,
-form textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 8px rgba(233,30,99,0.3);
-}
-form button {
-  background: var(--primary);
-  color: #fff;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: all 0.3s ease;
-}
-form button:hover {
-  background: #c2185b;
-  transform: scale(1.05);
-}
-
-/* Footer styling */
-footer {
-  background: var(--dark);
-  color: #ccc;
-  padding: 30px 20px;
-  text-align: center;
-}
-footer a {
-  color: #ccc;
-  transition: color 0.3s;
-}
-footer a:hover {
-  color: var(--primary);
-}
-
-/* Videos section */
-#videos {
-  padding: 60px 20px;
-  background: #f9f9f9;
-}
-#videos h3 {
-  margin-bottom: 40px;
-}
-.video-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-.video-wrapper {
-  position: relative;
-  cursor: pointer;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  width: 280px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.video-wrapper:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.video-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.play-overlay {
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-  font-size: 3em;
-  color: rgba(255,255,255,0.8);
-  pointer-events:none;
-}
-
-/* Floating icons in header for animation */
-.floating-icons {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-.floating-icons img {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  opacity: 0.7;
-  animation: bounce 1s infinite;
-}
-.floating-icons img:nth-child(1) { top:10%; left:20%; animation-delay: 0s; }
-.floating-icons img:nth-child(2) { top:10%; left:40%; animation-delay: 2s; }
-.floating-icons img:nth-child(3) { top:10%; left:60%; animation-delay: 4s; }
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-/* Responsive adjustments */
-@media(max-width: 768px) {
-  header h1 { font-size: 2em; }
-  nav a { font-size: 0.9em; margin: 0 8px; }
-}
-
-/* Additional JavaScript animation for gallery images */
-</style>
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--dark);
+      padding: 10px;
+      text-align: center;
+      z-index: 2;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a.active,
+    nav a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #111;
+    }
+    button.cta, a.cta {
+      background: var(--primary);
+      color: white;
+      padding: 14px 28px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      display: inline-block;
+      margin: 20px auto;
+      text-decoration: none;
+    }
+    button.cta:hover, a.cta:hover {
+      background: #c2185b;
+      transform: scale(1.05);
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .service {
+      flex: 1 1 300px;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: box-shadow 0.3s;
+    }
+    
+    /* Style for the link wrapper to make images clickable */
+    .download-link {
+        display: block;
+        transition: transform 0.3s;
+    }
+    .download-link:hover {
+        transform: scale(1.05);
+    }
+    .service img {
+      width: 80%;
+      max-width: 200px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      /* Apply the smooth, continuous animation (8s for service images) */
+      animation: slide-subtle 8s ease-in-out infinite alternate;
+      /* Ensure the image doesn't get clipped by the article */
+      display: inline-block; 
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .gallery-item {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    /* Add hover effect to indicate downloadability */
+    .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-item p {
+      padding: 15px;
+      margin: 0;
+      font-weight: 600;
+    }
+    .blog-post {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .blog-post h4 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    .blog-post .meta {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .blog-post img, .blog-post video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .blog-content-hidden {
+      display: none;
+    }
+    .read-more-btn {
+      background: var(--primary);
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      display: block;
+      width: fit-content;
+      margin: 10px auto;
+      transition: 0.3s ease;
+    }
+    .read-more-btn:hover {
+      background: #c2185b;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+    form button {
+      background: var(--primary);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s ease;
+    }
+    form button:hover {
+      background: #c2185b;
+      transform: scale(1.05);
+    }
+    footer {
+      background: var(--dark);
+      color: #ccc;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    footer a {
+      color: #ccc;
+    }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2em; }
+      nav a { font-size: 0.9em; margin: 0 8px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Background Music -->
-<audio id="bgMusic" src="assets/images/Dj_Maphorisa___Xduppy,_Kabza_De_Small_-_Abantwana_Bakho__Official_Audio__feat._Thatohatsi,Young…(256k).mp3" loop></audio>
-
-<!-- Play Music Button -->
-<button id="musicToggle" style="position: fixed; bottom: 10px; right: 10px; z-index: 9999; background-color: var(--primary); color: #fff; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 1em;">
-  🎶 Play Music
-</button>
-
-<!-- Disco Light Beams -->
-<div class="light-beam"></div>
-
-<!-- Sparkling Particles for Disco Effect -->
-<div class="disco-particles">
-  <!-- You can add more particles for density -->
-  <div class="disco-particle" style="top:10%; left:15%; background-color:#ff0000; animation-delay:0s;"></div>
-  <div class="disco-particle" style="top:20%; left:25%; background-color:#ffff00; animation-delay:0.5s;"></div>
-  <div class="disco-particle" style="top:30%; left:35%; background-color:#00ff00; animation-delay:1s;"></div>
-  <div class="disco-particle" style="top:50%; left:45%; background-color:#00ffff; animation-delay:1.2s;"></div>
-  <div class="disco-particle" style="top:60%; left:55%; background-color:#ff00ff; animation-delay:0.8s;"></div>
-  <div class="disco-particle" style="top:70%; left:65%; background-color:#ffffff; animation-delay:1.5s;"></div>
-</div>
-
-<!-- Header -->
 <header>
-  <img src="assets/images/logo.jpg" class="hero" alt="PA system setup at an event" />
+  <img src="assets/images/logo.jpg"
+       srcset="assets/images/logo.jpg 800w, assets/images/image.jpg 1600w"
+       sizes="100vw"
+       alt="PA system setup at an event"
+       class="hero">
   <div class="overlay"></div>
-  <!-- Floating icons for extra vibe -->
-  <div class="floating-icons">
-    <img src="assets/images/image.jpg" alt="Microphone" />
-    <img src="assets/images/bintops.jpg" alt="Speaker" />
-    <img src="assets/images/laptop.jpg" alt="Guitar" />
-  </div>
   <div class="header-content">
     <h1>Crystal‑Clear PA Rentals for Unforgettable Events</h1>
     <p>Your trusted partner for professional sound in Eswatini.</p>
-    <a href="#booking" class="cta">BOOK YOUR SOUND SYSTEM</a>
+    <!-- BOOK YOUR SOUND SYSTEM button removed -->
   </div>
 </header>
 
-<!-- Navigation -->
 <nav>
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
+  <a href="#posters">Posters</a>
   <a href="#blog">Blog</a>
-  <a href="#videos">Watch Now</a>
-  <a href="#booking">Book Now</a>
+  <!-- FIXED: Added onclick handler to pre-select the Summer Promotion -->
+  <a href="#booking" onclick="selectServiceOnBooking('Summer Sound Promotion (E1500 Package)')">Book Now</a>
   <a href="#reviews">Reviews</a>
   <a href="#terms">Ts & Cs</a>
 </nav>
 
-<!-- Main Content -->
 <main>
-  <!-- Home Section -->
   <section id="home">
     <h2>Welcome to The Party Sounds Eswatini</h2>
-    <p>Premium PA rentals &amp; expert sound engineering—making your event sound as spectacular as it looks.</p>
+    <p>Premium PA rentals & expert sound engineering—making your event sound as spectacular as it looks.</p>
   </section>
 
-  <!-- Services -->
   <section id="services">
     <h3>Our Services</h3>
     <div class="services">
       <article class="service">
-        <img src="assets/images/bintops.jpg" alt="Full Sound System" />
+        <!-- DOWNLOADABLE IMAGE 1: Full Sound System (ANIMATED) -->
+        <a href="assets/images/bintops.jpg" download="Full_Sound_System_E1500.jpg" class="download-link">
+            <img src="assets/images/bintops.jpg" alt="Full Sound System">
+        </a>
         <h4>Full Sound System Rental</h4>
         <p><strong>Price: E1500/day</strong></p>
-        <p>Includes 2 FTS TOPS, mixers, Wharfadale amp &amp; subbin, 2 wireless mics, accessories.</p>
+        <p>Includes 2 FTS TOPS, mixers, Wharfadale amp & subbin, 2 wireless mics, accessories.</p>
       </article>
       <article class="service">
-        <img src="assets/images/tops.jpg" alt="Standard Sound System" />
+        <!-- DOWNLOADABLE IMAGE 2: Standard Sound System (ANIMATED) -->
+        <a href="assets/images/tops.jpg" download="Standard_Sound_System_E750.jpg" class="download-link">
+            <img src="assets/images/tops.jpg" alt="Standard Sound System">
+        </a>
         <h4>Standard Sound System Rental</h4>
         <p><strong>Price: E750/day</strong></p>
         <p>Includes 2 FTS TOPS, Rocksonic mixer, 2 wireless mics, accessories.</p>
       </article>
+       <article class="service">
+        <!-- PLACEHOLDER IMAGE 3: Lighting (ANIMATED) -->
+        <a href="https://placehold.co/200x200/4c4c4c/fff?text=LIGHTING" download="Lighting_Effects_E500.jpg" class="download-link">
+            <img src="https://placehold.co/200x200/4c4c4c/fff?text=LIGHTING" alt="Lighting and Effects">
+        </a>
+        <h4>Lighting & Effects Rental</h4>
+        <p><strong>Price: E500/day</strong></p>
+        <p>Includes basic stage or dance floor lighting and atmospheric effects.</p>
+      </article>
     </div>
   </section>
 
-  <!-- Gallery -->
   <section id="gallery">
     <h3>Our Gallery</h3>
-    <p style="text-align:center; margin-bottom:30px;">See our equipment in action at past events.</p>
+    <p style="text-align:center; margin-bottom:30px;">Click any image to download it!</p>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="assets/images/Culture.jpg" alt="Cultural event" />
+        <!-- DOWNLOADABLE IMAGE 3: Cultural event -->
+        <a href="assets/images/Culture.jpg" download="Cultural_Event_Setup.jpg">
+            <img src="assets/images/Culture.jpg" alt="Cultural event">
+        </a>
         <p>Cultural Event</p>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/camp.jpg" alt="Outdoor night camping" />
+        <!-- DOWNLOADABLE IMAGE 4: Outdoor night camping -->
+        <a href="assets/images/camp.jpg" download="Outdoor_Night_Camping.jpg">
+            <img src="assets/images/camp.jpg" alt="Outdoor night camping">
+        </a>
         <p>Outdoor Night Camping</p>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/1event.jpg" alt="Sporting event" />
+        <!-- DOWNLOADABLE IMAGE 5: Sporting event -->
+        <a href="assets/images/1event.jpg" download="Sporting_Event_PA.jpg">
+            <img src="assets/images/1event.jpg" alt="Sporting event">
+        </a>
         <p>Sporting Event</p>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/pa.jpg" alt="DJ Booth PA system" />
+        <!-- DOWNLOADABLE IMAGE 6: DJ Booth PA system -->
+        <a href="assets/images/pa.jpg" download="DJ_Booth_PA_System.jpg">
+            <img src="assets/images/pa.jpg" alt="DJ Booth PA system">
+        </a>
         <p>PA System</p>
       </div>
     </div>
   </section>
-
-  <!-- Blog -->
+  
+  <!-- ADVERT POSTERS SECTION -->
+  <section id="posters">
+    <h3>Current Advert Posters</h3>
+    <p style="text-align:center; margin-bottom:30px;">View and download our latest promotional posters.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <!-- DOWNLOADABLE POSTER 1: SUMMER PROMO -->
+        <a href="https://placehold.co/600x450/e91e63/fff?text=SUMMER+SOUND+PROMO" download="Sound_Promo_Poster.jpg">
+          <img src="https://placehold.co/600x450/e91e63/fff?text=SUMMER+SOUND+PROMO" alt="Summer Promo Poster">
+        </a>
+        <p>Summer Sound System Promotion</p>
+      </div>
+      <div class="gallery-item">
+        <!-- DOWNLOADABLE POSTER 2: REGULAR BOOKING -->
+        <a href="https://placehold.co/600x450/003d5b/fff?text=BOOK+YOUR+EVENT" download="Hire_Us_Poster.jpg">
+          <img src="https://placehold.co/600x450/003d5b/fff?text=BOOK+YOUR+EVENT" alt="Event Hire Poster">
+        </a>
+        <p>Book Your Next Event</p>
+      </div>
+      <div class="gallery-item">
+        <!-- DOWNLOADABLE POSTER 3: NYE 2026 SPECIAL -->
+        <a href="https://placehold.co/600x450/ffc107/333?text=NYE+SPECIAL+2026" download="New_Year_Eve_Poster.jpg">
+          <img src="https://placehold.co/600x450/ffc107/333?text=NYE+SPECIAL+2026" alt="New Year Eve Party Poster">
+        </a>
+        <p>New Year's Eve Special</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:30px; font-style:italic;">Note: Replace the placeholder images above with your official posters by updating the 'src' and 'href' attributes.</p>
+  </section>
+  
+  <!-- BLOG SECTION -->
   <section id="blog">
     <h3>Our Blog</h3>
-    <p style="text-align:center; margin-bottom:30px;">Sound rental tips &amp; inspiration for youth events in Mbabane</p>
+    <p style="text-align:center; margin-bottom:30px;">
+      Sound rental tips & inspiration for youth events in Mbabane
+    </p>
 
     <!-- Post 1 -->
     <div class="blog-post">
       <h4>Budget-Friendly Sound Systems in Mbabane</h4>
       <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
-      <img src="assets/images/redcarpet.jpg" alt="DeckLife Studio Simple Sound System" />
+      <!-- DOWNLOADABLE IMAGE 7: Blog Post 1 -->
+      <a href="assets/images/redcarpet.jpg" download="Simple_Sound_System.jpg">
+          <img src="assets/images/redcarpet.jpg" alt="DeckLife Studio Simple Sound System">
+      </a>
       <p>Looking to host a youth talk, workshop, or small party? A compact 2×700 W speaker setup with wireless mics and mixer works perfectly—and costs about E 750/day.</p>
       <div class="blog-content-hidden" id="post1-content">
         <p>• The Party Sounds offers the Simple Sound System (2.0): 2 × 700 W speakers, 2 wireless mics, mixer, stands, with free delivery/setup in Mbabane. Ideal for school events, community meet‑ups, or spoken‑word nights.</p>
@@ -613,8 +419,11 @@ footer a:hover {
     <div class="blog-post">
       <h4>Adding Bass: Simple Sound System (2.2)</h4>
       <p class="meta">Published July 2025 by DeckLife Studio</p>
-      <img src="assets/images/subbin.jpg" alt="2.2 system" />
-      <p>Want deeper bass and extra energy? The 2.2 system adds two 2000 W subwoofers—perfect for youth dance nights or DJ sessions at about E1500/day.</p>
+      <!-- DOWNLOADABLE IMAGE 8: Blog Post 2 -->
+      <a href="assets/images/subbin.jpg" download="2.2_System_Subwoofers.jpg">
+          <img src="assets/images/subbin.jpg" alt=" 2.2 system">
+      </a>
+      <p>Want deeper bass and extra energy? The 2.2 system adds two 2000 W subwoofers—perfect for youth dance nights or DJ sessions at about **E1500/day**.</p>
       <div class="blog-content-hidden" id="post2-content">
         <p>• Includes 2 × 700 W tops, 2 × 2000 W subs, wireless mics, mixer, stands, and free Mbabane setup.</p>
         <p>• Great for events of 200–500 people: strong bass brings the energy up a notch.</p>
@@ -624,9 +433,12 @@ footer a:hover {
 
     <!-- Post 3 -->
     <div class="blog-post">
-      <h4>Sound &amp; Multimedia</h4>
+      <h4> Sound & Multimedia</h4>
       <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
-      <img src="assets/images/pa.jpg" alt="AudioHead Sound &amp; Multimedia Group" />
+      <!-- DOWNLOADABLE IMAGE 9: Blog Post 3 (reusing pa.jpg) -->
+      <a href="assets/images/pa.jpg" download="Sound_Multimedia_Group.jpg">
+          <img src="assets/images/pa.jpg" alt="AudioHead Sound & Multimedia Group">
+      </a>
       <p>For events needing technical guidance or mixed setups, AudioHead in Mbabane offers gear hire and sound advice—perfect for growing youth-driven events.</p>
       <div class="blog-content-hidden" id="post3-content">
         <p>• Booking tip: confirm availability and request delivery/setup quotes—delivery isn't always included.</p>
@@ -635,53 +447,55 @@ footer a:hover {
     </div>
   </section>
 
-  <!-- Book Now -->
+
   <section id="booking">
     <h2>Reserve Your Sound System</h2>
     <p style="text-align:center;"><strong>Trusted by 20+ events across Mbabane.</strong></p>
     <form id="booking-form">
-      <input type="text" name="name" placeholder="Your Full Name" required />
-      <input type="text" name="event" placeholder="Event Name" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
-      <select name="service" required>
+      <input type="text" name="name" placeholder="Your Full Name" required>
+      <input type="text" name="event" placeholder="Event Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      
+      <!-- UPDATED BOOKING OPTIONS -->
+      <select name="service" id="service-select" required>
         <option value="">--- Please Select The Service ---</option>
-        <option value="Premium Sound System">Premium Sound System Rental (E1500)</option>
-        <option value="Standard Sound System">Standard Sound System Rental (E750)</option>
+        <option value="Summer Sound Promotion (E1500 Package)">Summer Sound Promotion (E1500)</option>
+        <option value="NYE Special 2026 (Premium Package)">NYE Special 2026 (Contact for Price)</option>
+        <option value="Regular Premium Sound System">Regular Premium Sound System Rental (E1500)</option>
+        <option value="Regular Standard Sound System">Regular Standard Sound System Rental (E750)</option>
         <option value="Lighting">Lighting & Effects (E500)</option>
-        <option value="Lighting & Sound">Lighting & Sound</option>
+        <option value="Lighting & Sound">Lighting & Sound Package</option>
       </select>
-      <input type="date" name="date" required />
-      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
+
+      <input type="date" name="date" required>
+      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, specific needs, etc.)"></textarea>
       <button type="submit" class="cta">Submit Booking</button>
     </form>
   </section>
-  
-  <!-- Free Event Application -->
+
   <section id="free-event-application">
-    <h3>Needing Help?</h3>
+    <h3>Needing Help? (Free Event Application)</h3>
     <form id="charity-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
-      <input type="text" name="details" placeholder="Event Details" required />
-      <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="text" name="details" placeholder="Event Details" required>
+      <textarea name="reason" rows="5" placeholder="Why does your non-profit/charitable event deserve free service?" required></textarea>
       <button type="submit" class="cta">Apply</button>
     </form>
   </section>
-  
-  <!-- Reviews -->
+
   <section id="reviews">
     <h3>Place Your Reviews Here!</h3>
     <form id="review-form">
-      <input type="text" name="reviewer" placeholder="Your Name (Optional)" />
+      <input type="text" name="reviewer" placeholder="Your Name (Optional)">
       <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
-      <label><input type="checkbox" name="anonymous" /> Submit Anonymously</label>
+      <label><input type="checkbox" name="anonymous"> Submit Anonymously</label>
       <button type="submit" class="cta">Submit Review</button>
     </form>
   </section>
-  
-  <!-- Terms & Conditions -->
+
   <section id="terms">
-    <h3>Terms &amp; Conditions</h3>
+    <h3>Terms & Conditions</h3>
     <h4>Transport Fees</h4>
     <p>Quoted based on event location.</p>
     <h4>DJ Charges</h4>
@@ -698,28 +512,8 @@ footer a:hover {
     <p>E.g., E800 rental → E80 commission.</p>
     <p>Commissions paid after event and payment confirmation. Inform us beforehand to track referrals.</p>
   </section>
-
-  <!-- Videos Section -->
-  <section id="videos">
-    <h3>Our Videos</h3>
-    <div class="video-container">
-      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
-        <img src="assets/images/bintops.jpg" alt="Advert" />
-        <div class="play-overlay">&#9658;</div>
-      </div>
-      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/Xm85iVJfzVE')">
-        <img src="assets/images/image.jpg" alt="Presentation" />
-        <div class="play-overlay">&#9658;</div>
-      </div>
-      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/wg8k328ZnVc')">
-        <img src="assets/images/Culture.jpg" alt="Video 3" />
-        <div class="play-overlay">&#9658;</div>
-      </div>
-    </div>
-  </section>
 </main>
 
-<!-- Footer -->
 <footer id="contact">
   <h3>Contact Us</h3>
   <p>Phone📞: <a href="tel:+26876031087">+268 76031087 / 79637097</a></p>
@@ -729,37 +523,46 @@ footer a:hover {
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<!-- Lightbox Modal for Videos -->
-<div id="videoLightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:9999;">
-  <div style="position:relative; width:80%; max-width:800px;">
-    <iframe id="lightboxVideo" src="" allowfullscreen allow="autoplay; encrypted-media" style="width:100%; height:450px; border:none;"></iframe>
-    <button style="position:absolute; top:-10px; right:-10px; background:#fff; border:none; border-radius:50%; width:30px; height:30px; cursor:pointer; font-size:1.2em; font-weight:bold;" onclick="closeLightbox()">×</button>
-  </div>
-</div>
-
-<!-- Scripts for email, smooth scroll, toggle, and lightbox -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   // Initialize EmailJS
   (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
 
-  // Setup email form submissions
+  // Function to pre-select the service in the dropdown
+  function selectServiceOnBooking(serviceName) {
+    const serviceSelect = document.getElementById('service-select');
+    if (serviceSelect) {
+        serviceSelect.value = serviceName;
+        // Optionally focus the dropdown to draw attention to the selected service
+        serviceSelect.focus(); 
+    }
+  }
+
+  // Generic EmailJS setup for forms
   function setupEmailJS(formId, serviceID, templateID) {
     const form = document.getElementById(formId);
     if (!form) return;
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       emailjs.sendForm(serviceID, templateID, this)
-        .then(() => { alert('✔️ Submitted successfully!'); form.reset(); })
-        .catch(err => { console.error(err); alert('❌ Submission error.'); });
+        .then(() => { 
+            console.log('Submitted successfully!'); 
+            // In a real app, you would show a success message to the user here.
+            form.reset(); 
+        })
+        .catch(err => { 
+            console.error('Submission error:', err);
+            // In a real app, you would show an error message to the user here.
+        });
     });
   }
-
+  
+  // Set up all forms
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
   setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
   setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
 
-  // Toggle Read More / Less
+  // Toggle Read More functionality
   function toggleReadMore(contentId, btn) {
     const cont = document.getElementById(contentId);
     if (cont.style.display === "block") {
@@ -767,72 +570,10 @@ footer a:hover {
       btn.textContent = "Read More";
     } else {
       cont.style.display = "block";
+      cont.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to the content when expanded
       btn.textContent = "Read Less";
     }
   }
-
-  // Smooth scroll for navigation links
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-      // Update active class
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
-    });
-  });
-
-  // Lightbox functions
-  function openLightbox(videoSrc) {
-    const lightbox = document.getElementById('videoLightbox');
-    const iframe = document.getElementById('lightboxVideo');
-    iframe.src = videoSrc + "?autoplay=1"; // Append autoplay
-    lightbox.style.display = 'flex'; // Show overlay
-  }
-
-  function closeLightbox() {
-    const lightbox = document.getElementById('videoLightbox');
-    const iframe = document.getElementById('lightboxVideo');
-    iframe.src = ''; // Reset src to stop video
-    lightbox.style.display = 'none'; // Hide overlay
-  }
-
-  // Play/Pause music function
-  const music = document.getElementById('bgMusic');
-  const toggleBtn = document.getElementById('musicToggle');
-
-  document.getElementById('musicToggle').addEventListener('click', () => {
-    if (music.paused) {
-      music.play();
-      toggleBtn.textContent = '⏸️ Pause';
-    } else {
-      music.pause();
-      toggleBtn.textContent = '🎶 Play Music';
-    }
-  });
-
-  // Additional: Animate gallery images randomly for liveliness
-  document.querySelectorAll('.gallery-item img').forEach(img => {
-    animateImage(img);
-  });
-
-  function animateImage(element) {
-    const maxX = 20; // max shift in px
-    const maxY = 20;
-    function move() {
-      const translateX = (Math.random() - 0.5) * 2 * maxX;
-      const translateY = (Math.random() - 0.5) * 2 * maxY;
-      element.style.transition = 'transform 2s ease-in-out';
-      element.style.transform = `translate(${translateX}px, ${translateY}px)`;
-      setTimeout(() => {
-        // Reset position before next move
-        element.style.transform = `translate(0, 0)`;
-        setTimeout(move, 2000); // wait for transition
-      }, 2000);
-    }
-    move();
-  }
 </script>
 </body>
-  </html>
-
+</html>
