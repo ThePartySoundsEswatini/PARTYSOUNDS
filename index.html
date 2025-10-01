@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Party Sounds Eswatini</title>
   <!-- Preload/optimize hero image -->
-  <link rel="preload" as="image" href="assets/images/logo.jpg" type="image/jpeg">
+  <link rel="preload" as="image"
+    href="assets/images/logo.jpg"
+    imagesrcset="assets/images/logo.jpg 800w, assets/images/logo.jpg 1600w"
+    imagesizes="100vw">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -25,13 +28,6 @@
       height: 80vh;
       overflow: hidden;
     }
-    /* Keyframe animation for subtle movement */
-    @keyframes slide-subtle {
-      0% { transform: translateX(-5px) scale(1.0); }
-      55% { transform: translateX(5px) scale(1.02); } /* Moves right and slightly scales */
-      100% { transform: translateX(-5px) scale(1.0); } /* Moves left back to start */
-    }
-
     header img.hero {
       position: absolute;
       inset: 0;
@@ -40,9 +36,6 @@
       object-fit: cover;
       display: block;
       loading: eager;
-      opacity: 0.9;
-      /* Animation added to the hero image (12s for subtle movement) */
-      animation: slide-subtle 12s ease-in-out infinite alternate; 
     }
     .overlay {
       position: absolute;
@@ -90,7 +83,7 @@
       margin-bottom: 30px;
       color: #111;
     }
-    button.cta, a.cta {
+    button.cta {
       background: var(--primary);
       color: white;
       padding: 14px 28px;
@@ -103,7 +96,7 @@
       margin: 20px auto;
       text-decoration: none;
     }
-    button.cta:hover, a.cta:hover {
+    button.cta:hover {
       background: #c2185b;
       transform: scale(1.05);
     }
@@ -120,26 +113,12 @@
       padding: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
-      transition: box-shadow 0.3s;
-    }
-    
-    /* Style for the link wrapper to make images clickable */
-    .download-link {
-        display: block;
-        transition: transform 0.3s;
-    }
-    .download-link:hover {
-        transform: scale(1.05);
     }
     .service img {
       width: 80%;
       max-width: 200px;
       border-radius: 6px;
       margin-bottom: 10px;
-      /* Apply the smooth, continuous animation (8s for service images) */
-      animation: slide-subtle 8s ease-in-out infinite alternate;
-      /* Ensure the image doesn't get clipped by the article */
-      display: inline-block; 
     }
     .gallery-grid {
       display: grid;
@@ -153,12 +132,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       overflow: hidden;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    /* Add hover effect to indicate downloadability */
-    .gallery-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.2);
     }
     .gallery-item img {
       width: 100%;
@@ -258,6 +231,46 @@
       header h1 { font-size: 2em; }
       nav a { font-size: 0.9em; margin: 0 8px; }
     }
+    /* NEW STYLES for Download Button and Container */
+    .image-download-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px; /* Small space between image and button */
+        margin-bottom: 10px; /* Space before text/title */
+    }
+    .download-btn {
+        background: #4a4a4a; /* Dark gray for a neutral, non-primary CTA */
+        color: white;
+        padding: 6px 12px;
+        font-size: 0.9em;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 500;
+        width: 80%; /* Match image width for services/posters */
+        text-align: center;
+    }
+    .download-btn:hover {
+        background: #2b2b2b;
+        transform: scale(1.02);
+    }
+    /* Adjust for gallery items to place button below text */
+    .gallery-item .download-btn {
+        width: 90%;
+        margin-bottom: 15px; /* Add space at the bottom of the card */
+    }
+    /* Adjust service image margin since the container handles spacing now */
+    .service img {
+      margin-bottom: 0; 
+    }
+    /* Add padding to the gallery item so the button fits nicely */
+    .gallery-item {
+      padding-bottom: 0; 
+    }
   </style>
 </head>
 <body>
@@ -272,7 +285,7 @@
   <div class="header-content">
     <h1>Crystal‑Clear PA Rentals for Unforgettable Events</h1>
     <p>Your trusted partner for professional sound in Eswatini.</p>
-    <!-- BOOK YOUR SOUND SYSTEM button removed -->
+    <a href="#booking" class="cta">BOOK YOUR SOUND SYSTEM</a>
   </div>
 </header>
 
@@ -280,10 +293,9 @@
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
-  <a href="#posters">Posters</a>
+  <a href="#posters">Posters</a> <!-- NEW: Added Posters Nav Link -->
   <a href="#blog">Blog</a>
-  <!-- FIXED: Added onclick handler to pre-select the Summer Promotion -->
-  <a href="#booking" onclick="selectServiceOnBooking('Summer Sound Promotion (E1500 Package)')">Book Now</a>
+  <a href="#booking">Book Now</a>
   <a href="#reviews">Reviews</a>
   <a href="#terms">Ts & Cs</a>
 </nav>
@@ -297,155 +309,148 @@
   <section id="services">
     <h3>Our Services</h3>
     <div class="services">
+      <!-- Service 1: Full Sound System (PRICE UPDATED to E1500) -->
       <article class="service">
-        <!-- DOWNLOADABLE IMAGE 1: Full Sound System (ANIMATED) -->
-        <a href="assets/images/bintops.jpg" download="Full_Sound_System_E1500.jpg" class="download-link">
+        <div class="image-download-container">
             <img src="assets/images/bintops.jpg" alt="Full Sound System">
-        </a>
+            <a href="assets/images/bintops.jpg" download="Full_Sound_System.jpg" class="download-btn">Download Image</a>
+        </div>
         <h4>Full Sound System Rental</h4>
         <p><strong>Price: E1500/day</strong></p>
         <p>Includes 2 FTS TOPS, mixers, Wharfadale amp & subbin, 2 wireless mics, accessories.</p>
       </article>
+      <!-- Service 2: Standard Sound System -->
       <article class="service">
-        <!-- DOWNLOADABLE IMAGE 2: Standard Sound System (ANIMATED) -->
-        <a href="assets/images/tops.jpg" download="Standard_Sound_System_E750.jpg" class="download-link">
+        <div class="image-download-container">
             <img src="assets/images/tops.jpg" alt="Standard Sound System">
-        </a>
+            <a href="assets/images/tops.jpg" download="Standard_Sound_System.jpg" class="download-btn">Download Image</a>
+        </div>
         <h4>Standard Sound System Rental</h4>
         <p><strong>Price: E750/day</strong></p>
         <p>Includes 2 FTS TOPS, Rocksonic mixer, 2 wireless mics, accessories.</p>
-      </article>
-       <article class="service">
-        <!-- PLACEHOLDER IMAGE 3: Lighting (ANIMATED) -->
-        <a href="https://placehold.co/200x200/4c4c4c/fff?text=LIGHTING" download="Lighting_Effects_E500.jpg" class="download-link">
-            <img src="https://placehold.co/200x200/4c4c4c/fff?text=LIGHTING" alt="Lighting and Effects">
-        </a>
-        <h4>Lighting & Effects Rental</h4>
-        <p><strong>Price: E500/day</strong></p>
-        <p>Includes basic stage or dance floor lighting and atmospheric effects.</p>
       </article>
     </div>
   </section>
 
   <section id="gallery">
     <h3>Our Gallery</h3>
-    <p style="text-align:center; margin-bottom:30px;">Click any image to download it!</p>
+    <p style="text-align:center; margin-bottom:30px;">See our equipment in action at past events.</p>
     <div class="gallery-grid">
+      <!-- Gallery Item 1 -->
       <div class="gallery-item">
-        <!-- DOWNLOADABLE IMAGE 3: Cultural event -->
-        <a href="assets/images/Culture.jpg" download="Cultural_Event_Setup.jpg">
-            <img src="assets/images/Culture.jpg" alt="Cultural event">
-        </a>
+        <img src="assets/images/Culture.jpg" alt="Cultural event">
         <p>Cultural Event</p>
+        <a href="assets/images/Culture.jpg" download="Cultural_Event.jpg" class="download-btn">Download Image</a>
       </div>
+      <!-- Gallery Item 2 -->
       <div class="gallery-item">
-        <!-- DOWNLOADABLE IMAGE 4: Outdoor night camping -->
-        <a href="assets/images/camp.jpg" download="Outdoor_Night_Camping.jpg">
-            <img src="assets/images/camp.jpg" alt="Outdoor night camping">
-        </a>
+        <img src="assets/images/camp.jpg" alt="Outdoor night camping">
         <p>Outdoor Night Camping</p>
+        <a href="assets/images/camp.jpg" download="Outdoor_Camping.jpg" class="download-btn">Download Image</a>
       </div>
+      <!-- Gallery Item 3 -->
       <div class="gallery-item">
-        <!-- DOWNLOADABLE IMAGE 5: Sporting event -->
-        <a href="assets/images/1event.jpg" download="Sporting_Event_PA.jpg">
-            <img src="assets/images/1event.jpg" alt="Sporting event">
-        </a>
+        <img src="assets/images/1event.jpg" alt="Sporting event">
         <p>Sporting Event</p>
+        <a href="assets/images/1event.jpg" download="Sporting_Event.jpg" class="download-btn">Download Image</a>
       </div>
+      <!-- Gallery Item 4 -->
       <div class="gallery-item">
-        <!-- DOWNLOADABLE IMAGE 6: DJ Booth PA system -->
-        <a href="assets/images/pa.jpg" download="DJ_Booth_PA_System.jpg">
-            <img src="assets/images/pa.jpg" alt="DJ Booth PA system">
-        </a>
+        <img src="assets/images/pa.jpg" alt="DJ Booth PA system">
         <p>PA System</p>
+        <a href="assets/images/pa.jpg" download="PA_System_Setup.jpg" class="download-btn">Download Image</a>
       </div>
     </div>
   </section>
-  
-  <!-- ADVERT POSTERS SECTION -->
+
+  <!-- NEW SECTION: Posters & Promotions -->
   <section id="posters">
-    <h3>Current Advert Posters</h3>
-    <p style="text-align:center; margin-bottom:30px;">View and download our latest promotional posters.</p>
+    <h3>Posters & Promotions</h3>
+    <p style="text-align:center; margin-bottom:30px;">Download our latest promotional material for your event listings.</p>
     <div class="gallery-grid">
+      <!-- Poster 1 Placeholder -->
       <div class="gallery-item">
-        <!-- DOWNLOADABLE POSTER 1: SUMMER PROMO -->
-        <a href="https://placehold.co/600x450/e91e63/fff?text=SUMMER+SOUND+PROMO" download="Sound_Promo_Poster.jpg">
-          <img src="https://placehold.co/600x450/e91e63/fff?text=SUMMER+SOUND+PROMO" alt="Summer Promo Poster">
-        </a>
+        <img src="https://placehold.co/600x450/e91e63/fff?text=SUMMER+PROMO" alt="Summer Promotion Poster">
         <p>Summer Sound System Promotion</p>
+        <a href="https://placehold.co/600x450/e91e63/fff?text=SUMMER+PROMO" download="Summer_Promo_Poster.jpg" class="download-btn">Download Poster</a>
       </div>
+      <!-- Poster 2 Placeholder -->
       <div class="gallery-item">
-        <!-- DOWNLOADABLE POSTER 2: REGULAR BOOKING -->
-        <a href="https://placehold.co/600x450/003d5b/fff?text=BOOK+YOUR+EVENT" download="Hire_Us_Poster.jpg">
-          <img src="https://placehold.co/600x450/003d5b/fff?text=BOOK+YOUR+EVENT" alt="Event Hire Poster">
-        </a>
-        <p>Book Your Next Event</p>
-      </div>
-      <div class="gallery-item">
-        <!-- DOWNLOADABLE POSTER 3: NYE 2026 SPECIAL -->
-        <a href="https://placehold.co/600x450/ffc107/333?text=NYE+SPECIAL+2026" download="New_Year_Eve_Poster.jpg">
-          <img src="https://placehold.co/600x450/ffc107/333?text=NYE+SPECIAL+2026" alt="New Year Eve Party Poster">
-        </a>
+        <img src="https://placehold.co/600x450/111/fff?text=NYE+SPECIAL+2026" alt="NYE Special Poster">
         <p>New Year's Eve Special</p>
+        <a href="https://placehold.co/600x450/111/fff?text=NYE+SPECIAL+2026" download="NYE_Special_Poster.jpg" class="download-btn">Download Poster</a>
       </div>
-    </div>
-    <p style="text-align:center; margin-top:30px; font-style:italic;">Note: Replace the placeholder images above with your official posters by updating the 'src' and 'href' attributes.</p>
-  </section>
-  
-  <!-- BLOG SECTION -->
-  <section id="blog">
-    <h3>Our Blog</h3>
-    <p style="text-align:center; margin-bottom:30px;">
-      Sound rental tips & inspiration for youth events in Mbabane
-    </p>
-
-    <!-- Post 1 -->
-    <div class="blog-post">
-      <h4>Budget-Friendly Sound Systems in Mbabane</h4>
-      <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
-      <!-- DOWNLOADABLE IMAGE 7: Blog Post 1 -->
-      <a href="assets/images/redcarpet.jpg" download="Simple_Sound_System.jpg">
-          <img src="assets/images/redcarpet.jpg" alt="DeckLife Studio Simple Sound System">
-      </a>
-      <p>Looking to host a youth talk, workshop, or small party? A compact 2×700 W speaker setup with wireless mics and mixer works perfectly—and costs about E 750/day.</p>
-      <div class="blog-content-hidden" id="post1-content">
-        <p>• The Party Sounds offers the Simple Sound System (2.0): 2 × 700 W speakers, 2 wireless mics, mixer, stands, with free delivery/setup in Mbabane. Ideal for school events, community meet‑ups, or spoken‑word nights.</p>
-        <p>• Great for venues with 150–400 people: provides clear, reliable sound without overkill.</p>
+      <!-- Poster 3 Placeholder -->
+      <div class="gallery-item">
+        <img src="https://placehold.co/600x450/4CAF50/fff?text=EVENT+BOOKING" alt="General Booking Poster">
+        <p>General Event Booking Ad</p>
+        <a href="https://placehold.co/600x450/4CAF50/fff?text=EVENT+BOOKING" download="General_Booking_Ad.jpg" class="download-btn">Download Poster</a>
       </div>
-      <button class="read-more-btn" onclick="toggleReadMore('post1-content', this)">Read More</button>
-    </div>
-
-    <!-- Post 2 -->
-    <div class="blog-post">
-      <h4>Adding Bass: Simple Sound System (2.2)</h4>
-      <p class="meta">Published July 2025 by DeckLife Studio</p>
-      <!-- DOWNLOADABLE IMAGE 8: Blog Post 2 -->
-      <a href="assets/images/subbin.jpg" download="2.2_System_Subwoofers.jpg">
-          <img src="assets/images/subbin.jpg" alt=" 2.2 system">
-      </a>
-      <p>Want deeper bass and extra energy? The 2.2 system adds two 2000 W subwoofers—perfect for youth dance nights or DJ sessions at about **E1500/day**.</p>
-      <div class="blog-content-hidden" id="post2-content">
-        <p>• Includes 2 × 700 W tops, 2 × 2000 W subs, wireless mics, mixer, stands, and free Mbabane setup.</p>
-        <p>• Great for events of 200–500 people: strong bass brings the energy up a notch.</p>
-      </div>
-      <button class="read-more-btn" onclick="toggleReadMore('post2-content', this)">Read More</button>
-    </div>
-
-    <!-- Post 3 -->
-    <div class="blog-post">
-      <h4> Sound & Multimedia</h4>
-      <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
-      <!-- DOWNLOADABLE IMAGE 9: Blog Post 3 (reusing pa.jpg) -->
-      <a href="assets/images/pa.jpg" download="Sound_Multimedia_Group.jpg">
-          <img src="assets/images/pa.jpg" alt="AudioHead Sound & Multimedia Group">
-      </a>
-      <p>For events needing technical guidance or mixed setups, AudioHead in Mbabane offers gear hire and sound advice—perfect for growing youth-driven events.</p>
-      <div class="blog-content-hidden" id="post3-content">
-        <p>• Booking tip: confirm availability and request delivery/setup quotes—delivery isn't always included.</p>
-      </div>
-      <button class="read-more-btn" onclick="toggleReadMore('post3-content', this)">Read More</button>
     </div>
   </section>
+  <!-- END NEW SECTION -->
+
+<section id="blog">
+  <h3>Our Blog</h3>
+  <p style="text-align:center; margin-bottom:30px;">
+    Sound rental tips & inspiration for youth events in Mbabane
+  </p>
+
+  <!-- Post 1 -->
+  <div class="blog-post">
+    <h4>Budget-Friendly Sound Systems in Mbabane</h4>
+    <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
+    <!-- Downloadable Image Wrapper -->
+    <div class="image-download-container">
+        <img src="assets/images/redcarpet.jpg" alt="DeckLife Studio Simple Sound System">
+        <a href="assets/images/redcarpet.jpg" download="Simple_Sound_System_Blog.jpg" class="download-btn">Download Image</a>
+    </div>
+    <p>Looking to host a youth talk, workshop, or small party? A compact 2×700 W speaker setup with wireless mics and mixer works perfectly—and costs about E 750/day.</p>
+    <div class="blog-content-hidden" id="post1-content">
+      <p>• The Party Sounds offers the Simple Sound System (2.0): 2 × 700 W speakers, 2 wireless mics, mixer, stands, with free delivery/setup in Mbabane. Ideal for school events, community meet‑ups, or spoken‑word nights.</p>
+      <p>• Great for venues with 150–400 people: provides clear, reliable sound without overkill.</p>
+     
+    </div>
+    <button class="read-more-btn" onclick="toggleReadMore('post1-content', this)">Read More</button>
+  </div>
+
+  <!-- Post 2 -->
+  <div class="blog-post">
+    <h4>Adding Bass: Simple Sound System (2.2)</h4>
+    <p class="meta">Published July 2025 by DeckLife Studio</p>
+    <!-- Downloadable Image Wrapper -->
+    <div class="image-download-container">
+        <img src="assets/images/subbin.jpg" alt=" 2.2 system">
+        <a href="assets/images/subbin.jpg" download="Adding_Bass_2_2_System.jpg" class="download-btn">Download Image</a>
+    </div>
+    <p>Want deeper bass and extra energy? The 2.2 system adds two 2000 W subwoofers—perfect for youth dance nights or DJ sessions at about E1500/day.</p>
+    <div class="blog-content-hidden" id="post2-content">
+      <p>• Includes 2 × 700 W tops, 2 × 2000 W subs, wireless mics, mixer, stands, and free Mbabane setup.</p>
+      <p>• Great for events of 200–500 people: strong bass brings the energy up a notch.</p>
+     
+    </div>
+    <button class="read-more-btn" onclick="toggleReadMore('post2-content', this)">Read More</button>
+  </div>
+
+  <!-- Post 3 -->
+  <div class="blog-post">
+    <h4> Sound & Multimedia</h4>
+    <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
+    <!-- Downloadable Image Wrapper -->
+    <div class="image-download-container">
+        <img src="assets/images/pa.jpg" alt="AudioHead Sound & Multimedia Group">
+        <a href="assets/images/pa.jpg" download="Sound_Multimedia_Blog.jpg" class="download-btn">Download Image</a>
+    </div>
+    <p>For events needing technical guidance or mixed setups, AudioHead in Mbabane offers gear hire and sound advice—perfect for growing youth-driven events.</p>
+    <div class="blog-content-hidden" id="post3-content">
+      
+     
+      <p>• Booking tip: confirm availability and request delivery/setup quotes—delivery isn't always included.</p>
+    </div>
+    <button class="read-more-btn" onclick="toggleReadMore('post3-content', this)">Read More</button>
+  </div>
+</section>
+
 
 
   <section id="booking">
@@ -455,31 +460,27 @@
       <input type="text" name="name" placeholder="Your Full Name" required>
       <input type="text" name="event" placeholder="Event Name" required>
       <input type="tel" name="phone" placeholder="Phone Number" required>
-      
-      <!-- UPDATED BOOKING OPTIONS -->
-      <select name="service" id="service-select" required>
+      <select name="service" required>
         <option value="">--- Please Select The Service ---</option>
-        <option value="Summer Sound Promotion (E1500 Package)">Summer Sound Promotion (E1500)</option>
-        <option value="NYE Special 2026 (Premium Package)">NYE Special 2026 (Contact for Price)</option>
-        <option value="Regular Premium Sound System">Regular Premium Sound System Rental (E1500)</option>
-        <option value="Regular Standard Sound System">Regular Standard Sound System Rental (E750)</option>
+        <!-- OPTION PRICE UPDATED to E1500 -->
+        <option value="Premium Sound System">Premium Sound System Rental (E1500)</option>
+        <option value="Standard Sound System">Standard Sound System Rental (E750)</option>
         <option value="Lighting">Lighting & Effects (E500)</option>
-        <option value="Lighting & Sound">Lighting & Sound Package</option>
+        <option value="Lighting & Sound">Lighting & Sound</option>
       </select>
-
       <input type="date" name="date" required>
-      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, specific needs, etc.)"></textarea>
+      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
       <button type="submit" class="cta">Submit Booking</button>
     </form>
   </section>
 
   <section id="free-event-application">
-    <h3>Needing Help? (Free Event Application)</h3>
+    <h3>Needing Help?</h3>
     <form id="charity-form">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="tel" name="phone" placeholder="Phone Number" required>
       <input type="text" name="details" placeholder="Event Details" required>
-      <textarea name="reason" rows="5" placeholder="Why does your non-profit/charitable event deserve free service?" required></textarea>
+      <textarea name="reason" rows="5" placeholder="Why do you deserve this event?" required></textarea>
       <button type="submit" class="cta">Apply</button>
     </form>
   </section>
@@ -525,44 +526,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // Initialize EmailJS
+  // Note: Per your original code, I am keeping 'alert' usage here, though best practice is a custom UI message.
   (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
-
-  // Function to pre-select the service in the dropdown
-  function selectServiceOnBooking(serviceName) {
-    const serviceSelect = document.getElementById('service-select');
-    if (serviceSelect) {
-        serviceSelect.value = serviceName;
-        // Optionally focus the dropdown to draw attention to the selected service
-        serviceSelect.focus(); 
-    }
-  }
-
-  // Generic EmailJS setup for forms
   function setupEmailJS(formId, serviceID, templateID) {
     const form = document.getElementById(formId);
     if (!form) return;
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       emailjs.sendForm(serviceID, templateID, this)
-        .then(() => { 
-            console.log('Submitted successfully!'); 
-            // In a real app, you would show a success message to the user here.
-            form.reset(); 
-        })
-        .catch(err => { 
-            console.error('Submission error:', err);
-            // In a real app, you would show an error message to the user here.
-        });
+        .then(() => { alert('✔️ Submitted successfully!'); form.reset(); })
+        .catch(err => { console.error(err); alert('❌ Submission error.'); });
     });
   }
-  
-  // Set up all forms
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
   setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
   setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
 
-  // Toggle Read More functionality
   function toggleReadMore(contentId, btn) {
     const cont = document.getElementById(contentId);
     if (cont.style.display === "block") {
@@ -570,7 +549,6 @@
       btn.textContent = "Read More";
     } else {
       cont.style.display = "block";
-      cont.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to the content when expanded
       btn.textContent = "Read Less";
     }
   }
