@@ -228,6 +228,7 @@
       transition: all 0.4s ease-in-out;
       text-align: center;
       border: 3px solid transparent;
+      cursor: pointer; /* Indicate it's clickable */
     }
     .service:hover {
       transform: translateY(-5px);
@@ -260,6 +261,7 @@
         font-weight: 600;
         border-radius: 6px;
         margin: 0 auto 10px;
+        cursor: pointer; /* Indicate it's clickable */
     }
 
     /* --- GALLERY / POSTERS / VIDEOS GRID STRUCTURE --- */
@@ -276,7 +278,8 @@
       overflow: hidden;
       transition: all 0.4s ease-in-out;
       text-align: center;
-      cursor: pointer;
+      /* Only video-wrapper has specific play overlay, others will use image click */
+      /* cursor: pointer; - removed from here, moved to specific img or container for clarity */
     }
     .gallery-item:hover, .poster-item:hover, .video-wrapper:hover {
       transform: translateY(-5px);
@@ -285,11 +288,17 @@
     }
 
     /* Image/Media Elements within Grids */
-    .gallery-item img, .poster-item img, .video-wrapper img {
+    .gallery-item img, .poster-item img, .video-wrapper img, .home-image-clickable { /* Added .home-image-clickable */
       width: 100%;
-      height: 200px;
+      height: 200px; /* Standard height for grid images */
       object-fit: cover;
       display: block;
+      cursor: pointer; /* Indicate it's clickable */
+    }
+    /* Specific styling for the main home image to override default height from above if needed */
+    #home-image {
+        height: auto !important; /* Keep original auto height for home image */
+        max-height: 500px; /* Optional: limit max height for large screens */
     }
     
     /* --- GALLERY DOWNLOAD LINK (BELOW IMAGE) --- */
@@ -307,7 +316,7 @@
         background: #c2185b;
         transform: none;
     }
-    .gallery-item p {
+    .gallery-item p, .poster-item p { /* Also target poster-item for consistency */
       padding: 10px 15px 5px;
       margin: 0;
       font-weight: 600;
@@ -333,10 +342,11 @@
         font-size: 4em;
         transition: all 0.4s ease-in-out;
         opacity: 0.8;
+        pointer-events: none; /* Allow click to pass through to video-wrapper */
     }
 
-    /* --- LIGHTBOX (Modal) --- */
-    #videoLightbox {
+    /* --- LIGHTBOX (Modal) - Shared styles for video and image --- */
+    .lightbox {
         display: none;
         position: fixed;
         inset: 0;
@@ -346,20 +356,33 @@
         z-index: 10000;
         padding: 20px;
     }
-    #lightbox-content {
+    .lightbox-content {
         position: relative;
         width: 90%;
         max-width: 900px;
-        aspect-ratio: 16 / 9;
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 0 50px rgba(233, 30, 99, 0.8);
+        background: black; /* Ensure black background for full image fill */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    #lightbox-content iframe {
+    /* Specific for video iframe */
+    #lightboxVideo {
         width: 100%;
         height: 100%;
         border: none;
+        aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
     }
+    /* Specific for image */
+    #lightboxImage {
+        max-width: 100%;
+        max-height: 90vh; /* Adjust as needed */
+        object-fit: contain; /* Ensure image fits within modal */
+        border-radius: 10px;
+    }
+
     .close-btn {
         position: absolute;
         top: 10px;
@@ -490,28 +513,30 @@
     <div id="home-content" style="text-align: center;">
         <p>Premium PA rentals & expert sound engineering—making your event sound as spectacular as it looks.</p>
         
-        <img id="home-image" src="assets/images/camp.jpg" alt="Outdoor event with lighting and sound setup" style="max-width: 90%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); margin: 20px auto;">
+        <img id="home-image" src="assets/images/camp.jpg" alt="Outdoor event with lighting and sound setup" 
+             class="home-image-clickable" onclick="openImageLightbox('assets/images/camp.jpg', 'Outdoor event with lighting and sound setup')" 
+             style="max-width: 90%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); margin: 20px auto; cursor: pointer;">
     </div>
   </section>
 
   <section id="services">
     <h3>Our Services</h3>
     <div class="services">
-      <article class="service">
+      <article class="service" onclick="openImageLightbox('assets/images/bintops.jpg', 'Premium Sound System')">
         <img src="assets/images/bintops.jpg" alt="Premium Sound System" />
         <h4>Premium Sound System Rental</h4>
         <p><strong>Price: E1500/day</strong></p>
         <p>Includes 2 FTS TOPS, mixers, Wharfadale amp &amp; subbin, 2 wireless mics, accessories.</p>
       </article>
 
-      <article class="service">
+      <article class="service" onclick="openImageLightbox('assets/images/tops.jpg', 'Standard Sound System')">
         <img src="assets/images/tops.jpg" alt="Standard Sound System" />
         <h4>Standard Sound System Rental</h4>
         <p><strong>Price: E750/day</strong></p>
         <p>Includes 2 FTS TOPS, Rocksonic mixer, 2 wireless mics, accessories.</p>
       </article>
 
-      <article class="service">
+      <article class="service" onclick="openImageLightbox('assets/images/lighting_placeholder.jpg', 'Dynamic Lighting Effects')"> 
         <div class="lighting-placeholder">
           <span>Dynamic Lighting Effects</span>
         </div>
@@ -524,25 +549,25 @@
 
   <section id="gallery">
     <h3>Our Gallery</h3>
-    <p style="text-align:center; margin-bottom:30px;">See our equipment in action at past events. **Click the link below each image to download it.**</p>
+    <p style="text-align:center; margin-bottom:30px;">See our equipment in action at past events. Click an image to view, or click the link below to download.</p>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="assets/images/Culture.jpg" alt="Cultural event" />
+        <img src="assets/images/Culture.jpg" alt="Cultural event" onclick="openImageLightbox(this.src, this.alt)" />
         <p>Cultural Event</p>
         <a href="assets/images/Culture.jpg" download="Cultural_event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/camp.jpg" alt="Outdoor night camping" />
+        <img src="assets/images/camp.jpg" alt="Outdoor night camping" onclick="openImageLightbox(this.src, this.alt)" />
         <p>Outdoor Night Camping</p>
         <a href="assets/images/camp.jpg" download="Outdoor_night_camping.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/1event.jpg" alt="Sporting event" />
+        <img src="assets/images/1event.jpg" alt="Sporting event" onclick="openImageLightbox(this.src, this.alt)" />
         <p>Sporting Event</p>
         <a href="assets/images/1event.jpg" download="Sporting_event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/pa.jpg" alt="DJ Booth PA system" />
+        <img src="assets/images/pa.jpg" alt="DJ Booth PA system" onclick="openImageLightbox(this.src, this.alt)" />
         <p>PA System</p>
         <a href="assets/images/pa.jpg" download="PA_System_Setup.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
       </div>
@@ -551,20 +576,20 @@
 
   <section id="posters">
     <h3>Our Posters</h3>
-    <p style="text-align:center; margin-bottom:30px;">Download our event posters and promotional materials.</p>
+    <p style="text-align:center; margin-bottom:30px;">Click an image to view, or click the link below to download our event posters and promotional materials.</p>
     <div class="poster-grid">
       <div class="poster-item">
-        <img src="assets/images/1759390922835.jpg" alt="Special Event Promotion Poster" />
+        <img src="assets/images/1759390922835.jpg" alt="Special Event Promotion Poster" onclick="openImageLightbox(this.src, this.alt)" />
         <p>Special Event Promotion</p>
         <a href="assets/images/1759390922835.jpg" download="Special_Event_Promo.jpg" class="download-link"><i class="fas fa-download"></i> Download Poster</a>
       </div>
       <div class="poster-item">
-        <img src="assets/images/1759390904769.jpg" alt="Party Sounds Eswatini Ad" />
+        <img src="assets/images/1759390904769.jpg" alt="Party Sounds Eswatini Ad" onclick="openImageLightbox(this.src, this.alt)" />
         <p>The Party Sounds Eswatini Ad</p>
         <a href="assets/images/1759390904769.jpg" download="Party_Sounds_Ad.jpg" class="download-link"><i class="fas fa-download"></i> Download Poster</a>
       </div>
       <div class="poster-item">
-        <img src="https://placehold.co/600x450/4CAF50/fff?text=EVENT+BOOKING" alt="General Booking Poster" />
+        <img src="https://placehold.co/600x450/4CAF50/fff?text=EVENT+BOOKING" alt="General Booking Poster" onclick="openImageLightbox(this.src, this.alt)" />
         <p>General Booking Ad</p>
         <a href="https://placehold.co/600x450/4CAF50/fff?text=EVENT+BOOKING" download="General_Booking_Ad.jpg" class="download-link"><i class="fas fa-download"></i> Download Poster</a>
       </div>
@@ -575,17 +600,17 @@
     <h3>Watch Our Events in Action</h3>
     <p style="text-align:center; margin-bottom:30px;">Click to watch event recaps and sound system demonstrations.</p>
     <div class="video-grid">
-      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
+      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
         <img src="assets/images/bintops.jpg" alt="Event Recap Video 1 Thumbnail" />
         <div class="play-overlay"><i class="fas fa-play"></i></div>
         <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Full System Demo</p>
       </div>
-      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/S_T1xG3kK5Y')">
+      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/S_T1xG3kK5Y')">
         <img src="assets/images/camp.jpg" alt="Outdoor Event Video 2 Thumbnail" />
         <div class="play-overlay"><i class="fas fa-play"></i></div>
         <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Outdoor Party Vibe</p>
       </div>
-      <div class="video-wrapper" onclick="openLightbox('https://www.youtube.com/embed/H0ZfPq7sB64')">
+      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/H0ZfPq7sB64')">
         <img src="assets/images/redcarpet.jpg" alt="Cultural Event Video 3 Thumbnail" />
         <div class="play-overlay"><i class="fas fa-play"></i></div>
         <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Cultural Day Sound Check</p>
@@ -700,10 +725,17 @@
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<div id="videoLightbox">
-  <span class="close-btn" onclick="closeLightbox()">&times;</span>
-  <div id="lightbox-content">
+<div id="videoLightbox" class="lightbox">
+  <span class="close-btn" onclick="closeVideoLightbox()">&times;</span>
+  <div class="lightbox-content">
     <iframe id="lightboxVideo" src="" allow="autoplay" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div id="imageLightbox" class="lightbox">
+  <span class="close-btn" onclick="closeImageLightbox()">&times;</span>
+  <div class="lightbox-content">
+    <img id="lightboxImage" src="" alt="">
   </div>
 </div>
 
@@ -773,30 +805,54 @@
     }
   });
 
-  // --- Video Lightbox Logic ---
-  function openLightbox(videoSrc) {
-    // Pause background music when video starts
+  // --- Lightbox Functions (Unified for Video and Images) ---
+
+  // Function to pause music when any lightbox opens
+  function pauseMusicForLightbox() {
     if (!music.paused) {
         music.pause();
         toggleBtn.textContent = '🎶 Play Music';
     }
-    
-    const lightbox = document.getElementById('videoLightbox');
-    const iframe = document.getElementById('lightboxVideo');
-    // Set src with autoplay enabled
-    iframe.src = videoSrc.includes('?') ? videoSrc + "&autoplay=1" : videoSrc + "?autoplay=1"; 
-    lightbox.style.display = 'flex'; // Show overlay
-    document.body.style.overflow = 'hidden'; // Prevent scrolling while lightbox is open
   }
 
-  function closeLightbox() {
+  // Video Lightbox
+  function openVideoLightbox(videoSrc) {
+    pauseMusicForLightbox();
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = ''; // Reset src to stop video playback
-    lightbox.style.display = 'none'; // Hide overlay
-    document.body.style.overflow = ''; // Restore scrolling
+    iframe.src = videoSrc.includes('?') ? videoSrc + "&autoplay=1" : videoSrc + "?autoplay=1"; 
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoLightbox() {
+    const lightbox = document.getElementById('videoLightbox');
+    const iframe = document.getElementById('lightboxVideo');
+    iframe.src = '';
+    lightbox.style.display = 'none';
+    document.body.style.overflow = '';
   }
   
+  // Image Lightbox
+  function openImageLightbox(imageSrc, imageAlt) {
+    pauseMusicForLightbox();
+    const lightbox = document.getElementById('imageLightbox');
+    const img = document.getElementById('lightboxImage');
+    img.src = imageSrc;
+    img.alt = imageAlt;
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeImageLightbox() {
+    const lightbox = document.getElementById('imageLightbox');
+    const img = document.getElementById('lightboxImage');
+    img.src = ''; // Clear source
+    img.alt = ''; // Clear alt text
+    lightbox.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
   // --- Smooth Scroll for Navigation ---
   document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', e => {
@@ -812,4 +868,4 @@
   });
 </script>
 </body>
-  </html>
+    </html>
