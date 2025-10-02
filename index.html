@@ -176,9 +176,8 @@
       transform: scale(1.05);
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
-    /* Removed .sound-button as it is replaced by #musicToggle */
-
-    /* The new music button style, based on your sample */
+    
+    /* Music button style */
     #musicToggle {
         position: fixed; 
         bottom: 10px; 
@@ -198,7 +197,7 @@
         transform: scale(1.05);
     }
 
-    /* --- SECTIONS & HEADINGS (Rest of CSS is kept) --- */
+    /* --- SECTIONS & HEADINGS --- */
     main {
       padding: 40px 10px;
     }
@@ -377,20 +376,7 @@
         transform: scale(1.2);
     }
 
-    /* --- RESPONSIVE ADJUSTMENTS --- */
-    @media (max-width: 768px) {
-      header h1 { font-size: 2em; }
-      header p { font-size: 1em; }
-      nav { justify-content: space-around; padding: 10px 5px; }
-      nav a { font-size: 0.8em; padding: 6px 8px; margin: 0; }
-      
-      .services, .gallery-grid, .poster-grid, .video-grid {
-          grid-template-columns: 1fr;
-      }
-      .cta { padding: 10px 20px; font-size: 1em; }
-    }
-
-    /* --- FORMS & BLOG (Rest of CSS is kept) --- */
+    /* --- FORMS & BLOG --- */
     form {
       background: white;
       padding: 30px;
@@ -414,15 +400,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
       margin-bottom: 30px;
-    }
-    .blog-post h4 {
-      margin-top: 0;
-      color: var(--primary);
-    }
-    .blog-post .meta {
-      font-size: 0.9em;
-      color: #666;
-      margin-bottom: 15px;
     }
     .blog-content-hidden {
       display: none;
@@ -451,6 +428,19 @@
     }
     footer a {
       color: #ccc;
+    }
+    
+    /* --- RESPONSIVE ADJUSTMENTS --- */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2em; }
+      header p { font-size: 1em; }
+      nav { justify-content: space-around; padding: 10px 5px; }
+      nav a { font-size: 0.8em; padding: 6px 8px; margin: 0; }
+      
+      .services, .gallery-grid, .poster-grid, .video-grid {
+          grid-template-columns: 1fr;
+      }
+      .cta { padding: 10px 20px; font-size: 1em; }
     }
   </style>
 </head>
@@ -501,8 +491,7 @@
         <p>Premium PA rentals & expert sound engineering—making your event sound as spectacular as it looks.</p>
         
         <img id="home-image" src="assets/images/camp.jpg" alt="Outdoor event with lighting and sound setup" style="max-width: 90%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); margin: 20px auto;">
-        
-        </div>
+    </div>
   </section>
 
   <section id="services">
@@ -637,18 +626,26 @@
     <h2>Reserve Your Sound System</h2>
     <p style="text-align:center;"><strong>Trusted by 20+ events across Mbabane.</strong></p>
     <form id="booking-form">
-      <input type="text" name="name" placeholder="Your Full Name" required>
-      <input type="text" name="event" placeholder="Event Name" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="text" name="name" placeholder="Your Full Name" required />
+      <input type="text" name="event" placeholder="Event Name" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      
       <select name="service" required>
         <option value="">--- Please Select The Service ---</option>
-        <option value="Premium Sound System">Premium Sound System Rental (E1500)</option>
-        <option value="Standard Sound System">Standard Sound System Rental (E750)</option>
-        <option value="Lighting">Lighting & Effects (E500)</option>
-        <option value="Lighting & Sound">Lighting & Sound Combo</option>
+        <option value="Premium Sound System (E1500)">Premium Sound System Rental (E1500)</option>
+        <option value="Standard Sound System (E750)">Standard Sound System Rental (E750)</option>
+        <option value="Lighting (E500)">Lighting & Effects (E500)</option>
+        <option value="Lighting & Sound">Lighting & Sound Combo (Quote Required)</option>
       </select>
-      <input type="date" name="date" required>
-      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, etc.)"></textarea>
+      
+      <select name="promotion">
+          <option value="None">--- Select Applicable Promotion (Optional) ---</option>
+          <option value="Summer Promo">Summer Promotion (Special Price Applied)</option>
+          <option value="NYE Special (E1300, Dec 10 - Jan 5)">NYE Special: E1300 (Valid Dec 10 - Jan 5)</option>
+      </select>
+      
+      <input type="date" name="date" required />
+      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, specific promo price if known, etc.)"></textarea>
       <button type="submit" class="cta">Submit Booking</button>
     </form>
   </section>
@@ -753,7 +750,7 @@
   const music = document.getElementById('bgMusic');
   const toggleBtn = document.getElementById('musicToggle');
   
-  // Set initial state (in case the browser retains state)
+  // Set initial state
   if (music.paused) {
     toggleBtn.textContent = '🎶 Play Music';
   } else {
@@ -815,4 +812,4 @@
   });
 </script>
 </body>
-  </html>
+      </html>
