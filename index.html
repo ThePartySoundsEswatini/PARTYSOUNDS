@@ -382,6 +382,18 @@
         object-fit: contain; /* Ensure image fits within modal */
         border-radius: 10px;
     }
+    /* Specific for document iframe */
+    #lightboxDocument {
+        width: 100%;
+        height: 80vh; /* Set a specific height for the document viewer */
+        border: none;
+        background: white; /* White background for document */
+    }
+    /* Adjust lightbox-content max-width for document if needed */
+    .document-lightbox-content {
+        max-width: 1200px; /* Wider for document viewing */
+    }
+
 
     .close-btn {
         position: absolute;
@@ -458,14 +470,32 @@
         padding: 20px;
         text-align: center;
         border-top: 5px solid var(--primary);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Space out content and buttons */
     }
     .document-item h4 {
         margin-bottom: 10px;
         color: var(--primary);
     }
-    .document-item .cta {
+    /* Container for the buttons */
+    .document-actions {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px; /* Space between buttons */
         margin-top: 15px;
-        padding: 10px 20px;
+    }
+    .document-item .cta {
+        margin-top: 0; /* Override default cta margin */
+        padding: 10px 15px;
+        flex-grow: 1; /* Make buttons share space equally */
+        font-size: 0.9em;
+    }
+    .cta.view-btn {
+        background: var(--secondary-dark); /* Different color for view */
+    }
+    .cta.view-btn:hover {
+        background: #555;
     }
 
     footer {
@@ -748,20 +778,30 @@
         <div class="document-item">
             <h4>Equipment Rental Agreement</h4>
             <p>Full terms and conditions, equipment list, and pricing details. (Required for all rentals)</p>
-            <a href="assets/images/Rental_Agreement.pdf" download="TPS_Rental_Agreement.pdf" class="cta">
-                <i class="fas fa-file-signature"></i> Download Agreement
-            </a>
+            <div class="document-actions">
+                <a href="assets/documents/Rental_Agreement.pdf" download="TPS_Rental_Agreement.pdf" class="cta">
+                    <i class="fas fa-download"></i> Download
+                </a>
+                <a href="#" onclick="openDocumentLightbox('assets/documents/Rental_Agreement.pdf'); return false;" class="cta view-btn">
+                    <i class="fas fa-eye"></i> View Agreement
+                </a>
+            </div>
         </div>
         <div class="document-item">
             <h4>Equipment Return & Inspection Checklist</h4>
             <p>Checklist to confirm returned items and condition. Primarily for reference and client signature upon return.</p>
-            <a href="assets/images/Return_Checklist.pdf" download="TPS_Return_Checklist.pdf" class="cta">
-                <i class="fas fa-file-signature"></i> Download Checklist
-            </a>
+            <div class="document-actions">
+                <a href="assets/documents/Return_Checklist.pdf" download="TPS_Return_Checklist.pdf" class="cta">
+                    <i class="fas fa-file-signature"></i> Download Checklist
+                </a>
+                <a href="#" onclick="openDocumentLightbox('assets/documents/Return_Checklist.pdf'); return false;" class="cta view-btn">
+                    <i class="fas fa-eye"></i> View Checklist
+                </a>
+            </div>
         </div>
     </div>
     <p style="text-align:center; margin-top:30px; font-size: 0.9em; color: #555;">
-        NOTE: The Return Checklist will be filled and signed with a The PARTY Sounds Eswatini staff member upon drop-off.
+        *Note: The **Return Checklist** will be filled and signed with a **The PARTY Sounds Eswatini** staff member upon drop-off.
     </p>
   </section>
   </main>
@@ -787,6 +827,13 @@
   <div class="lightbox-content">
     <img id="lightboxImage" src="" alt="">
   </div>
+</div>
+
+<div id="documentLightbox" class="lightbox">
+    <span class="close-btn" onclick="closeDocumentLightbox()">&times;</span>
+    <div class="lightbox-content document-lightbox-content">
+        <iframe id="lightboxDocument" src="" title="Rental Agreement Document"></iframe>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -870,56 +917,49 @@
     pauseMusicForLightbox();
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = videoSrc.includes('?') ? videoSrc + "&autoplay=1" : videoSrc + "?autoplay=1"; 
+    iframe.src = videoSrc.includes('?') ? videoSrc + "&autoplay=1" : videoSrc + "?autoplay=1";
     lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
   }
 
   function closeVideoLightbox() {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = '';
+    // Stop video playback by removing the source
+    iframe.src = ''; 
     lightbox.style.display = 'none';
-    document.body.style.overflow = '';
   }
-  
+
   // Image Lightbox
-  function openImageLightbox(imageSrc, imageAlt) {
+  function openImageLightbox(imageSrc, altText) {
     pauseMusicForLightbox();
     const lightbox = document.getElementById('imageLightbox');
-    const img = document.getElementById('lightboxImage');
-    img.src = imageSrc;
-    img.alt = imageAlt;
+    const image = document.getElementById('lightboxImage');
+    image.src = imageSrc;
+    image.alt = altText;
     lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
   }
 
   function closeImageLightbox() {
-    const lightbox = document.getElementById('imageLightbox');
-    const img = document.getElementById('lightboxImage');
-    img.src = ''; // Clear source
-    img.alt = ''; // Clear alt text
-    lightbox.style.display = 'none';
-    document.body.style.overflow = '';
+    document.getElementById('imageLightbox').style.display = 'none';
   }
 
-  // --- Smooth Scroll for Navigation ---
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href');
-      if (targetId && targetId.startsWith('#')) {
-        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        // Update active class
-        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  });
+  // --- NEW: Document Lightbox for PDF Viewing ---
+  function openDocumentLightbox(documentSrc) {
+    pauseMusicForLightbox();
+    const lightbox = document.getElementById('documentLightbox');
+    const iframe = document.getElementById('lightboxDocument');
+    // Set the source for the PDF viewer
+    iframe.src = documentSrc; 
+    lightbox.style.display = 'flex';
+  }
+
+  function closeDocumentLightbox() {
+    const lightbox = document.getElementById('documentLightbox');
+    const iframe = document.getElementById('lightboxDocument');
+    // Clear the source when closing
+    iframe.src = '';
+    lightbox.style.display = 'none';
+  }
 </script>
 </body>
-    </html>
-
-
-
-
+  </html>
