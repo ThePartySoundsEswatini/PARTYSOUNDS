@@ -497,6 +497,93 @@
     .cta.view-btn:hover {
         background: #555;
     }
+    
+    /* --- NEW: UPCOMING EVENTS STYLES --- */
+    .upcoming-events-container {
+        margin-top: 60px; /* Separate from posters */
+        border-top: 4px dashed var(--primary);
+        padding-top: 40px;
+        text-align: center;
+    }
+    .upcoming-events-container h3 {
+        color: var(--primary);
+        font-size: 1.8em;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+    .event-card {
+        background: var(--dark);
+        color: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        text-align: left;
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    .event-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, rgba(233, 30, 99, 0.4), rgba(255, 255, 255, 0.05));
+        z-index: 1;
+        opacity: 0.8;
+    }
+    .event-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(233, 30, 99, 0.6);
+        border-color: var(--primary);
+    }
+    .event-card * {
+        position: relative; /* Bring content above ::before pseudo-element */
+        z-index: 2;
+    }
+    .event-card h4 {
+        color: #fff;
+        margin-top: 0;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+    .event-card p {
+        margin-bottom: 8px;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .event-card p i {
+        color: var(--primary);
+        font-size: 1.2em;
+        width: 20px; /* Fixed width for icon alignment */
+        text-align: center;
+    }
+    .event-cta {
+        display: inline-block;
+        margin-top: 15px;
+        background: var(--primary);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+    .event-cta:hover {
+        background: #c2185b;
+        transform: none; /* Override general cta transform */
+    }
+
 
     footer {
       background: var(--dark);
@@ -515,7 +602,7 @@
       nav { justify-content: space-around; padding: 10px 5px; }
       nav a { font-size: 0.8em; padding: 6px 8px; margin: 0; }
       
-      .services, .gallery-grid, .poster-grid, .video-grid, .document-grid {
+      .services, .gallery-grid, .poster-grid, .video-grid, .document-grid, .events-grid {
           grid-template-columns: 1fr;
       }
       .cta { padding: 10px 20px; font-size: 1em; }
@@ -650,7 +737,33 @@
         <a href="assets/images/pic.jpg" download="General_Booking_Ad.jpg" class="download-link"><i class="fas fa-download"></i> Download Poster</a>
       </div>
     </div>
-  </section>
+    
+    <div class="upcoming-events-container" id="upcoming-events">
+      <h3>🔥 Upcoming Events We're Powering! 🎶</h3>
+      <p style="margin-bottom: 25px;">Don't miss out on the next big parties and gatherings in Eswatini where you'll hear our crystal-clear sound!</p>
+      
+      <div class="events-grid">
+        <div class="event-card">
+          <h4>Mbabane Weekend Rave</h4>
+          <p><i class="fas fa-calendar-alt"></i> **Date:** Friday, October 25th, 2025</p>
+          <p><i class="fas fa-clock"></i> **Time:** 7:00 PM till Late</p>
+          <p><i class="fas fa-map-marker-alt"></i> **Venue:** Eswatini National Hall, Mbabane</p>
+          <p><i class="fas fa-music"></i> **Featuring:** DJ Mofire & Amapiano Masters</p>
+          <a href="#booking" class="event-cta">Book Our Sound Now!</a>
+        </div>
+        
+        <div class="event-card">
+          <h4>Soweto's Spring Picnic</h4>
+          <p><i class="fas fa-calendar-alt"></i> **Date:** Saturday, November 2nd, 2025</p>
+          <p><i class="fas fa-clock"></i> **Time:** 1:00 PM - 8:00 PM</p>
+          <p><i class="fas fa-map-marker-alt"></i> **Venue:** Prince of Wales Sports Ground</p>
+          <p><i class="fas fa-microphone-alt"></i> **Featuring:** Live Bands & Spoken Word</p>
+          <a href="#booking" class="event-cta">Book Our Sound Now!</a>
+        </div>
+      </div>
+      <p style="margin-top: 25px; font-style: italic;">Need sound for your upcoming event? <a href="#booking" style="color: var(--primary); font-weight: 600;">Book a system here!</a></p>
+    </div>
+    </section>
 
   <section id="videos">
     <h3>Watch Our Events in Action</h3>
@@ -875,100 +988,76 @@
     }
   }
 
-  // --- Background Music Player Logic ---
-  const music = document.getElementById('bgMusic');
-  const toggleBtn = document.getElementById('musicToggle');
-  
-  // Set initial state
-  if (music.paused) {
-    toggleBtn.textContent = '🎶 Play Music';
-  } else {
-    toggleBtn.textContent = '⏸️ Pause';
-  }
-
-  // Toggle function
-  document.getElementById('musicToggle').addEventListener('click', () => {
-    if (music.paused) {
-      // Browsers require user interaction to play audio
-      music.play().then(() => {
-        toggleBtn.textContent = '⏸️ Pause';
-      }).catch(error => {
-        console.error("Autoplay failed:", error);
-        alert("Music blocked by browser. Please try again.");
-      });
-    } else {
-      music.pause();
-      toggleBtn.textContent = '🎶 Play Music';
-    }
-  });
-
-  // --- Lightbox Functions (Unified for Video and Images) ---
-
-  // Function to pause music when any lightbox opens
-  function pauseMusicForLightbox() {
-    if (!music.paused) {
-        music.pause();
-        toggleBtn.textContent = '🎶 Play Music';
-    }
-  }
-
-  // Video Lightbox
-  function openVideoLightbox(videoSrc) {
-    pauseMusicForLightbox();
+  // --- Lightbox Functions ---
+  function openVideoLightbox(youtubeEmbedUrl) {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = videoSrc.includes('?') ? videoSrc + "&autoplay=1" : videoSrc + "?autoplay=1";
+    iframe.src = youtubeEmbedUrl + '?autoplay=1'; 
     lightbox.style.display = 'flex';
   }
-
   function closeVideoLightbox() {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    // Stop video playback by removing the source
     iframe.src = ''; 
     lightbox.style.display = 'none';
   }
-
-  // Image Lightbox
-  function openImageLightbox(imageSrc, altText) {
-    pauseMusicForLightbox();
-    const lightbox = document.getElementById('imageLightbox');
-    const image = document.getElementById('lightboxImage');
-    image.src = imageSrc;
-    image.alt = altText;
-    lightbox.style.display = 'flex';
+  
+  function openImageLightbox(imageUrl, altText) {
+      const lightbox = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImage');
+      img.src = imageUrl;
+      img.alt = altText;
+      lightbox.style.display = 'flex';
   }
-
   function closeImageLightbox() {
-    document.getElementById('imageLightbox').style.display = 'none';
+      document.getElementById('imageLightbox').style.display = 'none';
   }
-
-  // --- NEW: Document Lightbox for PDF Viewing ---
-  function openDocumentLightbox(documentSrc) {
-    pauseMusicForLightbox();
-    const lightbox = document.getElementById('documentLightbox');
-    const iframe = document.getElementById('lightboxDocument');
-    // Set the source for the PDF viewer
-    iframe.src = documentSrc; 
-    lightbox.style.display = 'flex';
+  
+  function openDocumentLightbox(documentUrl) {
+      const lightbox = document.getElementById('documentLightbox');
+      const iframe = document.getElementById('lightboxDocument');
+      iframe.src = documentUrl;
+      lightbox.style.display = 'flex';
   }
-
   function closeDocumentLightbox() {
-    const lightbox = document.getElementById('documentLightbox');
-    const iframe = document.getElementById('lightboxDocument');
-    // Clear the source when closing
-    iframe.src = '';
-    lightbox.style.display = 'none';
+      document.getElementById('documentLightbox').style.display = 'none';
+      document.getElementById('lightboxDocument').src = ''; 
   }
+
+  // --- Background Music Toggle ---
+  document.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bgMusic');
+    const toggleButton = document.getElementById('musicToggle');
+    let isPlaying = false;
+
+    toggleButton.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        toggleButton.innerHTML = '🎶 Play Music';
+      } else {
+        music.play().then(() => {
+          toggleButton.innerHTML = '⏸ Pause Music';
+        }).catch(error => {
+          console.error('Autoplay prevented:', error);
+          alert('Autoplay was prevented. Please click anywhere on the page and try again.');
+          toggleButton.innerHTML = '🎶 Play Music';
+        });
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Handle user gesture to allow autoplay later
+    document.body.addEventListener('click', () => {
+        // If not playing and we haven't tried to play yet (or if music is currently paused), try to load/play
+        if (!isPlaying && music.paused) {
+            // Check if music is loaded, if not, load it
+            if (music.readyState < 2) {
+                music.load();
+            }
+        }
+    }, { once: true }); 
+  });
 </script>
+
 </body>
   </html>
-
-
-
-
-
-
-
-
-
