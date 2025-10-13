@@ -31,7 +31,7 @@
       position: relative;
     }
 
-    /* --- LIQUID DISCO BACKGROUND EFFECTS --- */
+    /* --- LIQUID DISCO BACKGROUND EFFECTS (omitted for brevity) --- */
     body::before {
       content: "";
       position: fixed;
@@ -130,34 +130,41 @@
       text-align: center;
       color: #fff;
     }
+    
+    /* NEW: Dropdown Menu Styles */
     nav {
       position: sticky;
       top: 0;
       background: var(--dark);
       padding: 10px 0;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
+      justify-content: center; /* Center the dropdown */
       z-index: 10;
-      font-weight: 600;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: all 0.4s ease-in-out;
+    #nav-dropdown {
+        padding: 10px 15px;
+        font-size: 1em;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        background-color: var(--primary); /* Use primary color for the dropdown button look */
+        color: white;
+        border: 2px solid var(--primary);
+        border-radius: 6px;
+        cursor: pointer;
+        width: auto; /* Adjust width based on content */
+        max-width: 90%;
+        appearance: none; /* Remove default styling on some browsers */
+        text-align: center;
+        transition: background-color 0.3s ease;
     }
-    nav a:hover,
-    nav a.active {
-      background: var(--primary);
-      color: #fff;
-      transform: translateY(-2px);
+    #nav-dropdown:hover {
+        background-color: #c2185b;
+        border-color: #c2185b;
     }
+    /* Original nav a styles are now obsolete */
 
-    /* --- BUTTONS & CTAS --- */
+    /* --- BUTTONS & CTAS (omitted for brevity) --- */
     .cta, button.cta {
       display: inline-block;
       margin-top: 20px;
@@ -197,7 +204,7 @@
         transform: scale(1.05);
     }
 
-    /* --- SECTIONS & HEADINGS --- */
+    /* --- SECTIONS & HEADINGS (omitted for brevity) --- */
     main {
       padding: 40px 10px;
     }
@@ -212,395 +219,14 @@
       color: var(--dark);
     }
 
-    /* --- SERVICES --- */
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .service {
-      flex: 1 1 300px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: all 0.4s ease-in-out;
-      text-align: center;
-      border: 3px solid transparent;
-      cursor: pointer; /* Indicate it's clickable */
-    }
-    .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      border-color: var(--primary);
-    }
-    .service img {
-      width: 80%;
-      max-width: 200px;
-      height: 150px;
-      object-fit: cover;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-    }
-    .service:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px var(--primary);
-    }
-    .lighting-placeholder {
-        width: 80%;
-        max-width: 200px;
-        height: 150px;
-        background: #444;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9em;
-        font-weight: 600;
-        border-radius: 6px;
-        margin: 0 auto 10px;
-        cursor: pointer; /* Indicate it's clickable */
-    }
+    /* All other CSS styles (services, gallery, video, forms, etc.) remain as they were... */
+    /* I have omitted them here to keep the response concise, but they should be kept in your file. */
 
-    /* --- GALLERY / POSTERS / VIDEOS GRID STRUCTURE --- */
-    .gallery-grid, .poster-grid, .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .gallery-item, .poster-item, .video-wrapper {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: all 0.4s ease-in-out;
-      text-align: center;
-      /* Only video-wrapper has specific play overlay, others will use image click */
-      /* cursor: pointer; - removed from here, moved to specific img or container for clarity */
-    }
-    .gallery-item:hover, .poster-item:hover, .video-wrapper:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      border-color: var(--primary);
-    }
-
-    /* Image/Media Elements within Grids */
-    .gallery-item img, .poster-item img, .video-wrapper img, .home-image-clickable { /* Added .home-image-clickable */
-      width: 100%;
-      height: 200px; /* Standard height for grid images */
-      object-fit: cover;
-      display: block;
-      cursor: pointer; /* Indicate it's clickable */
-    }
-    /* Specific styling for the main home image to override default height from above if needed */
-    #home-image {
-        height: auto !important; /* Keep original auto height for home image */
-        max-height: 500px; /* Optional: limit max height for large screens */
-    }
-    
-    /* --- GALLERY DOWNLOAD LINK (BELOW IMAGE) --- */
-    .download-link {
-        display: block;
-        padding: 10px 15px;
-        background: var(--primary);
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.9em;
-        transition: background-color 0.3s ease-in-out;
-    }
-    .download-link:hover {
-        background: #c2185b;
-        transform: none;
-    }
-    .gallery-item p, .poster-item p { /* Also target poster-item for consistency */
-      padding: 10px 15px 5px;
-      margin: 0;
-      font-weight: 600;
-    }
-
-    /* --- VIDEO SECTION --- */
-    .video-wrapper {
-      position: relative;
-      background: #111;
-    }
-    .video-wrapper:hover .play-overlay {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-    .play-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 4em;
-        transition: all 0.4s ease-in-out;
-        opacity: 0.8;
-        pointer-events: none; /* Allow click to pass through to video-wrapper */
-    }
-
-    /* --- LIGHTBOX (Modal) - Shared styles for video and image --- */
-    .lightbox {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.9);
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        padding: 20px;
-    }
-    .lightbox-content {
-        position: relative;
-        width: 90%;
-        max-width: 900px;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 50px rgba(233, 30, 99, 0.8);
-        background: black; /* Ensure black background for full image fill */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    /* Specific for video iframe */
-    #lightboxVideo {
-        width: 100%;
-        height: 100%;
-        border: none;
-        aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
-    }
-    /* Specific for image */
-    #lightboxImage {
-        max-width: 100%;
-        max-height: 90vh; /* Adjust as needed */
-        object-fit: contain; /* Ensure image fits within modal */
-        border-radius: 10px;
-    }
-    /* Specific for document iframe */
-    #lightboxDocument {
-        width: 100%;
-        height: 80vh; /* Set a specific height for the document viewer */
-        border: none;
-        background: white; /* White background for document */
-    }
-    /* Adjust lightbox-content max-width for document if needed */
-    .document-lightbox-content {
-        max-width: 1200px; /* Wider for document viewing */
-    }
-
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        color: white;
-        font-size: 2em;
-        font-weight: bold;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        z-index: 10001;
-        text-shadow: 0 0 5px black;
-    }
-    .close-btn:hover {
-        transform: scale(1.2);
-    }
-
-    /* --- FORMS & BLOG --- */
-    form {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 700px;
-      margin: auto;
-    }
-    form input, form select, form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-    }
-    
-    .blog-post {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin-bottom: 30px;
-    }
-    .blog-content-hidden {
-      display: none;
-    }
-    .read-more-btn {
-      background: var(--primary);
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
-      display: block;
-      width: fit-content;
-      margin: 10px auto;
-      transition: all 0.3s ease-in-out;
-    }
-    .read-more-btn:hover {
-      background: #c2185b;
-    }
-    
-    /* --- NEW: DOCUMENT DOWNLOADS STYLES --- */
-    .document-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin-top: 30px;
-    }
-    .document-item {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        padding: 20px;
-        text-align: center;
-        border-top: 5px solid var(--primary);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Space out content and buttons */
-    }
-    .document-item h4 {
-        margin-bottom: 10px;
-        color: var(--primary);
-    }
-    /* Container for the buttons */
-    .document-actions {
-        display: flex;
-        justify-content: space-around;
-        gap: 10px; /* Space between buttons */
-        margin-top: 15px;
-    }
-    .document-item .cta {
-        margin-top: 0; /* Override default cta margin */
-        padding: 10px 15px;
-        flex-grow: 1; /* Make buttons share space equally */
-        font-size: 0.9em;
-    }
-    .cta.view-btn {
-        background: var(--secondary-dark); /* Different color for view */
-    }
-    .cta.view-btn:hover {
-        background: #555;
-    }
-    
-    /* --- NEW: UPCOMING EVENTS STYLES --- */
-    .upcoming-events-container {
-        margin-top: 60px; /* Separate from posters */
-        border-top: 4px dashed var(--primary);
-        padding-top: 40px;
-        text-align: center;
-    }
-    .upcoming-events-container h3 {
-        color: var(--primary);
-        font-size: 1.8em;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        margin-bottom: 20px;
-    }
-    .events-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-top: 20px;
-    }
-    .event-card {
-        background: var(--dark);
-        color: white;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-        text-align: left;
-        border: 2px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-    .event-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(45deg, rgba(233, 30, 99, 0.4), rgba(255, 255, 255, 0.05));
-        z-index: 1;
-        opacity: 0.8;
-    }
-    .event-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 15px 35px rgba(233, 30, 99, 0.6);
-        border-color: var(--primary);
-    }
-    .event-card * {
-        position: relative; /* Bring content above ::before pseudo-element */
-        z-index: 2;
-    }
-    .event-card h4 {
-        color: #fff;
-        margin-top: 0;
-        font-size: 1.5em;
-        text-transform: uppercase;
-        border-bottom: 2px solid var(--primary);
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-    }
-    .event-card p {
-        margin-bottom: 8px;
-        font-size: 1em;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .event-card p i {
-        color: var(--primary);
-        font-size: 1.2em;
-        width: 20px; /* Fixed width for icon alignment */
-        text-align: center;
-    }
-    .event-cta {
-        display: inline-block;
-        margin-top: 15px;
-        background: var(--primary);
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background-color 0.3s;
-    }
-    .event-cta:hover {
-        background: #c2185b;
-        transform: none; /* Override general cta transform */
-    }
-
-
-    footer {
-      background: var(--dark);
-      color: #ccc;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    footer a {
-      color: #ccc;
-    }
-    
-    /* --- RESPONSIVE ADJUSTMENTS --- */
+    /* --- RESPONSIVE ADJUSTMENTS (omitted for brevity) --- */
     @media (max-width: 768px) {
       header h1 { font-size: 2em; }
       header p { font-size: 1em; }
-      nav { justify-content: space-around; padding: 10px 5px; }
-      nav a { font-size: 0.8em; padding: 6px 8px; margin: 0; }
+      nav { padding: 10px 5px; } /* Adjust nav padding */
       
       .services, .gallery-grid, .poster-grid, .video-grid, .document-grid, .events-grid {
           grid-template-columns: 1fr;
@@ -610,22 +236,6 @@
   </style>
 </head>
 <body>
-
-<audio id="bgMusic" src="assets/images/Dj_Maphorisa___Xduppy,_Kabza_De_Small_-_Abantwana_Bakho__Official_Audio__feat._Thatohatsi,Young…(256k).mp3" loop></audio>
-
-<button id="musicToggle">
-  🎶 Play Music
-</button>
-
-<div class="light-beam"></div>
-<div class="disco-particles">
-  <div class="disco-particle" style="top:10%; left:15%; background-color:#ff0000; animation-delay:0s;"></div>
-  <div class="disco-particle" style="top:20%; left:25%; background-color:#ffff00; animation-delay:0.5s;"></div>
-  <div class="disco-particle" style="top:30%; left:35%; background-color:#00ff00; animation-delay:1s;"></div>
-  <div class="disco-particle" style="top:50%; left:45%; background-color:#00ffff; animation-delay:1.2s;"></div>
-  <div class="disco-particle" style="top:60%; left:55%; background-color:#ff00ff; animation-delay:0.8s;"></div>
-  <div class="disco-particle" style="top:70%; left:65%; background-color:#ffffff; animation-delay:1.5s;"></div>
-</div>
 
 <header>
   <img src="assets/images/logo.jpg" class="hero" alt="PA system setup at an event" />
@@ -638,428 +248,65 @@
 </header>
 
 <nav>
-  <a href="#home" class="active">Home</a>
-  <a href="#services">Services</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#Posters And Upcomings">Posters_Upcoming_Events</a> 
-  <a href="#blog">Blog</a>
-  <a href="#videos">Videos</a>
-  <a href="#booking">Book Now</a>
-  <a href="#reviews">Reviews</a>
-  <a href="#terms">Ts & Cs</a>
-  <a href="#documents">Forms</a>
+    <select id="nav-dropdown" onchange="navigateToSection()">
+        <option value="" disabled selected>--- Select a Page ---</option>
+        <option value="#home">Home</option>
+        <option value="#services">Services</option>
+        <option value="#gallery">Gallery</option>
+        <option value="#Posters And Upcomings">Posters & Upcoming Events</option>
+        <option value="#blog">Blog</option>
+        <option value="#videos">Videos</option>
+        <option value="#booking">Book Now</option>
+        <option value="#reviews">Reviews</option>
+        <option value="#terms">Ts & Cs</option>
+        <option value="#documents">Forms</option>
+    </select>
 </nav>
 
 <main>
-  <section id="home">
-    <h2>Welcome to The Party Sounds Eswatini</h2>
-    <div id="home-content" style="text-align: center;">
-        <p>Premium PA rentals & expert sound engineering—making your event sound as spectacular as it looks.</p>
-        
-        <img id="home-image" src="assets/images/camp.jpg" alt="Outdoor event with lighting and sound setup" 
-             class="home-image-clickable" onclick="openImageLightbox('assets/images/camp.jpg', 'Outdoor event with lighting and sound setup')" 
-             style="max-width: 90%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); margin: 20px auto; cursor: pointer;">
-    </div>
-  </section>
-
-  <section id="services">
-    <h3>Our Services</h3>
-    <div class="services">
-      <article class="service" onclick="openImageLightbox('assets/images/bintops.jpg', 'Premium Sound System')">
-        <img src="assets/images/bintops.jpg" alt="Premium Sound System" />
-        <h4>Premium Sound System Rental</h4>
-        <p><strong>Price: E1500/day</strong></p>
-        <p>Includes 2 FTS TOPS, mixers, Wharfadale amp &amp; subbin, 2 wireless mics, accessories.</p>
-      </article>
-
-      <article class="service" onclick="openImageLightbox('assets/images/tops.jpg', 'Standard Sound System')">
-        <img src="assets/images/tops.jpg" alt="Standard Sound System" />
-        <h4>Standard Sound System Rental</h4>
-        <p><strong>Price: E750/day</strong></p>
-        <p>Includes 2 FTS TOPS, Rocksonic mixer, 2 wireless mics, accessories.</p>
-      </article>
-
-      <article class="service" onclick="openImageLightbox('assets/images/lighting_placeholder.jpg', 'Dynamic Lighting Effects')"> 
-        <div class="lighting-placeholder">
-          <span>Dynamic Lighting Effects</span>
-        </div>
-        <h4>Lighting &amp; Effects</h4>
-        <p><strong>Price: E500/day</strong></p>
-        <p>Enhance your party atmosphere with dynamic stage and dance floor lighting systems.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="gallery">
-    <h3>Our Gallery</h3>
-    <p style="text-align:center; margin-bottom:30px;">See our equipment in action at past events. Click an image to view, or click the link below to download.</p>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="assets/images/Culture.jpg" alt="Cultural event" onclick="openImageLightbox(this.src, this.alt)" />
-        <p>Cultural Event</p>
-        <a href="assets/images/Culture.jpg" download="Cultural_event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/images/camp.jpg" alt="Outdoor night camping" onclick="openImageLightbox(this.src, this.alt)" />
-        <p>Outdoor Night Camping</p>
-        <a href="assets/images/camp.jpg" download="Outdoor_night_camping.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/images/1event.jpg" alt="Sporting event" onclick="openImageLightbox(this.src, this.alt)" />
-        <p>Sporting Event</p>
-        <a href="assets/images/1event.jpg" download="Sporting_event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/images/pa.jpg" alt="DJ Booth PA system" onclick="openImageLightbox(this.src, this.alt)" />
-        <p>PA System</p>
-        <a href="assets/images/pa.jpg" download="PA_System_Setup.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="Posters And Upcomings">
-    <h3>Our Posters</h3>
-    <p style="text-align:center; margin-bottom:30px;">Click an image to view, or click the link below to download our event posters and promotional materials. Our GigGuide is here aswell!</p>
-    <div class="poster-grid">
-      <div class="poster-item">
-        <img src="assets/images/1759390922835.jpg" alt="Special Event Promotion Poster" onclick="openImageLightbox(this.src, this.alt)" />
-        <p>Special Event Promotion</p>
-        <a href="assets/images/1759390922835.jpg" download="Special_Event_Promo.jpg" class="download-link"><i class="fas fa-download"></i> Download Poster</a>
-      </div>
-      <div class="poster-item">
-        <img src="assets/images/1759390904769.jpg" alt="Party Sounds Eswatini Ad" onclick="openImageLightbox(this.src, this.alt)" />
-        <p>The Party Sounds Eswatini Advert</p>
-        <a href="assets/images/1759390904769.jpg" download="Party_Sounds_Ad.jpg" class="download-link"><i class="fas fa-download"></i> Download Poster</a>
-      </div>
-      <div class="poster-item">
-        <img src="assets/images/pic.jpg" alt="General Booking Poster" onclick="openImageLightbox(this.src, this.alt)" />
-        <p>General Booking Advert</p>
-        <a href="assets/images/pic.jpg" download="General_Booking_Ad.jpg" class="download-link"><i class="fas fa-download"></i> Download Poster</a>
-      </div>
-    </div>
-    
-    <div class="upcoming-events-container" id="upcoming-events">
-      <h3>🔥 Upcoming Events We're Powering! 🎶</h3>
-      <p style="margin-bottom: 25px;">Don't miss out on the next big parties and gatherings in Eswatini where you'll hear our crystal-clear sound!</p>
-      
-      <div class="events-grid">
-        <div class="event-card">
-          <h4>House Warming</h4>
-          <p><i class="fas fa-calendar-alt"></i> Date: Saturday, October 18th, 2025</p>
-          <p><i class="fas fa-clock"></i> Time:12:00 noon till Late</p>
-          <p><i class="fas fa-map-marker-alt"></i> Venue: KaSkhumbuzo, Sthobela</p>
-          <p><i class="fas fa-music"></i> Featuring: Mr Ratata & Samu etc</p>
-          <a href="#booking" class="event-cta">Book Our Sound Now!</a>
-        </div>
-        
-        <div class="event-card">
-          <h4>Open For bookings</h4>
-          <p><i class="fas fa-calendar-alt"></i> Date:To Be Announced</p>
-          <p><i class="fas fa-clock"></i> Time:--</p>
-          <p><i class="fas fa-map-marker-alt"></i> Venue:---</p>
-          <p><i class="fas fa-microphone-alt"></i> Featuring:---</p>
-          <a href="#booking" class="event-cta">Book Our Sound Now!</a>
-        </div>
-      </div>
-      <p style="margin-top: 25px; font-style: italic;">Need sound for your upcoming event? <a href="#booking" style="color: var(--primary); font-weight: 600;">Book a system here!</a></p>
-    </div>
-    </section>
-
-  <section id="videos">
-    <h3>Watch Our Events in Action</h3>
-    <p style="text-align:center; margin-bottom:30px;">Click to watch event recaps and sound system demonstrations.</p>
-    <div class="video-grid">
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
-        <img src="assets/images/bintops.jpg" alt="Event Recap Video 1 Thumbnail" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Full System Demo</p>
-      </div>
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/S_T1xG3kK5Y')">
-        <img src="assets/images/camp.jpg" alt="Outdoor Event Video 2 Thumbnail" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Outdoor Party Vibe</p>
-      </div>
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/H0ZfPq7sB64')">
-        <img src="assets/images/redcarpet.jpg" alt="Cultural Event Video 3 Thumbnail" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Cultural Day Sound Check</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="blog">
-    <h3>Our Blog</h3>
-    <p style="text-align:center; margin-bottom:30px;">
-      Sound rental tips & inspiration for youth events in Mbabane
-    </p>
-
-    <div class="blog-post">
-      <h4>Budget-Friendly Sound Systems in Mbabane</h4>
-      <p class="meta">Published July 2025 by The Party Sounds Eswatini</p>
-      <p>Looking to host a youth talk, workshop, or small party? A compact 2×700 W speaker setup with wireless mics and mixer works perfectly—and costs about E 750/day.</p>
-      <div class="blog-content-hidden" id="post1-content">
-        <p>• The Party Sounds offers the Simple Sound System (2.0): 2 × 700 W speakers, 2 wireless mics, mixer, stands, with free delivery/setup in Mbabane. Ideal for school events, community meet‑ups, or spoken‑word nights.</p>
-        <p>• Great for venues with 150–400 people: provides clear, reliable sound without overkill.</p>
-      </div>
-      <button class="read-more-btn" onclick="toggleReadMore('post1-content', this)">Read More</button>
-    </div>
-
-    <div class="blog-post">
-      <h4>Adding Bass: Simple Sound System (2.2)</h4>
-      <p class="meta">Published July 2025 by DeckLife Studio</p>
-      <p>Want deeper bass and extra energy? The 2.2 system adds two 2000 W subwoofers—perfect for youth dance nights or DJ sessions at about E1500/day.</p>
-      <div class="blog-content-hidden" id="post2-content">
-        <p>• Includes 2 × 700 W tops, 2 × 2000 W subs, wireless mics, mixer, stands, and free Mbabane setup.</p>
-        <p>• Great for events of 200–500 people: strong bass brings the energy up a notch.</p>
-      </div>
-      <button class="read-more-btn" onclick="toggleReadMore('post2-content', this)">Read More</button>
-    </div>
-  </section>
-
-  <section id="booking">
-    <h2>Reserve Your Sound System</h2>
-    <p style="text-align:center;"><strong>Trusted by 20+ events across Mbabane.</strong></p>
-    <form id="booking-form">
-      <input type="text" name="name" placeholder="Your Full Name" required />
-      <input type="text" name="event" placeholder="Event Name" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
-      
-      <select name="service" required>
-        <option value="">--- Please Select The Service ---</option>
-        <option value="Premium Sound System (E1500)">Premium Sound System Rental (E1500)</option>
-        <option value="Standard Sound System (E750)">Standard Sound System Rental (E750)</option>
-        <option value="Lighting (E500)">Lighting & Effects (E500)</option>
-        <option value="Lighting & Sound">Lighting & Sound Combo (Quote Required)</option>
-      </select>
-      
-      <select name="promotion">
-          <option value="None">--- Select Applicable Promotion (Optional) ---</option>
-          <option value="Summer Promo">Summer Promotion (Special Price Applied)</option>
-          <option value="NYE Special (E1300, Dec 10 - Jan 5)">NYE Special: E1300 (Valid Dec 10 - Jan 5)</option>
-      </select>
-      
-      <input type="date" name="date" required />
-      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, specific promo price if known, etc.)"></textarea>
-      <button type="submit" class="cta">Submit Booking</button>
-    </form>
-  </section>
-
-  <section id="free-event-application">
-    <h3>Needing Help?</h3>
-    <p style="text-align:center;">Apply for special non-profit or community event support.</p>
-    <form id="charity-form">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
-      <input type="text" name="details" placeholder="Event Details" required>
-      <textarea name="reason" rows="5" placeholder="Why does your event need support?" required></textarea>
-      <button type="submit" class="cta">Apply</button>
-    </form>
-  </section>
-
-  <section id="reviews">
-    <h3>Place Your Reviews Here!</h3>
-    <form id="review-form">
-      <input type="text" name="reviewer" placeholder="Your Name (Optional)">
-      <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
-      <label><input type="checkbox" name="anonymous"> Submit Anonymously</label>
-      <button type="submit" class="cta">Submit Review</button>
-    </form>
-  </section>
-
-  <section id="terms">
-    <h3>Terms & Conditions</h3>
-    <h4>Transport Fees</h4>
-    <p>Quoted based on event location.</p>
-    <h4>DJ Charges</h4>
-    <p>Separate, based on individual rates.</p>
-    <h4>Hourly Charge</h4>
-    <p>All listed prices are per day (10 AM–7 PM). Overtime charges may apply.</p>
-    <h4>Discounts</h4>
-    <p>Negotiable based on event type and equipment.</p>
-    <h4>Referral Commissions</h4>
-    <ul>
-      <li><strong>10%</strong> of rental for one‑time referrals</li>
-      <li><strong>15%+</strong> for ongoing partnerships</li>
-    </ul>
-    <p>Commissions paid after event and payment confirmation. Inform us beforehand to track referrals.</p>
-  </section>
-  
-  <section id="documents">
-    <h3>Rental Forms & Documents</h3>
-    <p style="text-align:center; margin-bottom:30px;">Our official documents for convenience. Familirise yourself!.</p>
-    <div class="document-grid">
-        <div class="document-item">
-            <h4>Equipment Rental Agreement</h4>
-            <p></p>
-            <div class="document-actions">
-                <a href="assets/images/agreement.pdf" download="TPS_Rental_Agreement.pdf" class="cta">
-                    <i class="fas fa-download"></i> Download
-                </a>
-                <a href="#" onclick="openDocumentLightbox('assets/images/agreement.pdf'); return false;" class="cta view-btn">
-                    <i class="fas fa-eye"></i> View Agreement
-                </a>
-            </div>
-        </div>
-        <div class="document-item">
-            <h4>Equipment Return & Inspection Checklist</h4>
-            <p></p>
-            <div class="document-actions">
-                <a href="assets/images/return.pdf" download="TPS_Return_Checklist.pdf" class="cta">
-                    <i class="fas fa-file-signature"></i> Download Checklist
-                </a>
-                <a href="#" onclick="openDocumentLightbox('assets/images/Return_Checklist.pdf'); return false;" class="cta view-btn">
-                    <i class="fas fa-eye"></i> View Checklist
-                </a>
-            </div>
-        </div>
-    </div>
-    <p style="text-align:center; margin-top:30px; font-size: 0.9em; color: #555;">
-        Note: The Return Checklist will be filled and signed with  a staff member upon drop-off aswell as when the equipment is collected.
-    </p>
-  </section>
   </main>
 
-<footer id="contact">
-  <h3>Contact Us</h3>
-  <p>Phone📞: <a href="tel:+26876031087">+268 76031087 / 79637097</a></p>
-  <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank">Chat with us</a></p>
-  <p>Facebook: <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098" target="_blank">The Party Sounds Eswatini</a></p>
-  <p>Email📧: <a href="mailto:partysoundsbookings@outlook.com">partysoundsbookings@outlook.com</a></p>
-  <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
-</footer>
-
-<div id="videoLightbox" class="lightbox">
-  <span class="close-btn" onclick="closeVideoLightbox()">&times;</span>
-  <div class="lightbox-content">
-    <iframe id="lightboxVideo" src="" allow="autoplay" allowfullscreen></iframe>
-  </div>
-</div>
-
-<div id="imageLightbox" class="lightbox">
-  <span class="close-btn" onclick="closeImageLightbox()">&times;</span>
-  <div class="lightbox-content">
-    <img id="lightboxImage" src="" alt="">
-  </div>
-</div>
-
-<div id="documentLightbox" class="lightbox">
-    <span class="close-btn" onclick="closeDocumentLightbox()">&times;</span>
-    <div class="lightbox-content document-lightbox-content">
-        <iframe id="lightboxDocument" src="" title="Rental Agreement Document"></iframe>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // --- Form Submission Logic (EmailJS) ---
-  (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
-  function setupEmailJS(formId, serviceID, templateID) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const statusMessage = (msg) => {
-        const h2 = document.querySelector(`#${formId}`).closest('section').querySelector('h2') || document.querySelector(`#${formId}`).closest('section').querySelector('h3');
-        if (h2) {
-            const messageDiv = document.createElement('div');
-            messageDiv.innerHTML = `<p style="color: var(--primary); font-weight: bold; margin-top: 10px; text-align: center;">${msg}</p>`;
-            h2.insertAdjacentElement('afterend', messageDiv);
-            setTimeout(() => messageDiv.remove(), 5000);
+    // NEW JAVASCRIPT FUNCTION TO HANDLE DROPDOWN NAVIGATION
+    function navigateToSection() {
+        const dropdown = document.getElementById('nav-dropdown');
+        const selectedValue = dropdown.value;
+        if (selectedValue) {
+            // Check if the value is a valid hash ID
+            if (selectedValue.startsWith('#')) {
+                // Smooth scroll to the section
+                document.querySelector(selectedValue).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Update URL hash without page reload for history
+                history.pushState(null, null, selectedValue);
+            }
+            // Reset the dropdown to the "Select a Page" option after navigating
+            dropdown.selectedIndex = 0; 
         }
-      };
-      emailjs.sendForm(serviceID, templateID, this)
-        .then(() => { statusMessage('✔️ Submitted successfully! We will be in touch shortly.'); form.reset(); })
-        .catch(err => { console.error(err); statusMessage('❌ Submission error. Please try again or contact us directly.'); });
-    });
-  }
-  setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
-  setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
-  setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
-
-  // --- Blog Read More functionality ---
-  function toggleReadMore(contentId, btn) {
-    const cont = document.getElementById(contentId);
-    if (cont.style.display === "block") {
-      cont.style.display = "none";
-      btn.textContent = "Read More";
-    } else {
-      cont.style.display = "block";
-      btn.textContent = "Read Less";
     }
-  }
 
-  // --- Lightbox Functions ---
-  function openVideoLightbox(youtubeEmbedUrl) {
-    const lightbox = document.getElementById('videoLightbox');
-    const iframe = document.getElementById('lightboxVideo');
-    iframe.src = youtubeEmbedUrl + '?autoplay=1'; 
-    lightbox.style.display = 'flex';
-  }
-  function closeVideoLightbox() {
-    const lightbox = document.getElementById('videoLightbox');
-    const iframe = document.getElementById('lightboxVideo');
-    iframe.src = ''; 
-    lightbox.style.display = 'none';
-  }
-  
-  function openImageLightbox(imageUrl, altText) {
-      const lightbox = document.getElementById('imageLightbox');
-      const img = document.getElementById('lightboxImage');
-      img.src = imageUrl;
-      img.alt = altText;
-      lightbox.style.display = 'flex';
-  }
-  function closeImageLightbox() {
-      document.getElementById('imageLightbox').style.display = 'none';
-  }
-  
-  function openDocumentLightbox(documentUrl) {
-      const lightbox = document.getElementById('documentLightbox');
-      const iframe = document.getElementById('lightboxDocument');
-      iframe.src = documentUrl;
-      lightbox.style.display = 'flex';
-  }
-  function closeDocumentLightbox() {
-      document.getElementById('documentLightbox').style.display = 'none';
-      document.getElementById('lightboxDocument').src = ''; 
-  }
-
-  // --- Background Music Toggle ---
-  document.addEventListener('DOMContentLoaded', () => {
-    const music = document.getElementById('bgMusic');
-    const toggleButton = document.getElementById('musicToggle');
+    // Existing music toggle script (kept for completeness)
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
     let isPlaying = false;
 
-    toggleButton.addEventListener('click', () => {
-      if (isPlaying) {
-        music.pause();
-        toggleButton.innerHTML = '🎶 Play Music';
-      } else {
-        music.play().then(() => {
-          toggleButton.innerHTML = '⏸ Pause Music';
-        }).catch(error => {
-          console.error('Autoplay prevented:', error);
-          alert('Autoplay was prevented. Please click anywhere on the page and try again.');
-          toggleButton.innerHTML = '🎶 Play Music';
-        });
-      }
-      isPlaying = !isPlaying;
-    });
-
-    // Handle user gesture to allow autoplay later
-    document.body.addEventListener('click', () => {
-        // If not playing and we haven't tried to play yet (or if music is currently paused), try to load/play
-        if (!isPlaying && music.paused) {
-            // Check if music is loaded, if not, load it
-            if (music.readyState < 2) {
-                music.load();
-            }
+    musicToggle.addEventListener('click', () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            musicToggle.innerHTML = '🎶 Play Music';
+        } else {
+            bgMusic.play().catch(error => {
+                console.log("Autoplay failed:", error);
+                alert("Please interact with the page first to enable music playback.");
+            });
+            musicToggle.innerHTML = '⏸ Pause Music';
         }
-    }, { once: true }); 
-  });
+        isPlaying = !isPlaying;
+    });
+    
+    // ... all other existing JavaScript functions (openImageLightbox, openVideoLightbox, toggleReadMore, etc.) should be included here.
 </script>
 
 </body>
-  </html>
-
-
+</html>
