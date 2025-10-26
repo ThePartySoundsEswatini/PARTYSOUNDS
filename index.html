@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Party Sounds Eswatini</title>
-  <link rel="preload" as="image"
-    href="assets/images/logo.jpg"
-    imagesrcset="assets/images/logo.jpg 800w, assets/images/logo.jpg 1600w"
-    imagesizes="100vw">
+  <title>The Party Sounds Eswatini | Premium PA System Rental & Sound Engineering</title>
+  <meta name="description" content="Trusted PA system rentals and professional sound engineering in Eswatini. Crystal-clear sound for weddings, events, and parties. Book your system now!">
+  
+  <link rel="preload" as="image" href="assets/images/camp.jpg" type="image/jpeg">
+  
+  <link rel="icon" href="assets/images/logo.jpg" type="image/x-icon">
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
   <style>
     /* CSS Variables */
     :root {
@@ -86,6 +89,7 @@
       border-radius: 50%;
       opacity: 0.8;
       animation: flicker 3s infinite, drift 5s ease-in-out infinite alternate;
+      z-index: -1;
     }
     @keyframes flicker {
       0%, 100% { opacity: 0.8; }
@@ -99,7 +103,7 @@
     /* --- HEADER AND NAVIGATION --- */
     header {
       position: relative;
-      height: 80vh;
+      height: 85vh;
       overflow: hidden;
     }
     header img.hero {
@@ -113,7 +117,7 @@
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.5);
       z-index: 0;
     }
     .header-content {
@@ -130,6 +134,13 @@
       text-align: center;
       color: #fff;
     }
+    .logo {
+        max-width: 150px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+        border: 4px solid var(--primary);
+        box-shadow: 0 0 20px rgba(233, 30, 99, 0.6);
+    }
     nav {
       position: sticky;
       top: 0;
@@ -141,7 +152,7 @@
       gap: 10px;
       z-index: 10;
       font-weight: 600;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     nav a {
       color: #fff;
@@ -176,26 +187,6 @@
       transform: scale(1.05);
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
-    
-    /* Music button style */
-    #musicToggle {
-        position: fixed; 
-        bottom: 10px; 
-        right: 10px; 
-        z-index: 9999; 
-        background-color: var(--primary); 
-        color: #fff; 
-        border: none; 
-        padding: 10px 15px; 
-        border-radius: 5px; 
-        cursor: pointer; 
-        font-size: 1em;
-        transition: all 0.3s ease;
-    }
-    #musicToggle:hover {
-        background-color: #c2185b;
-        transform: scale(1.05);
-    }
 
     /* --- SECTIONS & HEADINGS --- */
     main {
@@ -228,7 +219,7 @@
       transition: all 0.4s ease-in-out;
       text-align: center;
       border: 3px solid transparent;
-      cursor: pointer; /* Indicate it's clickable */
+      cursor: pointer; 
     }
     .service:hover {
       transform: translateY(-5px);
@@ -261,10 +252,31 @@
         font-weight: 600;
         border-radius: 6px;
         margin: 0 auto 10px;
-        cursor: pointer; /* Indicate it's clickable */
+        cursor: pointer;
+    }
+    .service .include-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+        font-size: 0.95em;
+        text-align: left;
+    }
+    .service .include-list li {
+        margin-bottom: 5px;
+        position: relative;
+        padding-left: 20px;
+    }
+    .service .include-list li::before {
+        content: "\f00c";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        color: var(--primary);
+        position: absolute;
+        left: 0;
     }
 
-    /* --- GALLERY / POSTERS / VIDEOS GRID STRUCTURE --- */
+
+    /* --- GALLERY --- */
     .gallery-grid, .poster-grid, .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -278,8 +290,7 @@
       overflow: hidden;
       transition: all 0.4s ease-in-out;
       text-align: center;
-      /* Only video-wrapper has specific play overlay, others will use image click */
-      /* cursor: pointer; - removed from here, moved to specific img or container for clarity */
+      position: relative; /* Needed for gallery overlay */
     }
     .gallery-item:hover, .poster-item:hover, .video-wrapper:hover {
       transform: translateY(-5px);
@@ -287,18 +298,44 @@
       border-color: var(--primary);
     }
 
+    /* ** NEW GALLERY HOVER EFFECT ** */
+    .gallery-item::after {
+        content: "Click to Enlarge";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200px; 
+        background: rgba(233, 30, 99, 0.75);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2em;
+        font-weight: 600;
+        opacity: 0; 
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .gallery-item:hover::after {
+        opacity: 1;
+    }
+    /* ** END NEW GALLERY HOVER EFFECT ** */
+
     /* Image/Media Elements within Grids */
-    .gallery-item img, .poster-item img, .video-wrapper img, .home-image-clickable { /* Added .home-image-clickable */
+    .gallery-item img, .poster-item img, .video-wrapper img, .home-image-clickable {
       width: 100%;
-      height: 200px; /* Standard height for grid images */
+      height: 200px;
       object-fit: cover;
       display: block;
-      cursor: pointer; /* Indicate it's clickable */
+      cursor: pointer; 
     }
-    /* Specific styling for the main home image to override default height from above if needed */
+    
     #home-image {
-        height: auto !important; /* Keep original auto height for home image */
-        max-height: 500px; /* Optional: limit max height for large screens */
+        height: auto !important;
+        max-height: 500px;
     }
     
     /* --- GALLERY DOWNLOAD LINK (BELOW IMAGE) --- */
@@ -316,7 +353,7 @@
         background: #c2185b;
         transform: none;
     }
-    .gallery-item p, .poster-item p { /* Also target poster-item for consistency */
+    .gallery-item p, .poster-item p {
       padding: 10px 15px 5px;
       margin: 0;
       font-weight: 600;
@@ -326,6 +363,7 @@
     .video-wrapper {
       position: relative;
       background: #111;
+      cursor: pointer;
     }
     .video-wrapper:hover .play-overlay {
         opacity: 1;
@@ -342,15 +380,15 @@
         font-size: 4em;
         transition: all 0.4s ease-in-out;
         opacity: 0.8;
-        pointer-events: none; /* Allow click to pass through to video-wrapper */
+        pointer-events: none;
     }
 
-    /* --- LIGHTBOX (Modal) - Shared styles for video and image --- */
+    /* --- LIGHTBOX (Modal) --- */
     .lightbox {
         display: none;
         position: fixed;
         inset: 0;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0,0,0,0.95);
         justify-content: center;
         align-items: center;
         z-index: 10000;
@@ -363,35 +401,34 @@
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 0 50px rgba(233, 30, 99, 0.8);
-        background: black; /* Ensure black background for full image fill */
+        background: black;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    /* Specific for video iframe */
+    
     #lightboxVideo {
         width: 100%;
         height: 100%;
         border: none;
-        aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+        aspect-ratio: 16 / 9;
     }
-    /* Specific for image */
+    
     #lightboxImage {
         max-width: 100%;
-        max-height: 90vh; /* Adjust as needed */
-        object-fit: contain; /* Ensure image fits within modal */
+        max-height: 90vh;
+        object-fit: contain;
         border-radius: 10px;
     }
-    /* Specific for document iframe */
+    
     #lightboxDocument {
         width: 100%;
-        height: 80vh; /* Set a specific height for the document viewer */
+        height: 80vh;
         border: none;
-        background: white; /* White background for document */
+        background: white;
     }
-    /* Adjust lightbox-content max-width for document if needed */
     .document-lightbox-content {
-        max-width: 1200px; /* Wider for document viewing */
+        max-width: 1200px;
     }
 
 
@@ -400,7 +437,7 @@
         top: 10px;
         right: 20px;
         color: white;
-        font-size: 2em;
+        font-size: 2.5em;
         font-weight: bold;
         cursor: pointer;
         transition: transform 0.3s ease;
@@ -409,9 +446,10 @@
     }
     .close-btn:hover {
         transform: scale(1.2);
+        color: var(--primary);
     }
 
-    /* --- FORMS & BLOG --- */
+    /* --- FORMS --- */
     form {
       background: white;
       padding: 30px;
@@ -429,34 +467,7 @@
       font-size: 1em;
     }
     
-    .blog-post {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin-bottom: 30px;
-    }
-    .blog-content-hidden {
-      display: none;
-    }
-    .read-more-btn {
-      background: var(--primary);
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
-      display: block;
-      width: fit-content;
-      margin: 10px auto;
-      transition: all 0.3s ease-in-out;
-    }
-    .read-more-btn:hover {
-      background: #c2185b;
-    }
-    
-    /* --- NEW: DOCUMENT DOWNLOADS STYLES --- */
+    /* --- DOCUMENT DOWNLOADS STYLES --- */
     .document-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -472,35 +483,34 @@
         border-top: 5px solid var(--primary);
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* Space out content and buttons */
+        justify-content: space-between;
     }
     .document-item h4 {
         margin-bottom: 10px;
         color: var(--primary);
     }
-    /* Container for the buttons */
     .document-actions {
         display: flex;
         justify-content: space-around;
-        gap: 10px; /* Space between buttons */
+        gap: 10px;
         margin-top: 15px;
     }
     .document-item .cta {
-        margin-top: 0; /* Override default cta margin */
+        margin-top: 0;
         padding: 10px 15px;
-        flex-grow: 1; /* Make buttons share space equally */
+        flex-grow: 1;
         font-size: 0.9em;
     }
     .cta.view-btn {
-        background: var(--secondary-dark); /* Different color for view */
+        background: var(--secondary-dark);
     }
     .cta.view-btn:hover {
         background: #555;
     }
     
-    /* --- NEW: UPCOMING EVENTS STYLES --- */
+    /* --- UPCOMING EVENTS STYLES --- */
     .upcoming-events-container {
-        margin-top: 60px; /* Separate from posters */
+        margin-top: 60px;
         border-top: 4px dashed var(--primary);
         padding-top: 40px;
         text-align: center;
@@ -543,7 +553,7 @@
         border-color: var(--primary);
     }
     .event-card * {
-        position: relative; /* Bring content above ::before pseudo-element */
+        position: relative;
         z-index: 2;
     }
     .event-card h4 {
@@ -565,7 +575,7 @@
     .event-card p i {
         color: var(--primary);
         font-size: 1.2em;
-        width: 20px; /* Fixed width for icon alignment */
+        width: 20px;
         text-align: center;
     }
     .event-cta {
@@ -578,10 +588,11 @@
         text-decoration: none;
         font-weight: 600;
         transition: background-color 0.3s;
+        text-align: center;
     }
     .event-cta:hover {
         background: #c2185b;
-        transform: none; /* Override general cta transform */
+        transform: none;
     }
 
 
@@ -593,6 +604,10 @@
     }
     footer a {
       color: #ccc;
+      transition: color 0.3s;
+    }
+    footer a:hover {
+        color: var(--primary);
     }
     
     /* --- RESPONSIVE ADJUSTMENTS --- */
@@ -606,16 +621,11 @@
           grid-template-columns: 1fr;
       }
       .cta { padding: 10px 20px; font-size: 1em; }
+      .document-actions { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-
-<audio id="bgMusic" src="assets/images/Dj_Maphorisa___Xduppy,_Kabza_De_Small_-_Abantwana_Bakho__Official_Audio__feat._Thatohatsi,Young…(256k).mp3" loop></audio>
-
-<button id="musicToggle">
-  🎶 Play Music
-</button>
 
 <div class="light-beam"></div>
 <div class="disco-particles">
@@ -628,9 +638,10 @@
 </div>
 
 <header>
-  <img src="assets/images/logo.jpg" class="hero" alt="PA system setup at an event" />
+  <img src="assets/images/camp.jpg" class="hero" alt="Large outdoor event sound system setup" />
   <div class="overlay"></div>
   <div class="header-content">
+    <img src="assets/images/logo.jpg" alt="The Party Sounds Eswatini Logo" class="logo">
     <h1>Crystal‑Clear PA Rentals for Unforgettable Events</h1>
     <p>Your trusted partner for professional sound in Eswatini.</p>
     <a href="#booking" class="cta">BOOK YOUR SOUND SYSTEM</a>
@@ -641,11 +652,9 @@
   <a href="#home" class="active">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
-  <a href="#Posters And Upcomings">GigGuide</a> 
-  <a href="#blog">Blog</a>
+  <a href="#gigguide">GigGuide</a> 
   <a href="#videos">Videos</a>
   <a href="#booking">Book Now</a>
-  
   <a href="#terms">Ts & Cs</a>
   <a href="#documents">Forms</a>
 </nav>
@@ -669,14 +678,26 @@
         <img src="assets/images/bintops.jpg" alt="Premium Sound System" />
         <h4>Premium Sound System Rental</h4>
         <p><strong>Price: E1500/day</strong></p>
-        <p>Includes 2 FTS TOPS, mixers, Wharfadale amp &amp; subbin, 2 wireless mics, accessories.</p>
+        <p>Includes **dedicated sound engineer** and setup/teardown.</p>
+        <ul class="include-list">
+            <li>2 FTS TOPS & Sub-bins</li>
+            <li>Wharfadale Amp & Mixer</li>
+            <li>2 Wireless Mics</li>
+            <li>All Cables & Accessories</li>
+        </ul>
       </article>
 
       <article class="service" onclick="openImageLightbox('assets/images/tops.jpg', 'Standard Sound System')">
         <img src="assets/images/tops.jpg" alt="Standard Sound System" />
         <h4>Standard Sound System Rental</h4>
         <p><strong>Price: E750/day</strong></p>
-        <p>Includes 2 FTS TOPS, Rocksonic mixer, 2 wireless mics, accessories.</p>
+        <p>Best for small gatherings and corporate meetings.</p>
+        <ul class="include-list">
+            <li>2 FTS TOPS (Speakers only)</li>
+            <li>Rocksonic Mixer</li>
+            <li>2 Wireless Mics</li>
+            <li>All Cables & Accessories</li>
+        </ul>
       </article>
 
       <article class="service" onclick="openImageLightbox('assets/images/lighting_placeholder.jpg', 'Dynamic Lighting Effects')"> 
@@ -686,6 +707,11 @@
         <h4>Lighting &amp; Effects</h4>
         <p><strong>Price: E500/day</strong></p>
         <p>Enhance your party atmosphere with dynamic stage and dance floor lighting systems.</p>
+        <ul class="include-list">
+            <li>Stage Lighting</li>
+            <li>Dance Floor Effects</li>
+            <li>Haze/Fog Machine (Optional)</li>
+        </ul>
       </article>
     </div>
   </section>
@@ -717,7 +743,7 @@
     </div>
   </section>
 
-  <section id="Posters And Upcomings">
+  <section id="gigguide">
     
     <div class="upcoming-events-container" id="upcoming-events">
       <h3>🔥 Upcoming Events We're Powering! 🎶</h3>
@@ -734,12 +760,18 @@
         </div>
         
         <div class="event-card">
-          <h4>OPEN FOR BOOKINGS</h4>
-          <p><i class="fas fa-calendar-alt"></i> Date:--</p>
-          <p><i class="fas fa-clock"></i> Time:--</p>
-          <p><i class="fas fa-map-marker-alt"></i> Venue:---</p>
-          <p><i class="fas fa-microphone-alt"></i> Featuring:--</p>
-          <a href="#booking" class="event-cta">Book Our Sound Now!</a>
+          <h4>SUMMER HEAT WAVE PARTY</h4>
+          <p><i class="fas fa-calendar-alt"></i> Date: December 31, 2025</p>
+          <p><i class="fas fa-clock"></i> Time: 8:00 PM - Late</p>
+          <p><i class="fas fa-map-marker-alt"></i> Venue: Solani's Shisanyama</p>
+          <p><i class="fas fa-music"></i> Featuring: DJ Master P, The Party Sounds Crew</p>
+          
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button onclick="openPoster('assets/images/gig_poster_example.jpg', 'Summer Heat Wave Poster')" class="cta" style="flex-grow: 1; margin: 0;">
+               <i class="fas fa-image"></i> View Poster
+            </button>
+            <a href="#booking" class="event-cta" style="flex-grow: 1;">Book Our Sound Now!</a>
+          </div>
         </div>
       </div>
       <p style="margin-top: 25px; font-style: italic;">Need sound for your upcoming event? <a href="#booking" style="color: var(--primary); font-weight: 600;">Book a system here!</a></p>
@@ -767,9 +799,7 @@
       </div>
     </div>
   </section>
-
   
-
   <section id="booking">
     <h2>Reserve Your Sound System</h2>
     <p style="text-align:center;"><strong>Trusted by 20+ events across Mbabane.</strong></p>
@@ -822,7 +852,7 @@
     <div class="document-grid">
         <div class="document-item">
             <h4>Equipment Rental Agreement</h4>
-            <p></p>
+            <p>Our standard contract for all rental services.</p>
             <div class="document-actions">
                 <a href="assets/images/agreement.pdf" download="TPS_Rental_Agreement.pdf" class="cta">
                     <i class="fas fa-download"></i> Download
@@ -834,7 +864,7 @@
         </div>
         <div class="document-item">
             <h4>Equipment Return & Inspection Checklist</h4>
-            <p></p>
+            <p>A list of items to ensure everything is returned safely.</p>
             <div class="document-actions">
                 <a href="assets/images/return.pdf" download="TPS_Return_Checklist.pdf" class="cta">
                     <i class="fas fa-file-signature"></i> Download Checklist
@@ -846,7 +876,7 @@
         </div>
     </div>
     <p style="text-align:center; margin-top:30px; font-size: 0.9em; color: #555;">
-        Note: The Return Checklist will be filled and signed with  a staff member upon drop-off aswell as when the equipment is collected.
+        Note: The Return Checklist will be filled and signed with a staff member upon drop-off as well as when the equipment is collected.
     </p>
   </section>
   </main>
@@ -885,48 +915,43 @@
 <script>
   // --- Form Submission Logic (EmailJS) ---
   (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
+  
   function setupEmailJS(formId, serviceID, templateID) {
     const form = document.getElementById(formId);
     if (!form) return;
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const statusMessage = (msg) => {
-        const h2 = document.querySelector(`#${formId}`).closest('section').querySelector('h2') || document.querySelector(`#${formId}`).closest('section').querySelector('h3');
+      const statusMessage = (msg, isError = false) => {
+        const h2 = document.querySelector(`#${formId}`).closest('section').querySelector('h2');
         if (h2) {
             const messageDiv = document.createElement('div');
-            messageDiv.innerHTML = `<p style="color: var(--primary); font-weight: bold; margin-top: 10px; text-align: center;">${msg}</p>`;
+            messageDiv.innerHTML = `<p style="color: ${isError ? 'red' : 'var(--primary)'}; font-weight: bold; margin-top: 10px; text-align: center;">${msg}</p>`;
             h2.insertAdjacentElement('afterend', messageDiv);
             setTimeout(() => messageDiv.remove(), 5000);
         }
       };
       emailjs.sendForm(serviceID, templateID, this)
-        .then(() => { statusMessage('✔️ Submitted successfully! We will be in touch shortly.'); form.reset(); })
-        .catch(err => { console.error(err); statusMessage('❌ Submission error. Please try again or contact us directly.'); });
+        .then(() => { 
+            statusMessage('✔️ Submitted successfully! We will be in touch shortly.'); 
+            form.reset(); 
+        })
+        .catch(err => { 
+            console.error(err); 
+            statusMessage('❌ Submission error. Please try again or contact us directly.', true); 
+        });
     });
   }
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
-  setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
-  setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
-
-  // --- Blog Read More functionality ---
-  function toggleReadMore(contentId, btn) {
-    const cont = document.getElementById(contentId);
-    if (cont.style.display === "block") {
-      cont.style.display = "none";
-      btn.textContent = "Read More";
-    } else {
-      cont.style.display = "block";
-      btn.textContent = "Read Less";
-    }
-  }
 
   // --- Lightbox Functions ---
+  
   function openVideoLightbox(youtubeEmbedUrl) {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
     iframe.src = youtubeEmbedUrl + '?autoplay=1'; 
     lightbox.style.display = 'flex';
   }
+
   function closeVideoLightbox() {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
@@ -934,67 +959,36 @@
     lightbox.style.display = 'none';
   }
   
-  function openImageLightbox(imageUrl, altText) {
-      const lightbox = document.getElementById('imageLightbox');
-      const img = document.getElementById('lightboxImage');
-      img.src = imageUrl;
-      img.alt = altText;
-      lightbox.style.display = 'flex';
+  function openImageLightbox(src, alt) {
+    const lightbox = document.getElementById('imageLightbox');
+    const img = document.getElementById('lightboxImage');
+    img.src = src;
+    img.alt = alt;
+    lightbox.style.display = 'flex';
   }
+
   function closeImageLightbox() {
-      document.getElementById('imageLightbox').style.display = 'none';
+    document.getElementById('imageLightbox').style.display = 'none';
   }
   
-  function openDocumentLightbox(documentUrl) {
-      const lightbox = document.getElementById('documentLightbox');
-      const iframe = document.getElementById('lightboxDocument');
-      iframe.src = documentUrl;
-      lightbox.style.display = 'flex';
+  // New function for GigGuide poster view
+  function openPoster(src, alt) {
+      openImageLightbox(src, alt);
   }
+
+  function openDocumentLightbox(pdfUrl) {
+    const lightbox = document.getElementById('documentLightbox');
+    const iframe = document.getElementById('lightboxDocument');
+    iframe.src = pdfUrl; 
+    lightbox.style.display = 'flex';
+  }
+
   function closeDocumentLightbox() {
-      document.getElementById('documentLightbox').style.display = 'none';
-      document.getElementById('lightboxDocument').src = ''; 
+    const lightbox = document.getElementById('documentLightbox');
+    const iframe = document.getElementById('lightboxDocument');
+    iframe.src = ''; 
+    lightbox.style.display = 'none';
   }
-
-  // --- Background Music Toggle ---
-  document.addEventListener('DOMContentLoaded', () => {
-    const music = document.getElementById('bgMusic');
-    const toggleButton = document.getElementById('musicToggle');
-    let isPlaying = false;
-
-    toggleButton.addEventListener('click', () => {
-      if (isPlaying) {
-        music.pause();
-        toggleButton.innerHTML = '🎶 Play Music';
-      } else {
-        music.play().then(() => {
-          toggleButton.innerHTML = '⏸ Pause Music';
-        }).catch(error => {
-          console.error('Autoplay prevented:', error);
-          alert('Autoplay was prevented. Please click anywhere on the page and try again.');
-          toggleButton.innerHTML = '🎶 Play Music';
-        });
-      }
-      isPlaying = !isPlaying;
-    });
-
-    // Handle user gesture to allow autoplay later
-    document.body.addEventListener('click', () => {
-        // If not playing and we haven't tried to play yet (or if music is currently paused), try to load/play
-        if (!isPlaying && music.paused) {
-            // Check if music is loaded, if not, load it
-            if (music.readyState < 2) {
-                music.load();
-            }
-        }
-    }, { once: true }); 
-  });
 </script>
-
 </body>
   </html>
-
-
-
-
-
