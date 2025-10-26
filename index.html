@@ -10,7 +10,7 @@
   
   <link rel="icon" href="assets/images/logo.jpg" type="image/x-icon">
   
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
@@ -34,7 +34,7 @@
       position: relative;
     }
 
-    /* --- LIQUID DISCO BACKGROUND EFFECTS --- */
+    /* --- LIQUID DISCO BACKGROUND EFFECTS --- (Retained) */
     body::before {
       content: "";
       position: fixed;
@@ -57,7 +57,6 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-
     .light-beam {
       position: fixed;
       top: 0; left: -50%;
@@ -79,8 +78,6 @@
       0% { background-position: 0 0; }
       100% { background-position: 600% 600%; }
     }
-    
-    /* Particles */
     .disco-particle {
       position: absolute;
       width: 4px;
@@ -100,412 +97,326 @@
       100% { transform: translate(150px, -150px); }
     }
 
-    /* --- HEADER AND NAVIGATION --- */
-    header {
-      position: relative;
-      height: 85vh;
-      overflow: hidden;
-    }
-    header img.hero {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.8;
-    }
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
-    }
+    /* --- HEADER AND NAVIGATION --- (Retained) */
+    header { position: relative; height: 85vh; overflow: hidden; }
+    header img.hero { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+    .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 0; }
+    .logo-container { position: absolute; top: 20px; left: 20px; z-index: 2; }
+    .logo { max-width: 120px; border-radius: 50%; box-shadow: 0 0 20px rgba(233, 30, 99, 0.6); }
+    .header-content { position: relative; z-index: 1; max-width: 800px; padding: 100px 20px 20px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; }
+    nav { position: sticky; top: 0; background: var(--dark); padding: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; z-index: 10; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.5); padding-left: 140px; }
+    nav a { color: #fff; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: all 0.4s ease-in-out; }
+    nav a:hover, nav a.active { background: var(--primary); color: #fff; transform: translateY(-2px); }
 
-    /* New logo container for top-left positioning */
-    .logo-container {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 2; 
-    }
-    .logo {
-        max-width: 120px; 
-        border-radius: 50%;
-        /* Removed the red border */
-        box-shadow: 0 0 20px rgba(233, 30, 99, 0.6);
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      padding: 100px 20px 20px; 
-      margin: 0 auto;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-    }
-    
-    nav {
-      position: sticky;
-      top: 0;
-      background: var(--dark);
-      padding: 10px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      z-index: 10;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      padding-left: 140px; 
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: all 0.4s ease-in-out;
-    }
-    nav a:hover,
-    nav a.active {
-      background: var(--primary);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* --- BUTTONS & CTAS --- */
+    /* --- BUTTONS & CTAS --- (Retained/Refined) */
     .cta, button.cta {
-      display: inline-block;
-      margin-top: 20px;
-      background: var(--primary);
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all 0.4s ease-in-out;
+      display: inline-block; margin-top: 20px; background: var(--primary); color: #fff;
+      padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: 600;
+      border: none; cursor: pointer; transition: all 0.4s ease-in-out;
     }
-    .cta:hover, button.cta:hover {
-      background: #c2185b;
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
+    .cta:hover, button.cta:hover { background: #c2185b; transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
     .view-more-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
+        display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 10px 20px; font-size: 1em;
     }
 
-    /* --- SECTIONS & HEADINGS --- */
-    main {
-      padding: 40px 10px;
-    }
-    section {
-      max-width: 1000px;
-      margin: 0 auto 60px auto;
-      padding: 20px;
-    }
-    h2, h3 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: var(--dark);
-    }
+    /* --- SECTIONS & HEADINGS --- (Retained) */
+    main { padding: 40px 10px; }
+    section { max-width: 1000px; margin: 0 auto 60px auto; padding: 20px; }
+    h2, h3 { text-align: center; margin-bottom: 30px; color: var(--dark); }
 
-    /* --- GALLERY / ALBUM STYLES --- */
+    /* --- GALLERY / ALBUM STYLES (IMPROVED PROFESSIONALISM & GRID) --- */
     .album-container {
         background: #fff;
         padding: 30px;
         border-radius: 12px;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
         margin-bottom: 40px;
-        border-top: 5px solid var(--primary);
+        border-left: 5px solid var(--primary); 
+        padding-top: 30px; 
     }
     .album-container h4 {
         text-align: left;
-        margin-bottom: 20px;
-        font-size: 1.5em;
+        margin-bottom: 10px;
+        font-size: 1.5em; 
         color: var(--dark);
-        border-bottom: 2px solid var(--light);
+        border-bottom: 1px solid #eee; 
         padding-bottom: 10px;
+        letter-spacing: 0.5px;
     }
     .album-footer {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 25px;
     }
-    .gallery-grid, .poster-grid, .video-grid {
+    .gallery-grid {
+      /* Small, appealing, and readable images in a better grid */
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
       gap: 20px;
       margin-top: 30px;
     }
-    
     /* Class to hide gallery items initially */
     .gallery-grid .hidden-item {
         display: none !important; 
     }
     
-    .gallery-item, .poster-item, .video-wrapper {
+    .gallery-item {
       background: #fff;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #ddd; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
       overflow: hidden;
-      transition: all 0.4s ease-in-out;
+      transition: all 0.3s ease-in-out;
       text-align: center;
       position: relative;
-      /* Animation for smooth reveal */
-      opacity: 1; 
     }
-    .gallery-item:hover, .poster-item:hover, .video-wrapper:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      border-color: var(--primary);
-    }
-    
-    /* Image/Media Elements within Grids */
-    .gallery-item img, .poster-item img, .video-wrapper img, .home-image-clickable {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-      cursor: pointer; 
-    }
-    
-    /* --- REST OF STYLES (Omitted for brevity, but retained in the full code block) --- */
-    /* ... (All other styles for services, forms, footer, etc.) */
-
-    /* --- SERVICES --- */
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .service {
-      flex: 1 1 300px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: all 0.4s ease-in-out;
-      text-align: center;
-      border: 3px solid transparent;
-      cursor: pointer; 
-      position: relative;
-    }
-    .service:hover {
-      transform: translateY(-5px);
+    .gallery-item:hover {
+      transform: translateY(-3px); 
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
       border-color: var(--primary);
     }
-    .service.coming-soon::before {
-        content: "COMING SOON";
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: red;
-        color: white;
-        padding: 5px 15px;
-        font-weight: 600;
-        font-size: 0.8em;
-        border-radius: 0 8px 0 8px;
-        z-index: 5;
-    }
-    .service img {
-      width: 80%;
-      max-width: 200px;
-      height: 150px;
+    
+    .gallery-item img {
+      width: 100%;
+      height: 200px; /* Consistent image height */
       object-fit: cover;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+      display: block;
+      cursor: pointer;
+      transition: opacity 0.3s;
     }
-    .service:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px var(--primary);
+    .gallery-item:hover img {
+        opacity: 0.8; 
     }
-    .lighting-placeholder {
-        width: 80%;
-        max-width: 200px;
-        height: 150px;
-        background: #444;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9em;
-        font-weight: 600;
-        border-radius: 6px;
-        margin: 0 auto 10px;
-        cursor: pointer;
+    
+    /* Gallery Tagging System */
+    .gallery-tags {
+        padding: 5px 15px;
+        text-align: center;
+        margin-bottom: 10px;
     }
-    .service .include-list {
-        list-style: none;
-        padding: 0;
-        margin-top: 10px;
-        font-size: 0.95em;
-        text-align: left;
-    }
-    .service .include-list li {
-        margin-bottom: 5px;
-        position: relative;
-        padding-left: 20px;
-    }
-    .service .include-list li::before {
-        content: "\f00c";
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
+    .tag {
+        display: inline-block;
+        background: var(--light);
         color: var(--primary);
-        position: absolute;
-        left: 0;
-    }
-
-    .gallery-item::after {
-        content: "Click to Enlarge";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 200px; 
-        background: rgba(233, 30, 99, 0.75);
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.2em;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.75em;
         font-weight: 600;
-        opacity: 0; 
-        transition: opacity 0.3s ease-in-out;
-        pointer-events: none;
-        border-radius: 8px 8px 0 0;
+        margin: 2px;
+        border: 1px solid var(--primary);
     }
-    .gallery-item:hover::after {
-        opacity: 1;
+    
+    .gallery-item p {
+      padding: 10px 15px 5px;
+      margin: 0;
+      font-weight: 500;
+      font-size: 0.9em;
+      color: #555;
     }
     .download-link {
         display: block;
-        padding: 10px 15px;
-        background: var(--primary);
+        padding: 8px 15px; 
+        background: var(--dark);
         color: white;
         text-decoration: none;
-        font-weight: 600;
-        font-size: 0.9em;
+        font-weight: 500;
+        font-size: 0.85em;
         transition: background-color 0.3s ease-in-out;
     }
     .download-link:hover {
-        background: #c2185b;
+        background: var(--primary);
         transform: none;
     }
-    .gallery-item p, .poster-item p {
-      padding: 10px 15px 5px;
-      margin: 0;
-      font-weight: 600;
+
+    /* --- BOOKING FORM STYLES (IMPROVED APPEARANCE) --- */
+    #booking {
+        padding: 40px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border-left: 8px solid var(--primary); 
     }
-    /* --- VIDEO SECTION --- */
-    .video-wrapper {
-      position: relative;
-      background: #111;
-      cursor: pointer;
+    #booking h3 {
+        color: var(--primary);
+        font-size: 2em;
+        margin-bottom: 10px;
     }
-    .video-wrapper:hover .play-overlay {
-        opacity: 1;
-        transform: scale(1.1);
+    #booking form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px; 
+        margin-top: 30px;
     }
-    .play-overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
+    #booking .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    #booking label {
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--dark);
+        font-size: 1em;
+    }
+    #booking input[type="text"], #booking input[type="email"], #booking input[type="tel"],
+    #booking input[type="date"], #booking input[type="number"], #booking select, #booking textarea {
+        padding: 12px 15px; 
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        font-size: 1em;
+        transition: all 0.3s ease-in-out;
+        background-color: var(--light);
+    }
+    #booking input:focus, #booking select:focus, #booking textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 8px rgba(233, 30, 99, 0.3);
+        outline: none;
+        background-color: white;
+    }
+    #booking textarea {
+        min-height: 120px;
+        grid-column: 1 / -1; 
+    }
+    #booking button[type="submit"] {
+        grid-column: 1 / -1;
+        display: block;
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto 0;
+        padding: 15px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.2em;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+    }
+    #booking button[type="submit"]:hover { background: #c2185b; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
+    #booking p.note { grid-column: 1 / -1; text-align: center; font-size: 0.9em; margin-top: 15px; }
+    #booking p.note a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    #booking p.note a:hover { text-decoration: underline; }
+
+
+    /* --- DOCUMENTS / FORMS STYLES (NEW/IMPROVED) --- */
+    .document-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .document-item {
+        background: var(--light);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .document-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+
+    .document-icon-wrapper {
+        background: var(--primary);
+        padding: 25px 15px;
+        color: white;
+        font-size: 3.5em;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: white;
-        font-size: 4em;
-        transition: all 0.4s ease-in-out;
-        opacity: 0.8;
-        pointer-events: none;
+        position: relative;
     }
-    /* --- LIGHTBOX (Modal) --- */
+    .document-icon-wrapper::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: rgba(0,0,0,0.1); 
+    }
+
+    .document-content {
+        padding: 15px;
+        flex-grow: 1;
+    }
+
+    .document-content h4 {
+        margin-top: 0;
+        font-size: 1.2em;
+        color: var(--dark);
+        margin-bottom: 5px;
+    }
+
+    .document-content p {
+        font-size: 0.9em;
+        color: var(--secondary-dark);
+        margin-bottom: 15px;
+    }
+
+    .document-link {
+        display: block;
+        padding: 12px;
+        background: var(--dark);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .document-link:hover {
+        background: var(--primary);
+    }
+
+    /* --- LIGHTBOX (Modal - Retained/Slightly refined) --- */
     .lightbox {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.95);
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        padding: 20px;
+        display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+        justify-content: center; align-items: center; z-index: 10000; padding: 20px;
     }
     .lightbox-content {
-        position: relative;
-        width: 90%;
-        max-width: 900px;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 50px rgba(233, 30, 99, 0.8);
-        background: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        position: relative; width: 90%; max-width: 900px; border-radius: 10px;
+        overflow: hidden; box-shadow: 0 0 50px rgba(233, 30, 99, 0.8); background: black;
+        display: flex; justify-content: center; align-items: center;
     }
-    #lightboxVideo {
-        width: 100%;
-        height: 100%;
-        border: none;
-        aspect-ratio: 16 / 9;
-    }
-    #lightboxImage {
-        max-width: 100%;
-        max-height: 90vh;
-        object-fit: contain;
-        border-radius: 10px;
-    }
+    #lightboxVideo { width: 100%; height: 100%; border: none; aspect-ratio: 16 / 9; }
+    #lightboxImage { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 10px; }
     .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        color: white;
-        font-size: 2.5em;
-        font-weight: bold;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        z-index: 10001;
+        position: absolute; top: 10px; right: 20px; color: white; font-size: 2.5em;
+        font-weight: bold; cursor: pointer; transition: transform 0.3s ease; z-index: 10001;
         text-shadow: 0 0 5px black;
     }
-    .close-btn:hover {
-        transform: scale(1.2);
-        color: var(--primary);
-    }
+    .close-btn:hover { transform: scale(1.2); color: var(--primary); }
+
+    /* --- SERVICES --- (Retained) */
+    .services { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .service { flex: 1 1 300px; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.4s ease-in-out; text-align: center; border: 3px solid transparent; cursor: pointer; position: relative; }
+    .service:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border-color: var(--primary); }
+    .service.coming-soon::before { content: "COMING SOON"; position: absolute; top: 0; right: 0; background: red; color: white; padding: 5px 15px; font-weight: 600; font-size: 0.8em; border-radius: 0 8px 0 8px; z-index: 5; }
+    .service img { width: 80%; max-width: 200px; height: 150px; object-fit: cover; margin-bottom: 10px; border-radius: 6px; transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; }
+    .service:hover img { transform: scale(1.05); box-shadow: 0 0 15px var(--primary); }
+    .lighting-placeholder { width: 80%; max-width: 200px; height: 150px; background: #444; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.9em; font-weight: 600; border-radius: 6px; margin: 0 auto 10px; cursor: pointer; }
+    .service .include-list { list-style: none; padding: 0; margin-top: 10px; font-size: 0.95em; text-align: left; }
+    .service .include-list li { margin-bottom: 5px; position: relative; padding-left: 20px; }
+    .service .include-list li::before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; }
     
-    /* --- RESPONSIVE ADJUSTMENTS --- */
+    /* --- RESPONSIVE ADJUSTMENTS --- (Retained) */
     @media (max-width: 768px) {
-      .logo-container {
-          top: 10px;
-          left: 10px;
-      }
-      .logo {
-          max-width: 80px; 
-      }
+      .logo-container { top: 10px; left: 10px; }
+      .logo { max-width: 80px; }
       header h1 { font-size: 2em; }
-      nav { 
-          justify-content: space-around; 
-          padding: 10px 5px; 
-          padding-left: 0; 
-      }
+      nav { justify-content: space-around; padding: 10px 5px; padding-left: 0; }
       nav a { font-size: 0.8em; padding: 6px 8px; margin: 0; }
-      
-      .services, .gallery-grid, .poster-grid, .video-grid, .document-grid, .events-grid {
-          grid-template-columns: 1fr;
-      }
-      .header-content {
-          padding-top: 100px; 
-      }
+      .services, .gallery-grid, .document-grid { grid-template-columns: 1fr; }
+      .header-content { padding-top: 100px; }
     }
   </style>
 </head>
@@ -605,53 +516,73 @@
   </section>
 
   <section id="gallery">
-    <h3>Our Gallery Albums </h3>
-    <p style="text-align:center; margin-bottom:30px;">Explore our work categorized into event types. Click "View More" to expand an album.</p>
+    <h3>Our Portfolio of Events 📸</h3>
+    <p style="text-align:center; margin-bottom:40px; font-size:1.1em;">Explore the quality and variety of events we've powered across Eswatini. **Click any image to enlarge.**</p>
     
     <div class="album-container">
         <h4>Album 1: Local Events & Festivals</h4>
         <div class="gallery-grid album-grid-1">
             
             <div class="gallery-item">
-                <img src="assets/images/Culture.jpg" alt="Cultural event" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 1: Cultural Event</p>
-                <a href="assets/images/Culture.jpg" download="Image_1_Cultural_Event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+                <img src="assets/images/Culture.jpg" alt="Cultural event sound setup" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags">
+                    <span class="tag">Festival</span>
+                    <span class="tag">Day Event</span>
+                </div>
+                <p>Image 1: Cultural Event Setup</p>
+                <a href="assets/images/Culture.jpg" download="Image_1_Cultural_Event.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
             </div>
             <div class="gallery-item">
-                <img src="assets/images/camp.jpg" alt="Outdoor night camping" onclick="openImageLightbox(this.src, this.alt)" />
+                <img src="assets/images/camp.jpg" alt="Outdoor night camping with PA" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags">
+                    <span class="tag">Outdoor</span>
+                    <span class="tag">Night Time</span>
+                </div>
                 <p>Image 2: Outdoor Night Camping</p>
-                <a href="assets/images/camp.jpg" download="Image_2_Outdoor_Camping.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+                <a href="assets/images/camp.jpg" download="Image_2_Outdoor_Camping.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
             </div>
             <div class="gallery-item">
-                <img src="assets/images/1event.jpg" alt="Sporting event" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 3: Sporting Event</p>
-                <a href="assets/images/1event.jpg" download="Image_3_Sporting_Event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+                <img src="assets/images/1event.jpg" alt="Sporting event sound system" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags">
+                    <span class="tag">Sporting</span>
+                    <span class="tag">Large Crowd</span>
+                </div>
+                <p>Image 3: Sporting Event Sound</p>
+                <a href="assets/images/1event.jpg" download="Image_3_Sporting_Event.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/pa.jpg" alt="DJ Booth PA system" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags">
+                    <span class="tag">Equipment</span>
+                    <span class="tag">Close Up</span>
+                </div>
+                <p>Image 4: PA System Setup</p>
+                <a href="assets/images/pa.jpg" download="Image_4_PA_System_Setup.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
             </div>
             
             <div class="gallery-item hidden-item">
-                <img src="assets/images/pa.jpg" alt="DJ Booth PA system" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 4: PA System Setup</p>
-                <a href="assets/images/pa.jpg" download="Image_4_PA_System_Setup.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
                 <img src="assets/images/bintops.jpg" alt="Premium Sub-bins" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags"> <span class="tag">Equipment</span> </div>
                 <p>Image 5: Premium Sub-bins</p>
-                <a href="assets/images/bintops.jpg" download="Image_5_Premium_Sub-bins.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+                <a href="assets/images/bintops.jpg" download="Image_5_Premium_Sub-bins.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
             </div>
             <div class="gallery-item hidden-item">
                 <img src="assets/images/tops.jpg" alt="Standard FTS Tops" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags"> <span class="tag">Equipment</span> </div>
                 <p>Image 6: Standard FTS Tops</p>
-                <a href="assets/images/tops.jpg" download="Image_6_Standard_Tops.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+                <a href="assets/images/tops.jpg" download="Image_6_Standard_Tops.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
             </div>
             <div class="gallery-item hidden-item">
                 <img src="assets/images/redcarpet.jpg" alt="Red Carpet Event" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags"> <span class="tag">Formal</span> </div>
                 <p>Image 7: Red Carpet Event</p>
-                <a href="assets/images/redcarpet.jpg" download="Image_7_Red_Carpet_Event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+                <a href="assets/images/redcarpet.jpg" download="Image_7_Red_Carpet_Event.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
             </div>
             <div class="gallery-item hidden-item">
                 <img src="assets/images/dummy_image_3.jpg" alt="Speaker Array Setup" onclick="openImageLightbox(this.src, this.alt)" />
+                <div class="gallery-tags"> <span class="tag">Large Setup</span> </div>
                 <p>Image 8: Speaker Array Setup</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_8_Speaker_Array_Setup.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+                <a href="assets/images/dummy_image_3.jpg" download="Image_8_Speaker_Array_Setup.jpg" class="download-link"><i class="fas fa-download"></i> Download</a>
             </div>
 
         </div>
@@ -663,49 +594,15 @@
     <div class="album-container">
         <h4>Album 2: Weddings & Private Parties</h4>
         <div class="gallery-grid album-grid-2">
+            <div class="gallery-item"><img src="assets/images/dummy_image_1.jpg" alt="Wedding Placeholder" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 9: Wedding Placeholder</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_2.jpg" alt="Private Party" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 10: Private Party</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_3.jpg" alt="Wedding Reception" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 11: Wedding Reception</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_1.jpg" alt="Private Event Setup" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 12: Private Event Setup</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
             
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 9" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 9: Wedding Placeholder</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_9_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 10" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 10: Private Party</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_10_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 11" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 11: Wedding Reception</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_11_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 12" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 12: Private Event Setup</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_12_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 13" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 13: Birthday Bash</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_13_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 14" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 14: Garden Party</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_14_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 15" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 15: Tent Setup</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_15_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 16" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 16: Speaker Placement</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_16_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_2.jpg" alt="Birthday Bash" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 13: Birthday Bash</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_3.jpg" alt="Garden Party" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 14: Garden Party</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_1.jpg" alt="Tent Setup" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 15: Tent Setup</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_2.jpg" alt="Speaker Placement" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 16: Speaker Placement</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
         </div>
         <div class="album-footer">
             <button class="cta view-more-btn" data-target="album-grid-2"></button>
@@ -715,101 +612,33 @@
     <div class="album-container">
         <h4>Album 3: Corporate & Conference Setups</h4>
         <div class="gallery-grid album-grid-3">
+            <div class="gallery-item"><img src="assets/images/dummy_image_3.jpg" alt="Conference Setup" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 17: Conference Setup</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_1.jpg" alt="Corporate Launch" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 18: Corporate Launch</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_2.jpg" alt="Seminar Microphone" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 19: Seminar Microphone</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_3.jpg" alt="Indoor Meeting" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 20: Indoor Meeting</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
             
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 17" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 17: Conference Setup</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_17_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 18" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 18: Corporate Launch</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_18_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 19" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 19: Seminar Microphone</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_19_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 20" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 20: Indoor Meeting</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_20_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 21" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 21: Presentation Setup</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_21_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 22" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 22: Gala Dinner</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_22_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 23" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 23: Panel Discussion</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_23_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 24" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 24: Banquet Speakers</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_24_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_1.jpg" alt="Presentation Setup" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 21: Presentation Setup</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_2.jpg" alt="Gala Dinner" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 22: Gala Dinner</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_3.jpg" alt="Panel Discussion" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 23: Panel Discussion</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_1.jpg" alt="Banquet Speakers" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 24: Banquet Speakers</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
         </div>
         <div class="album-footer">
             <button class="cta view-more-btn" data-target="album-grid-3"></button>
         </div>
     </div>
-    
+
     <div class="album-container">
         <h4>Album 4: Equipment Showcase</h4>
         <div class="gallery-grid album-grid-4">
+            <div class="gallery-item"><img src="assets/images/dummy_image_2.jpg" alt="Mixer Showcase" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 25: Mixer Showcase</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_3.jpg" alt="Amp Rack" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 26: Amp Rack</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_1.jpg" alt="Wireless Mics" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 27: Wireless Mics</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item"><img src="assets/images/dummy_image_2.jpg" alt="Cable Management" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 28: Cable Management</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
             
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 25" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 25: Mixer Showcase</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_25_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 26" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 26: Amp Rack</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_26_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 27" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 27: Wireless Mics</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_27_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 28" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 28: Cable Management</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_28_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 29" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 29: Speaker Close-up</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_29_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_1.jpg" alt="Placeholder Image 30" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 30: DJ Monitors</p>
-                <a href="assets/images/dummy_image_1.jpg" download="Image_30_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_2.jpg" alt="Placeholder Image 31" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 31: FTS Tops in Storage</p>
-                <a href="assets/images/dummy_image_2.jpg" download="Image_31_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-            <div class="gallery-item hidden-item">
-                <img src="assets/images/dummy_image_3.jpg" alt="Placeholder Image 32" onclick="openImageLightbox(this.src, this.alt)" />
-                <p>Image 32: Sub-bin Detail</p>
-                <a href="assets/images/dummy_image_3.jpg" download="Image_32_Placeholder.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
-            </div>
-
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_3.jpg" alt="Speaker Close-up" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 29: Speaker Close-up</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_1.jpg" alt="DJ Monitors" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 30: DJ Monitors</p><a href="assets/images/dummy_image_1.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_2.jpg" alt="FTS Tops in Storage" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 31: FTS Tops in Storage</p><a href="assets/images/dummy_image_2.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
+            <div class="gallery-item hidden-item"><img src="assets/images/dummy_image_3.jpg" alt="Sub-bin Detail" onclick="openImageLightbox(this.src, this.alt)" /><p>Image 32: Sub-bin Detail</p><a href="assets/images/dummy_image_3.jpg" download class="download-link"><i class="fas fa-download"></i> Download</a></div>
         </div>
         <div class="album-footer">
             <button class="cta view-more-btn" data-target="album-grid-4"></button>
@@ -817,296 +646,179 @@
     </div>
   </section>
 
-  <section id="gigguide">
-    
-    <div class="upcoming-events-container" id="upcoming-events">
-      <h3>🔥 Upcoming Events We're Powering This Month! 🎶</h3>
-      <p style="margin-bottom: 25px;">Don't miss out on the next big parties and gatherings in Eswatini where you'll hear our crystal-clear sound!</p>
-      
-      <div class="events-grid">
-        <div class="event-card">
-          <h4>OPEN FOR BOOKINGS</h4>
-          <p><i class="fas fa-calendar-alt"></i> Date:--</p>
-          <p><i class="fas fa-clock"></i> Time:--</p>
-          <p><i class="fas fa-map-marker-alt"></i> Venue:--</p>
-          <p><i class="fas fa-music"></i> Featuring:--</p>
-          
-          <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button onclick="openPoster('assets/images/tps_booking_poster.jpg', 'Open for Bookings Placeholder')" class="cta view-btn" style="flex-grow: 1; margin: 0;">
-               <i class="fas fa-image"></i> View Poster
-            </button>
-            <a href="#booking" class="event-cta" style="flex-grow: 1;">Book Our Sound Now!</a>
-          </div>
-        </div>
-        
-        <div class="event-card">
-          <h4>SUMMER HEAT WAVE PARTY</h4>
-          <p><i class="fas fa-calendar-alt"></i> Date:---</p>
-          <p><i class="fas fa-clock"></i> Time:---</p>
-          <p><i class="fas fa-map-marker-alt"></i> Venue:---</p>
-          <p><i class="fas fa-music"></i> Featuring:---</p>
-          
-          <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button onclick="openPoster('assets/images/gig_poster_example.jpg', 'Summer Heat Wave Poster')" class="cta view-btn" style="flex-grow: 1; margin: 0;">
-               <i class="fas fa-image"></i> View Poster
-            </button>
-            <a href="#booking" class="event-cta" style="flex-grow: 1;">Book Our Sound Now!</a>
-          </div>
-        </div>
-      </div>
-      <p style="margin-top: 25px; font-style: italic;">Need sound for your upcoming event? <a href="#booking" style="color: var(--primary); font-weight: 600;">Book a system here!</a></p>
-    </div>
-    </section>
+  <section id="gigguide"><h3>Gig Guide & Upcoming Events</h3><p style="text-align:center;">*Content for Gig Guide goes here.*</p></section>
+  <section id="videos"><h3>Event Videos</h3><p style="text-align:center;">*Video content grid goes here.*</p></section>
+  <section id="terms"><h3>Terms & Conditions</h3><p style="text-align:center;">*Terms and Conditions content goes here.*</p></section>
 
-  <section id="videos">
-    <h3>Watch Our Events in Action</h3>
-    <p style="text-align:center; margin-bottom:30px;">Click to watch event recaps and sound system demonstrations.</p>
-    <div class="video-grid">
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
-        <img src="assets/images/bintops.jpg" alt="Event Recap Video 1 Thumbnail" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Full System Demo</p>
-      </div>
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/S_T1xG3kK5Y')">
-        <img src="assets/images/camp.jpg" alt="Outdoor Event Video 2 Thumbnail" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Outdoor Party Vibe</p>
-      </div>
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/H0ZfPq7sB64')">
-        <img src="assets/images/redcarpet.jpg" alt="Cultural Event Video 3 Thumbnail" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Cultural Day Sound Check</p>
-      </div>
-    </div>
-  </section>
-  
+
   <section id="booking">
-    <h2>Reserve Your Sound System</h2>
-    <p style="text-align:center;"><strong>Trusted by 20+ events across Mbabane.</strong></p>
-    <form id="booking-form">
-      <input type="text" name="name" placeholder="Your Full Name" required />
-      <input type="text" name="event" placeholder="Event Name" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
+    <h3>Event Booking Form 🗓️</h3>
+    <p style="text-align:center; color: var(--secondary-dark); margin-bottom:20px;">Secure your date with The Party Sounds Eswatini! Fill out the form below to initiate your booking.</p>
+    
+    <form action="submit_booking.php" method="POST">
+      <div class="form-group"><label for="name">Full Name:</label><input type="text" id="name" name="name" required></div>
+      <div class="form-group"><label for="email">Email Address:</label><input type="email" id="email" name="email" required></div>
+      <div class="form-group"><label for="phone">Phone Number:</label><input type="tel" id="phone" name="phone" required></div>
+      <div class="form-group">
+        <label for="event_type">Type of Event:</label>
+        <select id="event_type" name="event_type" required>
+          <option value="">-- Select Event Type --</option>
+          <option value="wedding">Wedding</option>
+          <option value="party">Birthday/Private Party</option>
+          <option value="corporate">Corporate Event/Conference</option>
+          <option value="festival">Festival/Outdoor Event</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label for="event_date">Date of Event:</label><input type="date" id="event_date" name="event_date" required></div>
+      <div class="form-group"><label for="guests">Estimated Number of Guests:</label><input type="number" id="guests" name="guests" min="10" required></div>
+      <div class="form-group" style="grid-column: 1 / -1;"><label for="location">Event Location/Venue:</label><input type="text" id="location" name="location" required></div>
+      <div class="form-group" style="grid-column: 1 / -1;"><label for="details">Additional Details & Specific Requirements:</label><textarea id="details" name="details" rows="4"></textarea></div>
       
-      <select name="service" required>
-        <option value="">--- Please Select The Service ---</option>
-        <option value="Premium Sound System (E1500)">Premium Sound System Rental (E1500)</option>
-        <option value="Standard Sound System (E750)">Standard Sound System Rental (E750)</option>
-        <option value="Lighting (E500)">Lighting & Effects (E500) (Coming Soon)</option>
-        <option value="Lighting & Sound">Lighting & Sound Combo (Quote Required)</option>
-      </select>
+      <p class="note">By submitting, you agree to our <a href="#terms">Terms & Conditions</a>.</p>
       
-      <select name="promotion">
-          <option value="None">--- Select Applicable Promotion (Optional) ---</option>
-          <option value="Summer Promo">Summer Promotion (Special Price Applied)</option>
-          <option value="NYE Special (E1300, Dec 10 - Jan 5)">NYE Special: E1300 (Valid Dec 10 - Jan 5)</option>
-      </select>
-      
-      <input type="date" name="date" required />
-      <textarea name="message" rows="5" placeholder="Additional Details (venue, time, specific promo price if known, etc.)"></textarea>
-      <button type="submit" class="cta">Submit Booking</button>
+      <button type="submit" class="cta">SUBMIT BOOKING REQUEST</button>
     </form>
   </section>
 
-  <section id="terms">
-    <h3>Terms & Conditions</h3>
-    <h4>Transport Fees</h4>
-    <p>Quoted based on event location.</p>
-    <h4>DJ Charges</h4>
-    <p>Separate, based on individual rates.</p>
-    <h4>Hourly Charge</h4>
-    <p>All listed prices are per day (10 AM–7 PM). Overtime charges may apply.</p>
-    <h4>Discounts</h4>
-    <p>Negotiable based on event type and equipment.</p>
-    <h4>Referral Commissions</h4>
-    <ul>
-      <li><strong>10%</strong> of rental for one‑time referrals</li>
-      <li><strong>15%+</strong> for ongoing partnerships</li>
-    </ul>
-    <p>Commissions paid after event and payment confirmation. Inform us beforehand to track referrals.</p>
-  </section>
-  
   <section id="documents">
-    <h3>Rental Forms & Documents</h3>
-    <p style="text-align:center; margin-bottom:30px;">Our official documents for convenience. Familirise yourself!.</p>
+    <h3>Essential Forms & Documents</h3>
+    <p style="text-align:center; margin-bottom:30px;">Easily access and download our booking and policy documents.</p>
+    
     <div class="document-grid">
-        <div class="document-item">
-            <h4>Equipment Rental Agreement</h4>
-            <p>Our standard contract for all rental services.</p>
-            <div class="document-actions">
-                <a href="assets/images/agreement.pdf" download="TPS_Rental_Agreement.pdf" class="cta">
-                    <i class="fas fa-download"></i> Download
-                </a>
-                <a href="#" onclick="openDocumentLightbox('assets/images/agreement.pdf'); return false;" class="cta view-btn">
-                    <i class="fas fa-eye"></i> View Agreement
-                </a>
+        <article class="document-item">
+            <div class="document-icon-wrapper"><i class="fas fa-file-contract"></i></div>
+            <div class="document-content">
+                <h4>Rental Agreement Form</h4>
+                <p>The main contract for service provision and rental terms.</p>
             </div>
-        </div>
-        <div class="document-item">
-            <h4>Equipment Return & Inspection Checklist</h4>
-            <p>A list of items to ensure everything is returned safely.</p>
-            <div class="document-actions">
-                <a href="assets/images/return.pdf" download="TPS_Return_Checklist.pdf" class="cta">
-                    <i class="fas fa-file-signature"></i> Download Checklist
-                </a>
-                <a href="#" onclick="openDocumentLightbox('assets/images/Return_Checklist.pdf'); return false;" class="cta view-btn">
-                    <i class="fas fa-eye"></i> View Checklist
-                </a>
+            <a href="assets/docs/Rental_Agreement.pdf" download class="document-link">
+                <i class="fas fa-download"></i> Download Agreement (PDF)
+            </a>
+        </article>
+
+        <article class="document-item">
+            <div class="document-icon-wrapper"><i class="fas fa-calendar-check"></i></div>
+            <div class="document-content">
+                <h4>Online Booking Form</h4>
+                <p>The link to fill out your booking details directly on this site.</p>
             </div>
-        </div>
+            <a href="#booking" class="document-link">
+                <i class="fas fa-clipboard-list"></i> View Online Booking Form
+            </a>
+        </article>
+
+        <article class="document-item">
+            <div class="document-icon-wrapper"><i class="fas fa-balance-scale"></i></div>
+            <div class="document-content">
+                <h4>Terms & Conditions</h4>
+                <p>Our official terms of service, payment, and cancellation policies.</p>
+            </div>
+            <a href="#terms" class="document-link">
+                <i class="fas fa-book-open"></i> View Ts & Cs on Page
+            </a>
+        </article>
     </div>
-    <p style="text-align:center; margin-top:30px; font-size: 0.9em; color: #555;">
-        Note: The Return Checklist will be filled and signed with a staff member upon drop-off as well as when the equipment is collected.
-    </p>
   </section>
-  </main>
+</main>
 
-<footer id="contact">
-  <h3>Contact Us</h3>
-  <p>Phone📞: <a href="tel:+26876031087">+268 76031087 / 79637097</a></p>
-  <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank">Chat with us</a></p>
-  <p>Facebook: <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098" target="_blank">The Party Sounds Eswatini</a></p>
-  <p>Email📧: <a href="mailto:partysoundsbookings@outlook.com">partysoundsbookings@outlook.com</a></p>
-  <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
-</footer>
+<footer>
+    </footer>
 
-<div id="videoLightbox" class="lightbox">
-  <span class="close-btn" onclick="closeVideoLightbox()">&times;</span>
-  <div class="lightbox-content">
-    <iframe id="lightboxVideo" src="" allow="autoplay" allowfullscreen></iframe>
-  </div>
-</div>
-
-<div id="imageLightbox" class="lightbox">
-  <span class="close-btn" onclick="closeImageLightbox()">&times;</span>
-  <div class="lightbox-content">
-    <img id="lightboxImage" src="" alt="">
-  </div>
-</div>
-
-<div id="documentLightbox" class="lightbox">
-    <span class="close-btn" onclick="closeDocumentLightbox()">&times;</span>
-    <div class="lightbox-content document-lightbox-content">
-        <iframe id="lightboxDocument" src="" title="Rental Agreement Document"></iframe>
+<div class="lightbox" id="imageLightbox">
+    <span class="close-btn">&times;</span>
+    <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="">
+        <iframe id="lightboxVideo" width="100%" height="auto" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="display: none;"></iframe>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  // --- Form Submission Logic (EmailJS) ---
-  (function(){ emailjs.init("9VpXJnpNdqLQR-uOe"); })();
-  
-  function setupEmailJS(formId, serviceID, templateID) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const statusMessage = (msg, isError = false) => {
-        const h2 = document.querySelector(`#${formId}`).closest('section').querySelector('h2');
-        if (h2) {
-            const messageDiv = document.createElement('div');
-            messageDiv.innerHTML = `<p style="color: ${isError ? 'red' : 'var(--primary)'}; font-weight: bold; margin-top: 10px; text-align: center;">${msg}</p>`;
-            h2.insertAdjacentElement('afterend', messageDiv);
-            setTimeout(() => messageDiv.remove(), 5000);
-        }
-      };
-      emailjs.sendForm(serviceID, templateID, this)
-        .then(() => { 
-            statusMessage('✔️ Submitted successfully! We will be in touch shortly.'); 
-            form.reset(); 
-        })
-        .catch(err => { 
-            console.error(err); 
-            statusMessage('❌ Submission error. Please try again or contact us directly.', true); 
-        });
-    });
-  }
-  setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
-
-  // --- Gallery Toggle Logic ---
-  
-  function toggleGallery(btn) {
-      const targetId = btn.getAttribute('data-target');
-      const hiddenItems = document.querySelectorAll(`#gallery .${targetId} .hidden-item`);
-      
-      // Toggle the 'expanded' class on the button itself
-      const isExpanded = btn.classList.toggle('expanded'); 
-
-      hiddenItems.forEach(item => {
-          // The CSS class 'hidden-item' has 'display: none !important', so we just toggle the class
-          item.classList.toggle('hidden-item');
-      });
-
-      if (isExpanded) {
-          // If expanded, change the button text to hide
-          btn.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Images';
-      } else {
-          // If collapsed, change the button text to show the number of items just hidden
-          const count = hiddenItems.length;
-          btn.innerHTML = `<i class="fas fa-chevron-down"></i> View ${count} More Images`;
-      }
-  }
-
-  // --- Lightbox Functions ---
-  
-  function openVideoLightbox(youtubeEmbedUrl) {
-    const lightbox = document.getElementById('videoLightbox');
-    const iframe = document.getElementById('lightboxVideo');
-    iframe.src = youtubeEmbedUrl + '?autoplay=1'; 
-    lightbox.style.display = 'flex';
-  }
-
-  function closeVideoLightbox() {
-    const lightbox = document.getElementById('videoLightbox');
-    const iframe = document.getElementById('lightboxVideo');
-    iframe.src = ''; 
-    lightbox.style.display = 'none';
-  }
-  
-  function openImageLightbox(src, alt) {
+    // --- LIGHTBOX FUNCTIONS ---
     const lightbox = document.getElementById('imageLightbox');
-    const img = document.getElementById('lightboxImage');
-    img.src = src;
-    img.alt = alt;
-    lightbox.style.display = 'flex';
-  }
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxVideo = document.getElementById('lightboxVideo');
+    const closeBtn = document.querySelector('.close-btn');
 
-  function closeImageLightbox() {
-    document.getElementById('imageLightbox').style.display = 'none';
-  }
-  
-  // Reuses the image lightbox for the GigGuide posters
-  function openPoster(src, alt) {
-      openImageLightbox(src, alt);
-  }
+    function openImageLightbox(src, alt) {
+        lightboxVideo.style.display = 'none';
+        lightboxVideo.src = '';
+        lightboxImage.style.display = 'block';
+        lightboxImage.src = src;
+        lightboxImage.alt = alt;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
 
-  function openDocumentLightbox(pdfUrl) {
-    const lightbox = document.getElementById('documentLightbox');
-    const iframe = document.getElementById('lightboxDocument');
-    iframe.src = pdfUrl; 
-    lightbox.style.display = 'flex';
-  }
+    // This function remains available for future video sections
+    function openVideoLightbox(url) { 
+        lightboxImage.style.display = 'none';
+        lightboxImage.src = '';
+        lightboxVideo.style.display = 'block';
+        lightboxVideo.src = url; 
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
 
-  function closeDocumentLightbox() {
-    const lightbox = document.getElementById('documentLightbox');
-    const iframe = document.getElementById('lightboxDocument');
-    iframe.src = ''; 
-    lightbox.style.display = 'none';
-  }
-  
-  // Initialize gallery buttons after the DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.view-more-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            toggleGallery(this);
+    closeBtn.onclick = function() {
+        lightbox.style.display = 'none';
+        lightboxVideo.src = '';
+        document.body.style.overflow = 'auto';
+    };
+
+    window.onclick = function(event) {
+        if (event.target == lightbox) {
+            lightbox.style.display = 'none';
+            lightboxVideo.src = '';
+            document.body.style.overflow = 'auto';
+        }
+    };
+
+
+    // --- GALLERY FUNCTIONALITY (FIXED & IMPROVED) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const albumContainers = document.querySelectorAll('.album-container');
+
+        albumContainers.forEach(container => {
+            const hiddenItems = container.querySelectorAll('.hidden-item');
+            const button = container.querySelector('.view-more-btn');
+            
+            if (hiddenItems.length === 0) {
+                button.style.display = 'none'; // Hide button if no items are hidden
+                return;
+            }
+
+            // Initial button text
+            button.innerHTML = '<i class="fas fa-eye"></i> View More Pictures (' + hiddenItems.length + ')';
+
+
+            // Button Click Handler
+            button.addEventListener('click', () => {
+                const isHidden = button.classList.contains('is-hidden');
+                
+                if (isHidden) {
+                    // ACTION: HIDE
+                    hiddenItems.forEach(item => {
+                        item.classList.add('hidden-item');
+                    });
+                    button.innerHTML = '<i class="fas fa-eye"></i> View More Pictures (' + hiddenItems.length + ')';
+                    button.classList.remove('is-hidden');
+                    
+                    // Scroll back to the top of the album for better UX
+                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                } else {
+                    // ACTION: SHOW (VIEW MORE)
+                    hiddenItems.forEach(item => {
+                        item.classList.remove('hidden-item');
+                    });
+                    button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Pictures';
+                    button.classList.add('is-hidden');
+                }
+            });
         });
-        
-        // Set initial button text based on the number of hidden items
-        const targetId = button.getAttribute('data-target');
-        const count = document.querySelectorAll(`#gallery .${targetId} .hidden-item`).length;
-        button.innerHTML = `<i class="fas fa-chevron-down"></i> View ${count} More Images`;
     });
-  });
 </script>
+
 </body>
   </html>
