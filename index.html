@@ -11,12 +11,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* CSS Variables */
+    /* CSS Variables - FIRE THEME */
     :root {
-      --primary: #e91e63;
-      --dark: #111;
-      --light: #f4f4f4;
+      --primary: #FF4500; /* Orange-Red for main accents */
+      --dark: #111; /* Keep black for contrast */
+      --light: #f0f0f0; /* Slightly off-white for main text */
       --secondary-dark: #333;
+      --fire-red: #D20000; /* Deep Fire Red for hovers */
+      --fire-orange: #FF8C00; /* Deep Orange for highlights */
+      --fire-yellow: #FFD700; /* Gold/Fire Yellow for special headings */
     }
 
     /* Reset and base styles */
@@ -24,77 +27,73 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: var(--light);
-      color: var(--secondary-dark);
+      /* Dark, Smoky Background */
+      background: var(--dark);
+      color: var(--light); /* Change text color to light for dark background */
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* --- LIQUID DISCO BACKGROUND EFFECTS --- */
+    /* --- FIRE THEME BACKGROUND EFFECTS (HEAT HAZE & SMOKE) --- */
+    /* Smoky Black to Dark Gray Background */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -3;
-      background: repeating-conic-gradient(
-        transparent 0deg 30deg,
-        rgba(255,0,0,0.2) 30deg 60deg,
-        rgba(255,255,0,0.2) 60deg 90deg,
-        rgba(0,255,0,0.2) 90deg 120deg,
-        rgba(0,255,255,0.2) 120deg 150deg,
-        rgba(255,0,255,0.2) 150deg 180deg,
-        rgba(255,255,255,0.1) 180deg 210deg
-      );
-      background-size: 600% 600%;
-      animation: rotateColors 25s linear infinite;
+      background: linear-gradient(to top, #0A0A0A, #1A1A1A);
       pointer-events: none;
     }
-    @keyframes rotateColors {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    
+    /* Simulate a flickering heat shimmer/glow on the page */
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: radial-gradient(circle at 50% 120%, rgba(255, 69, 0, 0.15) 0%, transparent 40%);
+        background-size: 100% 100%;
+        animation: heatShimmer 10s ease-in-out infinite alternate;
+        pointer-events: none;
     }
-
-    .light-beam {
-      position: fixed;
-      top: 0; left: -50%;
-      width: 200%; height: 100%;
-      background: linear-gradient(
-        45deg,
-        rgba(255,0,0,0.2),
-        rgba(255,255,0,0.2),
-        rgba(0,255,0,0.2),
-        rgba(0,255,255,0.2),
-        rgba(255,0,255,0.2)
-      );
-      background-size: 600% 600%;
-      animation: moveBeams 15s linear infinite;
-      z-index: -2;
-      mix-blend-mode: screen;
-    }
-    @keyframes moveBeams {
-      0% { background-position: 0 0; }
-      100% { background-position: 600% 600%; }
+    @keyframes heatShimmer {
+        0% { opacity: 0.6; transform: scale(1); }
+        100% { opacity: 0.9; transform: scale(1.05); }
     }
     
-    /* Particles */
+    .light-beam { display: none; } /* Removed liquid disco element */
+
+    /* Fire Embers/Sparks Particles */
     .disco-particle {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background-color: var(--primary);
+      width: 2px; 
+      height: 2px;
+      background-color: var(--fire-orange); 
       border-radius: 50%;
       opacity: 0.8;
-      animation: flicker 3s infinite, drift 5s ease-in-out infinite alternate;
+      box-shadow: 0 0 5px var(--fire-yellow); 
+      animation: flicker 2s infinite, driftUp 10s linear infinite; 
     }
+    /* Updated flicker for fire */
     @keyframes flicker {
       0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.2; }
+      75% { opacity: 0.9; }
+    }
+    /* Animation for sparks drifting upwards */
+    @keyframes driftUp {
+      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.8; }
       50% { opacity: 0.4; }
+      100% { transform: translateY(-100vh) translateX(50px) scale(0.5); opacity: 0; }
     }
-    @keyframes drift {
-      0% { transform: translate(0,0); }
-      100% { transform: translate(150px, -150px); }
+    
+    /* Ensure all particle styles use the fire look */
+    .disco-particles > .disco-particle[style] {
+        background-color: var(--fire-orange) !important; 
+        animation: flicker 2s infinite, driftUp 10s linear infinite !important;
     }
+
 
     /* --- HEADER AND NAVIGATION --- */
     header {
@@ -108,12 +107,12 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.8;
+      opacity: 0.6; /* Reduced opacity for dramatic effect */
     }
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.6); /* Darker overlay for contrast */
       z-index: 0;
     }
     .header-content {
@@ -141,20 +140,22 @@
       gap: 10px;
       z-index: 10;
       font-weight: 600;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(255, 69, 0, 0.4); /* Fiery shadow */
     }
     nav a {
-      color: #fff;
+      color: var(--light);
       text-decoration: none;
       padding: 8px 12px;
-      border-radius: 4px;
+      border-radius: 0; /* Sharper look */
       transition: all 0.4s ease-in-out;
+      text-shadow: 0 0 5px rgba(255, 140, 0, 0.6); 
     }
     nav a:hover,
     nav a.active {
-      background: var(--primary);
+      background: var(--primary); /* Fire Orange-Red accent */
       color: #fff;
       transform: translateY(-2px);
+      box-shadow: 0 0 10px var(--fire-orange); /* Stronger glow on hover */
     }
 
     /* --- BUTTONS & CTAS --- */
@@ -170,11 +171,12 @@
       border: none;
       cursor: pointer;
       transition: all 0.4s ease-in-out;
+      box-shadow: 0 0 5px rgba(255, 69, 0, 0.5); 
     }
     .cta:hover, button.cta:hover {
-      background: #c2185b;
+      background: var(--fire-red); /* Darker red on hover */
       transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 20px rgba(255, 69, 0, 0.8); /* Intense glow on hover */
     }
     
     /* Music button style */
@@ -193,13 +195,14 @@
         transition: all 0.3s ease;
     }
     #musicToggle:hover {
-        background-color: #c2185b;
+        background-color: var(--fire-red);
         transform: scale(1.05);
     }
 
     /* --- SECTIONS & HEADINGS --- */
     main {
       padding: 40px 10px;
+      background: var(--dark);
     }
     section {
       max-width: 1000px;
@@ -209,7 +212,11 @@
     h2, h3 {
       text-align: center;
       margin-bottom: 30px;
-      color: var(--dark);
+      color: var(--primary); /* Use primary color for headings */
+      text-shadow: 1px 1px 5px rgba(255, 69, 0, 0.3); /* Subtle text fire shadow */
+    }
+    h1, h4, h5, h6, label, section p, section li {
+        color: var(--light); /* Ensure text is readable on dark background */
     }
 
     /* --- SERVICES --- */
@@ -221,18 +228,18 @@
     }
     .service {
       flex: 1 1 300px;
-      background: #fff;
+      background: #222; /* Darker background for service cards */
       border-radius: 8px;
       padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
       transition: all 0.4s ease-in-out;
       text-align: center;
       border: 3px solid transparent;
-      cursor: pointer; /* Indicate it's clickable */
+      cursor: pointer; 
     }
     .service:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(255, 69, 0, 0.5);
       border-color: var(--primary);
     }
     .service img {
@@ -252,8 +259,8 @@
         width: 80%;
         max-width: 200px;
         height: 150px;
-        background: #444;
-        color: white;
+        background: #333;
+        color: var(--primary); /* Use primary color for placeholder text */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -261,7 +268,10 @@
         font-weight: 600;
         border-radius: 6px;
         margin: 0 auto 10px;
-        cursor: pointer; /* Indicate it's clickable */
+        cursor: pointer; 
+    }
+    .service h4 {
+        color: var(--fire-orange);
     }
 
     /* --- GALLERY / POSTERS / VIDEOS GRID STRUCTURE --- */
@@ -272,33 +282,26 @@
       margin-top: 30px;
     }
     .gallery-item, .poster-item, .video-wrapper {
-      background: #fff;
+      background: #222;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
       overflow: hidden;
       transition: all 0.4s ease-in-out;
       text-align: center;
-      /* Only video-wrapper has specific play overlay, others will use image click */
-      /* cursor: pointer; - removed from here, moved to specific img or container for clarity */
     }
     .gallery-item:hover, .poster-item:hover, .video-wrapper:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(255, 69, 0, 0.5);
       border-color: var(--primary);
     }
 
     /* Image/Media Elements within Grids */
-    .gallery-item img, .poster-item img, .video-wrapper img, .home-image-clickable { /* Added .home-image-clickable */
+    .gallery-item img, .poster-item img, .video-wrapper img, .home-image-clickable { 
       width: 100%;
-      height: 200px; /* Standard height for grid images */
+      height: 200px; 
       object-fit: cover;
       display: block;
-      cursor: pointer; /* Indicate it's clickable */
-    }
-    /* Specific styling for the main home image to override default height from above if needed */
-    #home-image {
-        height: auto !important; /* Keep original auto height for home image */
-        max-height: 500px; /* Optional: limit max height for large screens */
+      cursor: pointer; 
     }
     
     /* --- GALLERY DOWNLOAD LINK (BELOW IMAGE) --- */
@@ -313,19 +316,20 @@
         transition: background-color 0.3s ease-in-out;
     }
     .download-link:hover {
-        background: #c2185b;
+        background: var(--fire-red);
         transform: none;
     }
-    .gallery-item p, .poster-item p { /* Also target poster-item for consistency */
+    .gallery-item p, .poster-item p { 
       padding: 10px 15px 5px;
       margin: 0;
       font-weight: 600;
+      color: var(--light);
     }
 
     /* --- VIDEO SECTION --- */
     .video-wrapper {
       position: relative;
-      background: #111;
+      background: var(--dark);
     }
     .video-wrapper:hover .play-overlay {
         opacity: 1;
@@ -334,15 +338,18 @@
     .play-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.6);
         display: flex;
         justify-content: center;
         align-items: center;
-        color: white;
+        color: var(--fire-orange); /* Orange play button */
         font-size: 4em;
         transition: all 0.4s ease-in-out;
         opacity: 0.8;
-        pointer-events: none; /* Allow click to pass through to video-wrapper */
+        pointer-events: none; 
+    }
+    .video-wrapper p {
+        background: var(--dark) !important;
     }
 
     /* --- LIGHTBOX (Modal) - Shared styles for video and image --- */
@@ -362,8 +369,8 @@
         max-width: 900px;
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 0 50px rgba(233, 30, 99, 0.8);
-        background: black; /* Ensure black background for full image fill */
+        box-shadow: 0 0 50px rgba(255, 69, 0, 0.8); /* Intense fire glow */
+        background: black; 
         display: flex;
         justify-content: center;
         align-items: center;
@@ -373,25 +380,25 @@
         width: 100%;
         height: 100%;
         border: none;
-        aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+        aspect-ratio: 16 / 9; 
     }
     /* Specific for image */
     #lightboxImage {
         max-width: 100%;
-        max-height: 90vh; /* Adjust as needed */
-        object-fit: contain; /* Ensure image fits within modal */
+        max-height: 90vh; 
+        object-fit: contain; 
         border-radius: 10px;
     }
     /* Specific for document iframe */
     #lightboxDocument {
         width: 100%;
-        height: 80vh; /* Set a specific height for the document viewer */
+        height: 80vh; 
         border: none;
-        background: white; /* White background for document */
+        background: white; 
     }
     /* Adjust lightbox-content max-width for document if needed */
     .document-lightbox-content {
-        max-width: 1200px; /* Wider for document viewing */
+        max-width: 1200px; 
     }
 
 
@@ -413,10 +420,10 @@
 
     /* --- FORMS & BLOG --- */
     form {
-      background: white;
+      background: #222; /* Dark form background */
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
       max-width: 700px;
       margin: auto;
     }
@@ -425,14 +432,19 @@
       padding: 12px;
       margin-bottom: 15px;
       border-radius: 6px;
-      border: 1px solid #ccc;
+      background: #333;
+      color: var(--light);
+      border: 1px solid #444;
       font-size: 1em;
+    }
+    form input::placeholder, form textarea::placeholder {
+        color: #bbb;
     }
     
     .blog-post {
-      background: white;
+      background: #222;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
       padding: 20px;
       margin-bottom: 30px;
     }
@@ -453,7 +465,7 @@
       transition: all 0.3s ease-in-out;
     }
     .read-more-btn:hover {
-      background: #c2185b;
+      background: var(--fire-red);
     }
     
     /* --- NEW: DOCUMENT DOWNLOADS STYLES --- */
@@ -464,15 +476,15 @@
         margin-top: 30px;
     }
     .document-item {
-        background: white;
+        background: #222;
         border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         padding: 20px;
         text-align: center;
         border-top: 5px solid var(--primary);
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* Space out content and buttons */
+        justify-content: space-between; 
     }
     .document-item h4 {
         margin-bottom: 10px;
@@ -482,17 +494,17 @@
     .document-actions {
         display: flex;
         justify-content: space-around;
-        gap: 10px; /* Space between buttons */
+        gap: 10px; 
         margin-top: 15px;
     }
     .document-item .cta {
-        margin-top: 0; /* Override default cta margin */
+        margin-top: 0; 
         padding: 10px 15px;
-        flex-grow: 1; /* Make buttons share space equally */
+        flex-grow: 1; 
         font-size: 0.9em;
     }
     .cta.view-btn {
-        background: var(--secondary-dark); /* Different color for view */
+        background: var(--secondary-dark); 
     }
     .cta.view-btn:hover {
         background: #555;
@@ -500,16 +512,19 @@
     
     /* --- NEW: UPCOMING EVENTS STYLES --- */
     .upcoming-events-container {
-        margin-top: 60px; /* Separate from posters */
+        margin-top: 60px; 
         border-top: 4px dashed var(--primary);
         padding-top: 40px;
         text-align: center;
     }
     .upcoming-events-container h3 {
-        color: var(--primary);
+        color: var(--fire-yellow); /* Yellow for high visibility */
         font-size: 1.8em;
         text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         margin-bottom: 20px;
+    }
+    .upcoming-events-container p a { 
+        color: var(--fire-yellow) !important; 
     }
     .events-grid {
         display: grid;
@@ -518,11 +533,11 @@
         margin-top: 20px;
     }
     .event-card {
-        background: var(--dark);
+        background: #222;
         color: white;
         border-radius: 12px;
         padding: 25px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.8);
         transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
         text-align: left;
         border: 2px solid transparent;
@@ -533,21 +548,21 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(45deg, rgba(233, 30, 99, 0.4), rgba(255, 255, 255, 0.05));
+        background: linear-gradient(45deg, rgba(255, 69, 0, 0.4), rgba(0, 0, 0, 0.05)); /* Fire-themed gradient */
         z-index: 1;
         opacity: 0.8;
     }
     .event-card:hover {
         transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 15px 35px rgba(233, 30, 99, 0.6);
+        box-shadow: 0 15px 35px rgba(255, 69, 0, 0.6);
         border-color: var(--primary);
     }
     .event-card * {
-        position: relative; /* Bring content above ::before pseudo-element */
+        position: relative; 
         z-index: 2;
     }
     .event-card h4 {
-        color: #fff;
+        color: var(--fire-yellow);
         margin-top: 0;
         font-size: 1.5em;
         text-transform: uppercase;
@@ -563,9 +578,9 @@
         gap: 10px;
     }
     .event-card p i {
-        color: var(--primary);
+        color: var(--fire-orange); 
         font-size: 1.2em;
-        width: 20px; /* Fixed width for icon alignment */
+        width: 20px; 
         text-align: center;
     }
     .event-cta {
@@ -580,19 +595,22 @@
         transition: background-color 0.3s;
     }
     .event-cta:hover {
-        background: #c2185b;
-        transform: none; /* Override general cta transform */
+        background: var(--fire-red);
+        transform: none; 
     }
+    /* Terms section */
+    #terms h4 { color: var(--primary); }
+    #terms ul li { color: var(--light); }
 
 
     footer {
       background: var(--dark);
-      color: #ccc;
+      color: #aaa;
       padding: 30px 20px;
       text-align: center;
     }
     footer a {
-      color: #ccc;
+      color: var(--primary);
     }
     
     /* --- RESPONSIVE ADJUSTMENTS --- */
@@ -617,21 +635,20 @@
   🎶 Play Music
 </button>
 
-<div class="light-beam"></div>
 <div class="disco-particles">
-  <div class="disco-particle" style="top:10%; left:15%; background-color:#ff0000; animation-delay:0s;"></div>
-  <div class="disco-particle" style="top:20%; left:25%; background-color:#ffff00; animation-delay:0.5s;"></div>
-  <div class="disco-particle" style="top:30%; left:35%; background-color:#00ff00; animation-delay:1s;"></div>
-  <div class="disco-particle" style="top:50%; left:45%; background-color:#00ffff; animation-delay:1.2s;"></div>
-  <div class="disco-particle" style="top:60%; left:55%; background-color:#ff00ff; animation-delay:0.8s;"></div>
-  <div class="disco-particle" style="top:70%; left:65%; background-color:#ffffff; animation-delay:1.5s;"></div>
+  <div class="disco-particle" style="top:90%; left:10%; animation-delay:0s; transform: translateY(0) translateX(0);"></div>
+  <div class="disco-particle" style="top:80%; left:25%; animation-delay:1s; transform: translateY(0) translateX(0);"></div>
+  <div class="disco-particle" style="top:70%; left:40%; animation-delay:2s; transform: translateY(0) translateX(0);"></div>
+  <div class="disco-particle" style="top:95%; left:60%; animation-delay:3s; transform: translateY(0) translateX(0);"></div>
+  <div class="disco-particle" style="top:85%; left:75%; animation-delay:4s; transform: translateY(0) translateX(0);"></div>
+  <div class="disco-particle" style="top:75%; left:90%; animation-delay:5s; transform: translateY(0) translateX(0);"></div>
 </div>
 
 <header>
   <img src="assets/images/logo.jpg" class="hero" alt="PA system setup at an event" />
   <div class="overlay"></div>
   <div class="header-content">
-    <h1>Crystal‑Clear PA Rentals for Unforgettable Events</h1>
+    <h1>🔥 Crystal‑Clear PA Rentals for Unforgettable Events 🔥</h1>
     <p>Your trusted partner for professional sound in Eswatini.</p>
     <a href="#booking" class="cta">BOOK YOUR SOUND SYSTEM</a>
   </div>
@@ -845,8 +862,8 @@
             </div>
         </div>
     </div>
-    <p style="text-align:center; margin-top:30px; font-size: 0.9em; color: #555;">
-        Note: The Return Checklist will be filled and signed with  a staff member upon drop-off aswell as when the equipment is collected.
+    <p style="text-align:center; margin-top:30px; font-size: 0.9em; color: #aaa;">
+        Note: The Return Checklist will be filled and signed with a staff member upon drop-off aswell as when the equipment is collected.
     </p>
   </section>
   </main>
@@ -908,7 +925,7 @@
   setupEmailJS('charity-form', 'service_hqch6fi', 'template_ouh3xuo');
   setupEmailJS('review-form', 'service_hqch6fi', 'template_ouh3xuo');
 
-  // --- Blog Read More functionality ---
+  // --- Blog Read More functionality (Not currently used in HTML, but good to keep) ---
   function toggleReadMore(contentId, btn) {
     const cont = document.getElementById(contentId);
     if (cont.style.display === "block") {
@@ -921,79 +938,81 @@
   }
 
   // --- Lightbox Functions ---
+  let originalImageLightboxContent;
+  let isImageLightboxOpen = false;
+
   function openVideoLightbox(youtubeEmbedUrl) {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = youtubeEmbedUrl + '?autoplay=1'; 
+    iframe.src = youtubeEmbedUrl + "?autoplay=1";
     lightbox.style.display = 'flex';
   }
+
   function closeVideoLightbox() {
     const lightbox = document.getElementById('videoLightbox');
     const iframe = document.getElementById('lightboxVideo');
-    iframe.src = ''; 
+    iframe.src = ''; // Stop video playback
     lightbox.style.display = 'none';
   }
-  
+
   function openImageLightbox(imageUrl, altText) {
       const lightbox = document.getElementById('imageLightbox');
       const img = document.getElementById('lightboxImage');
       img.src = imageUrl;
       img.alt = altText;
       lightbox.style.display = 'flex';
+      isImageLightboxOpen = true;
   }
+
   function closeImageLightbox() {
-      document.getElementById('imageLightbox').style.display = 'none';
+      const lightbox = document.getElementById('imageLightbox');
+      lightbox.style.display = 'none';
+      isImageLightboxOpen = false;
   }
-  
+
   function openDocumentLightbox(documentUrl) {
-      const lightbox = document.getElementById('documentLightbox');
-      const iframe = document.getElementById('lightboxDocument');
-      iframe.src = documentUrl;
-      lightbox.style.display = 'flex';
+    const lightbox = document.getElementById('documentLightbox');
+    const iframe = document.getElementById('lightboxDocument');
+    iframe.src = documentUrl;
+    lightbox.style.display = 'flex';
   }
+
   function closeDocumentLightbox() {
-      document.getElementById('documentLightbox').style.display = 'none';
-      document.getElementById('lightboxDocument').src = ''; 
+    const lightbox = document.getElementById('documentLightbox');
+    const iframe = document.getElementById('lightboxDocument');
+    iframe.src = ''; 
+    lightbox.style.display = 'none';
   }
 
-  // --- Background Music Toggle ---
-  document.addEventListener('DOMContentLoaded', () => {
-    const music = document.getElementById('bgMusic');
-    const toggleButton = document.getElementById('musicToggle');
-    let isPlaying = false;
-
-    toggleButton.addEventListener('click', () => {
-      if (isPlaying) {
-        music.pause();
-        toggleButton.innerHTML = '🎶 Play Music';
-      } else {
-        music.play().then(() => {
-          toggleButton.innerHTML = '⏸ Pause Music';
-        }).catch(error => {
-          console.error('Autoplay prevented:', error);
-          alert('Autoplay was prevented. Please click anywhere on the page and try again.');
-          toggleButton.innerHTML = '🎶 Play Music';
-        });
+  // --- Global Click Listener for Lightbox Close ---
+  document.addEventListener('click', function(e) {
+      if (e.target.id === 'videoLightbox') {
+          closeVideoLightbox();
+      } else if (e.target.id === 'imageLightbox') {
+          closeImageLightbox();
+      } else if (e.target.id === 'documentLightbox') {
+          closeDocumentLightbox();
       }
-      isPlaying = !isPlaying;
-    });
+  });
 
-    // Handle user gesture to allow autoplay later
-    document.body.addEventListener('click', () => {
-        // If not playing and we haven't tried to play yet (or if music is currently paused), try to load/play
-        if (!isPlaying && music.paused) {
-            // Check if music is loaded, if not, load it
-            if (music.readyState < 2) {
-                music.load();
-            }
-        }
-    }, { once: true }); 
+
+  // --- Music Toggle ---
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+
+  musicToggle.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play().then(() => {
+        musicToggle.innerHTML = '🔈 Pause Music';
+      }).catch(error => {
+        console.error("Autoplay prevented:", error);
+        alert("Autoplay failed. Please click on the screen to enable music.");
+      });
+    } else {
+      bgMusic.pause();
+      musicToggle.innerHTML = '🎶 Play Music';
+    }
   });
 </script>
-
 </body>
   </html>
-
-
-
-
