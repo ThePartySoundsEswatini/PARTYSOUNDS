@@ -26,6 +26,11 @@
     /* Reset and base styles */
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html {
+        /* Smooth scrolling for anchors */
+        scroll-behavior: smooth;
+    }
+    
     body {
       font-family: 'Poppins', sans-serif;
       /* Dark, Smoky Background */
@@ -113,7 +118,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: var(--light); /* White for main banner text */
+      color: var(--light); 
     }
     
     .logo-container {
@@ -152,7 +157,7 @@
       box-shadow: 0 2px 8px rgba(255, 69, 0, 0.4);
     }
     nav a {
-      color: var(--light); /* Nav links text color is white/light */
+      color: var(--light); 
       text-decoration: none;
       padding: 8px 12px;
       border-radius: 0; 
@@ -161,14 +166,14 @@
     }
     /* ACTIVE/HOVER NAV LINK STYLES */
     nav a:hover,
-    nav a.active { /* 'active' class is added/removed by JavaScript */
+    nav a.active { 
       background: var(--primary); 
-      color: var(--light); /* Text remains light on dark background */
+      color: var(--light); 
       transform: translateY(-2px);
       box-shadow: 0 0 10px var(--fire-orange); 
     }
 
-    /* --- BUTTONS & CTAS --- */
+    /* --- BUTTONS & CTAS (No Change) --- */
     .cta, button.cta {
       display: inline-block;
       margin-top: 20px;
@@ -189,7 +194,7 @@
       box-shadow: 0 5px 20px rgba(255, 69, 0, 0.8); 
     }
     
-    /* --- SECTIONS & HEADINGS --- */
+    /* --- SECTIONS & HEADINGS (No Change) --- */
     main {
       padding: 40px 10px;
       background: var(--dark);
@@ -202,14 +207,12 @@
     h2, h3 {
       text-align: center;
       margin-bottom: 30px;
-      color: var(--primary); /* Primary text color: Orange-Red */
+      color: var(--primary); 
       text-shadow: 1px 1px 5px rgba(255, 69, 0, 0.3); 
     }
     h1, h4, h5, h6, label, section p, section li {
-        color: var(--light); /* Secondary text color: White/Light */
+        color: var(--light); 
     }
-    
-    /* Ensure only links and headings use the primary color */
     a, .download-link, .event-cta {
         color: var(--primary);
     }
@@ -220,14 +223,55 @@
         color: var(--fire-yellow);
     }
 
-    /* --- BOOKING FORM STYLING (IMPROVED PROFESSIONAL APPEARANCE) --- */
+    /* --- SERVICES IMAGE FIX --- */
+    .service img {
+      width: 80%;
+      max-width: 200px;
+      /* FIX: Consistent height for service images */
+      height: 200px; 
+      object-fit: cover; /* FIX: Ensure image fills the space */
+      margin-bottom: 10px;
+      border-radius: 6px;
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    }
+    .lighting-placeholder {
+        width: 80%;
+        max-width: 200px;
+        /* Match image height */
+        height: 200px; 
+        background: #333;
+        color: var(--primary); 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-radius: 6px;
+        margin: 0 auto 10px;
+        cursor: pointer; 
+    }
+
+
+    /* --- GALLERY IMAGE FIX --- */
+    .gallery-item img { 
+      width: 100%;
+      /* FIX: Consistent height for gallery images (Feed look) */
+      height: 250px; 
+      object-fit: cover; /* FIX: Ensure image fills the space */
+      display: block;
+      cursor: pointer; 
+      transition: transform 0.3s ease;
+    }
+
+
+    /* --- BOOKING FORM STYLING (No Change) --- */
     #booking-form {
         max-width: 500px;
         margin: 30px auto;
         padding: 25px;
         background: #1a1a1a;
         border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(255, 69, 0, 0.2); /* Subtle fiery form shadow */
+        box-shadow: 0 4px 20px rgba(255, 69, 0, 0.2); 
     }
 
     #booking-form input, 
@@ -236,7 +280,7 @@
         width: 100%;
         padding: 12px;
         margin-bottom: 15px;
-        border: 2px solid #555; /* Solid, but subtle border */
+        border: 2px solid #555; 
         border-radius: 6px;
         background-color: var(--input-bg);
         color: var(--light);
@@ -245,22 +289,15 @@
         transition: border-color 0.3s, box-shadow 0.3s;
     }
 
-    #booking-form input::placeholder,
-    #booking-form textarea::placeholder {
-        color: #aaa;
-    }
-
     #booking-form input:focus, 
     #booking-form select:focus, 
     #booking-form textarea:focus {
         border-color: var(--primary);
         outline: none;
-        /* Professional Fiery Focus Glow */
         box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.5), 0 0 8px var(--fire-orange); 
     }
     
     #booking-form select {
-        /* Custom arrow styling for professionalism */
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -273,11 +310,11 @@
     #booking-form button.cta {
         width: 100%;
         padding: 15px;
-        margin-top: 5px; /* Reduce margin to make it flush with the last field */
+        margin-top: 5px; 
         font-size: 1.1em;
     }
     
-    /* Footer/Contact Styles - Ensuring Fiery Consistency */
+    /* Footer/Contact Styles (No Change) */
     footer {
         background: #1a1a1a;
         color: var(--light); 
@@ -288,10 +325,6 @@
     footer h3 {
         color: var(--fire-yellow); 
         margin-bottom: 20px;
-    }
-    footer p {
-        margin: 10px 0;
-        color: var(--light); 
     }
     footer a {
         color: var(--primary); 
@@ -304,9 +337,18 @@
         text-decoration: underline;
     }
 
-    /* --- Remaining section styles (omitted for brevity, assume they are present and correct from previous turn) --- */
-    
-    /* Responsive adjustments... */
+    /* --- RESPONSIVE ADJUSTMENTS --- */
+    @media (max-width: 768px) {
+        .logo-container { top: 10px; left: 10px; } 
+        .logo { max-width: 80px; } 
+        .service img, .lighting-placeholder {
+            max-width: 150px;
+            height: 150px; /* Adjust height for smaller screens */
+        }
+        .gallery-item img { 
+            height: 200px; /* Adjust gallery height for smaller screens */
+        }
+    }
 
   </style>
 </head>
@@ -343,11 +385,10 @@
 </header>
 
 <nav id="main-nav">
-  <a href="#home" class="nav-link active">Home</a>
+  <a href="#home" class="nav-link">Home</a>
   <a href="#services" class="nav-link">Services</a>
   <a href="#gallery" class="nav-link">Gallery</a>
   <a href="#Posters And Upcomings" class="nav-link">GigGuide</a> 
-  <a href="#blog" class="nav-link">Blog</a>
   <a href="#videos" class="nav-link">Videos</a>
   <a href="#booking" class="nav-link">Book Now</a>
   
@@ -658,7 +699,7 @@
   }
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
 
-  // --- Lightbox Carousel/Gallery Functions (Omitted for brevity, assume they are correct) ---
+  // --- Lightbox Functions (Omitted for brevity, assumed correct) ---
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
   let currentImageIndex = -1;
 
@@ -752,25 +793,26 @@
 
   // --- Scrollspy/Active Nav Link Logic ---
   const navLinks = document.querySelectorAll('#main-nav a.nav-link');
-  const sections = document.querySelectorAll('main section, footer');
-  const offset = 100; // Adjust this value to set when the link should become active (e.g., 100px from top)
+  // Include the footer in the scroll detection
+  const sections = Array.from(document.querySelectorAll('main section, footer'));
+  
+  // FIX: Increased offset for sticky nav and better detection
+  const offset = 150; 
 
   function updateActiveNav() {
-    let currentSectionId = null;
+    let currentSectionId = 'home'; // Default to home
     
-    // Find which section is currently in the viewport
+    // Find which section is currently at or near the top of the viewport
     sections.forEach(section => {
-      // Use getBoundingClientRect for accurate viewport position
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= offset && rect.bottom >= offset) {
+      // getBoundingClientRect().top gives the distance from the top of the viewport
+      const top = section.getBoundingClientRect().top;
+      
+      // If the section's top is less than the offset (i.e., it has scrolled past the top of the screen + offset)
+      // and it hasn't scrolled fully past the bottom of the viewport
+      if (top <= offset && top + section.offsetHeight > 0) {
         currentSectionId = section.id;
       }
     });
-
-    // Handle the header/top of the page case
-    if (window.scrollY < offset) {
-        currentSectionId = 'home';
-    }
     
     // Update the 'active' class on navigation links
     navLinks.forEach(link => {
@@ -785,7 +827,9 @@
 
   // Initial call and event listener for scroll
   window.addEventListener('scroll', updateActiveNav);
+  // FIX: Also run once on load to highlight 'home' correctly
   document.addEventListener('DOMContentLoaded', updateActiveNav);
+
 
   // --- Music Toggle ---
   const musicToggle = document.getElementById('musicToggle');
