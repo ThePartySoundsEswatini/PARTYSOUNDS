@@ -76,7 +76,7 @@
       box-shadow: 0 5px 20px rgba(255, 69, 0, 0.8); 
     }
 
-    /* --- HEADER AND NAVIGATION (No Change) --- */
+    /* --- HEADER AND NAVIGATION --- */
     header {
       position: relative;
       height: 80vh;
@@ -105,167 +105,117 @@
       box-shadow: 0 0 10px var(--fire-orange); 
     }
 
-    /* --- SECTION LAYOUTS --- */
+    /* --- MUSIC BUTTON FIX (Professional Appearance) --- */
+    #musicToggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+        background: rgba(17, 17, 17, 0.8); /* Dark semi-transparent background */
+        color: var(--primary); /* Orange-Red icon/text */
+        border: 2px solid var(--primary);
+        border-radius: 50px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        backdrop-filter: blur(4px); /* Subtle blur effect */
+        box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+    }
+    #musicToggle:hover {
+        background: var(--primary);
+        color: var(--light);
+        box-shadow: 0 0 20px var(--fire-yellow);
+    }
+
+    /* --- SECTION LAYOUTS (No Change) --- */
     main { padding: 40px 10px; background: var(--dark); }
     section { max-width: 1000px; margin: 0 auto 60px auto; padding: 20px; }
+    .services { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
+    .service { flex: 1 1 300px; max-width: 300px; cursor: pointer; padding: 15px; border: 1px solid #333; border-radius: 8px; transition: background-color 0.3s; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .gallery-item { background: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
+    .events-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 20px; }
 
-    /* Services Grid Layout */
-    .services {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 20px;
-      text-align: center;
-    }
-    .service {
-        flex: 1 1 300px; 
-        max-width: 300px; 
-        cursor: pointer;
-        padding: 15px;
-        border: 1px solid #333;
-        border-radius: 8px;
-        transition: background-color 0.3s;
-    }
-
-    /* Gallery Grid Layout */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .gallery-item {
-      background: #1a1a1a;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Video Grid Layout */
-    .video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-        padding: 0 20px;
-    }
-
-    /* Event Grid Layout */
-    .events-grid {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 25px;
-        margin-top: 20px;
-    }
-    .event-card {
-        flex: 1 1 300px;
-        max-width: 400px;
-        background: #1a1a1a;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(255, 69, 0, 0.1);
-        text-align: center;
-    }
-
-
-    /* --- IMAGE CONTAINER FIXES --- */
-
-    /* Services Image Container Fix */
+    /* --- IMAGE CONTAINER FIXES (No Change) --- */
     .service img, .lighting-placeholder {
-      /* Define a consistent container size */
-      width: 100%; 
-      max-width: 100%; 
-      height: 200px; 
-      display: block;
-      margin: 0 auto 10px;
-      border-radius: 6px;
-      
-      /* Ensure image fills container without stretching */
-      object-fit: cover; 
+      width: 100%; height: 200px; display: block; margin: 0 auto 10px;
+      border-radius: 6px; object-fit: cover; 
     }
-    .lighting-placeholder {
-        background: #333;
-        color: var(--primary); 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9em;
-        font-weight: 600;
-        cursor: pointer; 
-    }
-
-
-    /* Gallery Image Container Fix */
     .gallery-item img { 
-      /* Define a consistent container size */
-      width: 100%;
-      height: 250px; 
-      display: block;
-      
-      /* Ensure image fills container without stretching */
-      object-fit: cover; 
-      cursor: pointer; 
-      transition: transform 0.3s ease;
+      width: 100%; height: 250px; display: block; object-fit: cover; 
+      cursor: pointer; transition: transform 0.3s ease;
     }
 
-    /* Video Thumbnail Fix */
+    /* --- VIDEO THUMBNAIL FIX (Integrated Play Icon) --- */
+    .video-wrapper {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease;
+    }
+    .video-wrapper:hover {
+        transform: scale(1.03);
+    }
     .video-wrapper img {
         width: 100%;
         height: 180px; 
         object-fit: cover;
         display: block;
-        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+    .play-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5); 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s;
+    }
+    .video-wrapper:hover .play-overlay {
+        background: rgba(255, 69, 0, 0.2); 
+    }
+    .play-overlay i {
+        font-size: 3em;
+        color: var(--light); 
+        border: 4px solid var(--light);
+        border-radius: 50%;
+        padding: 20px;
+        background: var(--primary); 
+        box-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .video-wrapper:hover .play-overlay i {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px var(--fire-yellow);
+    }
+    .video-wrapper p {
+        padding: 10px; font-weight: 600; color: white; background: var(--secondary-dark); margin: 0; text-align: center;
     }
 
-
-    /* --- BOOKING FORM STYLING (No Change) --- */
-    #booking-form {
-        max-width: 500px;
-        margin: 30px auto;
-        padding: 25px;
-        background: #1a1a1a;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(255, 69, 0, 0.2); 
-    }
-
-    #booking-form input, 
-    #booking-form select, 
-    #booking-form textarea {
-        width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #555; 
-        border-radius: 6px; background-color: var(--input-bg); color: var(--light);
-        font-family: inherit; font-size: 1em; transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    #booking-form input:focus, #booking-form select:focus, #booking-form textarea:focus {
-        border-color: var(--primary); outline: none;
-        box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.5), 0 0 8px var(--fire-orange); 
-    }
-    
-    /* --- FOOTER (No Change) --- */
+    /* --- FOOTER FIX: Added TikTok and YouTube --- */
     footer {
         background: #1a1a1a; color: var(--light); text-align: center;
         padding: 40px 20px; border-top: 4px solid var(--primary);
     }
     footer h3 { color: var(--fire-yellow); margin-bottom: 20px; }
+    /* Social Media Link Styling */
+    footer a i {
+        margin-right: 5px;
+    }
 
 
-    /* --- RESPONSIVENESS FIX (Phone View) --- */
+    /* --- RESPONSIVENESS (No Change) --- */
     @media (max-width: 768px) {
-        /* Nav links can stack a bit tighter */
         nav { gap: 5px; padding: 10px 5px; }
-        
-        /* Force single column for services on phone */
-        .services {
-            flex-direction: column;
-            align-items: center;
-        }
-        .service {
-            max-width: 90%; 
-            margin-bottom: 15px; 
-        }
-
-        /* Gallery/Video/Event grids adapt to smaller screens naturally due to minmax, but we ensure content padding is fine */
-        section {
-            padding: 10px;
-        }
+        .services { flex-direction: column; align-items: center; }
+        .service { max-width: 90%; margin-bottom: 15px; }
+        section { padding: 10px; }
+        #musicToggle { bottom: 10px; right: 10px; padding: 8px 12px; font-size: 0.8em; }
     }
 
   </style>
@@ -452,20 +402,23 @@
     <h3>Watch Our Events in Action</h3>
     <p style="text-align:center; margin-bottom:30px;">Click to watch event recaps and sound system demonstrations.</p>
     <div class="video-grid">
+      
       <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
         <img src="assets/images/bintops.jpg" alt="Event Recap Video 1 Thumbnail" />
         <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Full System Demo</p>
+        <p>Full System Demo</p>
       </div>
+      
       <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/S_T1xG3kK5Y')">
         <img src="assets/images/camp.jpg" alt="Outdoor Event Video 2 Thumbnail" />
         <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Outdoor Party Vibe</p>
+        <p>Outdoor Party Vibe</p>
       </div>
+      
       <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/H0ZfPq7sB64')">
         <img src="assets/images/redcarpet.jpg" alt="Cultural Event Video 3 Thumbnail" />
         <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p style="padding: 10px; font-weight: 600; color: white; background: var(--dark); margin: 0;">Cultural Day Sound Check</p>
+        <p>Cultural Day Sound Check</p>
       </div>
     </div>
   </section>
@@ -555,16 +508,48 @@
 
 <footer id="contact">
   <h3>Contact Us</h3>
-  <p>Phone📞: <a href="tel:+26876031087">+268 76031087 / 79637097</a></p>
-  <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank">Chat with us</a></p>
-  <p>Facebook: <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098" target="_blank">The Party Sounds Eswatini</a></p>
-  <p>Email📧: <a href="mailto:partysoundsbookings@outlook.com">partysoundsbookings@outlook.com</a></p>
+  <p>Phone📞: <a href="tel:+26876031087"><i class="fas fa-phone"></i> +268 76031087 / 79637097</a></p>
+  <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a></p>
+  
+  <p>Facebook: <a href="https://www.facebook.com/people/The-Party-Sounds-Eswatini/61559046577098" target="_blank"><i class="fab fa-facebook-f"></i> The Party Sounds Eswatini</a></p>
+  
+  <p>TikTok: <a href="https://www.tiktok.com/@thepartysounds" target="_blank"><i class="fab fa-tiktok"></i> @thepartysounds</a></p>
+  
+  <p>YouTube: <a href="https://www.youtube.com/@PartySounds-q2f" target="_blank"><i class="fab fa-youtube"></i> @PartySounds-q2f</a></p>
+  
+  <p>Email📧: <a href="mailto:partysoundsbookings@outlook.com"><i class="fas fa-envelope"></i> partysoundsbookings@outlook.com</a></p>
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<div id="videoLightbox" class="lightbox">...</div>
-<div id="imageLightbox" class="lightbox">...</div>
-<div id="documentLightbox" class="lightbox">...</div>
+<div id="videoLightbox" class="lightbox">
+  <span class="close-btn" onclick="closeVideoLightbox()">&times;</span>
+  <div class="lightbox-content">
+    <iframe id="lightboxVideo" src="" allow="autoplay" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div id="imageLightbox" class="lightbox">
+  <span class="close-btn" onclick="closeImageLightbox()">&times;</span>
+  <div class="lightbox-content">
+    <span class="lightbox-nav" id="prevBtn" onclick="navigateGallery(-1)"><i class="fas fa-chevron-left"></i></span>
+    <div id="lightboxImageContainer">
+      <img id="lightboxImage" src="" alt="">
+    </div>
+    <span class="lightbox-nav" id="nextBtn" onclick="navigateGallery(1)"><i class="fas fa-chevron-right"></i></span>
+    <div id="lightboxDetails">
+        <h4 id="lightboxTitle"></h4>
+        <p id="lightboxDescription"></p>
+        <a id="lightboxDownloadLink" href="#" download class="download-link"><i class="fas fa-download"></i> Download Image</a>
+    </div>
+  </div>
+</div>
+
+<div id="documentLightbox" class="lightbox">
+    <span class="close-btn" onclick="closeDocumentLightbox()">&times;</span>
+    <div class="lightbox-content document-lightbox-content">
+        <iframe id="lightboxDocument" src="" title="Rental Agreement Document"></iframe>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -591,14 +576,17 @@
   }
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
 
-  // --- Lightbox Functions (Code omitted for brevity) ---
+  // --- Lightbox Functions ---
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
   let currentImageIndex = -1;
-
+  const videoLightbox = document.getElementById('videoLightbox');
+  const documentLightbox = document.getElementById('documentLightbox');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxDocument = document.getElementById('lightboxDocument');
+  
   function updateLightbox(index) {
     if (index < 0) { index = galleryItems.length - 1; } else if (index >= galleryItems.length) { index = 0; }
     currentImageIndex = index;
-
     const currentImg = galleryItems[currentImageIndex];
     document.getElementById('lightboxImage').src = currentImg.getAttribute('data-full-src');
     document.getElementById('lightboxImage').alt = currentImg.alt;
@@ -606,46 +594,35 @@
     document.getElementById('lightboxDescription').textContent = currentImg.getAttribute('data-description');
     document.getElementById('lightboxDownloadLink').href = currentImg.getAttribute('data-full-src');
   }
-
-  function openGalleryLightbox(index) {
-    updateLightbox(index);
-    document.getElementById('imageLightbox').style.display = 'flex';
-  }
-
+  function openGalleryLightbox(index) { updateLightbox(index); document.getElementById('imageLightbox').style.display = 'flex'; }
   function navigateGallery(direction) { updateLightbox(currentImageIndex + direction); }
-
   function closeImageLightbox() {
       document.getElementById('imageLightbox').style.display = 'none';
       currentImageIndex = -1;
   }
-  
-  const videoLightbox = document.getElementById('videoLightbox');
-  const documentLightbox = document.getElementById('documentLightbox');
-  const lightboxVideo = document.getElementById('lightboxVideo');
-  const lightboxDocument = document.getElementById('lightboxDocument');
-
   function openVideoLightbox(url) {
       closeAllLightboxes();
-      lightboxVideo.src = url; 
+      lightboxVideo.src = url.includes('?') ? url + '&autoplay=1' : url + '?autoplay=1'; 
       videoLightbox.style.display = 'flex';
+      const bgMusic = document.getElementById('bgMusic');
+      if (!bgMusic.paused) {
+          bgMusic.pause();
+          document.getElementById('musicToggle').innerHTML = '🎶 Play Music';
+      }
   }
-  
   function closeVideoLightbox() {
       videoLightbox.style.display = 'none';
       lightboxVideo.src = ''; 
   }
-
   function openDocumentLightbox(url) {
       closeAllLightboxes();
       lightboxDocument.src = url;
       documentLightbox.style.display = 'flex';
   }
-
   function closeDocumentLightbox() {
       documentLightbox.style.display = 'none';
       lightboxDocument.src = ''; 
   }
-  
   function openImageLightbox(src, alt) {
       closeAllLightboxes();
       const lightbox = document.getElementById('imageLightbox');
@@ -656,61 +633,72 @@
       lightbox.style.display = 'flex';
       currentImageIndex = -1; 
   }
-  
   function closeAllLightboxes() {
     closeImageLightbox();
     closeVideoLightbox();
     closeDocumentLightbox();
-    document.getElementById('lightboxDetails').style.display = 'block';
-    document.querySelectorAll('.lightbox-nav').forEach(nav => nav.style.display = 'block');
+    // Reset image lightbox details view if it was opened via gallery
+    const details = document.getElementById('lightboxDetails');
+    const navs = document.querySelectorAll('.lightbox-nav');
+    if(details && details.style.display === 'none') {
+        details.style.display = 'block';
+        navs.forEach(nav => nav.style.display = 'block');
+    }
   }
-
+  window.onclick = function(event) {
+      if (event.target == document.getElementById('imageLightbox') || 
+          event.target == videoLightbox || 
+          event.target == documentLightbox) {
+          closeAllLightboxes();
+      }
+  };
+  document.onkeydown = function(e) {
+    if (document.getElementById('imageLightbox').style.display === 'flex' && currentImageIndex !== -1) {
+        e = e || window.event;
+        if (e.keyCode == '37') { navigateGallery(-1); } else if (e.keyCode == '39') { navigateGallery(1); }
+    }
+    if (e.keyCode == '27') { closeAllLightboxes(); }
+  };
 
   // --- Scrollspy/Active Nav Link Logic ---
   const navLinks = document.querySelectorAll('#main-nav a.nav-link');
   const sections = Array.from(document.querySelectorAll('main section, footer'));
   const offset = 150; 
-
   function updateActiveNav() {
     let currentSectionId = 'home';
-    
-    // Check if we are at the very top (Header section)
-    if (window.scrollY < offset / 2) {
-        currentSectionId = 'home';
-    } else {
+    if (window.scrollY < offset / 2) { currentSectionId = 'home'; } 
+    else {
         sections.forEach(section => {
           const top = section.getBoundingClientRect().top;
-          
           if (top <= offset && top + section.offsetHeight > 0) {
             currentSectionId = section.id;
           }
         });
     }
-    
-    // If the scroll is past the last section, assume the last section's link (contact/footer)
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
-        currentSectionId = 'contact'; 
-    }
-    
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) { currentSectionId = 'contact'; }
     navLinks.forEach(link => {
       link.classList.remove('active');
       const targetId = link.getAttribute('href').substring(1);
-      
-      if (targetId === currentSectionId) {
+      if (targetId === currentSectionId || (currentSectionId === 'home' && targetId === 'home')) {
         link.classList.add('active');
-      }
-      
-      // Special case for 'home' link matching the header/top of the page
-      if (currentSectionId === 'home' && targetId === 'home') {
-          link.classList.add('active');
       }
     });
   }
-
   window.addEventListener('scroll', updateActiveNav);
   document.addEventListener('DOMContentLoaded', updateActiveNav);
-
-  // --- Music Toggle & Lightbox Close Logic (Code omitted for brevity) ---
+  
+  // --- Music Toggle ---
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+  musicToggle.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(error => { console.log("Autoplay prevented:", error); });
+      musicToggle.innerHTML = '🎶 Pause Music';
+    } else {
+      bgMusic.pause();
+      musicToggle.innerHTML = '🎶 Play Music';
+    }
+  });
 </script>
 
 </body>
