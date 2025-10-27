@@ -49,18 +49,18 @@
     h1, h4, h5, h6, label, section p, section li {
         color: var(--light); 
     }
-    a, .download-link { /* Removed .event-cta from this, as it's now a button style */
+    a, .download-link {
         color: var(--primary);
     }
     .service h4 {
         color: var(--fire-orange);
     }
-    .cta, button.cta, .event-cta { /* Added .event-cta here to style it as a button */
+    .cta, button.cta, .event-cta {
       display: inline-block;
       margin-top: 20px;
       background: var(--primary);
       color: var(--light);
-      padding: 10px 20px; /* Reduced padding slightly for a tighter fit in small spaces */
+      padding: 10px 20px;
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
@@ -68,7 +68,7 @@
       cursor: pointer;
       transition: all 0.4s ease-in-out;
       box-shadow: 0 0 5px rgba(255, 69, 0, 0.5); 
-      font-size: 0.9em; /* Smaller font for event card CTA */
+      font-size: 0.9em;
     }
     .cta:hover, button.cta:hover, .event-cta:hover {
       background: var(--fire-red); 
@@ -76,7 +76,6 @@
       box-shadow: 0 5px 20px rgba(255, 69, 0, 0.8); 
     }
 
-    /* Standard CTA for the Header and main section */
     .header-content .cta {
         padding: 14px 28px;
         font-size: 1em;
@@ -111,7 +110,7 @@
       box-shadow: 0 0 10px var(--fire-orange); 
     }
 
-    /* --- MUSIC BUTTON FIX (No Change) --- */
+    /* --- MUSIC BUTTON FIX --- */
     #musicToggle {
         position: fixed; bottom: 20px; right: 20px; z-index: 100;
         background: rgba(17, 17, 17, 0.8); color: var(--primary);
@@ -140,7 +139,7 @@
         text-align: center; display: flex; flex-direction: column; justify-content: space-between;
     }
 
-    /* --- IMAGE CONTAINER FIXES (No Change) --- */
+    /* --- IMAGE CONTAINER FIXES --- */
     .service img, .lighting-placeholder {
       width: 100%; height: 200px; display: block; margin: 0 auto 10px;
       border-radius: 6px; object-fit: cover; 
@@ -150,7 +149,7 @@
       cursor: pointer; transition: transform 0.3s ease;
     }
 
-    /* --- VIDEO THUMBNAIL FIX (No Change) --- */
+    /* --- VIDEO THUMBNAIL FIX --- */
     .video-wrapper { position: relative; cursor: pointer; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease; }
     .video-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; transition: opacity 0.3s; }
     .play-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; transition: background-color 0.3s; }
@@ -159,25 +158,23 @@
 
     /* --- PROFESSIONAL BOOKING FORM REDESIGN --- */
     #booking-form {
-        max-width: 800px; /* Wider form for 2-column layout */
+        max-width: 800px;
         margin: 30px auto;
         padding: 30px;
         background: #1a1a1a;
         border-radius: 12px;
         box-shadow: 0 6px 25px rgba(255, 69, 0, 0.3); 
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        grid-template-columns: 1fr 1fr; 
         gap: 20px;
     }
     #booking-form .full-width {
-        grid-column: 1 / -1; /* Spans both columns */
+        grid-column: 1 / -1; 
     }
-    /* Style for input/select/textarea containers */
     #booking-form div {
         display: flex;
         flex-direction: column;
     }
-    /* Style for labels (if we had them, good practice) */
     #booking-form label {
         margin-bottom: 5px;
         font-weight: 300;
@@ -191,27 +188,23 @@
         width: 100%; padding: 12px; border: 1px solid #555; 
         border-radius: 6px; background-color: var(--input-bg); color: var(--light);
         font-family: inherit; font-size: 1em; transition: border-color 0.3s, box-shadow 0.3s;
-        margin-bottom: 0; /* Removed default margin from inputs */
-    }
-    #booking-form textarea {
-        resize: vertical;
+        margin-bottom: 0; 
     }
     #booking-form input:focus, #booking-form select:focus, #booking-form textarea:focus {
         border-color: var(--primary); outline: none;
         box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.5), 0 0 8px var(--fire-orange); 
     }
     
-    /* Center the submit button below the two columns */
     #booking-form button.cta {
         grid-column: 1 / -1;
         margin-top: 10px;
         justify-self: center;
-        width: 50%; /* Make the button stand out */
+        width: 50%;
         padding: 12px 25px;
         font-size: 1.1em;
     }
     
-    /* --- FOOTER FIX: Removed images after contact section (implicit by removing image tags) and style cleanup --- */
+    /* --- FOOTER --- */
     footer {
         background: #1a1a1a; color: var(--light); text-align: center;
         padding: 40px 20px; border-top: 4px solid var(--primary);
@@ -223,7 +216,6 @@
 
     /* --- RESPONSIVENESS FIX --- */
     @media (max-width: 768px) {
-        /* Form switches to single column */
         #booking-form {
             grid-template-columns: 1fr;
             padding: 20px;
@@ -237,6 +229,37 @@
         section { padding: 10px; }
         #musicToggle { bottom: 10px; right: 10px; padding: 8px 12px; font-size: 0.8em; }
     }
+
+    /* --- LIGHTBOX STYLES (Required for Lightbox Functions to work) --- */
+    .lightbox {
+        display: none; position: fixed; z-index: 1000; left: 0; top: 0; 
+        width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9);
+        justify-content: center; align-items: center;
+    }
+    .lightbox-content {
+        position: relative; margin: auto; padding: 20px; background-color: var(--dark); border-radius: 8px;
+        width: 90%; max-width: 900px; box-shadow: 0 0 20px rgba(255, 69, 0, 0.7);
+    }
+    #lightboxImage { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto 10px; }
+    .close-btn { position: absolute; top: 15px; right: 35px; color: var(--light); font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 1001; }
+    .close-btn:hover, .close-btn:focus { color: var(--primary); text-decoration: none; cursor: pointer; }
+    #lightboxVideo, #lightboxDocument { width: 100%; height: 60vh; border: none; }
+    
+    .document-lightbox-content { max-width: 1000px; }
+    
+    /* Gallery Navigation */
+    .lightbox-nav {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        color: white; font-size: 2em; padding: 10px; cursor: pointer;
+        user-select: none; transition: 0.3s; background: rgba(0,0,0,0.5); border-radius: 50%;
+    }
+    .lightbox-nav:hover { background: rgba(255, 69, 0, 0.7); }
+    #prevBtn { left: 20px; }
+    #nextBtn { right: 20px; }
+    #lightboxDetails { text-align: center; padding-top: 10px; }
+    #lightboxDetails h4 { color: var(--fire-yellow); }
+    #lightboxDetails p { margin-bottom: 10px; }
+
 
   </style>
 </head>
@@ -257,7 +280,7 @@
   </div>
   
   <div class="header-content">
-    <h1>🔥 Crystal‑Clear PA Rentals for Unforgettable Events 🔥</h1>
+    <h1>Crystal‑Clear PA Rentals for Unforgettable Events </h1>
     <p>Your trusted partner for professional sound in Eswatini.</p>
     <a href="#booking" class="cta">BOOK YOUR SOUND SYSTEM</a>
   </div>
@@ -324,7 +347,63 @@
     <h3>Our Gallery</h3>
     <p style="text-align:center; margin-bottom:30px;">Scroll through our event photos! Click any image to view details and navigate the full album.</p>
     <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="assets/images/Culture.jpg" alt="Cultural event sound setup" 
+             data-full-src="assets/images/Culture.jpg"
+             data-title="Cultural Event Sound" 
+             data-description="Providing crystal-clear audio for the annual cultural celebration. Great vibes!"
+             data-index="0"
+             onclick="openGalleryLightbox(0)" />
+        <div class="gallery-item-caption">
+            <h4>Cultural Event Sound</h4>
+            <p>Providing crystal-clear audio for the annual cultural celebration. Great vibes!</p>
+            <a href="assets/images/Culture.jpg" download="Cultural_event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+        </div>
       </div>
+      
+      <div class="gallery-item">
+        <img src="assets/images/camp.jpg" alt="Outdoor night camping event" 
+             data-full-src="assets/images/camp.jpg"
+             data-title="Outdoor Night Vibe" 
+             data-description="The sub-bins were pumping at this outdoor camping event. Perfect setup for a night under the stars."
+             data-index="1"
+             onclick="openGalleryLightbox(1)" />
+        <div class="gallery-item-caption">
+            <h4>Outdoor Night Vibe</h4>
+            <p>The sub-bins were pumping at this outdoor camping event. Perfect setup for a night under the stars.</p>
+            <a href="assets/images/camp.jpg" download="Outdoor_night_camping.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="assets/images/1event.jpg" alt="Sporting event sound system" 
+             data-full-src="assets/images/1event.jpg"
+             data-title="Sporting Event Day" 
+             data-description="Loud and clear announcements for the crowd and commentators at the local sports day."
+             data-index="2"
+             onclick="openGalleryLightbox(2)" />
+        <div class="gallery-item-caption">
+            <h4>Sporting Event Day</h4>
+            <p>Loud and clear announcements for the crowd and commentators at the local sports day.</p>
+            <a href="assets/images/1event.jpg" download="Sporting_event.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="assets/images/pa.jpg" alt="DJ Booth PA system close-up" 
+             data-full-src="assets/images/pa.jpg"
+             data-title="PA System Close-Up" 
+             data-description="The heart of the party: our robust PA system ready for action! Mixers and tops looking clean."
+             data-index="3"
+             onclick="openGalleryLightbox(3)" />
+        <div class="gallery-item-caption">
+            <h4>PA System Close-Up</h4>
+            <p>The heart of the party: our robust PA system ready for action! Mixers and tops looking clean.</p>
+            <a href="assets/images/pa.jpg" download="PA_System_Setup.jpg" class="download-link"><i class="fas fa-download"></i> Download Image</a>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <section id="Posters And Upcomings">
@@ -352,15 +431,32 @@
           <a href="#booking" class="event-cta">Book Our Sound Now!</a>
         </div>
       </div>
-      
-      </div>
+    </div>
     </section>
 
   <section id="videos">
     <h3>Watch Our Events in Action</h3>
     <p style="text-align:center; margin-bottom:30px;">Click to watch event recaps and sound system demonstrations.</p>
     <div class="video-grid">
+      
+      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
+        <img src="assets/images/bintops.jpg" alt="Event Recap Video 1 Thumbnail" />
+        <div class="play-overlay"><i class="fas fa-play"></i></div>
+        <p>Full System Demo</p>
       </div>
+      
+      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/S_T1xG3kK5Y')">
+        <img src="assets/images/camp.jpg" alt="Outdoor Event Video 2 Thumbnail" />
+        <div class="play-overlay"><i class="fas fa-play"></i></div>
+        <p>Outdoor Party Vibe</p>
+      </div>
+      
+      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/H0ZfPq7sB64')">
+        <img src="assets/images/redcarpet.jpg" alt="Cultural Event Video 3 Thumbnail" />
+        <div class="play-overlay"><i class="fas fa-play"></i></div>
+        <p>Cultural Day Sound Check</p>
+      </div>
+    </div>
   </section>
 
   
@@ -456,7 +552,9 @@
             <p></p>
             <div class="document-actions">
                 <a href="assets/images/return.pdf" download="TPS_Return_Checklist.pdf" class="cta">
-                    <i class="fas fa-file-signature"></i> Download Checklist
+                    <i class="fas fa-file-signature"></i>Download 
+
+        
                 </a>
                 <a href="#" onclick="openDocumentLightbox('assets/images/Return_Checklist.pdf'); return false;" class="cta view-btn">
                     <i class="fas fa-eye"></i> View Checklist
@@ -485,9 +583,35 @@
   <p style="margin-top:20px;">&copy; 2025 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
-<div id="videoLightbox" class="lightbox">...</div>
-<div id="imageLightbox" class="lightbox">...</div>
-<div id="documentLightbox" class="lightbox">...</div>
+<div id="videoLightbox" class="lightbox">
+  <span class="close-btn" onclick="closeVideoLightbox()">&times;</span>
+  <div class="lightbox-content">
+    <iframe id="lightboxVideo" src="" allow="autoplay" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div id="imageLightbox" class="lightbox">
+  <span class="close-btn" onclick="closeImageLightbox()">&times;</span>
+  <div class="lightbox-content">
+    <span class="lightbox-nav" id="prevBtn" onclick="navigateGallery(-1)"><i class="fas fa-chevron-left"></i></span>
+    <div id="lightboxImageContainer">
+      <img id="lightboxImage" src="" alt="">
+    </div>
+    <span class="lightbox-nav" id="nextBtn" onclick="navigateGallery(1)"><i class="fas fa-chevron-right"></i></span>
+    <div id="lightboxDetails">
+        <h4 id="lightboxTitle"></h4>
+        <p id="lightboxDescription"></p>
+        <a id="lightboxDownloadLink" href="#" download class="download-link"><i class="fas fa-download"></i> Download Image</a>
+    </div>
+  </div>
+</div>
+
+<div id="documentLightbox" class="lightbox">
+    <span class="close-btn" onclick="closeDocumentLightbox()">&times;</span>
+    <div class="lightbox-content document-lightbox-content">
+        <iframe id="lightboxDocument" src="" title="Rental Agreement Document"></iframe>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -514,9 +638,147 @@
   }
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
 
-  // --- Lightbox Functions (Logic omitted for brevity, assumed functional) ---
+  // --- Lightbox Functions (Restored full set) ---
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+  let currentImageIndex = -1;
+  const videoLightbox = document.getElementById('videoLightbox');
+  const documentLightbox = document.getElementById('documentLightbox');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxDocument = document.getElementById('lightboxDocument');
   
-  // --- Scrollspy/Active Nav Link Logic (Logic omitted for brevity, assumed functional) ---
+  function updateLightbox(index) {
+    if (index < 0) { index = galleryItems.length - 1; } else if (index >= galleryItems.length) { index = 0; }
+    currentImageIndex = index;
+    const currentImg = galleryItems[currentImageIndex];
+    document.getElementById('lightboxImage').src = currentImg.getAttribute('data-full-src');
+    document.getElementById('lightboxImage').alt = currentImg.alt;
+    document.getElementById('lightboxTitle').textContent = currentImg.getAttribute('data-title');
+    document.getElementById('lightboxDescription').textContent = currentImg.getAttribute('data-description');
+    document.getElementById('lightboxDownloadLink').href = currentImg.getAttribute('data-full-src');
+  }
+  function openGalleryLightbox(index) { 
+      closeAllLightboxes();
+      updateLightbox(index); 
+      document.getElementById('imageLightbox').style.display = 'flex'; 
+      document.getElementById('lightboxDetails').style.display = 'block'; 
+      document.querySelectorAll('.lightbox-nav').forEach(nav => nav.style.display = 'block');
+  }
+  function navigateGallery(direction) { updateLightbox(currentImageIndex + direction); }
+  function closeImageLightbox() {
+      document.getElementById('imageLightbox').style.display = 'none';
+      currentImageIndex = -1;
+  }
+  function openVideoLightbox(url) {
+      closeAllLightboxes();
+      lightboxVideo.src = url.includes('?') ? url + '&autoplay=1' : url + '?autoplay=1'; 
+      videoLightbox.style.display = 'flex';
+      const bgMusic = document.getElementById('bgMusic');
+      if (!bgMusic.paused) {
+          bgMusic.pause();
+          document.getElementById('musicToggle').innerHTML = '🎶 Play Music';
+      }
+  }
+  function closeVideoLightbox() {
+      videoLightbox.style.display = 'none';
+      lightboxVideo.src = ''; 
+  }
+  function openDocumentLightbox(url) {
+      closeAllLightboxes();
+      lightboxDocument.src = url;
+      documentLightbox.style.display = 'flex';
+  }
+  function closeDocumentLightbox() {
+      documentLightbox.style.display = 'none';
+      lightboxDocument.src = ''; 
+  }
+  function openImageLightbox(src, alt) {
+      closeAllLightboxes();
+      const lightbox = document.getElementById('imageLightbox');
+      document.getElementById('lightboxImage').src = src;
+      document.getElementById('lightboxImage').alt = alt;
+      document.getElementById('lightboxDetails').style.display = 'none'; 
+      document.querySelectorAll('.lightbox-nav').forEach(nav => nav.style.display = 'none'); 
+      lightbox.style.display = 'flex';
+      currentImageIndex = -1; 
+  }
+  function closeAllLightboxes() {
+    closeImageLightbox();
+    closeVideoLightbox();
+    closeDocumentLightbox();
+    // Reset image lightbox details view if it was opened via home/service image
+    const details = document.getElementById('lightboxDetails');
+    const navs = document.querySelectorAll('.lightbox-nav');
+    if(details && details.style.display === 'none') {
+        details.style.display = 'block';
+        navs.forEach(nav => nav.style.display = 'block');
+    }
+  }
+  window.onclick = function(event) {
+      if (event.target == document.getElementById('imageLightbox') || 
+          event.target == videoLightbox || 
+          event.target == documentLightbox) {
+          closeAllLightboxes();
+      }
+  };
+  document.onkeydown = function(e) {
+    if (document.getElementById('imageLightbox').style.display === 'flex' && currentImageIndex !== -1) {
+        e = e || window.event;
+        if (e.keyCode == '37') { navigateGallery(-1); } else if (e.keyCode == '39') { navigateGallery(1); }
+    }
+    if (e.keyCode == '27') { closeAllLightboxes(); }
+  };
+
+  // --- Scrollspy/Active Nav Link Logic (Restored) ---
+  const navLinks = document.querySelectorAll('#main-nav a.nav-link');
+  // Include header as a section since 'home' is linked to the top
+  const sections = Array.from(document.querySelectorAll('main section, footer, header')); 
+  const offset = 150; 
+
+  function updateActiveNav() {
+    let currentSectionId = 'home';
+    
+    // Check if at the very top (Home)
+    if (window.scrollY < offset / 2) {
+        currentSectionId = 'home';
+    } else {
+        sections.forEach(section => {
+          // Use getBoundingClientRect().top for reliable section tracking
+          const rect = section.getBoundingClientRect();
+          const top = rect.top;
+          
+          if (top <= offset && top + rect.height > 0) {
+            // Check if section is the header for 'home' link
+            if (section.tagName.toLowerCase() === 'header') {
+                currentSectionId = 'home';
+            } else {
+                currentSectionId = section.id;
+            }
+          }
+        });
+    }
+    
+    // Check if at the very bottom (Contact/Footer)
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
+        currentSectionId = 'contact'; 
+    }
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const targetId = link.getAttribute('href').substring(1);
+      
+      if (targetId === currentSectionId) {
+        link.classList.add('active');
+      }
+      
+      // Ensure 'Home' is active when at the very top
+      if (currentSectionId === 'home' && targetId === 'home') {
+          link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  document.addEventListener('DOMContentLoaded', updateActiveNav);
   
   // --- Music Toggle ---
   const musicToggle = document.getElementById('musicToggle');
@@ -533,4 +795,4 @@
 </script>
 
 </body>
-  </html>
+          </html>
