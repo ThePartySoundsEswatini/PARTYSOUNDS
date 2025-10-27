@@ -131,7 +131,7 @@
       color: #fff;
     }
     
-    /* BEGIN: NEW STYLES FOR LOGO POSITIONING AND FIRE RING */
+    /* BEGIN: STYLES FOR LOGO POSITIONING AND FIRE RING */
     .logo-container {
         position: absolute;
         top: 20px; /* Adjust as needed */
@@ -158,7 +158,7 @@
             0 0 40px var(--primary); /* More intense glow on hover */
         transform: scale(1.05);
     }
-    /* END: NEW STYLES FOR LOGO POSITIONING AND FIRE RING */
+    /* END: STYLES FOR LOGO POSITIONING AND FIRE RING */
 
     nav {
       position: sticky;
@@ -492,6 +492,36 @@
         transform: scale(1.2);
     }
 
+    /* --- FOOTER/CONTACT STYLES (UPDATED FOR FIERY THEME) --- */
+    footer {
+        background: #1a1a1a;
+        color: var(--light); /* Base text color */
+        text-align: center;
+        padding: 40px 20px;
+        border-top: 4px solid var(--primary);
+    }
+    footer h3 {
+        color: var(--fire-yellow); /* Fiery heading */
+        margin-bottom: 20px;
+    }
+    footer p {
+        margin: 10px 0;
+        color: var(--light); /* Ensure text remains light */
+    }
+    footer a {
+        /* Apply fiery theme color to links */
+        color: var(--primary); /* Orange-Red for links */
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    footer a:hover {
+        /* Change color on hover to highlight */
+        color: var(--fire-yellow); 
+        text-decoration: underline;
+    }
+
+
     /* --- RESPONSIVE ADJUSTMENTS --- */
     @media (max-width: 768px) {
       /* General Layout Fixes */
@@ -534,6 +564,7 @@
 </div>
 
 <header>
+  
   <div class="overlay"></div>
   
   <div class="logo-container">
@@ -667,7 +698,7 @@
   <section id="Posters And Upcomings">
     
     <div class="upcoming-events-container" id="upcoming-events">
-      <h3>🔥 Upcoming Events We're Powering! 🎶</h3>
+      <h3> Upcoming Events We're Powering! 🎶</h3>
       <p style="margin-bottom: 25px;">Don't miss out on the next big parties and gatherings in Eswatini where you'll hear our crystal-clear sound!</p>
       
       <div class="events-grid">
@@ -739,7 +770,7 @@
           <option value="NYE Special (E1300, Dec 10 - Jan 5)">NYE Special: E1300 (Valid Dec 10 - Jan 5)</option>
       </select>
       
-      <input type="date" name="date" required />
+      <input type="date" name="date" /> 
       <textarea name="message" rows="5" placeholder="Additional Details (venue, time, specific promo price if known, etc.)"></textarea>
       <button type="submit" class="cta">Submit Booking</button>
     </form>
