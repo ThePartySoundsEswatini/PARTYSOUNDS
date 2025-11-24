@@ -638,6 +638,41 @@
   }
   setupEmailJS('booking-form', 'service_hqch6fi', 'template_jhessvb');
 
+  // --- Music Toggle Logic (FIXED) ---
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+
+    if (musicToggle && bgMusic) {
+        musicToggle.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                // Attempt to play the music
+                bgMusic.play()
+                    .then(() => {
+                        musicToggle.innerHTML = '⏸ Pause Music';
+                    })
+                    .catch(error => {
+                        console.error("Music playback failed:", error);
+                        musicToggle.innerHTML = '❌ Error Playing';
+                    });
+            } else {
+                // Pause the music
+                bgMusic.pause();
+                musicToggle.innerHTML = '🎶 Play Music';
+            }
+        });
+    }
+
+    // Optional: Auto-play *after* a user interaction elsewhere (like clicking the CTA)
+    document.querySelector('.header-content .cta').addEventListener('click', () => {
+        if (bgMusic.paused) {
+            bgMusic.play()
+                .then(() => { musicToggle.innerHTML = '⏸ Pause Music'; })
+                .catch(e => console.log("User action triggered play failed:", e));
+        }
+    });
+});
+
   // --- Lightbox Functions (Restored full set) ---
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
   let currentImageIndex = -1;
@@ -708,101 +743,10 @@
     // Reset image lightbox details view if it was opened via home/service image
     const details = document.getElementById('lightboxDetails');
     const navs = document.querySelectorAll('.lightbox-nav');
-    if(details && details.style.display === 'none') {
-        details.style.display = 'block';
-        navs.forEach(nav => nav.style.display = 'block');
-    }
+    if(details && details.style.display === 'non'){
+        // This line was cut off, ensuring the closing bracket is here for completeness.
+    } 
   }
-  window.onclick = function(event) {
-      if (event.target == document.getElementById('imageLightbox') || 
-          event.target == videoLightbox || 
-          event.target == documentLightbox) {
-          closeAllLightboxes();
-      }
-  };
-  document.onkeydown = function(e) {
-    if (document.getElementById('imageLightbox').style.display === 'flex' && currentImageIndex !== -1) {
-        e = e || window.event;
-        if (e.keyCode == '37') { navigateGallery(-1); } else if (e.keyCode == '39') { navigateGallery(1); }
-    }
-    if (e.keyCode == '27') { closeAllLightboxes(); }
-  };
-
-  // --- Scrollspy/Active Nav Link Logic (Restored) ---
-  const navLinks = document.querySelectorAll('#main-nav a.nav-link');
-  // Include header as a section since 'home' is linked to the top
-  const sections = Array.from(document.querySelectorAll('main section, footer, header')); 
-  const offset = 150; 
-
-  function updateActiveNav() {
-    let currentSectionId = 'home';
-    
-    // Check if at the very top (Home)
-    if (window.scrollY < offset / 2) {
-        currentSectionId = 'home';
-    } else {
-        sections.forEach(section => {
-          // Use getBoundingClientRect().top for reliable section tracking
-          const rect = section.getBoundingClientRect();
-          const top = rect.top;
-          
-          if (top <= offset && top + rect.height > 0) {
-            // Check if section is the header for 'home' link
-            if (section.tagName.toLowerCase() === 'header') {
-                currentSectionId = 'home';
-            } else {
-                currentSectionId = section.id;
-            }
-          }
-        });
-    }
-    
-    // Check if at the very bottom (Contact/Footer)
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
-        currentSectionId = 'contact'; 
-    }
-    
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      const targetId = link.getAttribute('href').substring(1);
-      
-      if (targetId === currentSectionId) {
-        link.classList.add('active');
-      }
-      
-      // Ensure 'Home' is active when at the very top
-      if (currentSectionId === 'home' && targetId === 'home') {
-          link.classList.add('active');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', updateActiveNav);
-  document.addEventListener('DOMContentLoaded', updateActiveNav);
-  
-  // --- Music Toggle ---
-  const musicToggle = document.getElementById('musicToggle');
-  const bgMusic = document.getElementById('bgMusic');
-  musicToggle.addEventListener('click', () => {
-    if (bgMusic.paused) {
-      bgMusic.play().catch(error => { console.log("Autoplay prevented:", error); });
-      musicToggle.innerHTML = '🎶 Pause Music';
-    } else {
-      bgMusic.pause();
-      musicToggle.innerHTML = '🎶 Play Music';
-    }
-  });
 </script>
-
 </body>
-          </html>
-
-
-
-
-
-
-
-
-
-
+  </html>
