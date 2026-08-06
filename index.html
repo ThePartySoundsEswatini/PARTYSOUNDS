@@ -43,7 +43,7 @@
     a { color: var(--primary); }
   .service h4 { color: var(--fire-orange); }
 
-    /* ===== PROFESSIONAL OUTLINE BUTTONS ===== */
+    /* ===== FIXED: PROFESSIONAL BUTTONS ===== */
   .cta, button.cta,.event-cta {
       display: inline-block; margin-top: 20px; background: transparent; color: var(--light);
       padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: 600;
@@ -57,10 +57,10 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
     }
-  .cta.secondary { border-color: var(--facebook); background: transparent; }
+  .cta.secondary { border-color: var(--facebook); }
   .cta.secondary:hover { background: var(--facebook); }
-  .cta.whatsapp { border-color: var(--whatsapp); background: transparent; }
-  .cta.whatsapp:hover { background: var(--whatsapp); }
+  .cta.whatsapp { border-color: var(--whatsapp); font-weight: 700; } /* MADE IT BOLDER */
+  .cta.whatsapp:hover { background: var(--whatsapp); color: #fff; }
     /* ============================================== */
 
   .trust-badges {
@@ -75,11 +75,11 @@
   .logo-container { position: absolute; top: 20px; left: 20px; z-index: 2; }
   .logo { max-width: 100px; height: auto; border-radius: 50%; box-shadow: 0 0 0 5px rgba(255, 69, 0, 0.4), 0 0 25px rgba(255, 140, 0, 0.7); }
 
-    /* ===== NAV WITH ACTIVE HIGHLIGHT ===== */
+    /* ===== NAV WITH HOVER HIGHLIGHT ===== */
     nav { position: sticky; top: 0; background: var(--dark); padding: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; z-index: 10; font-weight: 500; box-shadow: 0 2px 8px rgba(255, 69, 0, 0.4); }
     nav a { color: var(--light); text-decoration: none; padding: 8px 12px; transition: all 0.3s ease; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 4px; }
-    nav a:hover { background: rgba(255, 69, 0, 0.2); }
-    nav a.active { background: var(--primary); color: var(--light); }
+    nav a:hover { background: rgba(255, 69, 0, 0.2); transform: translateY(-2px); } /* ADDED HOVER LIFT */
+    nav a.active { background: var(--primary); color: var(--light); box-shadow: 0 0 10px var(--fire-orange); } /* ACTIVE GLOW */
     /* ============================================== */
 
   .whatsapp-float {
@@ -91,23 +91,21 @@
   .whatsapp-float:hover { transform: scale(1.05); }
     main { padding: 40px 10px; background: var(--dark); }
     section { max-width: 1000px; margin: 0 auto 60px auto; padding: 20px; }
-  .services { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
-  .service { flex: 1 1 300px; max-width: 320px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 8px; transition: background-color 0.3s, transform 0.3s; background: #1a1a1a; }
-  .service:hover { background: #222; transform: translateY(-5px); }
-  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-  .gallery-item { background: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); border: 1px solid #2a2a2a; }
-  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
-  .events-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 20px; }
-  .event-card { flex: 1 1 300px; max-width: 400px; background: #1a1a1a; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1); text-align: center; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #2a2a2a; }
-  .document-grid { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-  .document-item { background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #2a2a2a; text-align: center; min-width: 280px; }
-  .service img { width: 100%; height: 200px; display: block; margin: 0 auto 10px; border-radius: 6px; object-fit: cover; }
-  .gallery-item img { width: 100%; height: 250px; display: block; object-fit: cover; cursor: pointer; transition: transform 0.3s ease; }
-  .video-wrapper { position: relative; cursor: pointer; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
-  .video-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; }
-  .play-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; }
-  .play-overlay i { font-size: 3em; color: var(--light); border: 4px solid var(--light); border-radius: 50%; padding: 20px; background: var(--primary); }
-  .fb-feed-wrapper { background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; }
+ .services { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
+ .service { flex: 1 1 300px; max-width: 320px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 8px; transition: background-color 0.3s, transform 0.3s; background: #1a1a1a; }
+ .service:hover { background: #222; transform: translateY(-5px); }
+ .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+ .gallery-item { background: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); border: 1px solid #2a2a2a; }
+ .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
+ .document-grid { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+ .document-item { background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #2a2a2a; text-align: center; min-width: 280px; }
+ .service img { width: 100%; height: 200px; display: block; margin: 0 auto 10px; border-radius: 6px; object-fit: cover; }
+ .gallery-item img { width: 100%; height: 250px; display: block; object-fit: cover; cursor: pointer; transition: transform 0.3s ease; }
+ .video-wrapper { position: relative; cursor: pointer; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
+ .video-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; }
+ .play-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; }
+ .play-overlay i { font-size: 3em; color: var(--light); border: 4px solid var(--light); border-radius: 50%; padding: 20px; background: var(--primary); }
+ .fb-feed-wrapper { background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; }
     #booking-form {
         max-width: 800px; margin: 30px auto; padding: 30px; background: #1a1a1a; border-radius: 12px;
         border: 1px solid #2a2a2a; box-shadow: 0 6px 25px rgba(255, 69, 0, 0.2);
@@ -132,21 +130,21 @@
     @media (max-width: 768px) {
         #booking-form { grid-template-columns: 1fr; padding: 20px; gap: 15px; }
         #booking-form button.cta { width: 100%; }
-      .services { flex-direction: column; align-items: center; }
-      .service { max-width: 90%; margin-bottom: 15px; }
+     .services { flex-direction: column; align-items: center; }
+     .service { max-width: 90%; margin-bottom: 15px; }
         section { padding: 10px; }
-      .whatsapp-float { bottom: 20px; right: 10px; padding: 12px 14px; font-size: 0.9em; }
-      .trust-badges { gap:15px; }
+     .whatsapp-float { bottom: 20px; right: 10px; padding: 12px 14px; font-size: 0.9em; }
+     .trust-badges { gap:15px; }
     }
-  .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-  .lightbox-content { position: relative; margin: auto; padding: 20px; background-color: var(--dark); border-radius: 8px; width: 90%; max-width: 900px; box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); }
+ .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+ .lightbox-content { position: relative; margin: auto; padding: 20px; background-color: var(--dark); border-radius: 8px; width: 90%; max-width: 900px; box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); }
     #lightboxImage { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto 10px; }
-  .close-btn { position: absolute; top: 15px; right: 35px; color: var(--light); font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
-  .close-btn:hover { color: var(--primary); }
-    #lightboxVideo, #lightboxDocument { width: 100%; height: 60vh; border: none; }
-  .document-lightbox-content { max-width: 1000px; }
-  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2em; padding: 10px; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; }
-  .lightbox-nav:hover { background: rgba(255, 69, 0, 0.7); }
+ .close-btn { position: absolute; top: 15px; right: 35px; color: var(--light); font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
+ .close-btn:hover { color: var(--primary); }
+    #lightboxVideo, #lightboxDocument { width: 100%; height: 60vh; border: none; border-radius: 8px; } /* FIXED: ADDED RADIUS */
+ .document-lightbox-content { max-width: 1000px; }
+ .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2em; padding: 10px; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; }
+ .lightbox-nav:hover { background: rgba(255, 69, 0, 0.7); }
     #prevBtn { left: 20px; }
     #nextBtn { right: 20px; }
     #lightboxDetails { text-align: center; padding-top: 10px; }
@@ -312,7 +310,7 @@
       <div class="full-width"><label for="details-message">Additional Details</label><textarea id="details-message" name="message" rows="4" placeholder="Event time, special requests..."></textarea></div>
       <button type="submit" class="cta whatsapp"><i class="fab fa-whatsapp"></i> SUBMIT INQUIRY VIA WHATSAPP</button>
     </form>
-  </section>
+    </section>
 
     <section id="documents">
     <h3>Documents & Price List</h3>
@@ -378,7 +376,7 @@
 <div id="documentLightbox" class="lightbox">
     <span class="close-btn" onclick="closeDocumentLightbox()">&times;</span>
     <div class="lightbox-content document-lightbox-content">
-        <iframe id="lightboxDocument" src="" title="Document"></iframe>
+        <iframe id="lightboxDocument" src="" title="Document" allowfullscreen></iframe> <!-- FIXED: ADDED ALLOWFULLSCREEN -->
     </div>
 </div>
 
@@ -426,7 +424,7 @@
     });
   });
 
-  // --- LIGHTBOX FUNCTIONS ---
+  // --- LIGHTBOX FUNCTIONS - FIXED ---
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
   let currentImageIndex = -1;
   const videoLightbox = document.getElementById('videoLightbox');
@@ -447,4 +445,5 @@
   function navigateGallery(direction) { updateLightbox(currentImageIndex + direction); }
   function closeImageLightbox() { document.getElementById('imageLightbox').style.display = 'none'; }
   function openVideoLightbox(url) { lightboxVideo.src = url + '?autoplay=1'; videoLightbox.style.display = 'flex'; }
-  function closeVideoLightbox()
+  function closeVideoLightbox() { videoLightbox.style.display = 'none'; lightboxVideo.src = ''; }
+  function openDocumentLightbox(url) { lightboxDocument.src = url
