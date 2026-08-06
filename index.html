@@ -14,7 +14,7 @@
     :root {
       --primary: #FF4500;
       --dark: #111;
-      --light: #f0f0f0; /* FIXED: was #f0f0 */
+      --light: #f0f0f0;
       --text-muted: #b0b0b0;
       --fire-orange: #FF8C00;
       --fire-yellow: #FFD700;
@@ -41,58 +41,73 @@
     h4 { font-size: 1.1rem; font-weight: 600; color: var(--fire-orange); margin-bottom: 10px; }
     section p, section li { color: var(--text-muted); font-size: 1rem; max-width: 70ch; margin: 0 auto 15px auto; }
     a { color: var(--primary); }
- .service h4 { color: var(--fire-orange); }
-.cta, button.cta,.event-cta {
-      display: inline-block; margin-top: 20px; background: var(--primary); color: var(--light);
-      padding: 14px 28px; border-radius: 4px; text-decoration: none; font-weight: 600; border: none;
-      cursor: pointer; transition: all 0.4s ease-in-out; box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+  .service h4 { color: var(--fire-orange); }
+
+    /* ===== PROFESSIONAL OUTLINE BUTTONS ===== */
+  .cta, button.cta,.event-cta {
+      display: inline-block; margin-top: 20px; background: transparent; color: var(--light);
+      padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: 600;
+      border: 2px solid var(--primary);
+      cursor: pointer; transition: all 0.3s ease-in-out;
       font-size: 1rem; letter-spacing: 0.5px; text-transform: uppercase;
     }
-.cta:hover, button.cta:hover,.event-cta:hover { background: #D20000; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255, 69, 0, 0.8); }
-.cta.secondary { background: var(--facebook); color: var(--light); }
-.cta.secondary:hover { background: #0d65d9; color: var(--light); }
-.cta.whatsapp { background: var(--whatsapp); }
-.cta.whatsapp:hover { background: #1ebe5a; }
-.trust-badges {
+  .cta:hover, button.cta:hover,.event-cta:hover {
+      background: var(--primary);
+      color: var(--light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+    }
+  .cta.secondary { border-color: var(--facebook); background: transparent; }
+  .cta.secondary:hover { background: var(--facebook); }
+  .cta.whatsapp { border-color: var(--whatsapp); background: transparent; }
+  .cta.whatsapp:hover { background: var(--whatsapp); }
+    /* ============================================== */
+
+  .trust-badges {
       display:flex; justify-content:center; gap:30px; flex-wrap:wrap;
       padding:30px 10px; background:#1a1a1a; border-radius:12px; margin-bottom:40px; border: 1px solid #2a2a2a;
     }
-.trust-badges div { text-align:center; }
-.trust-badges i { font-size:1.8em; color:var(--fire-yellow); display:block; margin-bottom:8px; }
+  .trust-badges div { text-align:center; }
+  .trust-badges i { font-size:1.8em; color:var(--fire-yellow); display:block; margin-bottom:8px; }
     header { position: relative; height: 80vh; overflow: hidden; background: url('assets/home.jpg') no-repeat center/cover; }
-.overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 0; }
-.header-content { position: relative; z-index: 1; max-width: 800px; padding: 20px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--light); }
-.logo-container { position: absolute; top: 20px; left: 20px; z-index: 2; }
-.logo { max-width: 100px; height: auto; border-radius: 50%; box-shadow: 0 0 0 5px rgba(255, 69, 0, 0.4), 0 0 25px rgba(255, 140, 0, 0.7); }
+  .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 0; }
+  .header-content { position: relative; z-index: 1; max-width: 800px; padding: 20px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--light); }
+  .logo-container { position: absolute; top: 20px; left: 20px; z-index: 2; }
+  .logo { max-width: 100px; height: auto; border-radius: 50%; box-shadow: 0 0 0 5px rgba(255, 69, 0, 0.4), 0 0 25px rgba(255, 140, 0, 0.7); }
+
+    /* ===== NAV WITH ACTIVE HIGHLIGHT ===== */
     nav { position: sticky; top: 0; background: var(--dark); padding: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; z-index: 10; font-weight: 500; box-shadow: 0 2px 8px rgba(255, 69, 0, 0.4); }
-    nav a { color: var(--light); text-decoration: none; padding: 8px 12px; transition: all 0.4s ease-in-out; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; }
-    nav a:hover, nav a.active { background: var(--primary); color: var(--light); transform: translateY(-2px); box-shadow: 0 0 10px var(--fire-orange); }
-.whatsapp-float {
+    nav a { color: var(--light); text-decoration: none; padding: 8px 12px; transition: all 0.3s ease; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 4px; }
+    nav a:hover { background: rgba(255, 69, 0, 0.2); }
+    nav a.active { background: var(--primary); color: var(--light); }
+    /* ============================================== */
+
+  .whatsapp-float {
         position: fixed; bottom: 20px; right: 20px; z-index: 999; background: var(--whatsapp); color: white;
         padding: 14px 18px; border-radius: 50px; font-weight: 600; text-decoration: none;
         box-shadow: 0 4px 15px rgba(37,211,102,0.6); display: flex; align-items: center; gap: 8px;
         transition: transform 0.3s;
     }
-.whatsapp-float:hover { transform: scale(1.05); }
+  .whatsapp-float:hover { transform: scale(1.05); }
     main { padding: 40px 10px; background: var(--dark); }
     section { max-width: 1000px; margin: 0 auto 60px auto; padding: 20px; }
-.services { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
-.service { flex: 1 1 300px; max-width: 320px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 8px; transition: background-color 0.3s, transform 0.3s; background: #1a1a1a; }
-.service:hover { background: #222; transform: translateY(-5px); }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.gallery-item { background: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); border: 1px solid #2a2a2a; }
-.video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
-.events-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 20px; }
-.event-card { flex: 1 1 300px; max-width: 400px; background: #1a1a1a; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1); text-align: center; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #2a2a2a; }
-.document-grid { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-.document-item { background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #2a2a2a; text-align: center; min-width: 280px; }
-.service img { width: 100%; height: 200px; display: block; margin: 0 auto 10px; border-radius: 6px; object-fit: cover; }
-.gallery-item img { width: 100%; height: 250px; display: block; object-fit: cover; cursor: pointer; transition: transform 0.3s ease; }
-.video-wrapper { position: relative; cursor: pointer; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
-.video-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; }
-.play-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; }
-.play-overlay i { font-size: 3em; color: var(--light); border: 4px solid var(--light); border-radius: 50%; padding: 20px; background: var(--primary); }
-.fb-feed-wrapper { background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; }
+  .services { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
+  .service { flex: 1 1 300px; max-width: 320px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 8px; transition: background-color 0.3s, transform 0.3s; background: #1a1a1a; }
+  .service:hover { background: #222; transform: translateY(-5px); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .gallery-item { background: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); border: 1px solid #2a2a2a; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
+  .events-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 20px; }
+  .event-card { flex: 1 1 300px; max-width: 400px; background: #1a1a1a; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1); text-align: center; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #2a2a2a; }
+  .document-grid { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+  .document-item { background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #2a2a2a; text-align: center; min-width: 280px; }
+  .service img { width: 100%; height: 200px; display: block; margin: 0 auto 10px; border-radius: 6px; object-fit: cover; }
+  .gallery-item img { width: 100%; height: 250px; display: block; object-fit: cover; cursor: pointer; transition: transform 0.3s ease; }
+  .video-wrapper { position: relative; cursor: pointer; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
+  .video-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .play-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; }
+  .play-overlay i { font-size: 3em; color: var(--light); border: 4px solid var(--light); border-radius: 50%; padding: 20px; background: var(--primary); }
+  .fb-feed-wrapper { background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; }
     #booking-form {
         max-width: 800px; margin: 30px auto; padding: 30px; background: #1a1a1a; border-radius: 12px;
         border: 1px solid #2a2a2a; box-shadow: 0 6px 25px rgba(255, 69, 0, 0.2);
@@ -108,8 +123,8 @@
     #booking-form input:focus, #booking-form select:focus, #booking-form textarea:focus {
         border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.5);
     }
-    #booking-form button.cta { grid-column: 1 / -1; margin-top: 10px; justify-self: center; width: 50%; background: var(--whatsapp); }
-    #booking-form button.cta:hover { background: #1ebe5a; }
+    #booking-form button.cta { grid-column: 1 / -1; margin-top: 10px; justify-self: center; width: 50%; border-color: var(--whatsapp); }
+    #booking-form button.cta:hover { background: var(--whatsapp); }
     footer { background: #1a1a1a; color: var(--light); text-align: center; padding: 40px 20px; border-top: 4px solid var(--primary); }
     footer h3 { color: var(--fire-yellow); margin-bottom: 20px; }
     footer a { text-decoration: none; }
@@ -117,21 +132,21 @@
     @media (max-width: 768px) {
         #booking-form { grid-template-columns: 1fr; padding: 20px; gap: 15px; }
         #booking-form button.cta { width: 100%; }
-    .services { flex-direction: column; align-items: center; }
-    .service { max-width: 90%; margin-bottom: 15px; }
+      .services { flex-direction: column; align-items: center; }
+      .service { max-width: 90%; margin-bottom: 15px; }
         section { padding: 10px; }
-    .whatsapp-float { bottom: 20px; right: 10px; padding: 12px 14px; font-size: 0.9em; }
-    .trust-badges { gap:15px; }
+      .whatsapp-float { bottom: 20px; right: 10px; padding: 12px 14px; font-size: 0.9em; }
+      .trust-badges { gap:15px; }
     }
-.lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-.lightbox-content { position: relative; margin: auto; padding: 20px; background-color: var(--dark); border-radius: 8px; width: 90%; max-width: 900px; box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); }
+  .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+  .lightbox-content { position: relative; margin: auto; padding: 20px; background-color: var(--dark); border-radius: 8px; width: 90%; max-width: 900px; box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); }
     #lightboxImage { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto 10px; }
-.close-btn { position: absolute; top: 15px; right: 35px; color: var(--light); font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
-.close-btn:hover { color: var(--primary); }
+  .close-btn { position: absolute; top: 15px; right: 35px; color: var(--light); font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
+  .close-btn:hover { color: var(--primary); }
     #lightboxVideo, #lightboxDocument { width: 100%; height: 60vh; border: none; }
-.document-lightbox-content { max-width: 1000px; }
-.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2em; padding: 10px; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; }
-.lightbox-nav:hover { background: rgba(255, 69, 0, 0.7); }
+  .document-lightbox-content { max-width: 1000px; }
+  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2em; padding: 10px; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; }
+  .lightbox-nav:hover { background: rgba(255, 69, 0, 0.7); }
     #prevBtn { left: 20px; }
     #nextBtn { right: 20px; }
     #lightboxDetails { text-align: center; padding-top: 10px; }
@@ -299,7 +314,7 @@
     </form>
   </section>
 
-  <section id="documents">
+    <section id="documents">
     <h3>Documents & Price List</h3>
     <p style="text-align:center; margin-bottom:30px;">Download all our official documents in one place</p>
     <div class="document-grid">
@@ -392,6 +407,25 @@
     this.reset();
   });
 
+  // --- ACTIVE NAV HIGHLIGHT ON SCROLL ---
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#main-nav a.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 120) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href').includes(current)) {
+        link.classList.add('active');
+      }
+    });
+  });
+
   // --- LIGHTBOX FUNCTIONS ---
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
   let currentImageIndex = -1;
@@ -413,15 +447,4 @@
   function navigateGallery(direction) { updateLightbox(currentImageIndex + direction); }
   function closeImageLightbox() { document.getElementById('imageLightbox').style.display = 'none'; }
   function openVideoLightbox(url) { lightboxVideo.src = url + '?autoplay=1'; videoLightbox.style.display = 'flex'; }
-  function closeVideoLightbox() { videoLightbox.style.display = 'none'; lightboxVideo.src = ''; }
-  function openDocumentLightbox(url) { lightboxDocument.src = url; documentLightbox.style.display = 'flex'; }
-  function closeDocumentLightbox() { documentLightbox.style.display = 'none'; lightboxDocument.src = ''; }
-  function openImageLightbox(src, alt) {
-      document.getElementById('lightboxImage').src = src;
-      document.getElementById('lightboxTitle').textContent = alt;
-      document.getElementById('lightboxDescription').textContent = '';
-      document.getElementById('imageLightbox').style.display = 'flex'; // <-- THIS WAS MISSING
-  }
-</script>
-</body>
-  </html>
+  function closeVideoLightbox()
