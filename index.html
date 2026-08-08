@@ -1,230 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Party Sounds Eswatini | Sound & DJ Hire</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Premium Audio & Sound Hire in Eswatini. CPD Amps, Wharfedale Subs. Weddings, Corporate, Schools. Book PartySounds today.">
+  <title>The Party Sounds Eswatini | Premium Audio Hire</title>
+  <link rel="icon" href="assets/images/logo.jpg" type="image/jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary: #FF4500; --dark: #111; --light: #f0f0f0;
+      --text-muted: #b0b0b0; --fire-yellow: #FFD700; --whatsapp: #25D366; --water-blue: #1E90FF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--dark); color: var(--light); line-height: 1.7; }
+
+    h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; text-transform: uppercase; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600; color: var(--primary); margin-bottom: 20px; text-align: center; }
+    h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 600; color: var(--primary); margin-bottom: 15px; text-align: center; }
+
+    /* ===== HEADER WITH LOGO ===== */
+  .top-bar { display:flex; justify-content:space-between; align-items:center; padding:15px 5%; background:rgba(0,0,0,0.8); position:sticky; top:0; z-index:11; }
+  .logo-area { display:flex; align-items:center; gap:15px; }
+  .logo-area img { width:60px; height:60px; border-radius:50%; border:2px solid var(--primary); }
+  .logo-text h1 { font-size:1.2rem; margin:0; color:var(--primary); }
+  .logo-text p { font-size:0.8rem; margin:0; color:var(--text-muted); }
+
+    /* ===== CART ===== */
+ .cart-float { position: fixed; bottom: 80px; right: 20px; z-index: 998; background: var(--primary); color: white; padding: 14px 18px; border-radius: 50px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 15px rgba(255,69,0,0.6); display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    #cart-count { background: white; color: var(--primary); border-radius: 50%; padding: 2px 8px; font-size: 0.8em; }
+ .cart-popup { display: none; position: fixed; bottom: 140px; right: 20px; width: 320px; background: #1a1a1a; border: 2px solid var(--primary); border-radius: 12px; padding: 20px; z-index: 999; }
+ .cart-item { display: flex; justify-content: space-between; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #333; }
+ .cart-item-price { color: var(--fire-yellow); font-weight: 700; }
+ .remove-btn { background: red; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; }
+
+    /* ===== SOCIAL POPUP ===== */
+ .social-popup { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:1001; justify-content:center; align-items:center; }
+ .social-content { background:#1a1a1a; width:90%; max-width:500px; border-radius:12px; padding:20px; border:2px solid var(--primary); }
+ .social-tabs { display:flex; gap:10px; margin-bottom:15px; }
+ .social-tab { flex:1; padding:10px; background:#333; border:none; color:white; cursor:pointer; border-radius:6px; font-weight:700; }
+ .social-tab.active { background:var(--primary); }
+ .social-frame { width:100%; height:400px; border:none; border-radius:8px; }
+
+    /* ===== BUTTONS + CARDS ===== */
+ .btn-water { background: linear-gradient(135deg, rgba(0, 191, 255, 0.9), rgba(30, 144, 255, 0.9)); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; margin: 5px; }
+ .btn-cart { background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 4px; font-weight: 700; cursor: pointer; }
+ .cta.whatsapp { background: transparent; border: 2px solid var(--whatsapp); color: var(--whatsapp); font-weight: 700; width: 100%; padding:12px; }
+ .cta.whatsapp:hover { background: var(--whatsapp); color: white; }
+
+    header { height: 70vh; background: url('assets/home.jpg') no-repeat center/cover; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
+ .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+ .header-content { position: relative; z-index: 1; }
+    nav { background: var(--dark); padding: 10px 0; display: flex; justify-content: center; gap: 15px; flex-wrap:wrap; }
+    nav a { color: var(--light); text-decoration: none; padding: 8px 12px; text-transform: uppercase; font-size:0.9rem; }
+
+    main { padding: 40px 10px; }
+    section { max-width: 1100px; margin: 0 auto 60px auto; padding: 20px; }
+ .services,.rental-grid,.addon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+ .card { padding: 20px; border: 1px solid #2a2a2a; border-radius: 12px; background: #1a1a1a; text-align: center; }
+ .card img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+ .price-tag { font-size: 1.6rem; font-weight: 700; color: var(--fire-yellow); margin: 10px 0; }
+ .price-tag i { color: var(--primary); }
+
+ .gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:15px; }
+ .gallery-grid img { width:100%; height:200px; object-fit:cover; border-radius:8px; cursor:pointer; }
+
+    #booking-form { max-width: 800px; margin: 30px auto; padding: 30px; background: #1a1a1a; border-radius: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    #booking-form input, #booking-form select, #booking-form textarea { width:100%; padding:12px; background:#1a1a1a; border:1px solid #555; color:white; border-radius:6px; }
+    footer { background: #1a1a1a; text-align: center; padding: 40px 20px; border-top: 4px solid var(--primary); }
+    @media (max-width: 768px) {#booking-form { grid-template-columns: 1fr; }.cart-popup{width:90%; right:5%;}}
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">THE PARTY SOUNDS</div>
-  <div class="nav-links">
-    <a href="#packages">Packages</a>
-    <a href="#rental">Rentals</a>
-    <a href="#addons">Add-Ons</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#" onclick="openSocial('fb'); return false;">FB Profile</a>
-    <a href="#" onclick="openSocial('tt'); return false;">TikTok</a>
-    <a href="#" onclick="openSocial('yt'); return false;">YouTube</a>
-    <a href="#contact">Contact</a>
-    <button class="btn-cart-nav" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
-  </div>
-</nav>
+  <a href="#" onclick="toggleCart(); return false;" class="cart-float">
+   <i class="fas fa-shopping-cart"></i> Cart <span id="cart-count">0</span>
+</a>
 
-<header class="hero">
-  <img src="assets/images/logo.jpg" alt="The Party Sounds Logo" class="hero-logo">
-  <h1>THE PARTY SOUNDS ESWATINI</h1>
-  <p>Premium Sound, Lighting & DJ Hire for Every Event</p>
-  <a href="#packages" class="btn-primary">VIEW PRICE LIST</a>
+<div id="cart-popup" class="cart-popup">
+  <h4 style="margin-bottom:15px;">Your Quote Cart</h4>
+  <div id="cart-items-list"></div>
+  <div style="font-size:1.3rem; font-weight:700; text-align:right; margin:15px 0; color:var(--fire-yellow);">Total: E<span id="cart-total">0</span></div>
+  <button onclick="goToCheckout()" class="cta whatsapp">Proceed to WhatsApp</button>
+</div>
+
+<div id="social-popup" class="social-popup">
+  <div class="social-content">
+    <div class="social-tabs">
+      <button class="social-tab active" onclick="loadSocial('fb')">Facebook</button>
+      <button class="social-tab" onclick="loadSocial('tt')">TikTok</button>
+      <button class="social-tab" onclick="loadSocial('yt')">YouTube</button>
+    </div>
+    <div id="social-frame-container"></div>
+    <button onclick="closeSocial()" style="margin-top:10px; width:100%;" class="btn-cart">Close</button>
+  </div>
+</div>
+
+<a href="https://wa.me/26879637097" target="_blank" style="position:fixed; bottom:20px; right:20px; z-index:999; background:#25D366; color:white; padding:14px 18px; border-radius:50px; text-decoration:none;"><i class="fab fa-whatsapp"></i> Chat</a>
+
+<div class="top-bar">
+  <div class="logo-area">
+    <img src="assets/images/logo.jpg" alt="PartySounds Logo">
+    <div class="logo-text">
+      <h1>THE PARTY SOUNDS ESWATINI</h1>
+      <p><i class="fas fa-phone"></i> +268 79637097 | <i class="fas fa-map-marker-alt"></i> Mbabane, Eswatini</p>
+    </div>
+  </div>
+  <div>
+    <a href="#booking" class="btn-water">REQUEST QUOTE</a>
+    <a href="assets/docs/Pricelist.pdf" target="_blank" class="btn-water">VIEW PRICE LIST</a>
+  </div>
+</div>
+
+<header>
+  <div class="overlay"></div>
+  <div class="header-content">
+    <h1>PREMIUM AUDIO SOLUTIONS</h1>
+    <p>High-fidelity sound for Weddings, Corporate & Events across Eswatini</p>
+  </div>
 </header>
+
+<nav>
+  <a href="#packages">Packages</a><a href="#rental">Equipment</a><a href="#addons">Add-Ons</a>
+  <a href="#gallery">Gallery</a><a href="#booking">Book</a><a href="#docs">Documents</a>
+  <a href="#" onclick="openSocial(); return false;">Follow Us</a><a href="#contact">Contact</a>
+</nav>
 
 <main>
   <section id="packages">
-    <h2>SOUND PACKAGES</h2>
-    <div class="package-grid">
-      <div class="item-card" style="background-image: url('assets/images/package-small.jpg');">
-        <div class="item-info"><h4>Small Package</h4><p>2 Speakers + Mixer + 2 Mics</p>
-        <div class="item-controls"><span class="price">E1,500</span><button class="btn-cart" onclick="addToCart('Small Package - E1500', 1)">Add</button></div></div>
+    <h2>1. SOUND PACKAGES <span style="font-size:1rem; color:var(--text-muted);">(Includes Setup, Engineer, 8 Hours)</span></h2>
+    <div class="services">
+      <div class="card">
+        <h3>SMALL EVENT</h3><p>Up to 100 People</p>
+        <p>2x Tops 470W, Audio Mixer, 2x Wireless Mics</p>
+        <div class="price-tag"><i class="fas fa-tag"></i> E750.00</div>
+        <button class="btn-cart" onclick="addToCart('Small Event - E750')">Add to Cart</button>
       </div>
-      <div class="item-card" style="background-image: url('assets/images/package-medium.jpg');">
-        <div class="item-info"><h4>Medium Package</h4><p>4 Speakers + Sub + Mixer + Lights</p>
-        <div class="item-controls"><span class="price">E3,000</span><button class="btn-cart" onclick="addToCart('Medium Package - E3000', 1)">Add</button></div></div>
+      <div class="card">
+        <h3>MEDIUM EVENT</h3><p>Up to 150 People</p>
+        <p>2x Tops, 1x Sub, Mixer & 2x Mics, Professional DJ</p>
+        <div class="price-tag"><i class="fas fa-tag"></i> E900.00</div>
+        <button class="btn-cart" onclick="addToCart('Medium Event - E900')">Add to Cart</button>
       </div>
-      <div class="item-card" style="background-image: url('assets/images/package-premium.jpg');">
-        <div class="item-info"><h4>Premium Package</h4><p>Full PA + DJ + Engineer + Lighting</p>
-        <div class="item-controls"><span class="price">E6,000</span><button class="btn-cart" onclick="addToCart('Premium Package - E6000', 1)">Add</button></div></div>
+      <div class="card">
+        <h3>PREMIUM EVENT</h3><p>150 - 500 People</p>
+        <p>4x Tops, 2x Wharfedale Subs, CPD Amps, DJ + Engineer</p>
+        <div class="price-tag"><i class="fas fa-tag"></i> E1,800.00</div>
+        <button class="btn-cart" onclick="addToCart('Premium Event - E1800')">Add to Cart</button>
       </div>
     </div>
   </section>
 
   <section id="rental">
-    <h2>SINGLE ITEM RENTAL <span>(Per Day)</span></h2>
+    <h2>2. SINGLE ITEM RENTAL <span style="font-size:1rem; color:var(--text-muted);">(Per Day)</span></h2>
     <div class="rental-grid">
-      <!-- COPY THIS BLOCK 11 TIMES AND CHANGE NAME/PRICE/IMAGE/ID -->
-      <div class="item-card" style="background-image: url('assets/images/speaker-top.jpg');">
-        <div class="item-info"><h4>Passive Speaker 500W</h4>
-        <div class="item-controls"><span>E250</span><select id="qty-speaker"><option>1</option><option>2</option><option>3</option><option>4</option></select><button class="btn-cart" onclick="addToCart('Passive Speaker 500W - E250', document.getElementById('qty-speaker').value)">Add</button></div></div>
-      </div>
+      <div class="card"><h4>Passive Speaker 500W</h4><div class="price-tag">E250.00</div><button class="btn-cart" onclick="addToCart('Passive Speaker 500W - E250')">Add to Cart</button></div>
+      <div class="card"><h4>Subwoofer Double Bassbin</h4><div class="price-tag">E400.00</div><button class="btn-cart" onclick="addToCart('Subwoofer Double Bassbin - E400')">Add to Cart</button></div>
+      <div class="card"><h4>Amplifier CPD 2500</h4><div class="price-tag">E350.00</div><button class="btn-cart" onclick="addToCart('Amplifier CPD 2500 - E350')">Add to Cart</button></div>
+      <div class="card"><h4>Powered Mixer 6 Channel</h4><div class="price-tag">E300.00</div><button class="btn-cart" onclick="addToCart('Powered Mixer 6 Channel - E300')">Add to Cart</button></div>
+      <div class="card"><h4>Passive Mixer 8 Channel</h4><div class="price-tag">E200.00</div><button class="btn-cart" onclick="addToCart('Passive Mixer 8 Channel - E200')">Add to Cart</button></div>
+      <div class="card"><h4>Crossover 3 Way</h4><div class="price-tag">E150.00</div><button class="btn-cart" onclick="addToCart('Crossover 3 Way - E150')">Add to Cart</button></div>
+      <div class="card"><h4>Wireless Mic</h4><div class="price-tag">E150.00</div><button class="btn-cart" onclick="addToCart('Wireless Mic - E150')">Add to Cart</button></div>
+      <div class="card"><h4>Core Mic</h4><div class="price-tag">E80.00</div><button class="btn-cart" onclick="addToCart('Core Mic - E80')">Add to Cart</button></div>
+      <div class="card"><h4>Speaker Stand</h4><div class="price-tag">E100.00</div><button class="btn-cart" onclick="addToCart('Speaker Stand - E100')">Add to Cart</button></div>
+      <div class="card"><h4>Speaker Cable</h4><div class="price-tag">E50.00</div><button class="btn-cart" onclick="addToCart('Speaker Cable - E50')">Add to Cart</button></div>
+      <div class="card"><h4>XLR Cable</h4><div class="price-tag">E40.00</div><button class="btn-cart" onclick="addToCart('XLR Cable - E40')">Add to Cart</button></div>
     </div>
   </section>
 
   <section id="addons">
-    <h2>ADD-ONS</h2>
+    <h2>3. ADD-ONS</h2>
     <div class="addon-grid">
-      <!-- COPY THIS BLOCK 5 TIMES -->
-      <div class="item-card" style="background-image: url('assets/images/lighting.jpg');">
-        <div class="item-info"><h4>Stage Lighting</h4>
-        <div class="item-controls"><span>E800</span><select id="qty-light"><option>1</option><option>2</option></select><button class="btn-cart" onclick="addToCart('Stage Lighting - E800', document.getElementById('qty-light').value)">Add</button></div></div>
-      </div>
+      <div class="card"><h4>Lighting Only</h4><div class="price-tag">E500.00</div><button class="btn-cart" onclick="addToCart('Lighting Only - E500')">Add to Cart</button></div>
+      <div class="card"><h4>Overtime</h4><div class="price-tag">E300.00 /hour</div><button class="btn-cart" onclick="addToCart('Overtime - E300')">Add to Cart</button></div>
+      <div class="card"><h4>Transport</h4><div class="price-tag">Quoted per km</div><button class="btn-cart" onclick="addToCart('Transport - Quoted')">Add to Cart</button></div>
+      <div class="card"><h4>DJ Services</h4><div class="price-tag">From E400.00</div><button class="btn-cart" onclick="addToCart('DJ Services - E400')">Add to Cart</button></div>
+      <div class="card"><h4>Sound Engineer</h4><div class="price-tag">E300.00</div><button class="btn-cart" onclick="addToCart('Sound Engineer - E300')">Add to Cart</button></div>
     </div>
   </section>
 
-  <section id="gallery">
-    <h2>GALLERY</h2>
+
+
+
+    <section id="gallery">
+    <h2>OUR GALLERY</h2>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('assets/Culture.jpg', 'Culture Event - Full PA Setup')">
-        <img src="assets/Culture.jpg" alt="Culture Event"><div class="gallery-caption">Culture Event - Full PA Setup</div>
-      </div>
-      <div class="gallery-item" onclick="openLightbox('assets/camp.jpg', 'Camp Event - Medium Package')">
-        <img src="assets/camp.jpg" alt="Camp Event"><div class="gallery-caption">Camp Event - Medium Package</div>
-      </div>
-    </div>
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-      <span class="close-btn">&times;</span>
-      <img id="lightbox-img" src="">
-      <p id="lightbox-caption"></p>
+      <img src="assets/images/Culture.jpg" alt="Cultural Event" onclick="openLightbox(this.src)">
+      <img src="assets/images/camp.jpg" alt="Camp Event" onclick="openLightbox(this.src)">
     </div>
   </section>
 
-  <section id="contact">
-    <h2>CONTACT US</h2>
-    <div class="contact-card">
-      <p><b>Phone / WhatsApp:</b> +268 79637097</p>
-      <p><b>Email:</b> bookings@thepartysounds.co.sz</p>
-      <p><b>Location:</b> Mbabane, Eswatini</p>
+  <section id="booking">
+    <h2>REQUEST A QUOTE / CHECKOUT</h2>
+    <form id="booking-form">
+      <div><label>Full Name *</label><input type="text" id="client-name" required /></div>
+      <div><label>Event Name *</label><input type="text" id="event-name" required /></div>
+      <div><label>Phone Number *</label><input type="tel" id="phone-number" required /></div>
+      <div><label>Event Date</label><input type="date" id="date-needed" /></div>
+      <div><label>Venue / Location</label><input type="text" id="venue" /></div>
+      <div style="grid-column:1/-1;"><label>Cart Items</label><textarea id="cart-items" rows="4" readonly></textarea></div>
+      <button type="submit" class="cta whatsapp" style="grid-column:1/-1;"><i class="fab fa-whatsapp"></i> SEND QUOTE REQUEST VIA WHATSAPP</button>
+    </form>
+  </section>
+
+  <section id="docs">
+    <h2>DOCUMENTS</h2>
+    <div class="card">
+      <h3>Price List & Agreement</h3>
+      <a href="assets/docs/Pricelist.pdf" target="_blank" class="btn-water">View Pricelist PDF</a>
+      <a href="assets/docs/Pricelist.pdf" download class="btn-water">Download Pricelist</a>
     </div>
   </section>
 </main>
 
-<div id="cart-sidebar" class="cart-sidebar">
-  <h3>Your Quote</h3>
-  <div id="cart-items"></div>
-  <p class="cart-total">Total: <span id="cart-total">Contact for Quote</span></p>
-  <button class="btn-primary" onclick="checkout()">Send Quote via WhatsApp</button>
-  <button class="btn-close" onclick="toggleCart()">Close</button>
+<footer id="contact">
+  <h3>CONTACT US</h3>
+  <p><i class="fas fa-map-marker-alt"></i> Mbabane, Hhohho Region, Eswatini</p>
+  <p><i class="fas fa-phone"></i> +268 79637097</p>
+  <p><i class="fab fa-whatsapp"></i> WhatsApp: 79637097</p>
+  <p><i class="fas fa-clock"></i> Mon - Sun: 8AM - 10PM</p>
+  <p style="margin-top:20px; color:var(--text-muted);">TERMS: 50% Deposit to Book | Client provides power | Prices valid 2026</p>
+  <p>&copy; 2026 The Party Sounds Eswatini. All rights reserved.</p>
+</footer>
+
+<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center;" onclick="this.style.display='none'">
+  <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:8px;">
 </div>
 
-<script src="script.js"></script>
+
+
+
+  <script>
+  let cart = JSON.parse(localStorage.getItem('partyCart')) || [];
+
+  const prices = {
+    "Small Event - E750": 750, "Medium Event - E900": 900, "Premium Event - E1800": 1800,
+    "Passive Speaker 500W - E250": 250, "Subwoofer Double Bassbin - E400": 400, "Amplifier CPD 2500 - E350": 350,
+    "Powered Mixer 6 Channel - E300": 300, "Passive Mixer 8 Channel - E200": 200, "Crossover 3 Way - E150": 150,
+    "Wireless Mic - E150": 150, "Core Mic - E80": 80, "Speaker Stand - E100": 100, "Speaker Cable - E50": 50, "XLR Cable - E40": 40,
+    "Lighting Only - E500": 500, "Overtime - E300": 300, "Transport - Quoted": 0, "DJ Services - E400": 400, "Sound Engineer - E300": 300
+  };
+
+  function saveCart() { localStorage.setItem('partyCart', JSON.stringify(cart)); updateCartDisplay(); }
+  function addToCart(item) { if (!cart.includes(item)) { cart.push(item); saveCart(); alert('✅ Added to cart!'); toggleCart(); } else { alert('Already in cart'); } }
+  function removeFromCart(item) { cart = cart.filter(i => i!== item); saveCart(); }
+  function updateCartDisplay() {
+    document.getElementById('cart-count').textContent = cart.length;
+    let listHTML = ''; let total = 0;
+    if(cart.length === 0) { listHTML = '<p style="text-align:center; color:var(--text-muted);">Your cart is empty</p>'; }
+    else { cart.forEach(item => { const price = prices[item]; total += price; listHTML += `<div class="cart-item"><div>${item.split(' - ')[0]}</div><div><span class="cart-item-price">E${price}</span> <button class="remove-btn" onclick="removeFromCart('${item}')">&times;</button></div></div>`; }); }
+    document.getElementById('cart-items-list').innerHTML = listHTML;
+    document.getElementById('cart-total').textContent = total.toLocaleString();
+    document.getElementById('cart-items').value = cart.join('\n');
+  }
+  function toggleCart() { const p = document.getElementById('cart-popup'); p.style.display = p.style.display === 'block'? 'none' : 'block'; }
+  function goToCheckout() { if(cart.length === 0) { alert('Cart empty'); return; } toggleCart(); document.getElementById('booking').scrollIntoView({behavior: 'smooth'}); }
+
+  // SOCIALS 1 AT A TIME
+  function openSocial() { document.getElementById('social-popup').style.display='flex'; loadSocial('fb'); }
+  function closeSocial() { document.getElementById('social-popup').style.display='none'; document.getElementById('social-frame-container').innerHTML=''; }
+  function loadSocial(type) {
+    document.querySelectorAll('.social-tab').forEach(t=>t.classList.remove('active'));
+    event.target.classList.add('active');
+    let html = '';
+    if(type==='fb') html = `<iframe class="social-frame" src="https://www.facebook.com/plugins/page.php?href=https://facebook.com&tabs=timeline&width=500&height=400"></iframe>`;
+    if(type==='tt') html = `<iframe class="social-frame" src="https://www.tiktok.com/embed/@PartySounds-q2f"></iframe>`;
+    if(type==='yt') html = `<iframe class="social-frame" src="https://www.youtube.com/embed?listType=user_uploads&list=PartySounds-q2f"></iframe>`;
+    document.getElementById('social-frame-container').innerHTML = html;
+  }
+
+  function openLightbox(src) { document.getElementById('lightbox-img').src=src; document.getElementById('lightbox').style.display='flex'; }
+
+  document.getElementById('booking-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('client-name').value; const event = document.getElementById('event-name').value;
+    const phone = document.getElementById('phone-number').value; const cartText = document.getElementById('cart-items').value;
+    const total = document.getElementById('cart-total').textContent;
+    let msg = `Hi PartySounds Eswatini! New Quote Request:%0A%0A*Name:* ${name}%0A*Event:* ${event}%0A*Phone:* ${phone}%0A%0A*CART:*%0A${cartText.replace(/\n/g, '%0A')}%0A%0A*TOTAL: E${total}*`;
+    window.open(`https://wa.me/26879637097?text=${msg}`, '_blank');
+    cart = []; saveCart(); this.reset();
+  });
+  updateCartDisplay();
+</script>
 </body>
-  </html>
-
-
-:root {
-  --accent: #e91e63;
-  --bg-dark: #0a0a0a;
-  --bg-card: #121212;
-  --text: #ffffff;
-  --text-muted: #aaaaaa;
-}
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg-dark); color: var(--text); }
-
-nav { position: sticky; top:0; z-index:999; display:flex; justify-content:space-between; align-items:center; padding:15px 5%; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); flex-wrap:wrap; }
-.nav-logo { font-weight:800; font-size:1.2rem; color: var(--accent); }
-.nav-links a, .btn-cart-nav { margin:5px 10px; color:white; text-decoration:none; background:none; border:none; cursor:pointer; font-weight:600; }
-.btn-cart-nav { background: var(--accent); padding:8px 15px; border-radius:6px; }
-
-.hero { height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background: url('assets/images/home.jpg') center/cover no-repeat; transition: opacity 0.3s; }
-.hero-logo { width:150px; margin-bottom:20px; }
-.hero h1 { font-size:3rem; margin-bottom:10px; }
-.btn-primary { background: var(--accent); color:white; padding:15px 30px; border-radius:8px; text-decoration:none; font-weight:700; border:none; cursor:pointer; }
-
-section { padding: 80px 20px; position: relative; }
-section + section::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:60%; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity:0.4; }
-section h2 { text-align:center; font-size:2.2rem; margin-bottom:10px; }
-section h2 span { font-size:1rem; color:var(--text-muted); }
-
-.package-grid, .rental-grid, .addon-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:25px; max-width:1200px; margin:40px auto 0; }
-
-.item-card { position:relative; height:300px; border-radius:12px; overflow:hidden; background-size:cover; background-position:center; display:flex; flex-direction:column; justify-content:flex-end; padding:15px; transition:0.3s; }
-.item-card::before { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%); }
-.item-card:hover { transform: translateY(-5px); }
-.item-info { position:relative; z-index:1; }
-.item-info h4 { font-size:1.1rem; margin-bottom:8px; }
-.item-controls { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-.item-controls select { padding:5px; background:#222; color:white; border:1px solid #444; border-radius:4px; }
-.btn-cart { background: var(--accent); color:white; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:600; }
-
-.gallery-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:15px; max-width:1200px; margin:40px auto 0; }
-.gallery-item { position:relative; cursor:pointer; overflow:hidden; border-radius:10px; }
-.gallery-item img { width:100%; height:250px; object-fit:cover; transition:0.3s; }
-.gallery-item:hover img { transform:scale(1.1); }
-.gallery-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white; padding:15px; transform:translateY(100%); transition:0.3s; }
-.gallery-item:hover .gallery-caption { transform:translateY(0); }
-
-.lightbox { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; flex-direction:column; }
-.lightbox img { max-width:90%; max-height:80%; border-radius:8px; }
-.lightbox p { color:white; margin-top:15px; }
-.close-btn { position:absolute; top:20px; right:40px; color:white; font-size:40px; cursor:pointer; }
-
-.cart-sidebar { position:fixed; right:-400px; top:0; width:350px; height:100%; background:var(--bg-card); z-index:1001; padding:20px; transition:0.3s; overflow-y:auto; }
-.cart-sidebar.active { right:0; }
-.btn-close { background:#444; color:white; border:none; padding:10px; width:100%; margin-top:10px; border-radius:6px; cursor:pointer; }
-.contact-card { max-width:600px; margin:40px auto 0; text-align:center; background:var(--bg-card); padding:30px; border-radius:10px; }
-
-
-<div class="item-card" style="background-image: url('assets/images/NAME.jpg');">
-  <div class="item-info"><h4>ITEM NAME</h4>
-  <div class="item-controls"><span>EPRICE</span><select id="qty-UNIQUE"><option>1</option><option>2</option><option>3</option><option>4</option></select><button class="btn-cart" onclick="addToCart('ITEM NAME - EPRICE', document.getElementById('qty-UNIQUE').value)">Add</button></div></div>
-</div>
-
-
-<div class="gallery-item" onclick="openLightbox('assets/IMAGE.jpg', 'Caption here')">
-  <img src="assets/IMAGE.jpg" alt="Caption"><div class="gallery-caption">Caption here</div>
-</div>let cart = [];
-
-function addToCart(item, qty) {
-  qty = parseInt(qty);
-  const existing = cart.find(i => i.name === item);
-  if(existing) existing.qty += qty;
-  else cart.push({name: item, qty: qty});
-  updateCart();
-}
-
-function updateCart() {
-  document.getElementById('cart-count').innerText = cart.reduce((a,b) => a + b.qty, 0);
-  document.getElementById('cart-items').innerHTML = cart.map(i => `<p>${i.name} x ${i.qty}</p>`).join('');
-}
-
-function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('active'); }
-
-function checkout() {
-  let msg = "Hi The Party Sounds, I need a quote for:%0A" + cart.map(i => `- ${i.name} x ${i.qty}`).join('%0A');
-  window.open(`https://wa.me/26879637097?text=${msg}`, '_blank');
-}
-
-// SOCIALS WITH YOUR REAL LINKS
-function openSocial(type) {
-  if(type==='fb') { 
-    window.open("https://www.facebook.com/profile.php?id=61559046577098", '_blank'); 
-    return; 
-  }
-  if(type==='tt') { 
-    window.open("https://vm.tiktok.com/ZS9hnAWS7QJYd-LJVoT/", '_blank'); 
-    return; 
-  }
-  if(type==='yt') { 
-    window.open("https://youtube.com/@PartySounds-q2f", '_blank'); 
-    return; 
-  }
-}
-
-function openLightbox(src, caption) {
-  document.getElementById('lightbox').style.display = 'flex';
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox-caption').innerText = caption;
-}
-function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
-
-// HERO FADE OUT + PARALLAX
-window.addEventListener('scroll', () => {
-  const hero = document.querySelector('.hero');
-  const scrollY = window.scrollY;
-  if(hero) {
-    hero.style.opacity = 1 - scrollY / 400;
-    hero.style.transform = `translateY(${scrollY * 0.3}px)`;
-  }
-});
+</html>
