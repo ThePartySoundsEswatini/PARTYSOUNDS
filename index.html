@@ -50,7 +50,7 @@
     nav a:hover { color: var(--primary); }
 
     /* ===== HERO SECTION ===== */
-    header.hero { height: 55vh; min-height: 380px; background: url('assets/home.jpg') no-repeat center/cover; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+    header.hero { height: 55vh; min-height: 380px; background: url('assets/images/background.jpg') no-repeat center/cover; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
     .overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); }
     .header-content { position: relative; z-index: 1; padding: 0 20px; max-width: 800px; }
     .header-content p { color: var(--text-muted); font-size: 1.1rem; margin-top: 10px; }
@@ -63,7 +63,52 @@
     .cart-float:hover { background: var(--primary-hover); }
     #cart-count { background: white; color: var(--primary); border-radius: 50%; padding: 2px 8px; font-size: 0.85em; font-weight: 700; }
 
-    .cart-popup { display: none; position: fixed; bottom: 80px; right: 20px; width: 340px; max-width: 90vw; background: var(--card-bg); border: 2px solid var(--primary); border-radius: 12px; padding: 20px; z-index: 999; box-shadow: 0 10px 25px rgba(0,0,0,0.8); }
+    /* ===== CART OVERLAY & SLIDE PANEL FIX ===== */
+    .cart-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1008;
+    }
+    .cart-popup { 
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      right: 0; 
+      width: 380px; 
+      max-width: 90vw; 
+      height: 100vh;
+      background: var(--card-bg); 
+      border-left: 2px solid var(--primary); 
+      padding: 25px 20px; 
+      z-index: 1009; 
+      box-shadow: -10px 0 30px rgba(0,0,0,0.9); 
+      overflow-y: auto;
+      animation: slideInRight 0.25s ease-out forwards;
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #333;
+    }
+    .cart-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+    }
     .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #333; font-size: 0.9rem; }
     .cart-item-price { color: var(--fire-yellow); font-weight: 700; margin-right: 8px; }
     .remove-btn { background: #ff3333; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; }
@@ -193,6 +238,7 @@
       .whatsapp-float { padding: 14px; border-radius: 50%; }
       .item-modal-body { grid-template-columns: 1fr; }
       .item-modal-img { height: 160px; }
+      .cart-popup { width: 100vw; max-width: 100vw; }
     }
   </style>
 </head>
@@ -244,8 +290,13 @@
   <i class="fas fa-shopping-cart"></i> Cart <span id="cart-count">0</span>
 </button>
 
+<!-- CART BACKDROP & SLIDE-OUT PANEL -->
+<div id="cart-backdrop" class="cart-backdrop" onclick="toggleCart(false)"></div>
 <div id="cart-popup" class="cart-popup">
-  <h4 style="margin-bottom:15px; text-align:center;">Your Quote Cart</h4>
+  <div class="cart-header">
+    <h4 style="margin:0;">Your Quote Cart</h4>
+    <button class="cart-close" onclick="toggleCart(false)">&times;</button>
+  </div>
   <div id="cart-items-list"></div>
   <div style="font-size:1.2rem; font-weight:700; text-align:right; margin:15px 0; color:var(--fire-yellow);">Total: E<span id="cart-total">0</span></div>
   <button onclick="goToCheckout()" class="cta whatsapp">Proceed to Checkout</button>
@@ -273,13 +324,13 @@
       <div class="card">
         <div class="card-img-wrapper">
           <span class="badge">Small Event</span>
-          <img src="assets/images/small-package.jpg" alt="Small Event Sound System" onerror="this.src='https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/750.jpg" alt="Small Event Sound System">
         </div>
         <h3>SMALL EVENT</h3>
         <p style="color:var(--text-muted); font-size:0.85rem;">Up to 100 People</p>
         <div class="price-tag"><i class="fas fa-tag"></i> E750.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Small Event Package', 'E750.00', 'Includes 2x Tops 470W Speakers, 1x Audio Mixer, 2x Wireless Microphones, Cabling & Stand Set. Perfect for small indoor/outdoor gatherings.', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=500&q=80', 'Small Event - E750')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Small Event Package', 'E750.00', 'Includes 2x Tops 470W Speakers, 1x Audio Mixer, 2x Wireless Microphones, Cabling & Stand Set. Perfect for small indoor/outdoor gatherings.', 'assets/images/750.jpg', 'Small Event - E750')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Small Event - E750')">Add to Cart</button>
         </div>
       </div>
@@ -287,13 +338,13 @@
       <div class="card">
         <div class="card-img-wrapper">
           <span class="badge">Medium Event</span>
-          <img src="assets/images/medium-package.jpg" alt="Medium Event Sound System" onerror="this.src='https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/bintops.jpg" alt="Medium Event Sound System">
         </div>
         <h3>MEDIUM EVENT</h3>
         <p style="color:var(--text-muted); font-size:0.85rem;">Up to 150 People</p>
         <div class="price-tag"><i class="fas fa-tag"></i> E900.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Medium Event Package', 'E900.00', 'Includes 2x High Power Tops, 1x Dedicated Subwoofer, Mixer, 2x Wireless Mics & Included Professional Event DJ.', 'https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?auto=format&fit=crop&w=500&q=80', 'Medium Event - E900')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Medium Event Package', 'E900.00', 'Includes 2x High Power Tops, 1x Dedicated Subwoofer, Mixer, 2x Wireless Mics & Included Professional Event DJ.', 'assets/images/bintops.jpg', 'Medium Event - E900')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Medium Event - E900')">Add to Cart</button>
         </div>
       </div>
@@ -301,13 +352,13 @@
       <div class="card">
         <div class="card-img-wrapper">
           <span class="badge">Premium Event</span>
-          <img src="assets/images/premium-package.jpg" alt="Premium Sound System Hire" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/pa.jpg" alt="Premium Sound System Hire">
         </div>
         <h3>PREMIUM EVENT</h3>
         <p style="color:var(--text-muted); font-size:0.85rem;">150 - 500 People</p>
         <div class="price-tag"><i class="fas fa-tag"></i> E1,800.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Premium Event Package', 'E1,800.00', 'Full high-power concert audio: 4x Tops, 2x Wharfedale Subwoofers, High-Output CPD Amplifiers, Sound Engineer & Dedicated DJ.', 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80', 'Premium Event - E1800')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Premium Event Package', 'E1,800.00', 'Full high-power concert audio: 4x Tops, 2x Wharfedale Subwoofers, High-Output CPD Amplifiers, Sound Engineer & Dedicated DJ.', 'assets/images/pa.jpg', 'Premium Event - E1800')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Premium Event - E1800')">Add to Cart</button>
         </div>
       </div>
@@ -333,12 +384,12 @@
       <div class="card rental-item" data-category="speakers">
         <div class="card-img-wrapper">
           <span class="badge">Speaker</span>
-          <img src="assets/images/speaker-500w.jpg" alt="Passive Speaker 500W" onerror="this.src='https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/tops.jpg" alt="Passive Speaker 500W">
         </div>
         <h4>Passive Speaker 500W</h4>
         <div class="price-tag">E250.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Passive Speaker 500W', 'E250.00', 'High-clarity 500W passive loudspeaker. Clear vocal response and dynamic sound projection.', 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=500&q=80', 'Passive Speaker 500W - E250')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Passive Speaker 500W', 'E250.00', 'High-clarity 500W passive loudspeaker. Clear vocal response and dynamic sound projection.', 'assets/images/tops.jpg', 'Passive Speaker 500W - E250')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Passive Speaker 500W - E250')">Add to Cart</button>
         </div>
       </div>
@@ -346,12 +397,12 @@
       <div class="card rental-item" data-category="speakers">
         <div class="card-img-wrapper">
           <span class="badge">Subwoofer</span>
-          <img src="assets/images/subwoofer.jpg" alt="Subwoofer Double Bassbin" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/subbin.jpg" alt="Subwoofer Double Bassbin">
         </div>
         <h4>Subwoofer Double Bassbin</h4>
         <div class="price-tag">E400.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Subwoofer Double Bassbin', 'E400.00', 'Deep, punchy low-end subwoofer bassbin for large outdoor or indoor parties.', 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80', 'Subwoofer Double Bassbin - E400')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Subwoofer Double Bassbin', 'E400.00', 'Deep, punchy low-end subwoofer bassbin for large outdoor or indoor parties.', 'assets/images/subbin.jpg', 'Subwoofer Double Bassbin - E400')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Subwoofer Double Bassbin - E400')">Add to Cart</button>
         </div>
       </div>
@@ -360,12 +411,12 @@
       <div class="card rental-item" data-category="mixers">
         <div class="card-img-wrapper">
           <span class="badge">Amplifier</span>
-          <img src="assets/images/cpd-2500.jpg" alt="Amplifier CPD 2500" onerror="this.src='https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/A.jpg" alt="Amplifier CPD 2500">
         </div>
         <h4>Amplifier CPD 2500</h4>
         <div class="price-tag">E350.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Amplifier CPD 2500', 'E350.00', 'Professional CPD 2500 power amplifier delivering stable high-wattage power output.', 'https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?auto=format&fit=crop&w=500&q=80', 'Amplifier CPD 2500 - E350')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Amplifier CPD 2500', 'E350.00', 'Professional CPD 2500 power amplifier delivering stable high-wattage power output.', 'assets/images/A.jpg', 'Amplifier CPD 2500 - E350')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Amplifier CPD 2500 - E350')">Add to Cart</button>
         </div>
       </div>
@@ -373,12 +424,12 @@
       <div class="card rental-item" data-category="mixers">
         <div class="card-img-wrapper">
           <span class="badge">Mixer</span>
-          <img src="assets/images/mixer.jpg" alt="Powered Mixer 6 Channel" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/6mixer.jpg" alt="Powered Mixer 6 Channel">
         </div>
         <h4>Powered Mixer 6 Channel</h4>
         <div class="price-tag">E300.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Powered Mixer 6 Channel', 'E300.00', 'Integrated powered audio mixer with EQ, effects, and 6 microphone/line inputs.', 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80', 'Powered Mixer 6 Channel - E300')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Powered Mixer 6 Channel', 'E300.00', 'Integrated powered audio mixer with EQ, effects, and 6 microphone/line inputs.', 'assets/images/6mixer.jpg', 'Powered Mixer 6 Channel - E300')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Powered Mixer 6 Channel - E300')">Add to Cart</button>
         </div>
       </div>
@@ -386,12 +437,12 @@
       <div class="card rental-item" data-category="mixers">
         <div class="card-img-wrapper">
           <span class="badge">Mixer</span>
-          <img src="assets/images/passive-mixer.jpg" alt="Passive Mixer 8 Channel" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/mixer.jpg" alt="Passive Mixer 8 Channel">
         </div>
         <h4>Passive Mixer 8 Channel</h4>
         <div class="price-tag">E200.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Passive Mixer 8 Channel', 'E200.00', '8-channel passive console for bands, multi-microphone setups, and DJs.', 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=80', 'Passive Mixer 8 Channel - E200')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Passive Mixer 8 Channel', 'E200.00', '8-channel passive console for bands, multi-microphone setups, and DJs.', 'assets/images/mixer.jpg', 'Passive Mixer 8 Channel - E200')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Passive Mixer 8 Channel - E200')">Add to Cart</button>
         </div>
       </div>
@@ -399,12 +450,12 @@
       <div class="card rental-item" data-category="mixers">
         <div class="card-img-wrapper">
           <span class="badge">Processor</span>
-          <img src="assets/images/crossover.jpg" alt="Crossover 3 Way" onerror="this.src='https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/crossover .jpg" alt="Crossover 3 Way">
         </div>
         <h4>Crossover 3 Way</h4>
         <div class="price-tag">E150.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Crossover 3 Way', 'E150.00', 'Precision frequency crossover splitter for clean frequency distribution between subs and tops.', 'https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?auto=format&fit=crop&w=500&q=80', 'Crossover 3 Way - E150')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Crossover 3 Way', 'E150.00', 'Precision frequency crossover splitter for clean frequency distribution between subs and tops.', 'assets/images/crossover .jpg', 'Crossover 3 Way - E150')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Crossover 3 Way - E150')">Add to Cart</button>
         </div>
       </div>
@@ -413,12 +464,12 @@
       <div class="card rental-item" data-category="mics">
         <div class="card-img-wrapper">
           <span class="badge">Mic</span>
-          <img src="assets/images/wireless-mic.jpg" alt="Wireless Mic" onerror="this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/lessmic.jpg" alt="Wireless Mic">
         </div>
         <h4>Wireless Mic</h4>
         <div class="price-tag">E150.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Wireless Mic', 'E150.00', 'Long-range handheld wireless microphone system with receiver unit.', 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=500&q=80', 'Wireless Mic - E150')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Wireless Mic', 'E150.00', 'Long-range handheld wireless microphone system with receiver unit.', 'assets/images/lessmic.jpg', 'Wireless Mic - E150')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Wireless Mic - E150')">Add to Cart</button>
         </div>
       </div>
@@ -426,12 +477,12 @@
       <div class="card rental-item" data-category="mics">
         <div class="card-img-wrapper">
           <span class="badge">Mic</span>
-          <img src="assets/images/wired-mic.jpg" alt="Core Mic" onerror="this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/mics.jpg" alt="Core Mic">
         </div>
         <h4>Core Mic</h4>
         <div class="price-tag">E80.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Core Mic', 'E80.00', 'Durable cabled vocal microphone with switch for speeches and general announcements.', 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=500&q=80', 'Core Mic - E80')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Core Mic', 'E80.00', 'Durable cabled vocal microphone with switch for speeches and general announcements.', 'assets/images/mics.jpg', 'Core Mic - E80')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Core Mic - E80')">Add to Cart</button>
         </div>
       </div>
@@ -440,12 +491,12 @@
       <div class="card rental-item" data-category="cables">
         <div class="card-img-wrapper">
           <span class="badge">Stand</span>
-          <img src="assets/images/stand.jpg" alt="Speaker Stand" onerror="this.src='https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/stands.jpg" alt="Speaker Stand">
         </div>
         <h4>Speaker Stand</h4>
         <div class="price-tag">E100.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Speaker Stand', 'E100.00', 'Heavy-duty height-adjustable tripod stand for optimal sound elevation.', 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=500&q=80', 'Speaker Stand - E100')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Speaker Stand', 'E100.00', 'Heavy-duty height-adjustable tripod stand for optimal sound elevation.', 'assets/images/stands.jpg', 'Speaker Stand - E100')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Speaker Stand - E100')">Add to Cart</button>
         </div>
       </div>
@@ -453,12 +504,12 @@
       <div class="card rental-item" data-category="cables">
         <div class="card-img-wrapper">
           <span class="badge">Cable</span>
-          <img src="assets/images/speaker-cable.jpg" alt="Speaker Cable" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/image.jpg" alt="Speaker Cable">
         </div>
         <h4>Speaker Cable</h4>
         <div class="price-tag">E50.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('Speaker Cable', 'E50.00', 'Heavy gauge Speakon speaker connection lead (15m-20m length).', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80', 'Speaker Cable - E50')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('Speaker Cable', 'E50.00', 'Heavy gauge Speakon speaker connection lead (15m-20m length).', 'assets/images/image.jpg', 'Speaker Cable - E50')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('Speaker Cable - E50')">Add to Cart</button>
         </div>
       </div>
@@ -466,12 +517,12 @@
       <div class="card rental-item" data-category="cables">
         <div class="card-img-wrapper">
           <span class="badge">Cable</span>
-          <img src="assets/images/xlr-cable.jpg" alt="XLR Cable" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80'">
+          <img src="assets/images/image.jpg" alt="XLR Cable">
         </div>
         <h4>XLR Cable</h4>
         <div class="price-tag">E40.00</div>
         <div class="card-actions">
-          <button class="btn-view" onclick="openItemModal('XLR Cable', 'E40.00', 'Balanced XLR microphone and line signal cable.', 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=500&q=80', 'XLR Cable - E40')"><i class="fas fa-eye"></i> View</button>
+          <button class="btn-view" onclick="openItemModal('XLR Cable', 'E40.00', 'Balanced XLR microphone and line signal cable.', 'assets/images/image.jpg', 'XLR Cable - E40')"><i class="fas fa-eye"></i> View</button>
           <button class="btn-cart" onclick="addToCart('XLR Cable - E40')">Add to Cart</button>
         </div>
       </div>
@@ -517,6 +568,10 @@
     <div class="gallery-grid">
       <img src="assets/images/Culture.jpg" alt="Cultural Event Audio Setup" onclick="openLightbox(this.src)">
       <img src="assets/images/camp.jpg" alt="Camp Audio Setup" onclick="openLightbox(this.src)">
+      <img src="assets/images/nkoyoyo.jpg" alt="Nkoyoyo Event Audio Setup" onclick="openLightbox(this.src)">
+      <img src="assets/images/redcarpet.jpg" alt="Red Carpet Sound Setup" onclick="openLightbox(this.src)">
+      <img src="assets/images/sport.jpg" alt="Sports Day PA System" onclick="openLightbox(this.src)">
+      <img src="assets/images/laptop.jpg" alt="DJ Control Station" onclick="openLightbox(this.src)">
     </div>
   </section>
 
@@ -655,7 +710,7 @@
     let total = 0;
 
     if (cart.length === 0) { 
-      listHTML = '<p style="text-align:center; color:var(--text-muted); padding: 10px 0;">Your cart is empty</p>'; 
+      listHTML = '<p style="text-align:center; color:var(--text-muted); padding: 20px 0;">Your cart is empty</p>'; 
     } else { 
       cart.forEach(item => { 
         const price = prices[item] || 0; 
@@ -676,12 +731,23 @@
     document.getElementById('cart-items').value = cart.join('\n');
   }
 
-  function toggleCart(forceOpen = false) { 
+  function toggleCart(forceOpen = null) { 
     const p = document.getElementById('cart-popup'); 
-    if (forceOpen) {
+    const b = document.getElementById('cart-backdrop');
+    
+    let shouldOpen = forceOpen;
+    if (shouldOpen === null) {
+      shouldOpen = (p.style.display !== 'block');
+    }
+
+    if (shouldOpen) {
       p.style.display = 'block';
+      b.style.display = 'block';
+      document.body.style.overflow = 'hidden';
     } else {
-      p.style.display = p.style.display === 'block' ? 'none' : 'block'; 
+      p.style.display = 'none';
+      b.style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
   }
 
@@ -807,4 +873,4 @@
   updateCartDisplay();
 </script>
 </body>
-  </html>
+      </html>
