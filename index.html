@@ -12,130 +12,76 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
-      --primary: #FF4500;
-      --dark: #111;
-      --light: #f0f0f0; /* FIXED: was #f0f0 */
-      --text-muted: #b0b0b0;
-      --fire-orange: #FF8C00;
-      --fire-yellow: #FFD700;
-      --input-bg: #1a1a1a;
-      --whatsapp: #25D366;
-      --facebook: #1877F2;
+      --primary: #FF4500; --dark: #111; --light: #f0f0f0;
+      --text-muted: #b0b0b0; --fire-orange: #FF8C00; --fire-yellow: #FFD700;
+      --input-bg: #1a1a1a; --whatsapp: #25D366; --facebook: #1877F2; --water-blue: #1E90FF;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--dark);
-      color: var(--light);
-      line-height: 1.7;
-      font-size: 16px;
-      font-weight: 300;
-      letter-spacing: 0.2px;
-      overflow-x: hidden;
-    }
-    img { loading: lazy; }
-    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; color: var(--light); }
+    body { font-family: 'Poppins', sans-serif; background: var(--dark); color: var(--light); line-height: 1.7; font-size: 16px; font-weight: 300; overflow-x: hidden; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
     h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600; color: var(--primary); margin-bottom: 20px; text-align: center; }
     h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 600; color: var(--primary); margin-bottom: 15px; text-align: center; }
     h4 { font-size: 1.1rem; font-weight: 600; color: var(--fire-orange); margin-bottom: 10px; }
     section p, section li { color: var(--text-muted); font-size: 1rem; max-width: 70ch; margin: 0 auto 15px auto; }
-    a { color: var(--primary); }
- .service h4 { color: var(--fire-orange); }
-.cta, button.cta,.event-cta {
-      display: inline-block; margin-top: 20px; background: var(--primary); color: var(--light);
+
+    /* ===== PRO WATERY BUTTON ===== */
+   .btn-water {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.9), rgba(30, 144, 255, 0.9));
+      color: white; border: none; padding: 14px 28px; border-radius: 50px;
+      font-weight: 700; font-size: 1rem; cursor: pointer; position: relative; overflow: hidden;
+      transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
+      backdrop-filter: blur(5px); text-decoration: none; display: inline-block;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-top: 10px;
+    }
+   .btn-water:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(30, 144, 255, 0.6); }
+   .btn-water::after {
+      content: ''; position: absolute; top: 50%; left: 50%; width: 5px; height: 5px;
+      background: rgba(255, 255, 255, 0.4); opacity: 0; border-radius: 100%;
+      transform: scale(1) translate(-50%); transform-origin: 50% 50%;
+    }
+   .btn-water:active::after { animation: ripple 0.6s ease-out; }
+    @keyframes ripple { 0% { transform: scale(0) translate(-50%); opacity: 1; } 100% { transform: scale(20) translate(-50%); opacity: 0; } }
+
+   .cta, button.cta { display: inline-block; margin-top: 20px; background: var(--primary); color: var(--light);
       padding: 14px 28px; border-radius: 4px; text-decoration: none; font-weight: 600; border: none;
       cursor: pointer; transition: all 0.4s ease-in-out; box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
-      font-size: 1rem; letter-spacing: 0.5px; text-transform: uppercase;
+      font-size: 1rem; text-transform: uppercase;
     }
-.cta:hover, button.cta:hover,.event-cta:hover { background: #D20000; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255, 69, 0, 0.8); }
-.cta.secondary { background: var(--facebook); color: var(--light); }
-.cta.secondary:hover { background: #0d65d9; color: var(--light); }
-.cta.whatsapp { background: var(--whatsapp); }
-.cta.whatsapp:hover { background: #1ebe5a; }
-.trust-badges {
-      display:flex; justify-content:center; gap:30px; flex-wrap:wrap;
-      padding:30px 10px; background:#1a1a1a; border-radius:12px; margin-bottom:40px; border: 1px solid #2a2a2a;
-    }
-.trust-badges div { text-align:center; }
-.trust-badges i { font-size:1.8em; color:var(--fire-yellow); display:block; margin-bottom:8px; }
+   .cta:hover, button.cta:hover { background: #D20000; transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255, 69, 0, 0.8); }
+   .cta.secondary { background: var(--facebook); }
+   .cta.secondary:hover { background: #0d65d9; }
+
+    /* ===== PREMIUM WHATSAPP BUTTON ===== */
+   .cta.whatsapp { background: transparent; border: 2px solid var(--whatsapp); color: var(--whatsapp); font-weight: 700; width: 60%; }
+   .cta.whatsapp:hover { background: var(--whatsapp); color: white; }
+
+   .trust-badges { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; padding:30px 10px; background:#1a1a1a; border-radius:12px; margin-bottom:40px; border: 1px solid #2a2a2a; }
     header { position: relative; height: 80vh; overflow: hidden; background: url('assets/home.jpg') no-repeat center/cover; }
-.overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 0; }
-.header-content { position: relative; z-index: 1; max-width: 800px; padding: 20px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--light); }
-.logo-container { position: absolute; top: 20px; left: 20px; z-index: 2; }
-.logo { max-width: 100px; height: auto; border-radius: 50%; box-shadow: 0 0 0 5px rgba(255, 69, 0, 0.4), 0 0 25px rgba(255, 140, 0, 0.7); }
-    nav { position: sticky; top: 0; background: var(--dark); padding: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; z-index: 10; font-weight: 500; box-shadow: 0 2px 8px rgba(255, 69, 0, 0.4); }
-    nav a { color: var(--light); text-decoration: none; padding: 8px 12px; transition: all 0.4s ease-in-out; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; }
-    nav a:hover, nav a.active { background: var(--primary); color: var(--light); transform: translateY(-2px); box-shadow: 0 0 10px var(--fire-orange); }
-.whatsapp-float {
-        position: fixed; bottom: 20px; right: 20px; z-index: 999; background: var(--whatsapp); color: white;
-        padding: 14px 18px; border-radius: 50px; font-weight: 600; text-decoration: none;
-        box-shadow: 0 4px 15px rgba(37,211,102,0.6); display: flex; align-items: center; gap: 8px;
-        transition: transform 0.3s;
-    }
-.whatsapp-float:hover { transform: scale(1.05); }
-    main { padding: 40px 10px; background: var(--dark); }
+   .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); z-index: 0; }
+   .header-content { position: relative; z-index: 1; max-width: 800px; padding: 20px; margin: 0 auto; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+   .logo-container { position: absolute; top: 20px; left: 20px; z-index: 2; }
+   .logo { max-width: 100px; border-radius: 50%; box-shadow: 0 0 0 5px rgba(255, 69, 0, 0.4), 0 0 25px rgba(255, 140, 0, 0.7); }
+
+    /* ===== NAV WITH GLOW ===== */
+    nav { position: sticky; top: 0; background: var(--dark); padding: 10px 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; z-index: 10; box-shadow: 0 2px 8px rgba(255, 69, 0, 0.4); }
+    nav a { color: var(--light); text-decoration: none; padding: 8px 12px; transition: all 0.4s ease-in-out; font-size: 0.95rem; text-transform: uppercase; border-radius: 4px; }
+    nav a:hover { background: rgba(255, 69, 0, 0.2); transform: translateY(-2px); }
+    nav a.active { background: var(--primary); box-shadow: 0 0 10px var(--fire-orange); }
+
+   .whatsapp-float { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: var(--whatsapp); color: white; padding: 14px 18px; border-radius: 50px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(37,211,102,0.6); display: flex; align-items: center; gap: 8px; }
+    main { padding: 40px 10px; }
     section { max-width: 1000px; margin: 0 auto 60px auto; padding: 20px; }
-.services { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
-.service { flex: 1 1 300px; max-width: 320px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 8px; transition: background-color 0.3s, transform 0.3s; background: #1a1a1a; }
-.service:hover { background: #222; transform: translateY(-5px); }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-.gallery-item { background: #1a1a1a; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); border: 1px solid #2a2a2a; }
-.video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; }
-.events-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; margin-top: 20px; }
-.event-card { flex: 1 1 300px; max-width: 400px; background: #1a1a1a; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1); text-align: center; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #2a2a2a; }
-.document-grid { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
-.document-item { background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #2a2a2a; text-align: center; min-width: 280px; }
-.service img { width: 100%; height: 200px; display: block; margin: 0 auto 10px; border-radius: 6px; object-fit: cover; }
-.gallery-item img { width: 100%; height: 250px; display: block; object-fit: cover; cursor: pointer; transition: transform 0.3s ease; }
-.video-wrapper { position: relative; cursor: pointer; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
-.video-wrapper img { width: 100%; height: 180px; object-fit: cover; display: block; }
-.play-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; }
-.play-overlay i { font-size: 3em; color: var(--light); border: 4px solid var(--light); border-radius: 50%; padding: 20px; background: var(--primary); }
-.fb-feed-wrapper { background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; }
-    #booking-form {
-        max-width: 800px; margin: 30px auto; padding: 30px; background: #1a1a1a; border-radius: 12px;
-        border: 1px solid #2a2a2a; box-shadow: 0 6px 25px rgba(255, 69, 0, 0.2);
-        display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    }
-    #booking-form.full-width { grid-column: 1 / -1; }
-    #booking-form div { display: flex; flex-direction: column; }
-    #booking-form label { margin-bottom: 5px; font-weight: 300; color: var(--light); font-size: 0.9em; }
-    #booking-form input, #booking-form select, #booking-form textarea {
-        width: 100%; padding: 12px; border: 1px solid #555; border-radius: 6px; background-color: var(--input-bg); color: var(--light);
-        font-family: inherit; font-size: 1em;
-    }
-    #booking-form input:focus, #booking-form select:focus, #booking-form textarea:focus {
-        border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.5);
-    }
-    #booking-form button.cta { grid-column: 1 / -1; margin-top: 10px; justify-self: center; width: 50%; background: var(--whatsapp); }
-    #booking-form button.cta:hover { background: #1ebe5a; }
-    footer { background: #1a1a1a; color: var(--light); text-align: center; padding: 40px 20px; border-top: 4px solid var(--primary); }
-    footer h3 { color: var(--fire-yellow); margin-bottom: 20px; }
-    footer a { text-decoration: none; }
-    footer a i { margin-right: 8px; }
-    @media (max-width: 768px) {
-        #booking-form { grid-template-columns: 1fr; padding: 20px; gap: 15px; }
-        #booking-form button.cta { width: 100%; }
-    .services { flex-direction: column; align-items: center; }
-    .service { max-width: 90%; margin-bottom: 15px; }
-        section { padding: 10px; }
-    .whatsapp-float { bottom: 20px; right: 10px; padding: 12px 14px; font-size: 0.9em; }
-    .trust-badges { gap:15px; }
-    }
-.lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-.lightbox-content { position: relative; margin: auto; padding: 20px; background-color: var(--dark); border-radius: 8px; width: 90%; max-width: 900px; box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); }
-    #lightboxImage { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto 10px; }
-.close-btn { position: absolute; top: 15px; right: 35px; color: var(--light); font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
-.close-btn:hover { color: var(--primary); }
-    #lightboxVideo, #lightboxDocument { width: 100%; height: 60vh; border: none; }
-.document-lightbox-content { max-width: 1000px; }
-.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2em; padding: 10px; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; }
-.lightbox-nav:hover { background: rgba(255, 69, 0, 0.7); }
-    #prevBtn { left: 20px; }
-    #nextBtn { right: 20px; }
-    #lightboxDetails { text-align: center; padding-top: 10px; }
-    #lightboxDetails h4 { color: var(--fire-yellow); }
+   .services { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; }
+   .service { flex: 1 1 300px; max-width: 320px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 8px; background: #1a1a1a; transition: 0.3s; }
+   .service:hover { background: #222; transform: translateY(-5px); }
+   .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+   .gallery-item { background: #1a1a1a; border-radius: 8px; overflow: hidden; border: 1px solid #2a2a2a; }
+   .service img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; }
+   .gallery-item img { width: 100%; height: 250px; object-fit: cover; cursor: pointer; }
+   .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+   .close-btn { position: absolute; top: 15px; right: 35px; color: var(--light); font-size: 40px; font-weight: bold; cursor: pointer; z-index: 1001; }
+    @media (max-width: 768px) {.cta.whatsapp { width: 100%; }.services { flex-direction: column; align-items: center; } }
   </style>
 </head>
 <body>
@@ -154,7 +100,7 @@
     <p>Delivering high-fidelity sound reinforcement for weddings, corporate events, and private functions across Eswatini. 100 to 500 people.</p>
     <div>
       <a href="#booking" class="cta">REQUEST A QUOTE</a>
-      <a href="#documents" class="cta secondary"><i class="fas fa-file-pdf"></i> VIEW PRICE LIST</a>
+      <a href="#documents" class="btn-water"><i class="fas fa-file-pdf"></i> VIEW PRICE LIST</a>
     </div>
   </div>
 </header>
@@ -174,9 +120,9 @@
 <main>
   <section id="home">
     <h2>Welcome to The Party Sounds Eswatini</h2>
-    <div id="home-content" style="text-align: center;">
+    <div style="text-align: center;">
         <p>We utilize professional-grade equipment including CPD amplifiers and Wharfedale IMPACT subwoofers to deliver clean vocals and impactful bass for your event.</p>
-        <img id="home-image" src="assets/view.jpg" alt="Outdoor event sound system setup in Eswatini" onclick="openImageLightbox('assets/images/camp.jpg', 'Outdoor event setup')" style="max-width: 90%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); margin: 20px auto; cursor: pointer; object-fit: cover;">
+        <img src="assets/view.jpg" alt="Outdoor event sound system setup in Eswatini" onclick="openImageLightbox('assets/images/camp.jpg', 'Outdoor event setup')" style="max-width: 90%; border-radius: 12px; margin: 20px auto; cursor: pointer;">
     </div>
   </section>
 
@@ -211,9 +157,6 @@
     <div><i class="fas fa-shield-alt"></i><p>Trusted by 20+ Events</p></div>
     <div><i class="fab fa-facebook"></i><p>Active on Facebook</p></div>
     <div><i class="fas fa-headset"></i><p>On-Site Sound Engineer</p></div>
-    <a href="https://www.facebook.com/profile.php?id=61559046577098" target="_blank" class="cta secondary">
-      <i class="fab fa-facebook"></i> FOLLOW US
-    </a>
   </section>
 
   <section id="gallery">
@@ -221,207 +164,127 @@
     <p style="text-align:center; margin-bottom:30px;">Click any image to view details</p>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="assets/images/Culture.jpg" alt="Cultural event sound system Eswatini" data-full-src="assets/images/Culture.jpg" data-title="Cultural Event Sound" data-description="Crystal-clear audio for cultural celebration." onclick="openGalleryLightbox(0)" />
+        <img src="assets/images/Culture.jpg" data-full-src="assets/images/Culture.jpg" data-title="Cultural Event Sound" data-description="Crystal-clear audio for cultural celebration." onclick="openGalleryLightbox(0)" />
         <div style="padding:10px;"><h4>Cultural Event</h4></div>
       </div>
       <div class="gallery-item">
-        <img src="assets/images/camp.jpg" alt="Outdoor night event sound hire" data-full-src="assets/images/camp.jpg" data-title="Outdoor Night Vibe" data-description="Sub-bins pumping at outdoor event." onclick="openGalleryLightbox(1)" />
+        <img src="assets/images/camp.jpg" data-full-src="assets/images/camp.jpg" data-title="Outdoor Night Vibe" data-description="Sub-bins pumping at outdoor event." onclick="openGalleryLightbox(1)" />
         <div style="padding:10px;"><h4>Outdoor Night</h4></div>
       </div>
-      <div class="gallery-item">
-        <img src="assets/images/1event.jpg" alt="Sporting event PA system" data-full-src="assets/images/1event.jpg" data-title="Sporting Event" data-description="Loud and clear for the crowd." onclick="openGalleryLightbox(2)" />
-        <div style="padding:10px;"><h4>Sports Day</h4></div>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/action.jpg" alt="DJ Booth Setup" data-full-src="assets/images/pa.jpg" data-title="PA System" data-description="Professional mixer and amplification ready for action." onclick="openGalleryLightbox(3)" />
-        <div style="padding:10px;"><h4>PA Setup</h4></div>
-      </div>
     </div>
-  </section>
+      </section>
 
-  <section id="facebook">
+
+    <section id="facebook">
     <h3>Latest From Our Facebook</h3>
-    <p style="text-align:center; margin-bottom:20px;">See our latest events, photos, and client reviews in real-time</p>
-    <div class="fb-feed-wrapper">
-      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61559046577098&tabs=timeline&width=1000&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
-      width="100%" height="600" style="border:none;overflow:hidden;border-radius:8px;" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-    </div>
-    <div style="text-align:center;">
-      <a href="https://www.facebook.com/profile.php?id=61559046577098" target="_blank" class="cta secondary">
-        <i class="fab fa-facebook"></i> VISIT OUR FACEBOOK PAGE
-      </a>
+    <div class="fb-feed-wrapper" style="background: #1a1a1a; padding: 20px; border-radius: 12px;">
+      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61559046577098&tabs=timeline&width=1000&height=600" width="100%" height="600" style="border:none; border-radius:8px;"></iframe>
     </div>
   </section>
 
   <section id="videos">
     <h3>Watch Our Events in Action</h3>
-    <div class="video-grid">
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/mC70vYeB7IA')">
-        <img src="assets/cpd.jpg" alt="Event Demo Video" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p>Full System </p>
-      </div>
-      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/S_T1xG3kK5Y')">
-        <img src="assets/images/camp.jpg" alt="Outdoor Event Video" />
-        <div class="play-overlay"><i class="fas fa-play"></i></div>
-        <p>Outdoor Event Coverage</p>
+    <div class="video-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      <div class="video-wrapper" onclick="openVideoLightbox('https://www.youtube.com/embed/mC70vYeB7IA')" style="position: relative; cursor: pointer;">
+        <img src="assets/cpd.jpg" alt="Event Demo Video" style="width:100%; height:180px; object-fit:cover; border-radius:8px;" />
+        <div class="play-overlay" style="position:absolute; inset:0; background:rgba(0,0,0,0.5); display:flex; justify-content:center; align-items:center;"><i class="fas fa-play" style="font-size:3em; color:white;"></i></div>
       </div>
     </div>
   </section>
 
   <section id="testimonials" style="background:#1a1a1a; padding:40px 20px; border-radius:12px;">
     <h3>Client Testimonials</h3>
-    <p style="text-align:center; margin:10px 0;">"Bass was clean at Easy Buy Supermarket. PartySounds delivered!" - Mr M. Mamba</p>
-    <p style="text-align:center; margin:10px 0;">"Professional setup, loud and clear audio." - Wedding Client</p>
+    <p style="text-align:center;">"Bass was clean at Easy Buy Supermarket. PartySounds delivered!" - Mr M. Mamba</p>
   </section>
 
   <section id="booking">
     <h2>Request A Quote</h2>
-    <p style="text-align:center;"><strong>Trusted by leading event organizers across Eswatini. Complete the form to receive a WhatsApp quote.</strong></p>
-    <form id="booking-form">
-      <div><label for="client-name">Your Full Name *</label><input type="text" id="client-name" name="name" required /></div>
-      <div><label for="event-name">Event Name *</label><input type="text" id="event-name" name="event" placeholder="Wedding / Graduation / Corporate" required /></div>
-      <div><label for="phone-number">Phone Number *</label><input type="tel" id="phone-number" name="phone" placeholder="+268 7xxxxxxx" required /></div>
-      <div><label for="date-needed">Event Date</label><input type="date" id="date-needed" name="date" /></div>
+    <form id="booking-form" style="max-width: 800px; margin: 30px auto; padding: 30px; background: #1a1a1a; border-radius: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div><label>Your Full Name *</label><input type="text" id="client-name" required style="width:100%; padding:12px; background:#1a1a1a; border:1px solid #555; color:white; border-radius:6px;" /></div>
+      <div><label>Event Name *</label><input type="text" id="event-name" required style="width:100%; padding:12px; background:#1a1a1a; border:1px solid #555; color:white; border-radius:6px;" /></div>
+      <div><label>Phone Number *</label><input type="tel" id="phone-number" required style="width:100%; padding:12px; background:#1a1a1a; border:1px solid #555; color:white; border-radius:6px;" /></div>
       <div>
-        <label for="service-select">Select Package *</label>
-        <select id="service-select" name="service" required>
+        <label>Select Package *</label>
+        <select id="service-select" required style="width:100%; padding:12px; background:#1a1a1a; border:1px solid #555; color:white; border-radius:6px;">
           <option value="">--- Select Package ---</option>
           <option value="Premium Event - E1800">Premium Event - E1800</option>
           <option value="Medium Event - E900">Medium Event - E900</option>
           <option value="Small Event - E750">Small Event - E750</option>
-          <option value="Lighting Only - E500">Lighting Only - E500</option>
         </select>
       </div>
-      <div><label for="venue">Venue / Location</label><input type="text" id="venue" name="venue" placeholder="Mbabane, Manzini, etc" /></div>
-      <div class="full-width"><label for="details-message">Additional Details</label><textarea id="details-message" name="message" rows="4" placeholder="Event time, special requests..."></textarea></div>
-      <button type="submit" class="cta whatsapp"><i class="fab fa-whatsapp"></i> SUBMIT INQUIRY VIA WHATSAPP</button>
+      <div class="full-width" style="grid-column: 1 / -1;"><label>Additional Details</label><textarea id="details-message" rows="4" style="width:100%; padding:12px; background:#1a1a1a; border:1px solid #555; color:white; border-radius:6px;"></textarea></div>
+      <button type="submit" class="cta whatsapp" style="grid-column: 1 / -1; justify-self: center;"><i class="fab fa-whatsapp"></i> SUBMIT INQUIRY VIA WHATSAPP</button>
     </form>
   </section>
 
   <section id="documents">
     <h3>Documents & Price List</h3>
-    <p style="text-align:center; margin-bottom:30px;">Download all our official documents in one place</p>
-    <div class="document-grid">
-        <div class="document-item">
+    <div class="document-grid" style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+        <div class="document-item" style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #2a2a2a; text-align: center;">
             <h4><i class="fas fa-file-pdf"></i> Price List</h4>
-            <p>Full breakdown of all packages, add-ons & transport rates.</p>
             <a href="assets/files/pricelist.pdf" download class="cta secondary"><i class="fas fa-download"></i> Download PDF</a>
-            <a href="#" onclick="openDocumentLightbox('assets/files/pricelist.pdf'); return false;" class="cta"><i class="fas fa-eye"></i> View</a>
+            <a href="#" onclick="openDocumentLightbox('assets/files/pricelist.pdf'); return false;" class="btn-water"><i class="fas fa-eye"></i> View</a>
         </div>
-        <div class="document-item">
+        <div class="document-item" style="background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #2a2a2a; text-align: center;">
             <h4><i class="fas fa-file-contract"></i> Rental Agreement</h4>
-            <p>Terms for equipment hire and liability.</p>
             <a href="assets/images/agreement.pdf" download class="cta secondary"><i class="fas fa-download"></i> Download PDF</a>
-            <a href="#" onclick="openDocumentLightbox('assets/images/agreement.pdf'); return false;" class="cta"><i class="fas fa-eye"></i> View</a>
-        </div>
-        <div class="document-item">
-            <h4><i class="fas fa-clipboard-check"></i> Return Checklist</h4>
-            <p>Equipment inspection form for hire returns.</p>
-            <a href="assets/images/return.pdf" download class="cta secondary"><i class="fas fa-download"></i> Download PDF</a>
-            <a href="#" onclick="openDocumentLightbox('assets/images/return.pdf'); return false;" class="cta"><i class="fas fa-eye"></i> View</a>
+            <a href="#" onclick="openDocumentLightbox('assets/images/agreement.pdf'); return false;" class="btn-water"><i class="fas fa-eye"></i> View</a>
         </div>
     </div>
-  </section>
+
 
   <section id="terms">
     <h3>Terms & Conditions</h3>
-    <h4>Transport Fees</h4><p>Quoted based on event location outside Mbabane.</p>
-    <h4>DJ Charges</h4><p>Separate, based on individual DJ rates and requirements.</p>
     <h4>Working Hours</h4><p>All package prices are for 8 hours. Overtime is charged at E300/hour.</p>
-    <h4>Referral Commissions</h4>
-    <ul><li><strong>10%</strong> for one-time client referrals</li><li><strong>15%+</strong> for ongoing event partnerships</li></ul>
   </section>
 </main>
 
-<footer id="contact">
+<footer id="contact" style="background: #1a1a1a; color: var(--light); text-align: center; padding: 40px 20px; border-top: 4px solid var(--primary);">
   <h3>Contact Us</h3>
   <p>📍 Mbabane, Hhohho Region, Eswatini</p>
-  <p>Phone: <a href="tel:+26876031087"><i class="fas fa-phone"></i> +268 76031087 / 79637097</a></p>
   <p>WhatsApp: <a href="https://wa.me/26879637097" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us</a></p>
-  <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61559046577098" target="_blank"><i class="fab fa-facebook"></i> Follow Our Page</a></p>
-  <p>Email: <a href="mailto:partysoundsbookings@outlook.com"><i class="fas fa-envelope"></i> partysoundsbookings@outlook.com</a></p>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14445.5!2d31.137!3d-26.305" width="100%" height="250" style="border:0; border-radius:8px; margin-top:15px;" allowfullscreen loading="lazy"></iframe>
-  <p style="margin-top:20px;">&copy; 2026 The Party Sounds Eswatini. All rights reserved.</p>
+  <p>&copy; 2026 The Party Sounds Eswatini. All rights reserved.</p>
 </footer>
 
 <div id="videoLightbox" class="lightbox">
   <span class="close-btn" onclick="closeVideoLightbox()">&times;</span>
-  <div class="lightbox-content"><iframe id="lightboxVideo" src="" allow="autoplay" allowfullscreen></iframe></div>
+  <div class="lightbox-content" style="width:90%; max-width:900px;"><iframe id="lightboxVideo" src="" allow="autoplay" allowfullscreen style="width:100%; height:60vh; border:none;"></iframe></div>
 </div>
 
 <div id="imageLightbox" class="lightbox">
   <span class="close-btn" onclick="closeImageLightbox()">&times;</span>
-  <div class="lightbox-content">
-    <span class="lightbox-nav" id="prevBtn" onclick="navigateGallery(-1)"><i class="fas fa-chevron-left"></i></span>
-    <img id="lightboxImage" src="" alt="">
-    <span class="lightbox-nav" id="nextBtn" onclick="navigateGallery(1)"><i class="fas fa-chevron-right"></i></span>
-    <div id="lightboxDetails"><h4 id="lightboxTitle"></h4><p id="lightboxDescription"></p></div>
-  </div>
+  <div class="lightbox-content"><img id="lightboxImage" src="" alt="" style="max-width:100%; max-height:70vh;"><div id="lightboxDetails"><h4 id="lightboxTitle"></h4></div></div>
 </div>
 
 <div id="documentLightbox" class="lightbox">
     <span class="close-btn" onclick="closeDocumentLightbox()">&times;</span>
-    <div class="lightbox-content document-lightbox-content">
-        <iframe id="lightboxDocument" src="" title="Document"></iframe>
-    </div>
+    <div class="lightbox-content" style="max-width:1000px;"><iframe id="lightboxDocument" src="" style="width:100%; height:60vh; border:none;"></iframe></div>
 </div>
 
 <script>
-  // --- WHATSAPP BOOKING FORM ---
   document.getElementById('booking-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const name = document.getElementById('client-name').value;
     const event = document.getElementById('event-name').value;
     const phone = document.getElementById('phone-number').value;
-    const date = document.getElementById('date-needed').value;
     const service = document.getElementById('service-select').value;
-    const venue = document.getElementById('venue').value;
     const message = document.getElementById('details-message').value;
-    let whatsappMessage = `Hi PartySounds Eswatini! New Booking:%0A%0A`;
-    whatsappMessage += `*Name:* ${name}%0A`;
-    whatsappMessage += `*Event:* ${event}%0A`;
-    whatsappMessage += `*Phone:* ${phone}%0A`;
-    whatsappMessage += `*Date:* ${date}%0A`;
-    whatsappMessage += `*Package:* ${service}%0A`;
-    whatsappMessage += `*Venue:* ${venue}%0A`;
-    whatsappMessage += `*Details:* ${message}%0A`;
-    const whatsappURL = `https://wa.me/26879637097?text=${whatsappMessage}`;
-    window.open(whatsappURL, '_blank');
-    alert('Redirecting to WhatsApp...');
+    let whatsappMessage = `Hi PartySounds Eswatini! New Booking:%0A*Name:* ${name}%0A*Event:* ${event}%0A*Phone:* ${phone}%0A*Package:* ${service}%0A*Details:* ${message}`;
+    window.open(`https://wa.me/26879637097?text=${whatsappMessage}`, '_blank');
     this.reset();
   });
 
-  // --- LIGHTBOX FUNCTIONS ---
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
   let currentImageIndex = -1;
-  const videoLightbox = document.getElementById('videoLightbox');
-  const documentLightbox = document.getElementById('documentLightbox');
-  const lightboxVideo = document.getElementById('lightboxVideo');
-  const lightboxDocument = document.getElementById('lightboxDocument');
-
-  function updateLightbox(index) {
-    if (index < 0) index = galleryItems.length - 1;
-    if (index >= galleryItems.length) index = 0;
-    currentImageIndex = index;
-    const currentImg = galleryItems[currentImageIndex];
-    document.getElementById('lightboxImage').src = currentImg.getAttribute('data-full-src');
-    document.getElementById('lightboxTitle').textContent = currentImg.getAttribute('data-title');
-    document.getElementById('lightboxDescription').textContent = currentImg.getAttribute('data-description');
-  }
-  function openGalleryLightbox(index) { updateLightbox(index); document.getElementById('imageLightbox').style.display = 'flex'; }
-  function navigateGallery(direction) { updateLightbox(currentImageIndex + direction); }
+  function openGalleryLightbox(index) { currentImageIndex = index; document.getElementById('lightboxImage').src = galleryItems[index].getAttribute('data-full-src'); document.getElementById('imageLightbox').style.display = 'flex'; }
   function closeImageLightbox() { document.getElementById('imageLightbox').style.display = 'none'; }
-  function openVideoLightbox(url) { lightboxVideo.src = url + '?autoplay=1'; videoLightbox.style.display = 'flex'; }
-  function closeVideoLightbox() { videoLightbox.style.display = 'none'; lightboxVideo.src = ''; }
-  function openDocumentLightbox(url) { lightboxDocument.src = url; documentLightbox.style.display = 'flex'; }
-  function closeDocumentLightbox() { documentLightbox.style.display = 'none'; lightboxDocument.src = ''; }
-  function openImageLightbox(src, alt) {
-      document.getElementById('lightboxImage').src = src;
-      document.getElementById('lightboxTitle').textContent = alt;
-      document.getElementById('lightboxDescription').textContent = '';
-      document.getElementById('imageLightbox').style.display = 'flex'; // <-- THIS WAS MISSING
-  }
+  function openVideoLightbox(url) { document.getElementById('lightboxVideo').src = url + '?autoplay=1'; document.getElementById('videoLightbox').style.display = 'flex'; }
+  function closeVideoLightbox() { document.getElementById('videoLightbox').style.display = 'none'; document.getElementById('lightboxVideo').src = ''; }
+  function openDocumentLightbox(url) { document.getElementById('lightboxDocument').src = url; document.getElementById('documentLightbox').style.display = 'flex'; }
+  function closeDocumentLightbox() { document.getElementById('documentLightbox').style.display = 'none'; document.getElementById('lightboxDocument').src = ''; }
+  function openImageLightbox(src, alt) { document.getElementById('lightboxImage').src = src; document.getElementById('lightboxTitle').textContent = alt; document.getElementById('imageLightbox').style.display = 'flex'; }
 </script>
 </body>
-  </html>
+                                                                                                                                           </html>
+    
+                                                                                                                                                                                                   </section>
